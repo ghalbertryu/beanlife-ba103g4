@@ -1,0 +1,553 @@
+*{
+	/*outline: 1px solid red;*/
+}
+
+
+.bg-white{
+	background-color: white;
+}
+.bg-gray{
+	background-color: #ddd;
+}
+.bg-g{
+	background-color: #80BD01;
+}
+.bg-light-g{
+	background-color: #C2DCCE;
+}
+.bg-light-brn{
+	background-color: #C8B6A1;
+}
+.bg-brn{
+	background-color: #7A3D0B;
+	/*background-color:#BF7A41;*/
+}
+.bg-dark-brn{
+	background-color: #6F5C60;
+}
+button.bor-info{
+	border-color:#31708f;
+}
+button.bor-like{
+	border-color:#F57A7A;
+}
+.tx-line{
+	text-decoration:line-through;
+}
+.tx-like{
+	color:#F57A7A;
+}
+.tx-gray{
+	color:#aaa;
+}
+.tx-white{
+	color:white;
+}
+.tx-g{
+	color: #80BD01;
+}
+.tx-light-g{
+	color: #C2DCCE;
+}
+.tx-light-brn{
+	color: #C8B6A1;
+}
+.tx-brn{
+	color: #7A3D0B;
+}
+.tx-dark-brn{
+	color: #6F5C60;
+}
+div .bold{
+    font-weight: bold;
+}
+.inline-b{
+	display: inline-block;
+}
+.rd5{
+	border-radius: 5px;
+}
+.rd10{
+	border-radius: 10px;
+}
+
+.border0{
+	border-width: 0px;
+}
+.border1{
+	border-width: 1px;
+	border-color: #6F5C60;
+}
+.mgt0{
+	margin-top: 0px;
+}
+.mgt10{
+	margin-top: 10px;
+}
+.mgt20{
+	margin-top: 20px;
+}
+.mgt50{
+	margin-top: 50px;
+}
+.mgt60{
+	margin-top: 60px;
+}
+.mgt80{
+	margin-top: 80px;
+}
+.mgt120{
+	margin-top: 120px;
+}
+.mgb0{
+	margin-bottom: 0px;
+}
+.mgb10{
+	margin-bottom: 10px;
+}
+.mgb20{
+	margin-bottom: 20px;
+}
+.mgb30{
+	margin-bottom: 30px;
+}
+.mgb40{
+	margin-bottom: 40px;
+}
+
+
+.mgl20{
+	margin-left: 20px;
+}
+.mgl40{
+	margin-left: 40px;
+}
+.mgr10{
+	margin-right: 10px;
+}
+.mgr20{
+	margin-right: 20px;
+}
+.mgr40{
+	margin-right: 40px;
+}
+.pad0{
+	padding: 0px;
+}
+.pad15{
+	padding: 15px;
+}
+.padr0{
+	padding-right: 0px;
+}
+.padr5{
+	padding-right: 5px;
+}
+.padt0{
+	padding-top: 0px;
+}
+.padt3{
+	padding-top: 3px;
+}
+.padl5{
+	padding-left: 5px;
+}
+.padlr10{
+	padding-left: 20px;
+	padding-right: 20px;
+}
+.padt5{
+	padding-top: 5px;
+}
+.padt8{
+	padding-top: 8px;
+}
+.padt10{
+	padding-top: 10px;
+}
+.padt20{
+	padding-top: 20px;
+}
+.padl30{
+	padding-left: 30px;
+}
+.padb2{
+	padding-bottom: 2px;
+}
+.navbar-nav>li>a.padt20{
+	padding-top: 20px;
+}
+.navbar-nav>li>a.padb17{
+	padding-bottom: 17px;
+}
+.h200{
+	height: 200px;
+}
+.h300{
+	height: 300px;
+}
+.h450{
+	height: 450px;
+}
+.w30{
+	width:30px;
+}
+.w35{
+	width:35px;
+}
+.w45{
+	width: 45px;
+}
+.w50{
+	width: 50px;
+}
+.w60{
+	width: 60px;
+}
+.w90{
+	width: 90px;
+}
+.w100{
+	width: 100px;
+}
+.w110{
+	width: 110px;
+}
+.w300{
+	width: 300px;
+}
+.w800{
+	width: 800px;
+}
+.w20p{
+	width: 19%;
+}
+.w25p{
+	width: 25%;
+}
+.w33p{
+	width: 33.3333333333333%;
+}
+.w50p{
+	width: 50%;
+}
+.zidx5{
+	z-index: 5;
+}
+.zidx1{
+	z-index: 1;
+}
+
+.zidx0{
+	z-index: 0;
+}
+.pointer{
+	cursor: pointer;
+}
+.dis-none{
+	display:none;
+}
+
+
+/*全域設定*/
+body{
+	font-family: 微軟正黑體;
+	/*color: #7A3D0B ;*/
+	color: #6F5C60;
+}
+body a,
+body a:hover,
+body a:link,
+body a:visited{
+	/*color: #7A3D0B ;*/
+	color: #6F5C60;
+	cursor: pointer;
+	text-decoration:none;
+	outline: none;
+}
+
+.btn:focus,
+.btn:active:focus,
+.btn.active:focus,
+.btn.focus,
+.btn:active.focus,
+.btn.active.focus {
+    outline: none;
+}
+
+
+/*區塊設定*/
+.cus-nav{
+	background-color: #7A3D0B;
+}
+.mgt-depn-nav{
+	margin-top: 57px;
+}
+.mgt-depn-nav-lg{
+	margin-top: 65px;
+}
+.func-h{
+	/*min-height: 40px;*/
+}
+.cus-ham{
+	margin-left: 15px;
+}
+.cus-badge{
+	position: absolute;
+	top: 5px;
+	right: 0px;
+	background-color: red;
+}
+.cus-tab-block{
+	margin-top: 30px;
+	margin-bottom: 50px;
+}
+.cart-tab-block{
+	margin-top: 65px;
+	margin-bottom: 50px;
+}
+.cus-tab-content{
+	margin-top: 20px;
+}
+
+.cus-prod-row{
+	padding-top: 20px;
+	padding-bottom: 10px;
+	border-bottom-style: solid;
+	border-color: rgba(200, 182, 161, 0.54);
+}
+.cus-order-row{
+	padding-bottom: 10px;
+	border-bottom-style: solid;
+	border-color: rgba(200, 182, 161, 0.54);
+}
+.cus-art-row{
+	padding-top: 10px;
+	padding-bottom: 10px;
+	border-bottom-style: solid;
+	border-color: rgba(200, 182, 161, 0.54);
+}
+.cus-qa-row{
+	border-bottom-style: solid;
+	border-color: rgba(200, 182, 161, 0.54);
+}
+.cus-act-row{
+	padding-top: 10px;
+	padding-bottom: 10px;
+	border-bottom-style: solid;
+	border-color: rgba(200, 182, 161, 0.54);
+}
+
+
+/*footer fix*/
+
+.footer{
+	padding-top: 10px;
+	padding-bottom: 5px;
+	background-color: #7A3D0B;
+}
+html {
+  height: 100%;
+}
+body {
+  min-height: 100%;
+  display: -webkit-flex; /* Safari */
+  -webkit-flex-direction: row-reverse; /* Safari 6.1+ */
+  display: flex;
+  flex-direction: column;
+}
+.content {
+	-webkit-flex: 1; /* Safari 6.1+ */
+	-ms-flex: 1; /* IE 10 */ 
+	flex: 1;
+	flex:none \9;
+}
+
+
+/* 去除Number樣式 */
+input[type=number] {  
+    -moz-appearance:textfield;  
+}  
+input[type=number]::-webkit-inner-spin-button,  
+input[type=number]::-webkit-outer-spin-button {  
+    -webkit-appearance: none;  
+    margin: 0;  
+}
+
+
+/*navbar active*/
+.navbar-default .navbar-nav>.active>a, .navbar-default .navbar-nav>.active>a:focus, .navbar-default .navbar-nav>.active>a:hover{
+	/*color: #6F5C60;*/
+    /*color: #7A3D0B;*/
+    color: white;
+    /*background-color: #C2DCCE;*/
+    background-color: #888;
+}
+body .navbar-default .navbar-nav>li>a:hover{
+	/*color: #6F5C60;*/
+	color: black;
+	background-color: #C2DCCE;
+	/*background-color: #888;*/
+}
+
+/*跳窗圖框控制*/
+.modal .carousel-control{
+	opacity: 0;
+}
+.modal .carousel-control:hover{
+	opacity: 0.3;
+}
+/*廣告圖框控制*/
+#ad-cas .carousel-control{
+	opacity: 0;
+}
+#ad-cas .carousel-control:hover{
+	opacity: 0.3;
+}
+
+/* Google Map */
+#map {
+	height: 300px;
+	width: 100%;
+}
+
+
+/*功能設定*/
+/*img垂直水平置中*/
+.vam-div150{
+	line-height:150px;
+	text-align:center;
+}
+.vam-div120{
+	line-height:120px;
+	text-align:center;
+}
+.vam-div60{
+	line-height:60px;
+	text-align:center;
+	vertical-align:middle;
+}
+.vam-img{
+	vertical-align: middle;
+	display:inline-block;
+
+}
+.mg-auto{
+	margin: auto;
+	vertical-align : middle;
+}
+
+/* roundImg */
+.round-img {
+    border-radius: 50%;
+}
+
+
+/*ham選單擠壓區塊*/
+@media (min-width: 768px){
+    .h-block-depn-nav {
+        height: 0px;
+    }
+}
+@media (max-width: 767px){
+    .h-block-depn-nav {
+        height: 58px;
+    }
+}
+
+/* modal */
+.fix-h{
+	height:92vh;
+	overflow-y: auto;
+	overflow-x: hidden;
+}
+
+
+
+/*ham border*/
+.navbar-default .navbar-toggle .icon-bar {
+    background-color: white;
+}
+.navbar-default .navbar-toggle {
+    border-color: white;
+}
+.navbar-default .navbar-toggle:hover {
+    background-color: #C8B6A1;
+}
+
+/*nav btn*/
+.navbar-default .navbar-nav>li>a{
+	color:white;
+	font-size: 17px;
+	/*font-weight: bold;*/
+}
+.navbar-default .navbar-nav>li>a:hover{
+	color:white;
+}
+.navbar-default .navbar-nav>li>a:focus{
+	color:white;
+}
+
+/*nav icon*/
+.navbar-default .navbar-brand {
+    color: white;
+}
+.navbar-default .navbar-brand:hover{
+    color: white;
+}
+.navbar-default .navbar-brand:focus{
+    color: white;
+}
+
+/* mobile dropdown link */
+.dropdown-backdrop {
+  position: static;
+}
+
+/*footer*/
+div.footer{
+	color: white;
+}
+div.footer a{
+	color: white;
+}
+
+
+/*table RWD*/
+/*額外做顏色，沒有什麼意義*/
+tr.tr-only-hide {color: #D20B2A;}
+
+@media (max-width: 736px) {
+  .table-rwd{min-width: 100%;}
+  /*針對tr去做隱藏*/
+  tr.tr-only-hide {display: none !important;}
+  /*讓tr變成區塊主要讓他有個區塊*/
+  .table-rwd tr{
+    display: block;
+    border: 1px solid #ddd;
+    margin-top: 5px;
+  }
+  .table-rwd td {
+    text-align: left;
+    font-size: 15px;
+    overflow: hidden;
+    width: 100%;
+    display: block;
+	}
+	.table-rwd td:before {
+    /*最重要的就是這串*/
+    content: attr(data-th) " : ";
+    /*最重要的就是這串*/
+    display: inline-block;
+    text-transform: uppercase;
+    font-weight: bold;
+	  margin-right: 10px;
+    color: #D20B2A;
+  }
+  /*當RWD縮小的時候.table-bordered 會有兩條線，所以針對.table-bordered去做修正*/
+  .table-rwd.table-bordered td,.table-rwd.table-bordered th,.table-rwd.table-bordered{border:0;}
+}
+.table>tbody>tr>td, .table>tbody>tr>th, .table>tfoot>tr>td, .table>tfoot>tr>th, .table>thead>tr>td, .table>thead>tr>th{
+	vertical-align: middle;
+}
+

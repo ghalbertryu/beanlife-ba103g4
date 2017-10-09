@@ -1,0 +1,59 @@
+$color_black: #222831
+$color_darkgray: #393E46
+$color_orange: #F96D00
+$color_white: #F2F2F2
+
+
+
+
+//.fa 和 .h3是左邊導覽列共通有的css
+
+
+
+.card
+
+  
+    
+    
+  
+         
+  .right
+    
+    
+    
+    .right_bottom
+      background-color: #eee
+      *
+        color: $color_black
+      .report, .check, .sent
+        border: solid 1px #aaa
+        margin-top: 50px
+        cursor: pointer
+        
+        .fa
+          width: 100%
+          height: 100px
+          font-size: 100px
+          text-align: center
+          // margin-top: 30px
+          background-color: $color_orange
+          position: relative
+          transition: 0.5s
+          text-decoration: none
+          &:hover
+            background-color: darken($color_orange,30%)
+            color: $color_white
+            text-decoration: none
+        h2
+          width: 100%
+          height: 80px
+          // border: solid 1px blue
+          font-size: 20px
+          text-align: center
+          padding: 30px 10px
+          font-weight: 800
+          a
+            text-decoration: none
+            &:hover
+              text-decoration: none
+              color: $color_orange

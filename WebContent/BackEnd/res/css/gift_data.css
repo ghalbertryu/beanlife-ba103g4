@@ -1,0 +1,83 @@
+.card {
+  -webkit-box-shadow: 0px 0px 60px rgba(0, 0, 0, 0.4);
+  box-shadow: 0px 0px 60px rgba(0, 0, 0, 0.4);
+  max-width: 1670px;
+  width: 95%; }
+  .card .right .right_middle {
+    color: #393E46;
+    margin-bottom: 30px; }
+    .card .right .right_middle .middle {
+      position: relative; }
+      .card .right .right_middle .middle .check {
+        color: #393E46;
+        display: inline-block;
+        font-weight: 500; }
+      .card .right .right_middle .middle .btn {
+        float: right;
+        margin-top: 10px;
+        padding: 10px 20px; }
+  .card .right .right_bottom {
+    background-color: #eee; }
+    .card .right .right_bottom .giftcard {
+
+      padding: 0px;
+      border-radius: 30px;
+      overflow: hidden;
+      background-color: #222831;
+      -webkit-box-shadow: 0px 0px 35px rgba(0, 0, 0, 0.3);
+      box-shadow: 0px 0px 35px rgba(0, 0, 0, 0.3); }
+      .card .right .right_bottom .giftcard:hover {
+        -webkit-box-shadow: 5px 5px 60px rgba(0, 0, 0, 0.4);
+        box-shadow: 5px 5px 60px rgba(0, 0, 0, 0.4);
+        -webkit-transform: translate(-5px, -5px);
+        -ms-transform: translate(-5px, -5px);
+        transform: translate(-5px, -5px);
+        overflow: hidden; }
+      .card .right .right_bottom .giftcard img {
+        left: 50%;
+        -webkit-transform: translate(-50%, 0);
+        -ms-transform: translate(-50%, 0);
+        transform: translate(-50%, 0);
+        width: 100%; 
+     
+
+      }
+      .card .right .right_bottom .giftcard .info {
+        display: -webkit-box;
+        display: -webkit-flex;
+        display: -ms-flexbox;
+        display: flex;
+        -webkit-box-orient: vertical;
+        -webkit-box-direction: normal;
+        -webkit-flex-direction: column;
+        -ms-flex-direction: column;
+        flex-direction: column;
+        -webkit-box-align: center;
+        -webkit-align-items: center;
+        -ms-flex-align: center;
+        align-items: center;
+        padding: 30px;
+        color: #F2F2F2 ;}
+        .card .right .right_bottom .giftcard .info h3 ,.card .right .right_bottom .giftcard .info  p {
+          color: #F2F2F2; }
+      .card .right .right_bottom .giftcard .getitem {
+        display: -webkit-box;
+        display: -webkit-flex;
+        display: -ms-flexbox;
+        display: flex;
+        color: #F2F2F2; }
+        .card .right .right_bottom .giftcard .getitem .btn-danger {
+          cursor: pointer;
+          padding: 25px 20px;
+          border-radius: 10px;
+          margin-right: 15px; }
+      .card .right .right_bottom .giftcard .upTime {
+        display: -webkit-box;
+        display: -webkit-flex;
+        display: -ms-flexbox;
+        display: flex;
+        margin-top: 20px;
+        color: #F2F2F2; }
+  .card .right .pager {
+    position: relative;
+    bottom: -100px; }

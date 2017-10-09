@@ -1,0 +1,18 @@
+.card .right .right_bottom {
+  background-color: white; }
+  .card .right .right_bottom .left_info {
+    background-color: white; }
+
+.card .right .right_bottom tbody {
+  text-align: center; }
+  .card .right .right_bottom tbody tr th {
+    color: #393E46;
+    margin-left: 30px;
+    text-align: center; }
+  .card .right .right_bottom tbody tr td {
+    color: #393E46;
+    padding: 18px 0px 0px 0px;
+    margin-bottom: 0; }
+    .card .right .right_bottom tbody tr td button {
+      position: relative;
+      bottom: 10px; }

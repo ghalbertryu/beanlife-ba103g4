@@ -1,0 +1,140 @@
+$color_black: #222831
+$color_darkgray: #393E46
+$color_orange: #F96D00
+$color_white: #F2F2F2
+
+html,body
+  background-color: lighten($color_black,5%) //0904更改
+  margin: 0
+  padding: 0
+  width: 100%
+  height: 100%
+
+*
+  font-family: 微軟正黑體
+  color: #eee
+  position: relative
+//.fa 和 .h3是左邊導覽列共通有的css
+.fa
+  font-size: 25px
+  font-weight: 100
+  width: 25px
+  height: 25px
+  
+.h3
+  margin-left: 10px
+ 
+  &:hover
+    color: $color_orange
+  //操控鈴鐺下的選單
+
+  
+   
+
+.titlebarForm
+  display: flex
+  // justify-content: space-around
+  background-color: lighten($color_black,5%) //0904更改
+  padding: 10px 50px
+  margin-bottom: 50px
+  color: $color_white
+  border-bottom: solid 3px lighten($color_darkgray,10%) //0904更改
+  
+  .icon
+    width: 70px
+    height: 70px
+    cursor: pointer
+  h1
+    cursor: pointer
+    text-decoration: none
+    &:hover
+      text-decoration: none
+      color: $color_orange
+//.card內的margin:30px,width:95%和 .left是左邊導覽列共通的css    
+.card
+ 
+  box-shadow: 0px 0px 60px rgba(0,0,0,0.4) 
+  // margin: 30px 
+  max-width: 1670px
+  width: 95%
+
+  
+    
+    
+  .left
+    // border: solid 1px black
+    margin-top: 0%  //0904更改
+    .title
+      margin-left: 0px
+    a
+      display: block
+      &:hover
+        background-color: $color_darkgray
+        color: $color_orange
+    a.h3
+      display: inline-block
+      cursor: pointer
+      text-decoration: none
+    ul.collapse
+      list-style: none
+      padding-right: 0
+      
+      a
+        list-style: none
+        text-decoration: none
+        cursor: pointer
+        color: #eee
+        font-size: 20px
+        transition: 0.5s
+        padding-right: 0
+        
+        &:hover
+          text-decoration: none
+          list-style: none
+          color: $color_orange
+         
+  .right
+    height: 1100px
+    
+    background-color: #eee   //0904更改
+    .right_top
+      // border: solid 1px black
+      display: flex
+      justify-content: flex-end
+      background-color: #eee    //0904更改
+      
+      color: $color_black
+
+      // background-color: $color_skin
+      img
+        width: 70px
+        height: 100%
+        border-radius: 50%
+
+      .fa.fa-bell
+        font-size: 30px
+        text-align: center
+        padding: 20px 0px
+        color: black
+        // .dropdown-menu 0910新增 鈴鐺的下拉選單
+      .dropdown-menu
+        right: 0
+        left: 80%
+        cursor: pointer
+       
+        
+       
+        
+    .right_middle
+      background-color: darken($color_white,5%) //0904更改
+      color: $color_black
+      .check
+        // border-right: solid 3px black
+        color: $color_black
+        font-weight: 500         //0904更改
+      .matter
+        color: $color_black
+    .right_bottom
+      background-color: white
+      .left_info
+        background-color: white

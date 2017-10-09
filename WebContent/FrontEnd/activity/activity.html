@@ -1,0 +1,439 @@
+<!DOCTYPE html>
+<html lang="">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+    <title>BeanLife</title>
+    <link rel="Shortcut Icon" type="image/x-icon" href="res/img/logo/BeanLifeIco2.ico" />
+
+    <!--[if lt IE 9]>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv.min.js"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+    <!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script> -->
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css">
+
+    <link rel="stylesheet" href="res/plugin/jquery.scrollbar.css">
+
+    <link rel="stylesheet" href="res/css/BeanLifeBase.css">
+
+
+  </head>
+  <body>
+
+    <!-- NavbarNavbarNavbarNavbarNavbarNavbarNavbarNavbarNavbarNavbarNavbarNavbarNavbar -->
+    <nav class="navbar navbar-default navbar-fixed-top bg-light-brn border0 cus-nav" role="navigation">
+      <div class="container">
+        <div>
+          <button type="button" class="navbar-toggle pull-left cus-ham" data-toggle="collapse" data-target=".navbar-ex1-collapse">
+            <span class="sr-only">選單切換</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+
+
+          <div class="pull-left">
+            <a href="index.html">
+              <img class="w50 padt5 padb2 mgr20" src="res/img/BeanLifeLogoR.png">
+            </a>
+          </div>
+          
+          <div class="pull-right padt5">
+            <div class="dropdown pull-right">
+                      <a class="navbar-brand dropdown-toggle" data-toggle="dropdown" href="#">
+                        <span class="glyphicon glyphicon-shopping-cart"></span>
+                        <span class="badge cus-badge">5</span>
+                      </a>
+                      <ul class="dropdown-menu zidx5">
+                    <li><a href="#">咖啡</a></li>
+                    <li role="presentation" class="divider"></li>
+                    <li><a href="#">清單</a></li>
+                    <li><a href="#">清單</a></li>
+                    <li role="presentation" class="divider"></li>
+                    <li><a href="#">清單</a></li>
+                    <li><a href="#">清單</a></li>
+                    <li><a href="#">清單</a></li>
+                  </ul>
+                    </div>
+
+                    <div class="dropdown pull-right">
+                      <a class="navbar-brand dropdown-toggle" data-toggle="dropdown" href="#">
+                        <span class="glyphicon glyphicon-user"></span>
+                      </a>
+                      <ul class="dropdown-menu zidx5">
+                    <li><a href="#">店家資訊</a></li>
+                    <li><a href="#">商品管理</a></li>
+                    <li><a href="#">訂單管理</a></li>
+                    <li role="presentation" class="divider"></li>
+                    <li><a href="#">個人資料</a></li>
+                    <li><a href="#">訂單查詢</a></li>
+                    <li><a href="#">我的收藏</a></li>
+                    <li><a href="#">個人文章</a></li>
+                    <li><a href="#">個人活動</a></li>
+                    <li><a href="#">積分兌換</a></li>
+                  </ul>
+                    </div>
+                </div>
+        </div>
+
+
+        <div class="h-block-depn-nav"></div>
+
+        <!-- 手機隱藏選單區 -->
+        <div class="collapse navbar-collapse navbar-ex1-collapse">
+          <!-- 左選單 -->
+          <ul class="nav navbar-nav">
+            <li><a class="padt20 padb17" href="shop.html">找豆</a></li>
+            <li><a class="padt20 padb17" href="forum.html">討論板</a></li>
+            <li class="active"><a class="padt20 padb17" href="activity.html">辦活動</a></li>
+            <li><a class="padt20 padb17" href="#">地圖</a></li>
+          </ul>
+        </div>
+        <!-- 手機隱藏選單區結束 -->
+      </div>
+    </nav>
+<!-- -------------------------------------------------------------------------------------------------------- -->
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+		<!-- funcbar -->
+		<nav id="funcbar" class="navbar navbar-default navbar-fixed-top mgt-depn-nav func-h zidx1 bg-light-brn border0" role="navigation">
+			<div class="container padt8">
+				<div class="col-xs-12 col-sm-2 col-sm-offset-1">
+					<select class="form-control">
+						<option>請選擇地區</option>
+				        <option>北區</option>
+				        <option>中區</option>
+				        <option>南區</option>
+				        <option>東區</option>
+				        <option>離島</option>
+			    	</select>
+				</div>
+				<div class="col-xs-12 col-sm-3">
+					<div class="input-group pull-right">
+					  <input type="date" class="form-control">
+					</div>
+					<h5 class="inline-b pull-right">起始日期：</h5>
+				</div>
+				<div class="col-xs-12 col-sm-3">
+					<div class="text-center">
+						<div class="input-group pull-right">
+						  <input type="date" class="form-control">
+						</div>
+						<h5 class="inline-b pull-right">結束日期：</h5>
+					</div>
+				</div>
+				<div class="col-xs-12 col-sm-2">
+					<form>
+		             <div class="input-group">
+		               <input type="text" class="form-control" placeholder="Search">
+		               <div class="input-group-btn">
+		                 <button class="btn btn-default" type="submit">
+		                   <i class="glyphicon glyphicon-search"></i>
+		                 </button>
+		               </div>
+		             </div>
+		            </form>
+				</div>
+			</div>
+		</nav>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+		<!-- BBBBBBBBBBBBBBBBBBBBBBBBBBBBB -->
+		<div class="container mgt120 mgb30">
+			<div class="row">
+				<div class="col-xs-12 col-sm-10 col-sm-offset-1">
+					<div id="ad-cas" class="carousel slide" data-ride="carousel">
+					    <!-- 幻燈片主圖區 -->
+					    <div class="carousel-inner">
+					        <div class="item">
+					            <img src="res/img/ad1.png" alt="">
+					        </div>
+					        <div class="item">
+					            <img src="res/img/ad2.png" alt="">
+					        </div>
+					        <div class="item active">
+					            <img src="res/img/ad3.png" alt="">
+					        </div>
+					    </div>
+					    <!-- 上下頁控制區 -->
+					    <a class="left carousel-control" href="#ad-cas" data-slide="prev"><span class="glyphicon glyphicon-chevron-left"></span></a>
+					    <a class="right carousel-control" href="#ad-cas" data-slide="next"><span class="glyphicon glyphicon-chevron-right"></span></a>
+					</div>
+				</div>
+			</div>
+		</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+		<!--CCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCC-->
+
+
+
+
+
+
+		<div class="container">
+			<div class="row">
+
+				<div class="col-xs-12 col-sm-8 col-sm-offset-2 mgb30">
+					<div class="container-floid">
+						<div class="row">
+							<div class="col-xs-12 col-sm-12">
+								<div class="pull-left inline-b">
+									<h4 class="text-danger">達人教學</h4>
+									<h5 class="tx-gray"><span class="bold">桃園市</span> 2017-10 至 2017-11的活動</h5>
+								</div>
+
+								<div class="pull-right inline-b mgl20">
+									<select class="form-control">
+								        <option>排序依地區</option>
+								        <option>排序依收藏</option>
+								        <option>排序依日期</option>
+							    	</select>
+								</div>
+								<div class="pull-right inline-b">
+									<div class="btn btn-default btn-info">
+										舉辦活動
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+
+					<div class="container-floid">
+						
+						<!-- ///////////////////////// -->
+						<div class="row mgb30 mgt20 ">
+							<div class="col-xs-12 col-sm-6">
+								<img class="img-responsive  mg-auto vam-img" src="res/img/a1.jpg">
+							</div>
+							<div class="col-xs-12 col-sm-6">
+								<h4 class="inline-b bold">和大師學手沖--手沖咖啡實作課</h4>
+								<p>一杯好口感的手沖咖啡，除了咖啡豆本身的品質，手沖時的水溫，濾杯，沖泡壺，沖泡手勢等等的變化都會影響咖啡的口感。在這堂課裡，老師會對每一個變項做清楚的說明。並讓同學試喝後發現口中的驚奇。手沖時的水溫，濾杯，沖泡壺，沖泡手勢等等的變化都會影響咖啡的口感。在這堂課裡，老師會對每一個變項做清楚的說明。並讓同學試喝後發現口中的驚奇。</p>
+								<h5 class="inline-b pull-left text-info">2016-12-08(四)</h5>
+								<h5 class="inline-b pull-left mgl20 text-info">桃園市</h5>
+								<button type="button" class="btn btn-default btn-sm zidx5 pull-right" aria-label="Left Align">
+		        					<span class="tx-gray">42</span>
+									<span class="glyphicon glyphicon-bookmark tx-gray" aria-hidden="true"></span>
+								</button>
+							</div>
+						</div>
+						<!-- ////////////////////// -->
+						<div class="row mgb30 mgt20 ">
+							<div class="col-xs-12 col-sm-6">
+								<img class="img-responsive" src="res/img/a2.jpg">
+							</div>
+							<div class="col-xs-12 col-sm-6">
+								<h4 class="inline-b bold">和大師學手沖--手沖咖啡實作課</h4>
+								<p>一杯好口感的手沖咖啡，除了咖啡豆本身的品質，手沖時的水溫，濾杯，沖泡壺，沖泡手勢等等的變化都會影響咖啡的口感。在這堂課裡，老師會對每一個變項做清楚的說明。並讓同學試喝後發現口中的驚奇。手沖時的水溫，濾杯，沖泡壺，沖泡手勢等等的變化都會影響咖啡的口感。在這堂課裡，老師會對每一個變項做清楚的說明。並讓同學試喝後發現口中的驚奇。</p>
+								<h5 class="inline-b pull-left text-info">2016-12-08(四)</h5>
+								<h5 class="inline-b pull-left mgl20 text-info">桃園市</h5>
+								<button type="button" class="btn btn-default btn-sm zidx5 pull-right bor-info" aria-label="Left Align">
+		        					<span class="text-info">42</span>
+									<span class="glyphicon glyphicon-bookmark text-info" aria-hidden="true"></span>
+								</button>
+							</div>
+						</div>
+						
+						<!-- ///////////////////////// -->
+						<div class="row mgb30 mgt20 ">
+							<div class="col-xs-12 col-sm-6">
+								<img class="img-responsive  mg-auto vam-img" src="res/img/a1.jpg">
+							</div>
+							<div class="col-xs-12 col-sm-6">
+								<h4 class="inline-b bold">和大師學手沖--手沖咖啡實作課</h4>
+								<p>一杯好口感的手沖咖啡，除了咖啡豆本身的品質，手沖時的水溫，濾杯，沖泡壺，沖泡手勢等等的變化都會影響咖啡的口感。在這堂課裡，老師會對每一個變項做清楚的說明。並讓同學試喝後發現口中的驚奇。手沖時的水溫，濾杯，沖泡壺，沖泡手勢等等的變化都會影響咖啡的口感。在這堂課裡，老師會對每一個變項做清楚的說明。並讓同學試喝後發現口中的驚奇。</p>
+								<h5 class="inline-b pull-left text-info">2016-12-08(四)</h5>
+								<h5 class="inline-b pull-left mgl20 text-info">桃園市</h5>
+								<button type="button" class="btn btn-default btn-sm zidx5 pull-right" aria-label="Left Align">
+		        					<span class="tx-gray">42</span>
+									<span class="glyphicon glyphicon-bookmark tx-gray" aria-hidden="true"></span>
+								</button>
+							</div>
+						</div>
+						<!-- ////////////////////// -->
+						<div class="row mgb30 mgt20 ">
+							<div class="col-xs-12 col-sm-6">
+								<img class="img-responsive" src="res/img/a2.jpg">
+							</div>
+							<div class="col-xs-12 col-sm-6">
+								<h4 class="inline-b bold">和大師學手沖--手沖咖啡實作課</h4>
+								<p>一杯好口感的手沖咖啡，除了咖啡豆本身的品質，手沖時的水溫，濾杯，沖泡壺，沖泡手勢等等的變化都會影響咖啡的口感。在這堂課裡，老師會對每一個變項做清楚的說明。並讓同學試喝後發現口中的驚奇。手沖時的水溫，濾杯，沖泡壺，沖泡手勢等等的變化都會影響咖啡的口感。在這堂課裡，老師會對每一個變項做清楚的說明。並讓同學試喝後發現口中的驚奇。</p>
+								<h5 class="inline-b pull-left text-info">2016-12-08(四)</h5>
+								<h5 class="inline-b pull-left mgl20 text-info">桃園市</h5>
+								<button type="button" class="btn btn-default btn-sm zidx5 pull-right bor-info" aria-label="Left Align">
+		        					<span class="text-info">42</span>
+									<span class="glyphicon glyphicon-bookmark text-info" aria-hidden="true"></span>
+								</button>
+							</div>
+						</div>
+						
+
+
+
+
+			        </div>
+				</div>
+			</div>
+		</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- ------------------------------------------------------------------------------------------------------- -->
+
+
+
+
+
+
+		<!--FFFFFFFFFFFFFFFFFFFFFFFFFFfff-->
+		<div class="footer bg-light-brn">
+			<div class="container text-center">
+				<div class="row">
+					<div class="col-xs-12 col-sm-1 col-sm-offset-4">
+						<a href="#">服務條款</a>
+					</div>
+					<div class="col-xs-12 col-sm-1">
+						<a href="#">常見問題</a>
+					</div>
+					<div class="col-xs-12 col-sm-1">
+						<a href="#">聯絡我們</a>
+					</div>
+					<div class="col-xs-12 col-sm-1">
+						<a href="#">商業合作</a>
+					</div>
+				</div>
+				<div class="col-xs-12 col-sm-12">
+					<h5 class="small">COPYRIGHT (C) 2017 BeanLife, Inc. ALL RIGHTS RESERVED.</h5>
+				</div>
+			</div>
+		</div>
+
+
+
+
+
+
+
+
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<script type="text/javascript" src="res/plugin/jquery.scrollbar.js"></script>
+
+
+<script>
+
+//func bar toogle
+var scrollPos = 0;
+window.onscroll = function() {myFunction()};
+
+function myFunction() {
+  if (document.body.scrollTop < 1) {
+    $("#funcbar").stop(true);
+        $("#funcbar").slideDown("300");
+        scrollPos = document.body.scrollTop;
+        return;
+  }
+    if ((document.body.scrollTop-scrollPos) >= 0) {
+      $("#funcbar").stop(true);
+        $("#funcbar").slideUp("300");
+        scrollPos = document.body.scrollTop;
+    } else {
+      $("#funcbar").stop(true);
+        $("#funcbar").slideDown("300");
+        scrollPos = document.body.scrollTop;
+    }
+}
+
+//odd row change side
+$(document).ready(function(){
+  $('.row.mgb30.mgt20:odd').children('div:first-child').addClass('col-sm-push-6')
+  $('.row.mgb30.mgt20:odd').children('div:last-child').addClass('col-sm-pull-6')
+});
+
+// scrollbar
+jQuery(document).ready(function(){
+    jQuery('.scrollbar-macosx').scrollbar();
+});
+
+</script>
+
+
+
+  </body>
+</html>
