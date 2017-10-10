@@ -28,6 +28,9 @@
 <c:set var="like_rev_list" value="${like_revSvc.getAllByMem(mem_ac)}" scope="page"/>
 <c:set var="cart_listSet" value="${cart_listSvc.getVOsByMem(mem_ac)}" scope="page"/>
 
+<link rel="stylesheet" href="<%=request.getContextPath()%>/FrontEnd/res/plugin/jquery-asRange/css/asRange.css">
+<script src="<%=request.getContextPath()%>/FrontEnd/res/plugin/jquery-asRange/jquery-asRange.js"></script>
+
 
 
 
@@ -46,17 +49,18 @@
         </div>
         <div class="col-xs-12 col-sm-2">
           <select class="form-control" name="proc">
-            <option value="" ${(mapBack.get('proc')==null)?'selected':'' }>請選擇處理法</option>
+            	<option value="" ${(mapBack.get('proc')==null)?'selected':'' }>請選擇處理法</option>
                 <option value="日曬" ${(mapBack.get('proc')=='日曬')?'selected':'' }>日曬</option>
                 <option value="半水洗" ${(mapBack.get('proc')=='半水洗')?'selected':'' }>半水洗</option>
                 <option value="水洗" ${(mapBack.get('proc')=='水洗')?'selected':'' }>水洗</option>
                 <option value="蜜處理" ${(mapBack.get('proc')=='蜜處理')?'selected':'' }>蜜處理</option>
             </select>
         </div>
-        <div class="col-xs-12 col-sm-2 padt8">
-          <input type="range" name="roast" min="0" max="8" value="${(mapBack.get('roast')==null)?'0':mapBack.get('roast')}">
+        <div class="col-xs-12 col-sm-3 padt10 mgb30">
+          <!-- <input type="range" name="roast" min="0" max="8" value="${(mapBack.get('roast')==null)?'0':mapBack.get('roast')}"> -->
+          <input class="roast" type="text" min="0" max="7" value="0,7" name="bean_roast" step="1" />
         </div>
-        <div class="col-xs-12 col-sm-4">
+        <div class="col-xs-12 col-sm-3 mgb10">
           
            <div class="input-group">
            	 <input name="action" type="hidden" value="searchProds">
@@ -73,6 +77,37 @@
        </form>
     </nav>
 
+<script>
+  var $roast = ["極淺焙","淺焙","中焙","中深焙","城市烘","深焙","法式烘","重焙"];
+  $(document).ready(function() {
+    $(".roast").asRange({
+      range: true,
+      limit: false
+    });
+
+    $('.asRange-pointer-1 .asRange-tip').text($roast[$(".roast").asRange('get')[0]]);
+    $('.asRange-pointer-2 .asRange-tip').text($roast[$(".roast").asRange('get')[1]]);
+
+    $(".roast").on('asRange::change', function (e) {
+      $('.asRange-pointer-1 .asRange-tip').text($roast[$(".roast").asRange('get')[0]]);
+      $('.asRange-pointer-2 .asRange-tip').text($roast[$(".roast").asRange('get')[1]]);
+    });
+
+  });
+</script>
+
+<style type="text/css">
+  .asRange{
+    width: 100%;
+  }
+  .asRange .asRange-pointer .asRange-tip {
+    top:15px;
+    width: 40px;
+  }
+  .asRange .asRange-pointer .asRange-tip:before {
+    top:-3px;
+  }
+</style>
 
 
 

@@ -313,8 +313,29 @@
 
 
                             </div>
-                            <div class="col-xs-12 col-sm-3 col-sm-offset-1">
-                                <img class="img-responsive mg-auto" src="<%=request.getContextPath()%>/FrontEnd/res/img/5.png">
+                            <div class="col-xs-12 col-sm-5 pad0">
+                                <svg class="" height="300" >
+                                    <polygon id="polygon1" points="" style="fill:white;stroke:black;stroke-width:1" />
+                                    <polygon id="polygon2" points="" style="fill:white;stroke:black;stroke-width:1" />
+                                    <polygon id="polygon3" points="" style="fill:white;stroke:black;stroke-width:1" />
+                                    <polygon id="polygon4" points="" style="fill:white;stroke:black;stroke-width:1" />
+                                    <polygon id="polygon5" points="" style="fill:white;stroke:black;stroke-width:1" />
+
+                                    <polygon id="aroma" points="" style="fill:rgba(0, 154, 100, 0.6);stroke:rgb(0, 150, 150);stroke-width:2" />
+
+                                    <line id="line1" x1="0" y1="0" x2="" y2="" style="stroke:silver;stroke-width:1" />
+                                    <line id="line2" x1="0" y1="0" x2="" y2="" style="stroke:silver;stroke-width:1" />
+                                    <line id="line3" x1="0" y1="0" x2="" y2="" style="stroke:silver;stroke-width:1" />
+                                    <line id="line4" x1="0" y1="0" x2="" y2="" style="stroke:silver;stroke-width:1" />
+                                    <line id="line5" x1="0" y1="0" x2="" y2="" style="stroke:silver;stroke-width:1" />
+
+                                    <text id="b_body" x="" y="" style="font-weight:bold; fill:black;">醇度</text>
+                                    <text id="b_acid" x="" y="" style="font-weight:bold; fill:black;">酸度</text>
+                                    <text id="b_after" x="" y="" style="font-weight:bold; fill:black;">餘味</text>
+                                    <text id="b_bal" x="" y="" style="font-weight:bold; fill:black;">平衡度</text>
+                                    <text id="b_aroma" x="" y="" style="font-weight:bold; fill:black;">香氣</text>
+                                </svg>
+
                             </div>
                         </div>
 
@@ -646,8 +667,7 @@ var $replyBtn = $("#replyBtn${qaVO.qa_no}").click(function(){
                     </div>
                 </div>
 
-    
-    
+
 <script>
 var $modalX = $("#modalX");
 var $btn = $("#pp${prodVO.store_no}").click(function(){
@@ -702,6 +722,81 @@ var $askBtn = $("#askBtn").click(function(){
             }
         });
     });
+
+//draw bean_attribute pic
+function setPol(){
+    var p = 2*Math.PI/5;
+    var s = Math.PI/10;
+    var r=100;
+    var c = 150;
+    var step=20;
+
+    //draw line
+    $("#line1").attr("x1",c+r*Math.cos(p*1-s)).attr("y1",c+r*Math.sin(p*1-s)).attr("x2",c).attr("y2",c);
+    $("#line2").attr("x1",c+r*Math.cos(p*2-s)).attr("y1",c+r*Math.sin(p*2-s)).attr("x2",c).attr("y2",c);
+    $("#line3").attr("x1",c+r*Math.cos(p*3-s)).attr("y1",c+r*Math.sin(p*3-s)).attr("x2",c).attr("y2",c);
+    $("#line4").attr("x1",c+r*Math.cos(p*4-s)).attr("y1",c+r*Math.sin(p*4-s)).attr("x2",c).attr("y2",c);
+    $("#line5").attr("x1",c+r*Math.cos(p*0-s)).attr("y1",c+r*Math.sin(p*0-s)).attr("x2",c).attr("y2",c);
+
+    //draw text
+    var tx = r+step;
+    $('#b_body').attr('x',c+tx*Math.cos(p*4-s)-step/1.4).attr('y',c+tx*Math.sin(p*4-s)+step/1.7);
+    $('#b_acid').attr('x',c+tx*Math.cos(p*5-s)-step/1.4).attr('y',c+tx*Math.sin(p*5-s));
+    $('#b_after').attr('x',c+tx*Math.cos(p*1-s)-step/1.4).attr('y',c+tx*Math.sin(p*1-s));
+    $('#b_bal').attr('x',c+tx*Math.cos(p*2-s)-step/1.4).attr('y',c+tx*Math.sin(p*2-s));
+    $('#b_aroma').attr('x',c+tx*Math.cos(p*3-s)-step/1.4).attr('y',c+tx*Math.sin(p*3-s));
+
+    //draw 5polygon
+    $("#polygon1").attr("points",
+                (c+r*Math.cos(p*1-s)) + "," + (c+r*Math.sin(p*1-s)) + " " +
+                (c+r*Math.cos(p*2-s)) + "," + (c+r*Math.sin(p*2-s)) + " " +
+                (c+r*Math.cos(p*3-s)) + "," + (c+r*Math.sin(p*3-s)) + " " +
+                (c+r*Math.cos(p*4-s)) + "," + (c+r*Math.sin(p*4-s)) + " " +
+                (c+r*Math.cos(p*0-s)) + "," + (c+r*Math.sin(p*0-s)) + " "
+                 );
+    r-=step;
+    $("#polygon2").attr("points",
+                (c+r*Math.cos(p*1-s)) + "," + (c+r*Math.sin(p*1-s)) + " " +
+                (c+r*Math.cos(p*2-s)) + "," + (c+r*Math.sin(p*2-s)) + " " +
+                (c+r*Math.cos(p*3-s)) + "," + (c+r*Math.sin(p*3-s)) + " " +
+                (c+r*Math.cos(p*4-s)) + "," + (c+r*Math.sin(p*4-s)) + " " +
+                (c+r*Math.cos(p*0-s)) + "," + (c+r*Math.sin(p*0-s)) + " " 
+                 );
+    r-=step;
+    $("#polygon3").attr("points",
+                (c+r*Math.cos(p*1-s)) + "," + (c+r*Math.sin(p*1-s)) + " " +
+                (c+r*Math.cos(p*2-s)) + "," + (c+r*Math.sin(p*2-s)) + " " +
+                (c+r*Math.cos(p*3-s)) + "," + (c+r*Math.sin(p*3-s)) + " " +
+                (c+r*Math.cos(p*4-s)) + "," + (c+r*Math.sin(p*4-s)) + " " +
+                (c+r*Math.cos(p*0-s)) + "," + (c+r*Math.sin(p*0-s)) + " " 
+                 );
+    r-=step;
+    $("#polygon4").attr("points",
+                (c+r*Math.cos(p*1-s)) + "," + (c+r*Math.sin(p*1-s)) + " " +
+                (c+r*Math.cos(p*2-s)) + "," + (c+r*Math.sin(p*2-s)) + " " +
+                (c+r*Math.cos(p*3-s)) + "," + (c+r*Math.sin(p*3-s)) + " " +
+                (c+r*Math.cos(p*4-s)) + "," + (c+r*Math.sin(p*4-s)) + " " +
+                (c+r*Math.cos(p*0-s)) + "," + (c+r*Math.sin(p*0-s)) + " " 
+                 );
+    r-=step;
+    $("#polygon5").attr("points",
+                (c+r*Math.cos(p*1-s)) + "," + (c+r*Math.sin(p*1-s)) + " " +
+                (c+r*Math.cos(p*2-s)) + "," + (c+r*Math.sin(p*2-s)) + " " +
+                (c+r*Math.cos(p*3-s)) + "," + (c+r*Math.sin(p*3-s)) + " " +
+                (c+r*Math.cos(p*4-s)) + "," + (c+r*Math.sin(p*4-s)) + " " +
+                (c+r*Math.cos(p*0-s)) + "," + (c+r*Math.sin(p*0-s)) + " " 
+                 );
+  	//draw bean_attr
+    $("#aroma").attr("points",
+                (c+step*${prodVO.bean_attr_body}*Math.cos(p*4-s)) + "," + (c+step*${prodVO.bean_attr_body}*Math.sin(p*4-s)) + " " +
+                (c+step*${prodVO.bean_attr_acid}*Math.cos(p*5-s)) + "," + (c+step*${prodVO.bean_attr_acid}*Math.sin(p*5-s)) + " " +
+                (c+step*${prodVO.bean_attr_after}*Math.cos(p*1-s)) + "," + (c+step*${prodVO.bean_attr_after}*Math.sin(p*1-s)) + " " +
+                (c+step*${prodVO.bean_attr_bal}*Math.cos(p*2-s)) + "," + (c+step*${prodVO.bean_attr_bal}*Math.sin(p*2-s)) + " " +
+                (c+step*${prodVO.bean_attr_aroma}*Math.cos(p*3-s)) + "," + (c+step*${prodVO.bean_attr_aroma}*Math.sin(p*3-s)) + " "
+                 );
+}
+
+    setPol();
 
 
 </script>
