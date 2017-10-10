@@ -108,6 +108,15 @@ public class ProdService {
 	public void updateProd(ProdVO prodVO){
 		dao.update(prodVO);
 	}
+	//改上下架
+	public  ProdVO updateProdstat(String prod_no, String prod_stat) {
+			ProdVO prodVO = dao.findByPrimaryKey(prod_no);
+			prodVO.setProd_stat(prod_stat);
+			prodVO.setEd_time(new Date(System.currentTimeMillis()));
+			dao.update(prodVO);
+			return prodVO;
+		
+	}
 	
 	public ProdVO updateProdbysto(String prod_no,String store_no,String prod_name, String bean_type, String bean_grade,
 			String bean_contry, String bean_region, String bean_farm, String bean_farmer, Integer bean_el, String proc,

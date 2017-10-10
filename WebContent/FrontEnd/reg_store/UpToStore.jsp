@@ -45,7 +45,7 @@
 			</tr>
 			<tr>
 				<td>公司電話:</td>
-				<td><input type="TEXT" name="store_phone" size="45"
+				<td><input type="TEXT" name="store_phone" size="45" pattern="0\d{1,2}-?(\d{1,4})-?(\d{1,4})" placeholder="EX:02-123-456"
 					value="${storeVO.store_phone}" /></td>
 			</tr>
 			<tr>
@@ -69,7 +69,7 @@
 
 			<tr>
 				<td>免運費金額:</td>
-				<td><input type="TEXT" name="store_free_ship" size="45"
+				<td><input type="number" name="store_free_ship" size="45" min="0" step="1"
 					value="${storeVO.store_free_ship}" /></td>
 			</tr>
 	

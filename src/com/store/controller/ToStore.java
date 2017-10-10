@@ -5,6 +5,7 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
+import java.sql.SQLException;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.regex.Pattern;
@@ -200,7 +201,16 @@ public class ToStore extends HttpServlet {
 				}
 				
 				System.out.println("11111111");
+				StoreService storeSvc = new StoreService();
+				List<StoreVO> storeVOs=storeSvc.getAll();
 				
+				
+				for(StoreVO storevo :storeVOs){
+					 if(tax_id_no.equals(storevo.getTax_id_no())){
+						 errorMsgs.add("統一編號已註冊");
+					 }
+					
+				}
 				
 			
 				
@@ -238,7 +248,7 @@ public class ToStore extends HttpServlet {
 				storeVO.setStore_free_ship(store_free_ship);
 				
 				
-				
+				System.out.println("this");
 				// Send the use back to the form, if there were errors
 				if (!errorMsgs.isEmpty()) {
 					req.setAttribute("storeVO", storeVO); // 含有輸入格式錯誤的empVO物件,也存入req
@@ -248,7 +258,7 @@ public class ToStore extends HttpServlet {
 				}
 
 				/*************************** 2.開始新增資料 ***************************************/
-				StoreService storeSvc = new StoreService();
+				
 				storeVO = storeSvc.addStore(mem_ac, tax_id_no, win_id_pic, store_phone, store_add, store_add_lat,
 						store_add_lon, store_name, store_cont, store_pic1, store_pic2, store_pic3, store_free_ship,
 						store_atm_info);
@@ -329,11 +339,28 @@ public class ToStore extends HttpServlet {
 				
 				String store_cont = req.getParameter("store_cont").trim();
 				
-				Integer store_free_ship = new Integer(req.getParameter("store_free_ship").trim());
+//				Integer store_free_ship = new Integer(req.getParameter("store_free_ship").trim());
 				String store_add_lat = req.getParameter("store_add_lat").trim();
 				String store_add_lon = req.getParameter("store_add_lon").trim();
 				
-				
+				if (store_name == null || (store_name).length() == 0) {
+					errorMsgs.add("請輸入店家名稱");
+				}
+
+				if (store_phone == null || (store_phone).length() == 0) {
+					errorMsgs.add("請輸入電話");
+				}
+				if (store_cont == null || (store_cont).length() == 0) {
+					errorMsgs.add("請輸入店家介紹");
+				}
+				Integer store_free_ship = 0 ;
+				if(!req.getParameter("store_free_ship").equals("")){
+					store_free_ship = new Integer(req.getParameter("store_free_ship"));
+				} else{
+					errorMsgs.add("請輸入免運費金額");
+				}
+
+
 
 				InputStream is = req.getPart("store_pic1").getInputStream();
 				byte[] store_pic1 = null;

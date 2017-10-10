@@ -83,12 +83,12 @@
 				</tr>
 				<tr>
 					<td>免運費金額</td>
-					<td><input type="text" name="store_free_ship" value="${storeVO.store_free_ship}"></td>
+					<td><input type="number" name="store_free_ship" value="${storeVO.store_free_ship}" min="0" step="1"></td>
 					<td></td>
 				</tr>
 				<tr>
 					<td>公司電話</td>
-					<td><input type="text" name="store_phone" value="${storeVO.store_phone}"></td>
+					<td><input type="text" name="store_phone" value="${storeVO.store_phone}" pattern="0\d{1,2}-?(\d{1,4})-?(\d{1,4})" placeholder="EX:02-123-456"></td>
 					<td></td>
 				</tr>
 				<tr>

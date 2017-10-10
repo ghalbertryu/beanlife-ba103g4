@@ -53,7 +53,7 @@
 					<th>烘培度</th>
 					<th>狀態</th>
 					<th></th>
-					
+					<th></th>
 				</tr>
 				<%@ include file="page1.file"%>
 				<c:forEach var="prodVO" items="${set}" begin="<%=pageIndex%>"
@@ -79,6 +79,15 @@
 										<input type="hidden" name="store_no"	value="<%=store_no%>">  
 										<input type="hidden" name="action" value="getOne_For_Update">
 										<input type="hidden" name="whichPage"	value="<%=whichPage%>">  
+							</FORM>
+						</td>
+						<td><FORM METHOD="post"
+										ACTION="<%=request.getContextPath()%>/prod/Prod_manag.do">
+										<input type="submit" value=${prodVO.prod_stat.equals("上架") ? "下架" : "上架" } class="btn btn-info"> 
+										<input type="hidden" name="prod_no" value="${prodVO.prod_no}">
+										<input type="hidden" name="prod_stat" value="${prodVO.prod_stat}">
+										<input type="hidden" name="action" value="Update_prodstat">
+										<input type="hidden" name="whichPage"	value="<%=whichPage%>">
 							</FORM>
 						</td>
 					</tr>

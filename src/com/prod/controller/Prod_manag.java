@@ -167,7 +167,28 @@ public class Prod_manag extends HttpServlet {
 //				if(String.valueOf( prod_wt).matches(prod_wt_reg)==false){
 //					errorMsgs.add("重量只能小數點後一位");
 //				}
-
+				if(prod_name.length()==0||prod_name==null){
+					errorMsgs.add("商品名不能為空");
+				}
+				if(bean_contry.length()==0||bean_contry==null){
+					errorMsgs.add("生產國不能為空");
+				}
+				if(prod_price.toString().length()==0){
+					errorMsgs.add("價錢不能為空");
+				}
+				if(prod_wt.toString().length()==0){
+					errorMsgs.add("重量不能為空");
+				}
+				if(send_fee.toString().length()==0){
+					errorMsgs.add("重量不能為空");
+				}
+				if(prod_sup.toString().length()==0){
+					errorMsgs.add("供應數量不能為空");
+				}
+				if(prod_cont.length()==0||bean_contry==null){
+					errorMsgs.add("商品介紹不能為空");
+				}
+				
 				ProdVO prodVO = new ProdVO();
 				prodVO.setProd_no(prod_no);
 				prodVO.setStore_no(store_no);
@@ -212,6 +233,7 @@ public class Prod_manag extends HttpServlet {
 				}
 				/*************************** 2.開始修改資料 *****************************************/
 				System.out.println(1111111);
+				System.out.println(222233);
 				ProdService prodSvc = new ProdService();
 				prodVO = prodSvc.updateProdbysto(prod_no, store_no, prod_name, bean_type, bean_grade, bean_contry,
 						bean_region, bean_farm, bean_farmer, bean_el, proc, roast, bean_attr_acid, bean_attr_aroma,
@@ -621,6 +643,66 @@ public class Prod_manag extends HttpServlet {
 				failureView.forward(req, res);
 			}
 		}
+		if ("Update_prodstat".equals(action)) { // 來自update_emp_input.jsp的請求
+
+			List<String> errorMsgs = new LinkedList<String>();
+			// Store this set in the request scope, in case we need to
+			// send the ErrorPage view.
+			req.setAttribute("errorMsgs", errorMsgs);
+
+			try {
+
+				/***************************
+				 * 1.接收請求參數 - 輸入格式的錯誤處理
+				 **********************/
+
+				String prod_no = req.getParameter("prod_no").trim();
+			
+				String prod_stat = req.getParameter("prod_stat").trim();
+
+				String whichPage = req.getParameter("whichPage"); // 送出修改的來源網頁的第幾頁(只用於:istAllEmp.jsp)
+				req.setAttribute("whichPage", whichPage); // 送出修改的來源網頁的第幾頁,
+															// 存入req(只用於:istAllEmp.jsp)
+
+				
+				
+
+				ProdVO prodVO = new ProdVO();
+				
+				
+				
+				
+				System.out.println(111122);
+				System.out.println(prod_no+prod_stat+whichPage);
+				/*************************** 2.開始修改資料 *****************************************/
+				ProdService prodSvc = new ProdService();
+				if(prod_stat.equals("上架")){
+					
+					prodVO = prodSvc.updateProdstat(prod_no, "下架");
+				} else	if(prod_stat.equals("下架")){
+					prodVO = prodSvc.updateProdstat(prod_no, "上架");
+				} 
+				
+				
+				/***************************
+				 * 
+				 * 3.修改完成,準備轉交(Send the Success view)
+				 *************/
+
+				req.setAttribute("prodVO", prodVO); // 資料庫update成功後,正確的的empVO物件,存入req
+				String url = "/FrontEnd/prod_mag/listAllpro_bystore.jsp";
+				RequestDispatcher successView = req.getRequestDispatcher(url); // 修改成功後,轉交listOneEmp.jsp
+				successView.forward(req, res);
+
+				/*************************** 其他可能的錯誤處理 *************************************/
+			} catch (Exception e) {
+				errorMsgs.add("修改資料失敗:" + e.getStackTrace());
+				
+				RequestDispatcher failureView = req.getRequestDispatcher("/FrontEnd/prod_mag/listAllpro_bystore.jsp");
+				failureView.forward(req, res);
+			}
+		}
+		
 
 	}
 
