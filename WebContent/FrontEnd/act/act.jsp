@@ -54,8 +54,283 @@ pageContext.setAttribute("mylist",list);
 <link rel='stylesheet prefetch' href='https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css'>
  <%--date picker專用css --%>
     <link rel="stylesheet" href="<%=request.getContextPath()%>/FrontEnd/res/css/bootstrap-datetimepicker.min.css" />
-    <link rel="stylesheet" href="<%=request.getContextPath()%>/FrontEnd/res/css/act.css" />
+   
+<style type="text/css">
 
+
+
+
+  .carousel{
+    width: 100%;
+    height: 100%;
+    overflow: hidden;  
+   
+  }
+.item img{
+<%--    transform:scale(1.3);    --%>
+
+  width: 100%;
+  height: 300px; 
+  transition: 1s;
+   }
+  .item img:hover{
+  transform:scale(2);
+  }
+
+.card .detail .bar {
+  height: 20px;
+  width: 300px;
+  border-radius: 10px;
+  border: solid 1px black;
+  left: 50%;
+  right: auto;
+  transform: translate(-50%, 0);
+}
+
+  
+.card .detail .bar .joinNumber {
+  height: 100%;
+ <%--  width: 10%; --%>
+  background-color: #6F5C60;
+  border-radius: 10px 0 0 10px;
+  border: solid 1px black;
+}
+
+.carousel-inner>.item>a>img, .carousel-inner>.item>img, .img-responsive, .thumbnail a>img, .thumbnail>img{
+height: 300px;
+}
+
+.op_date,.ed_date,.control-label ,.date_range,.form-control ,.fa-search{
+display: inline-block;
+}
+.control-label {
+flex: 1;
+transform: translate(12%,-10%);
+
+padding: 0;
+}
+.form_date{
+flex: 2;
+transform: translate(-50%,0);
+
+}
+.fa-search{
+width: 30px;
+transform: translate(-60%,0);
+}
+.input-group {
+height: 30px;
+}
+
+.date{
+display: inline-block;
+}
+.titlebarForm .form-group{
+flex: 5;
+}
+.button{
+margin-right: -50px;
+
+}
+.button button{
+margin-left: 0;
+}
+
+body .titlebar  .set_action{
+margin-left:30px;
+padding: 10px 20px;
+cursor: pointer;
+color: white;
+}
+
+body    .set_action:hover{
+text-decoration: none;
+
+}
+.actionbar{
+right: 0%
+
+}
+
+.card .detail .info {
+  display: inline-block;
+  position: absolute;
+  right: 2%;
+  padding: 10px 25px;
+  text-decoration: none;
+  color: #C8B6A1;
+  font-weight: 900;
+  background-color: #6F5C60;
+ 
+  bottom: 30px;
+  transition: 0.5s;
+  cursor: pointer;
+}
+.bar{
+overflow: hidden;
+}
+
+.titlebarForm {
+  display: flex;
+  background-color: #C2DCCE;
+  padding: 10px 50px;
+  height: 60px;
+}
+.titlebarForm select {
+  flex: 150px;
+  flex-grow: 0;
+  flex-shrink: 0;
+}
+.titlebarForm .form-group {
+  flex: 6;
+  padding-left: 0%;
+
+width: 100%;
+display: flex;
+ justify-content: center;
+ align-items: center;
+
+}
+.titlebarForm .form-group *{
+
+}
+.titlebarForm input {
+  border-radius: 5px;
+}
+.titlebarForm .button {
+  flex: 3;
+  display: flex;
+  justify-content: space-around;
+}
+.titlebarForm .button button {
+  padding: 10px 20px;
+}
+
+.titleImg {
+  padding: 30px;
+  width: 80%;
+}
+.titleImg img {
+  width: 100%;
+  height: auto;
+}
+
+.actionbar {
+  padding: 0 120px;
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+}
+ .actionbar .label {
+  height: 30px;
+  font-size: 20px;
+  font-weight: 100;
+  display: inline-block;
+  color: black;
+  border: solid 1px black;
+  background-color: #C2DCCE;
+  margin-right: 50px;
+  margin-left: 100px;
+}
+.actionbar .time {
+  transform: translate(-10%, 0);
+}
+.actionbar .quene {
+  cursor: pointer;
+  width: 100px;
+  height: 40px;
+}
+
+.card {
+  width: 70%;
+  height: 290px;
+  border: solid 1px black;
+  padding: 0;
+  margin-bottom: 50px;
+  box-shadow: 0px 0px 35px rgba(0, 0, 0, 0.3);
+  transition: 0.5s;
+  margin-top: 50px;
+  
+}
+.card:hover {
+  box-shadow: 5px 5px 60px rgba(0, 0, 0, 0.4);
+  transform: translate(-5px, -5px);
+} 
+.card .row {
+  height: 100%;
+}
+.card .img {
+  height: 100%;
+}
+.card .img .actionImg {
+  width: 100%;
+  height: 100%;
+}
+.card .detail {
+  text-align: center;
+  height: 100%;
+  background-color: #C2DCCE;
+  margin-left: -15px;
+}
+.card .detail .actionTitle {
+  font-weight: bold;
+  margin-top: 30px;
+}
+.card .detail .page {
+  padding: 10px 30px;
+  width: 80%;
+  text-align: left;
+  display: inline-block;
+}
+
+.card .detail .dataLocation {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+
+.card .detail .info:hover {
+  color: #eee;
+  background-color: #80BD01;
+ font-weight: 900;
+}
+
+.fa-search {
+  font-size: 20px;
+  position: relative;
+  left: 2%;
+  top: 5%;
+  background-color: #eee;
+  padding: 5px;
+  cursor: pointer;
+}
+.fa-search:hover {
+  background-color: #80BD01;
+  color: #eee;
+}
+
+.detail  *{
+position: relative;
+}
+
+.my_area{
+ background-color: #C8B6A1;
+ margin-top: 57px;
+}
+
+.for_act_page1,.for_act_page2{
+display: flex;
+justify-content: center;
+
+
+}
+.for_act_page1 *,.for_act_page2 *{
+font-size: 20px;
+font-weight: 600;
+
+}
+
+</style>
 
 
   <div class="my_area  content">
@@ -113,7 +388,7 @@ pageContext.setAttribute("mylist",list);
            
   <span class="fa fa-search"></span>
     </div>
-    <a  href="<%=request.getContextPath() %>/FrontEnd/act/start_act.jsp" class="btn-success  set_action">發起活動</a>
+    <button   class="btn-success  set_action"  type="button">發起活動</button>
     <div class="button">
     
       <button class="btn-primary  act_tag"  type="button">達人教學</button>
@@ -126,6 +401,15 @@ pageContext.setAttribute("mylist",list);
   <input type="hidden"  name="action"  value="search_for_actTag">
  <input type="hidden" name="act.jsp" value="<%=request.getServletPath() %>"> 
   </form>
+  
+  
+   <form  class="goto_start_act"  method="post"  action="<%=request.getContextPath() %>/act_management/act_managementServlet">
+  <input type="hidden"  name="action"  value="goto_start_act.jsp">
+
+  </form>
+  
+  
+  
 </div>
 <%-- 
 <div class="container titleImg"><img src="https://macicafedenver.com/wp-content/uploads/2014/10/coffee_slide.jpg" alt=""/></div>
@@ -224,6 +508,20 @@ pageContext.setAttribute("mylist",list);
      <script type="text/javascript"  src="<%=request.getContextPath()%>/FrontEnd/res/js/bootstrap-datetimepicker.js"></script> 
  <script type="text/javascript"  src="<%=request.getContextPath()%>/FrontEnd/res/js/bootstrap-datetimepicker.fr.js"></script>
 <script>
+
+$(".set_action").click(function(){
+
+	if(${mem_ac==null}){
+		 $('#modal-login').modal("show");
+		 return false;
+	}
+	
+	$(".goto_start_act").submit();
+	
+})
+
+
+
 
 $(".act_tag").click(function(){
 $(".action_tag_button").append("<input type='hidden' name=act_tag value="+$(this).text()+">");

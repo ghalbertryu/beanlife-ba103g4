@@ -83,15 +83,6 @@
 					style="text-decoration: none;">
 					<div class="fa fa-futbol-o"></div> <a class="h3" href="<%=request.getContextPath()%>/BackEnd/act/action_check.jsp">
 						活動審核</a>
-				</a><a class="h3 title" href="#check" aria-expanded="false"
-					aria-controls="check" data-toggle="collapse"
-					style="text-decoration: none;">
-					<div class="fa fa-check-circle"></div> <span class="h3">檢舉管理</span>
-					<ul class="collapse" id="check">
-						<a>評論檢舉</a>
-						<a>商品檢舉</a>
-						<a>討論區檢舉</a>
-					</ul>
 				</a><a class="h3 title" href="#mem" aria-expanded="false"
 					aria-controls="mem" data-toggle="collapse"
 					style="text-decoration: none;">
@@ -100,14 +91,6 @@
 						<a  href="<%=request.getContextPath()%>/BackEnd/mem/mem.jsp">會員資料管理</a>
 						<a href="<%=request.getContextPath()%>/BackEnd/reg_store/listAllStore.jsp">廠商店家授權</a>
 						<a href="<%=request.getContextPath()%>/BackEnd/mem/mem_pt.jsp">積分管理</a>
-					</ul>
-				</a><a class="h3 title" href="#admin" aria-expanded="false"
-					aria-controls="admin" data-toggle="collapse"
-					style="text-decoration: none;">
-					<div class="fa fa-user-o"></div> <span class="h3">管理員管理</span>
-					<ul class="collapse" id="admin">
-						<a>管理帳戶授權</a>
-						<a>帳戶管理</a>
 					</ul>
 				</a><a class="h3 title" href="#gift" aria-expanded="false"
 					aria-controls="gift" data-toggle="collapse"
@@ -127,7 +110,7 @@
 					<a class="fa fa-bell dropdown-toggle" href="#"
 						data-toggle="dropdown"></a>
 					<ul class="dropdown-menu">
-						<li><a>10項檢舉未處理</a></li>
+						
 						<li><a  href="<%=request.getContextPath()%>/BackEnd/act/action_check.jsp">${act_count }項活動未審核</a></li>
 						<li><a  href="<%=request.getContextPath()%>/BackEnd/reg_store/listAllStore.jsp">${store_count }項廠商會員申請未審核</a></li>
 						<li><a  href="<%=request.getContextPath()%>/BackEnd/gift/convert_gift.jsp">${convert_gift_count }項兌換贈品申請</a></li>

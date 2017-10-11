@@ -24,6 +24,9 @@ pageContext.setAttribute("act_comm_set",act_comm_set);
 pageContext.setAttribute("act_vo",act_vo);
 	
 	%>
+	
+	
+	<c:set var="mem_ac" value="${sessionScope.mem_ac}" scope="page"/>
   
 <link rel='stylesheet prefetch' href='https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css'>
 
@@ -460,7 +463,7 @@ color: #eee;
               <div class="button  doit_instance">立即報名 </div>
               <input type="hidden"  name="action" value="buy_add">
               
-               <input type="hidden"  name="mem_ac" value="${(mem_ac==null)? "mamabeak":mem_ac}">
+               <input type="hidden"  name="mem_ac" value="${mem_ac}">
              <input type="hidden" name="act_no" value="${act_vo.act_no }">
                 
                    <input type="hidden"  name="act_detail.jsp" value="<%=request.getServletPath()%>">
@@ -503,12 +506,12 @@ color: #eee;
             <textarea class="leave_message" rows="2" cols="20" wrap="hard" name="comm_cont" placeholder="留言"></textarea>
             <input type="hidden" name="action" value="insert_comm">
              <input type="hidden" name="act_no" value="${act_vo.act_no }">
-              <input type="hidden" name="mem_ac"  class="acount" value="${(mem_ac==null)? "mamabeak":mem_ac}">
+              <input type="hidden" name="mem_ac"  class="acount" value="${mem_ac}">
                
                 
                  <input type="hidden" name="act_detail.jsp" value="<%=request.getServletPath()%>">
             <br>
-            <button class="btn-default  response_button"  type="submit">留言</button>
+            <button class="btn-default  response_button"  type="button">留言</button>
             </form>
           </div>
           </div>
@@ -567,7 +570,7 @@ color: #eee;
 <div class="bookMarks fa fa-bookmark-o" title="收藏活動"></div>
 <input type="hidden"  name="action" value="add_favorite">
 <input type="hidden"  name="act_detail.jsp" value="<%=request.getServletPath()%>">
-<input type="hidden"  name="mem_ac" value="${(mem_ac==null)? "mamabeak":mem_ac}">
+<input type="hidden"  name="mem_ac" value="${mem_ac}">
 <input type="hidden"  name="act_no" value="${act_vo.act_no }">
 
 </form>
@@ -625,10 +628,25 @@ color: #eee;
  
  <script>
  
+ $(".response_button").click(function(){
+	 
+	 if(${mem_ac==null}){
+		 $('#modal-login').modal("show");
+		 return false;
+	}
+
+	 
+	 
+$(this).parent().submit();
+	 
+	 
+ })
+ 
+ 
  function changeTimeFormate(time){
-	 var new_time=new Date(time.substring(0,4),time.substring(5,7),time.substring(8,10),time.substring(11,13),time.substring(14,16),time.substring(17,19))
+	 var new_time=new Date(time.substring(0,4),time.substring(5,7)-1,time.substring(8,10),time.substring(11,13),time.substring(14,16),time.substring(17,19))
      var year=new_time.getFullYear();
-	 var month=new_time.getMonth();
+	 var month=new_time.getMonth()+1;
 	 var day=new_time.getDate();
 	 var hour=new_time.getHours();
 	 if(hour<10){
@@ -692,6 +710,13 @@ console.log("act_ed_date= "+changeTimeFormate("${act_ed_date }")+" ");
  
  
  $(".doit_instance").click(function(){
+	 if(${mem_ac==null}){
+		 $('#modal-login').modal("show");
+		 return false;
+	}
+
+	 
+	 
 $(this).parent().submit();
 	 
 	 
@@ -701,6 +726,12 @@ $(this).parent().submit();
  
  $(".bookMarks").click(function(){
 
+	 if(${mem_ac==null}){
+		 $('#modal-login').modal("show");
+		 return false;
+	}
+	 
+	 
 	 $(".bookMarks").parent().submit();
 	 
  })

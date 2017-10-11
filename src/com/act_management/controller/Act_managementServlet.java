@@ -1,5 +1,8 @@
 package com.act_management.controller;
 
+
+
+
 import java.io.BufferedReader;
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
@@ -48,14 +51,42 @@ public class Act_managementServlet extends HttpServlet{
 
 	public void doGet(HttpServletRequest req, HttpServletResponse res)
 			throws ServletException, IOException {
+		System.out.println("track get");
 		doPost(req, res);
 	}
 	
 	public void doPost(HttpServletRequest req,HttpServletResponse res) throws IOException, ServletException{
 		req.setCharacterEncoding("UTF-8");
+		System.out.println("track post");
 		
+		System.out.println("track1");
 		String action = req.getParameter("action");
+		
+		
 	
+	System.out.println("action= "+action);
+		
+	
+	
+	
+		if("goto_start_act.jsp".equals(action)){
+			
+			try{
+			
+			String url="/FrontEnd/act/start_act.jsp";
+			
+			RequestDispatcher dispatcher=req.getRequestDispatcher(url);
+			dispatcher.forward(req,res);
+			
+			}catch(Exception e){
+				
+				System.out.println("error");
+			}
+			
+		}
+		
+		
+		
 		
 if("search_for_actTag".equals(action)){
 	try{

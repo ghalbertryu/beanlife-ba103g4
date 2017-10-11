@@ -198,7 +198,7 @@ width: 10px;
 <form method="post"  action="<%=request.getContextPath() %>/act_management/act_managementServlet">
 <input type="hidden"  name="act_add_lat"   class="act_add_lat">
 <input type="hidden"  name="act_add_lon"   class="act_add_lon">
-<input type="hidden"  name="mem_ac"   value="${(mem_ac==null)? "mamabeak":mem_ac}">
+<input type="hidden"  name="mem_ac"   value="${mem_ac}">
 
 
 <input type="hidden"  name="action"  value="start_act_to_pg2">

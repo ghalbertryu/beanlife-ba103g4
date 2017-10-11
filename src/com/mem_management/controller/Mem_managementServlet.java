@@ -119,6 +119,7 @@ if (!errorMsgs.isEmpty()) {
 			if(url==null){
 			 url="/BackEnd/main.jsp";
 			}
+			System.out.println("url= "+url);
 			RequestDispatcher dispatcher=req.getRequestDispatcher(url);
 			dispatcher.forward(req, res);
 			
