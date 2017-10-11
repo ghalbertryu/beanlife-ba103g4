@@ -59,7 +59,7 @@ font-weight: 700;
 			<FORM METHOD="post" ACTION="<%=request.getContextPath() %>/gift_management/gift_managementServlet" name="form1" >
 			<input type="hidden"  name="apply_date"  value="${apply_date }">
 			<input type="hidden"  name="gift_no"  value="${gift_data_vo.gift_no }">
-			<input type="hidden"  name="mem_ac"  value="${(mem_ac==null)? "mamabeak":mem_ac}">
+			<input type="hidden"  name="mem_ac"  value="${mem_ac}">
 			<input type="hidden"  name="action"  value="buy_gift_confirm">
 			<input type="hidden"  name="buy_gift.jsp"  value="<%=request.getServletPath()%>">
 			

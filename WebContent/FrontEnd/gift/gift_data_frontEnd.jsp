@@ -64,6 +64,7 @@ List<Gift_dataVO> list=gift_dataSvc.getAll();
   display: flex;
   flex-direction: column;
   align-items: center;
+  justify-content: center;
   padding: 30px;
 }
 .gift .card .getitem {
@@ -81,7 +82,7 @@ List<Gift_dataVO> list=gift_dataSvc.getAll();
       
     
       .card{
-      height: 800px;
+      height: 880px;
       }
       .giftImg{
       height: 350px;
@@ -101,7 +102,7 @@ border-style: none;
   box-shadow: 0px 0px 35px rgba(0, 0, 0, 0.3);
 }
 .range{
-width:120%;
+width:100%;
 }
 .remain{
 left: 40%;
@@ -172,6 +173,19 @@ color: #80BD01;
 font-size: 20px;
 font-weight: 700;
 }
+
+.gift_amount{
+width: 30%;
+}
+.gift_cont{
+font-size:14px;
+}
+
+.display_gift_name{
+font-weight: 900;
+}
+
+
       </style>
       
       
@@ -207,16 +221,16 @@ font-weight: 700;
   <h1  class="pt_title">您目前持有<span class="member_mem_pt">${mem_vo.mem_pt }</span>積分</h1>
 </div>
  <%@ include file="page1.file" %> 
-<div class="container gift">
+<div class="gift">
 
-  <div class="row">
+  
     <div class="col-md-12 col-sm-12 range">
       <c:forEach var="gift_data_vo"  items="${list}" begin="<%=pageIndex %>" end="<%=pageIndex+rowsPerPage-1%>">
       <div class="col-md-4 col-sm-4">
         <div class="card"><img class="giftImg"src="<%=request.getContextPath()%>/GiftImg.do?gift_no=${gift_data_vo.gift_no }" >
           <div class="info">
-            <h3>${gift_data_vo.gift_name}</h3>
-            <p>${gift_data_vo.gift_cont}</p>
+            <h3  class="display_gift_name"><span class="fa fa-gift"></span>${gift_data_vo.gift_name}</h3>
+            <p class="gift_cont">${gift_data_vo.gift_cont}</p>
             <h3>所需積分<span>${gift_data_vo.gift_pt}</span></h3>
             <div class="getitem">
             <FORM METHOD="post" ACTION="<%=request.getContextPath() %>/gift_management/gift_managementServlet" name="form1" >
@@ -241,7 +255,7 @@ font-weight: 700;
  </c:forEach>
     </div>
    
-  </div>
+  
 </div>
 		        
 		        <%@ include file="gift_data_page2.file" %>

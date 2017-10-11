@@ -19,7 +19,7 @@ pageContext.setAttribute("mem_ac",mem_ac);
 <c:set var="mem_ac" value="${sessionScope.mem_ac}" scope="page"/>
 
 <%
-session.setAttribute("mem_ac","mamabeak");
+
 
 
 ActService actSvc=new ActService();

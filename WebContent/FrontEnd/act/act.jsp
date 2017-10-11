@@ -114,10 +114,7 @@ flex: 2;
 transform: translate(-50%,0);
 
 }
-.fa-search{
-width: 30px;
-transform: translate(-60%,0);
-}
+
 .input-group {
 height: 30px;
 }
@@ -125,11 +122,9 @@ height: 30px;
 .date{
 display: inline-block;
 }
-.titlebarForm .form-group{
-flex: 5;
-}
+
 .button{
-margin-right: -50px;
+
 
 }
 .button button{
@@ -137,10 +132,11 @@ margin-left: 0;
 }
 
 body .titlebar  .set_action{
-margin-left:30px;
-padding: 10px 20px;
+
+padding: 10px 5px;
 cursor: pointer;
 color: white;
+flex: 1;
 }
 
 body    .set_action:hover{
@@ -172,39 +168,38 @@ overflow: hidden;
 
 .titlebarForm {
   display: flex;
-  background-color: #C2DCCE;
-  padding: 10px 50px;
+  
+  padding: 10px 0px;
   height: 60px;
 }
 .titlebarForm select {
-  flex: 150px;
-  flex-grow: 0;
-  flex-shrink: 0;
+  flex: 0.8;
+  
 }
 .titlebarForm .form-group {
-  flex: 6;
+  flex: 7.7;
   padding-left: 0%;
 
 width: 100%;
 display: flex;
- justify-content: center;
+ justify-content: space-around;
  align-items: center;
 
 }
-.titlebarForm .form-group *{
-
+.titlebarForm .form-group .control-label{
+flex: 57px;
+  flex-grow: 0;
+  flex-shrink: 0;
 }
 .titlebarForm input {
   border-radius: 5px;
 }
 .titlebarForm .button {
-  flex: 3;
-  display: flex;
-  justify-content: space-around;
+  flex: 1;
+  
+  
 }
-.titlebarForm .button button {
-  padding: 10px 20px;
-}
+
 
 .titleImg {
   padding: 30px;
@@ -242,7 +237,7 @@ display: flex;
 }
 
 .card {
-  width: 70%;
+ 
   height: 290px;
   border: solid 1px black;
   padding: 0;
@@ -296,13 +291,18 @@ display: flex;
 }
 
 .fa-search {
+flex: 30px;
+  flex-grow: 0;
+  flex-shrink: 0;
+
+
   font-size: 20px;
   position: relative;
-  left: 2%;
-  top: 5%;
+  
   background-color: #eee;
-  padding: 5px;
+  padding: 10px;
   cursor: pointer;
+ 
 }
 .fa-search:hover {
   background-color: #80BD01;
@@ -330,6 +330,19 @@ font-weight: 600;
 
 }
 
+.titlebar{
+background-color: #C2DCCE;
+}
+
+body .titlebar .button{
+flex: 0.5;
+}
+
+body .titlebarForm *{
+margin-left: 5px;
+}
+
+
 </style>
 
 
@@ -337,6 +350,8 @@ font-weight: 600;
 
   
 <div class="container_fluid titlebar">
+<div class="container">
+
   <form class="form-inline titlebarForm"  method="post"  action="<%=request.getContextPath() %>/act_management/act_managementServlet">
   	<input type="hidden" name="action" value="add_date_query"> 
   	<input type="hidden" name="act.jsp"  value="<%=request.getServletPath() %>">
@@ -365,7 +380,7 @@ font-weight: 600;
     <% } %>
     </select>
     
-    <div class="form-group">
+    
     <div class="form-group">
                 <label for="dtp_input1" class="col-md-2 control-label">開始時間</label>
                 <div class="input-group date form_datetime col-md-5" data-date="" data-date-format="yyyy-mm-dd hh:ii:00" data-link-field="dtp_input1">
@@ -387,15 +402,21 @@ font-weight: 600;
                 
            
   <span class="fa fa-search"></span>
-    </div>
-    <button   class="btn-success  set_action"  type="button">發起活動</button>
-    <div class="button">
     
-      <button class="btn-primary  act_tag"  type="button">達人教學</button>
-      <button class="btn-primary  act_tag"  type="button">咖啡課程</button>
-      <button class="btn-primary  act_tag"  type="button">咖啡店活動</button>
-      <button class="btn-primary   act_tag"  type="button">新手教學</button>
-    </div>
+    <button   class="btn-success  set_action"  type="button">發起活動</button>
+    
+    
+     
+      
+      <select class="act_tag  button"  >
+      <option  value="活動標籤">活動標籤</option>
+      <option  value="達人教學">達人教學</option>
+      <option  value="咖啡課程">咖啡課程</option>
+      <option  value="咖啡店活動">咖啡店活動</option>
+      <option  value="新手教學">新手教學</option>
+      </select>
+      
+    
   </form>
   <form  class="action_tag_button"  method="post"  action="<%=request.getContextPath() %>/act_management/act_managementServlet">
   <input type="hidden"  name="action"  value="search_for_actTag">
@@ -409,7 +430,7 @@ font-weight: 600;
   </form>
   
   
-  
+  </div>
 </div>
 <%-- 
 <div class="container titleImg"><img src="https://macicafedenver.com/wp-content/uploads/2014/10/coffee_slide.jpg" alt=""/></div>
@@ -523,10 +544,10 @@ $(".set_action").click(function(){
 
 
 
-$(".act_tag").click(function(){
-$(".action_tag_button").append("<input type='hidden' name=act_tag value="+$(this).text()+">");
+$(".act_tag").change(function(){
+$(".action_tag_button").append("<input type='hidden' name=act_tag value="+$(this).val()+">");
 	
-$(".action_tag_button").submit();
+  $(".action_tag_button").submit(); 
 	
 	
 	

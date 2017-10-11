@@ -97,7 +97,7 @@ color: #eee;
 				<a class="btn btn-danger  not_to_buy"  href="<%=request.getContextPath()%>/FrontEnd/act/act_detail.jsp"><span class="fa fa-frown-o"></span>取消購買</a>
 				
 				<button class="btn btn-success  confirm_buy_button  "   type="button"><span class="fa fa-smile-o"></span>確定購買</button>
-				<input type="hidden"  name="mem_ac"  value="${(mem_ac==null)? "mamabeak":mem_ac}">
+				<input type="hidden"  name="mem_ac"  value="${mem_ac}">
 				<input type="hidden"  name="action"  value="confirm_buy">
 				<input type="hidden"  name="buy_act.jsp"  value="<%=request.getServletPath()%>">
 				</form>
