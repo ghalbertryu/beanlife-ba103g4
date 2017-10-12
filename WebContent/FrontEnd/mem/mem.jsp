@@ -75,7 +75,7 @@
 							
 				 <!-- ------------------商品陳列結果---------------- -->
     			<c:forEach var="fo_prodVO" items="${fo_prodList}" varStatus="p_index">
-    			<c:set var="prodVO" value="${prodSvc.getOneProd(fo_prodVO.prod_no)}"/>
+    			<c:set var="prodVO" value="${prodSvc.getOneProdR(fo_prodVO.prod_no)}"/>
     			<%
 		    		String prod_no = ((ProdVO)pageContext.getAttribute("prodVO")).getProd_no();
 		    		//此會員對此商品是否Follow的Boolean
