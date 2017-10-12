@@ -6,6 +6,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 public class Act_commJDBCDAO implements Act_commDAO_interface{
@@ -36,9 +37,16 @@ public class Act_commJDBCDAO implements Act_commDAO_interface{
 				pstmt.setString(1, act_comm_VO.getAct_no());
 				pstmt.setString(2,act_comm_VO.getMem_ac());
 				pstmt.setString(3,act_comm_VO.getComm_cont());
-				pstmt.setDate(4,act_comm_VO.getComm_date());
+//				pstmt.setDate(4,act_comm_VO.getComm_date());
+				pstmt.setTimestamp(4,dateToTimestamp(act_comm_VO.getComm_date()));
 				pstmt.setString(5,act_comm_VO.getComm_reply_cont());
-				pstmt.setDate(6,act_comm_VO.getComm_reply_date());
+//				pstmt.setDate(6,act_comm_VO.getComm_reply_date());
+				if(act_comm_VO.getComm_reply_date()==null){
+					pstmt.setDate(6,act_comm_VO.getComm_reply_date());
+				}else{
+				pstmt.setTimestamp(6,dateToTimestamp(act_comm_VO.getComm_reply_date()));
+				}
+				
 				pstmt.executeUpdate();
 				
 			} catch (SQLException e) {
@@ -133,9 +141,15 @@ public class Act_commJDBCDAO implements Act_commDAO_interface{
 				pstmt.setString(1, act_comm_VO.getAct_no());
 				pstmt.setString(2,act_comm_VO.getMem_ac());
 				pstmt.setString(3,act_comm_VO.getComm_cont());
-				pstmt.setDate(4,act_comm_VO.getComm_date());
+//				pstmt.setDate(4,act_comm_VO.getComm_date());
+				pstmt.setTimestamp(4,dateToTimestamp(act_comm_VO.getComm_date()));
 				pstmt.setString(5,act_comm_VO.getComm_reply_cont());
-				pstmt.setDate(6,act_comm_VO.getComm_reply_date());
+//				pstmt.setDate(6,act_comm_VO.getComm_reply_date());
+				if(act_comm_VO.getComm_reply_date()==null){
+					pstmt.setDate(6,act_comm_VO.getComm_reply_date());
+				}else{
+				pstmt.setTimestamp(6,dateToTimestamp(act_comm_VO.getComm_reply_date()));
+				}
 				pstmt.setString(7, act_comm_VO.getComm_no());
 				pstmt.executeUpdate();
 				
@@ -235,9 +249,20 @@ public class Act_commJDBCDAO implements Act_commDAO_interface{
 					 act_comm_vo.setAct_no(rs.getString("ACT_NO"));
 					 act_comm_vo.setMem_ac(rs.getString("MEM_AC"));
 					 act_comm_vo.setComm_cont(rs.getString("COMM_CONT"));
-					 act_comm_vo.setComm_date(rs.getDate("COMM_DATE"));
+//					 act_comm_vo.setComm_date(rs.getDate("COMM_DATE"));
+					 
+					 if(rs.getTimestamp("COMM_DATE")==null){
+						 act_comm_vo.setComm_date(rs.getDate("COMM_DATE"));
+					 }else{
+					 act_comm_vo.setComm_date(timestampToDate(rs.getTimestamp("COMM_DATE")));
+					 }
 					 act_comm_vo.setComm_reply_cont(rs.getString("COMM_REPLY_CONT"));
-					 act_comm_vo.setComm_reply_date(rs.getDate("COMM_REPLY_DATE"));
+//					 act_comm_vo.setComm_reply_date(rs.getDate("COMM_REPLY_DATE"));
+					 if(rs.getTimestamp("COMM_REPLY_DATE")==null){
+						 act_comm_vo.setComm_reply_date(rs.getDate("COMM_REPLY_DATE"));
+					 }else{
+					 act_comm_vo.setComm_reply_date(timestampToDate(rs.getTimestamp("COMM_REPLY_DATE")));
+					 }
 				 }
 				 
 				 
@@ -299,9 +324,20 @@ public class Act_commJDBCDAO implements Act_commDAO_interface{
 						 act_comm_vo.setAct_no(rs.getString("ACT_NO"));
 						 act_comm_vo.setMem_ac(rs.getString("MEM_AC"));
 						 act_comm_vo.setComm_cont(rs.getString("COMM_CONT"));
-						 act_comm_vo.setComm_date(rs.getDate("COMM_DATE"));
+//						 act_comm_vo.setComm_date(rs.getDate("COMM_DATE"));
+						 
+						 if(rs.getTimestamp("COMM_DATE")==null){
+							 act_comm_vo.setComm_date(rs.getDate("COMM_DATE"));
+						 }else{
+						 act_comm_vo.setComm_date(timestampToDate(rs.getTimestamp("COMM_DATE")));
+						 }
 						 act_comm_vo.setComm_reply_cont(rs.getString("COMM_REPLY_CONT"));
-						 act_comm_vo.setComm_reply_date(rs.getDate("COMM_REPLY_DATE"));
+//						 act_comm_vo.setComm_reply_date(rs.getDate("COMM_REPLY_DATE"));
+						 if(rs.getTimestamp("COMM_REPLY_DATE")==null){
+							 act_comm_vo.setComm_reply_date(rs.getDate("COMM_REPLY_DATE"));
+						 }else{
+						 act_comm_vo.setComm_reply_date(timestampToDate(rs.getTimestamp("COMM_REPLY_DATE")));
+						 }
 						list.add(act_comm_vo);
 						
 					}
@@ -346,8 +382,8 @@ public class Act_commJDBCDAO implements Act_commDAO_interface{
 		
 		Act_commJDBCDAO dao=new 	Act_commJDBCDAO();
 //		Act_commVO act_comm_vo1=new Act_commVO();
-//		act_comm_vo1.setAct_no("A1000000005");
-//		act_comm_vo1.setMem_ac("starter9244");
+//		act_comm_vo1.setAct_no("A1000000004");
+//		act_comm_vo1.setMem_ac("mamabeak");
 //		act_comm_vo1.setComm_cont("bababa~~");
 //		act_comm_vo1.setComm_date(java.sql.Date.valueOf("2017-09-08"));
 //		act_comm_vo1.setComm_reply_cont("haha~");
@@ -356,17 +392,17 @@ public class Act_commJDBCDAO implements Act_commDAO_interface{
 		
 		
 //		Act_commVO act_comm_vo2=new Act_commVO();
-//		act_comm_vo2.setComm_no("C1000000010");
-//		act_comm_vo2.setAct_no("A1000000005");
-//		act_comm_vo2.setMem_ac("starter9244");
-//		act_comm_vo2.setComm_cont("baBBAAbaba~~");
+//		act_comm_vo2.setComm_no("C1000000071");
+//		act_comm_vo2.setAct_no("A1000000004");
+//		act_comm_vo2.setMem_ac("mamabeak");
+//		act_comm_vo2.setComm_cont("zzzzz~~");
 //		act_comm_vo2.setComm_date(java.sql.Date.valueOf("2017-09-08"));
 //		act_comm_vo2.setComm_reply_cont("haha~");
 //		act_comm_vo2.setComm_reply_date(java.sql.Date.valueOf("2017-09-10"));
 //		dao.update(act_comm_vo2);
 		
 		
-		dao.update_response("JDBC測試", new java.sql.Date(new java.util.Date().getTime()), "C1000000007");
+//		dao.update_response("JDBC測試", new java.sql.Date(timestampToDate(new java.sql.Timestamp(new Date().getTime())).getTime()), "C1000000005");
       		
 		
 //		dao.delete("C1000000011");
@@ -379,24 +415,35 @@ public class Act_commJDBCDAO implements Act_commDAO_interface{
 //		System.out.print(act_comm_vo3.getComm_reply_cont()+",");
 //		System.out.print(act_comm_vo3.getComm_reply_date()+",");
 		
-//		List<Act_commVO> list=dao.getAll();
-//		for(Act_commVO act_comm_vo4:list){
-//		System.out.print(act_comm_vo4.getComm_no()+",");
-//		System.out.print(act_comm_vo4.getAct_no()+",");
-//		System.out.print(act_comm_vo4.getMem_ac()+",");
-//		System.out.print(act_comm_vo4.getComm_cont()+",");
-//		System.out.print(act_comm_vo4.getComm_date()+",");
-//		System.out.print(act_comm_vo4.getComm_reply_cont()+",");
-//		System.out.print(act_comm_vo4.getComm_reply_date()+",");
-//		System.out.println();
-//		}
+		List<Act_commVO> list=dao.getAll();
+		for(Act_commVO act_comm_vo4:list){
+		System.out.print(act_comm_vo4.getComm_no()+",");
+		System.out.print(act_comm_vo4.getAct_no()+",");
+		System.out.print(act_comm_vo4.getMem_ac()+",");
+		System.out.print(act_comm_vo4.getComm_cont()+",");
+		System.out.print(act_comm_vo4.getComm_date()+",");
+		System.out.print(act_comm_vo4.getComm_reply_cont()+",");
+		System.out.print(act_comm_vo4.getComm_reply_date()+",");
+		System.out.println();
+		}
 		
 		
 		
 	}
 	
 	
-	
+	public static java.sql.Date timestampToDate(java.sql.Timestamp timestamp){
+		Date test_timestamp=timestamp;
+		java.sql.Date test_date=new java.sql.Date(test_timestamp.getTime());
+		return test_date;
+	}
+
+	public static java.sql.Timestamp dateToTimestamp(java.sql.Date date){
+		
+		java.sql.Timestamp timestamp = new java.sql.Timestamp(date.getTime());
+		return timestamp;
+		
+	}
 	
 	
 	

@@ -104,7 +104,7 @@ public class Mem_managementServlet extends HttpServlet{
 		errorMsgs.add("帳密錯誤");
 	}
 if (!errorMsgs.isEmpty()) {
-
+	System.out.println("not empty error , url= "+req.getParameter("index.jsp"));
 				String url=req.getParameter("index.jsp");
 				RequestDispatcher failureView = req
 						.getRequestDispatcher(url);
@@ -115,11 +115,11 @@ if (!errorMsgs.isEmpty()) {
 			HttpSession session=req.getSession();
 			session.setAttribute("mgr_no", mgr_no);
 
-			String url=(String) session.getAttribute("location");
+			String url=(String) session.getAttribute("backEnd_location");
 			if(url==null){
 			 url="/BackEnd/main.jsp";
 			}
-			System.out.println("url= "+url);
+			System.out.println("success url= "+url);
 			RequestDispatcher dispatcher=req.getRequestDispatcher(url);
 			dispatcher.forward(req, res);
 			

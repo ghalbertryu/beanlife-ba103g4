@@ -489,7 +489,12 @@ public class ActJDBCDAO implements ActDAO_interface{
 					act_commVO.setAct_no(rs.getString("ACT_NO"));
 					act_commVO.setMem_ac(rs.getString("MEM_AC"));
 					act_commVO.setComm_cont(rs.getString("COMM_CONT"));
-					act_commVO.setComm_date(rs.getDate("COMM_DATE"));
+//					act_commVO.setComm_date(rs.getDate("COMM_DATE"));
+					 if(rs.getTimestamp("COMM_DATE")==null){
+						 act_commVO.setComm_date(rs.getDate("COMM_DATE"));
+					 }else{
+					 act_commVO.setComm_date(timestampToDate(rs.getTimestamp("COMM_DATE")));
+					 }
 					act_commVO.setComm_reply_cont(rs.getString("COMM_REPLY_CONT"));
 					act_commVO.setComm_reply_date(rs.getDate("COMM_REPLY_DATE"));
 					set.add(act_commVO);
@@ -992,17 +997,17 @@ ActJDBCDAO dao=new ActJDBCDAO();
 //		System.out.println();
 //		
 //	}
-//Set<Act_commVO> set1=dao.getAct_commByAct_no("A1000000005");
-//for(Act_commVO act_comm_vo5:set1){
-//	System.out.print(act_comm_vo5.getComm_no()+",");
-//	System.out.print(act_comm_vo5.getAct_no()+",");
-//	System.out.print(act_comm_vo5.getMem_ac()+",");
-//	System.out.print(act_comm_vo5.getComm_cont()+",");
-//	System.out.print(act_comm_vo5.getComm_date()+",");
-//	System.out.print(act_comm_vo5.getComm_reply_cont()+",");
-//	System.out.print(act_comm_vo5.getComm_reply_date()+",");
-//	System.out.println();
-//	}
+Set<Act_commVO> set1=dao.getAct_commByAct_no("A1000000040");
+for(Act_commVO act_comm_vo5:set1){
+	System.out.print(act_comm_vo5.getComm_no()+",");
+	System.out.print(act_comm_vo5.getAct_no()+",");
+	System.out.print(act_comm_vo5.getMem_ac()+",");
+	System.out.print(act_comm_vo5.getComm_cont()+",");
+	System.out.print(act_comm_vo5.getComm_date()+",");
+	System.out.print(act_comm_vo5.getComm_reply_cont()+",");
+	System.out.print(act_comm_vo5.getComm_reply_date()+",");
+	System.out.println();
+	}
 
 //Set<Act_pairVO> set2=dao.getAct_pairByAct_no("A1000000002");
 //for(Act_pairVO act_pair_vo:set2){
@@ -1046,7 +1051,7 @@ ActJDBCDAO dao=new ActJDBCDAO();
 //
 //}
 	
-dao.update_mem_count("A1000000018",-1);
+//dao.update_mem_count("A1000000018",-1);
 
 
 	

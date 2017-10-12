@@ -416,8 +416,32 @@ if("confirm_mem_pay".equals(action)){
 					MemVO mem_vo=memSvc.getOneProd(mem_ac);
 				Integer mem_pt=	mem_vo.getMem_pt();
 					mem_pt=mem_pt-5;
+					Integer mem_total_pt=mem_vo.getMem_total_pt();
+					mem_total_pt=mem_total_pt-5;
+					 Integer grade_no;
+					  if(mem_total_pt<=100){
+						  grade_no=1;
+					  }else if(mem_total_pt<=200){
+						  grade_no=2;
+					  }else if(mem_total_pt<=300){
+						  grade_no=3;
+					  }else if(mem_total_pt<=400){
+						  grade_no=4;
+					  }else if(mem_total_pt<=500){
+						  grade_no=5;
+					  }else{
+						  grade_no=6;
+					  }
+					
+					
+					
+					
 					mem_vo.setMem_pt(mem_pt);
+					mem_vo.setMem_total_pt(mem_total_pt);
+					mem_vo.setGrade_no(grade_no);
+					
 					memSvc.updateMem(mem_vo);
+					
 					System.out.println("track9");
 				 
 				 
@@ -425,6 +449,46 @@ if("confirm_mem_pay".equals(action)){
 			}
 			}
 		
+			String mem_ac= actSvc.getOneAct(act_no).getMem_ac();
+			 MemService memSvc=new MemService();
+				MemVO mem_vo=memSvc.getOneProd(mem_ac);
+			Integer mem_pt=	mem_vo.getMem_pt();
+				mem_pt=mem_pt-5;
+				Integer mem_total_pt=mem_vo.getMem_total_pt();
+				mem_total_pt=mem_total_pt-5;
+				 Integer grade_no;
+				  if(mem_total_pt<=100){
+					  grade_no=1;
+				  }else if(mem_total_pt<=200){
+					  grade_no=2;
+				  }else if(mem_total_pt<=300){
+					  grade_no=3;
+				  }else if(mem_total_pt<=400){
+					  grade_no=4;
+				  }else if(mem_total_pt<=500){
+					  grade_no=5;
+				  }else{
+					  grade_no=6;
+				  }
+				
+				
+				
+				
+				mem_vo.setMem_pt(mem_pt);
+				mem_vo.setMem_total_pt(mem_total_pt);
+				mem_vo.setGrade_no(grade_no);
+				
+				memSvc.updateMem(mem_vo);
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
 			
 			
 			actSvc.deleteAct(act_no);
@@ -473,6 +537,27 @@ if("confirm_mem_pay".equals(action)){
 				MemVO mem_vo=memSvc.getOneProd(mem_ac);
 			Integer mem_pt=	mem_vo.getMem_pt();
 				mem_pt=mem_pt-5;
+				Integer mem_total_pt=mem_vo.getMem_total_pt();
+				mem_total_pt=mem_total_pt-5;
+				 Integer grade_no;
+				  if(mem_total_pt<=100){
+					  grade_no=1;
+				  }else if(mem_total_pt<=200){
+					  grade_no=2;
+				  }else if(mem_total_pt<=300){
+					  grade_no=3;
+				  }else if(mem_total_pt<=400){
+					  grade_no=4;
+				  }else if(mem_total_pt<=500){
+					  grade_no=5;
+				  }else{
+					  grade_no=6;
+				  }
+				
+				
+				  mem_vo.setMem_total_pt(mem_total_pt);
+					mem_vo.setGrade_no(grade_no);
+				
 				mem_vo.setMem_pt(mem_pt);
 				memSvc.updateMem(mem_vo);
 			 
@@ -617,7 +702,26 @@ if("confirm_mem_pay".equals(action)){
 			MemVO mem_vo=memSvc.getOneProd(mem_ac);
 		Integer mem_pt=	mem_vo.getMem_pt();
 			mem_pt=mem_pt+5;
+			Integer mem_total_pt=mem_vo.getMem_total_pt();
+			mem_total_pt=mem_total_pt+5;
+			 Integer grade_no;
+			  if(mem_total_pt<=100){
+				  grade_no=1;
+			  }else if(mem_total_pt<=200){
+				  grade_no=2;
+			  }else if(mem_total_pt<=300){
+				  grade_no=3;
+			  }else if(mem_total_pt<=400){
+				  grade_no=4;
+			  }else if(mem_total_pt<=500){
+				  grade_no=5;
+			  }else{
+				  grade_no=6;
+			  }
+			
 			mem_vo.setMem_pt(mem_pt);
+			mem_vo.setMem_total_pt(mem_total_pt);
+			mem_vo.setGrade_no(grade_no);
 			memSvc.updateMem(mem_vo);
 			
 			
@@ -738,32 +842,37 @@ if("confirm_mem_pay".equals(action)){
 			List<String> errorMsgs = new LinkedList<String>();
 			  req.setAttribute("errorMsgs", errorMsgs);
 			try{
-		
+		System.out.println("track1");
 				String comm_cont=req.getParameter("comm_cont");
 			
 				if(comm_cont.length()==0){
 					  errorMsgs.add("請輸入留言");
 				}
-			
+				System.out.println("track2");
 				if (!errorMsgs.isEmpty()) {
-					
+					System.out.println("track not empty");
 					String url=req.getParameter("act_detail.jsp");
 					RequestDispatcher failureView = req
 							.getRequestDispatcher(url);
 					failureView.forward(req, res);
 					return;
 				}
-				
+				System.out.println("track3");
 			
 				String act_no=req.getParameter("act_no");
 			
 				String mem_ac=req.getParameter("mem_ac");
+				System.out.println("track4");
 			
-				java.sql.Date comm_date=new java.sql.Date(new Date().getTime());
+//				java.sql.Date comm_date=new java.sql.Date(new Date().getTime());
+				java.sql.Timestamp timestamp_comm_date=new java.sql.Timestamp(new Date().getTime());
+				java.sql.Date comm_date=timestampToDate(timestamp_comm_date);
+				
+				System.out.println("track5");
 			
 				Act_commService act_commSvc=new Act_commService();
 				act_commSvc.addAct_comm(act_no,mem_ac,comm_cont,comm_date,null,null);
-			
+				System.out.println("track6");
 				String url=req.getParameter("act_detail.jsp");
 				RequestDispatcher successView = req
 						.getRequestDispatcher(url);
@@ -772,6 +881,7 @@ if("confirm_mem_pay".equals(action)){
 				
 				
 			}catch(Exception e){
+				System.out.println("track error");
 				String url=req.getParameter("act_detail.jsp");
 				RequestDispatcher failureView = req
 						.getRequestDispatcher(url);
@@ -820,7 +930,30 @@ if("confirm_mem_pay".equals(action)){
 				MemVO mem_vo=memSvc.getOneProd(mem_ac);
 			Integer mem_pt=	mem_vo.getMem_pt();
 				mem_pt=mem_pt+5;
+				Integer mem_total_pt=mem_vo.getMem_total_pt();
+				mem_total_pt=mem_total_pt+5;
+				 Integer grade_no;
+				  if(mem_total_pt<=100){
+					  grade_no=1;
+				  }else if(mem_total_pt<=200){
+					  grade_no=2;
+				  }else if(mem_total_pt<=300){
+					  grade_no=3;
+				  }else if(mem_total_pt<=400){
+					  grade_no=4;
+				  }else if(mem_total_pt<=500){
+					  grade_no=5;
+				  }else{
+					  grade_no=6;
+				  }
+				
+				
+				
+				
+				
 				mem_vo.setMem_pt(mem_pt);
+				mem_vo.setMem_total_pt(mem_total_pt);
+				mem_vo.setGrade_no(grade_no);
 				memSvc.updateMem(mem_vo);
 				}
 				

@@ -26,8 +26,12 @@ List<Gift_dataVO> list=gift_dataSvc.getAll();
     
     
    Convert_giftService convert_giftSvc=new Convert_giftService();
-   List<Convert_giftVO> convert_gift_list=convert_giftSvc.getAll();
    
+   List<Convert_giftVO> convert_gift_list=(List<Convert_giftVO>) request.getAttribute("convert_gift_list");
+   request.removeAttribute("convert_gift_list");
+   if(convert_gift_list==null){
+    convert_gift_list=convert_giftSvc.getAll();
+   }
    request.setAttribute("convert_gift_list",convert_gift_list);
    
     
@@ -262,7 +266,14 @@ font-weight: 900;
 		        
 		        
 		        </div>
-		        <div role="tabpanel" class="tab-pane" id="tab2">
+		    <div role="tabpanel" class="tab-pane" id="tab2">
+		    <FORM METHOD="post" ACTION="<%=request.getContextPath() %>/gift_management/gift_managementServlet" name="form1" >
+		        <label class="radio-inline "><input type="radio" class="show_apply_stat" name="apply_stat" checked  value="全顯示">全顯示</label>
+				<label class="radio-inline"><input type="radio" class="show_apply_stat" name="apply_stat" value="待出貨">待出貨</label>
+				<label class="radio-inline"><input type="radio" class="show_apply_stat" name="apply_stat" value="已出貨">已出貨</label>
+				<input type="hidden" name="action" value="select_by_appply_stat">
+				<input type="hidden" name="gift_data_frontEnd.jsp" value="<%=request.getServletPath()%>">
+				</FORM>
 		       <table class="table table-striped myGift_table">
 							<tr>
 								<td>兌換申請編號</td>
@@ -389,6 +400,18 @@ font-weight: 900;
   
  
 <script>
+
+$(".show_apply_stat").change(function(){
+	console.log("change");
+	console.log($(this).parent().parent());
+	$(this).parent().parent().submit();
+})
+
+
+
+
+
+
 $(".gift_amount").change(function(){
 	if($(this).val()*$(this).parent().parent().parent().prev().children().text()>${mem_vo.mem_pt }){
 	
@@ -405,9 +428,27 @@ $(".gift_amount").change(function(){
 	
 })
 
+if(${not empty openTab2}){
+			$('.nav-tabs a[href="#tab2"]').tab('show');
+			}
 
 
 
+
+
+
+if("${apply_stat}"!=""){
+for(var i=0;i<$(".show_apply_stat").length;i++){
+	if($(".show_apply_stat").eq(i).val()==("${apply_stat}")){
+		$(".show_apply_stat").eq(i).attr("checked",true);
+		 
+	}
+	
+	
+	
+	
+}
+}
 </script>
   
 <jsp:include page="/FrontEnd/include/footer.jsp"/>

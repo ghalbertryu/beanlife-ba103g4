@@ -458,7 +458,12 @@ public class ActJNDIDAO implements ActDAO_interface{
 				act_commVO.setAct_no(rs.getString("ACT_NO"));
 				act_commVO.setMem_ac(rs.getString("MEM_AC"));
 				act_commVO.setComm_cont(rs.getString("COMM_CONT"));
-				act_commVO.setComm_date(rs.getDate("COMM_DATE"));
+//				act_commVO.setComm_date(rs.getDate("COMM_DATE"));
+				if(rs.getTimestamp("COMM_DATE")==null){
+					 act_commVO.setComm_date(rs.getDate("COMM_DATE"));
+				 }else{
+				 act_commVO.setComm_date(timestampToDate(rs.getTimestamp("COMM_DATE")));
+				 }
 				act_commVO.setComm_reply_cont(rs.getString("COMM_REPLY_CONT"));
 				act_commVO.setComm_reply_date(rs.getDate("COMM_REPLY_DATE"));
 				set.add(act_commVO);

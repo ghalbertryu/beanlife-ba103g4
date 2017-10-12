@@ -330,6 +330,7 @@ if(session.getAttribute("showConvert_gift")==null){
               <li class="next"><a href="#">下一頁 →</a></li>
             </ul>
             --%>
+             <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
               <%@ include file="convert_gift_page2.file" %> 
           </div>
         
@@ -396,7 +397,7 @@ if(session.getAttribute("showConvert_gift")==null){
 			</div>
 	
     
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+   
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
      <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
     <script type="text/javascript">

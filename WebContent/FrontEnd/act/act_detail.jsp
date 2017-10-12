@@ -19,7 +19,16 @@ java.sql.Timestamp act_ed_date = new java.sql.Timestamp(date_act_ed_date.getTime
 pageContext.setAttribute("act_ed_date",act_ed_date);
 String act_no=act_vo.getAct_no();
 ActService actSvc=new ActService();
-Set<Act_commVO> act_comm_set= actSvc.getAct_commByAct_no(act_no);
+Set<Act_commVO> act_comm_set_random= actSvc.getAct_commByAct_no(act_no);
+List<Act_commVO> act_comm_set=new ArrayList<Act_commVO>();
+
+for(Act_commVO act_comm_vo:act_comm_set_random){
+	act_comm_set.add(act_comm_vo);
+}
+Collections.sort(act_comm_set);
+
+
+
 pageContext.setAttribute("act_comm_set",act_comm_set);
 pageContext.setAttribute("act_vo",act_vo);
 	
@@ -231,6 +240,7 @@ h3 {
   bottom: 10%;
   cursor: pointer;
   transition: 0.5s;
+  font-weight: 900;
 }
 .bookMarks:hover {
   box-shadow: 0px 0px 35px rgba(0, 0, 0, 0.3);
@@ -382,7 +392,17 @@ body .modal_footer .close_window{
 color: #eee;
 }
 
+.track_act_success{
+font-size: 20px;
+font-weight: 900;
+color:#7A3D0B;
 
+}
+
+
+.leave_comm_date, .leave_reply_date{
+float: right;
+}
 </style>
 
 
@@ -523,7 +543,7 @@ color: #eee;
             </div>
           <div class="col-md-11">
           <div class="askDetail">
-            <h2 class="name">${act_comm_vo.mem_ac }</h2>
+            <h2 class="name">${act_comm_vo.mem_ac }<span class="h5 leave_comm_date">${act_comm_vo.comm_date }</span></h2>
             
             <div class="return_message" >${act_comm_vo.comm_cont }</div>
             <br>
@@ -536,7 +556,7 @@ color: #eee;
             </div>
            <div class="col-md-11  host_area">
           <div class="askDetail">
-            <h2 class="name">${act_vo.mem_ac }</h2>
+            <h2 class="name">${act_vo.mem_ac }<span class="h5 leave_reply_date">${act_comm_vo.comm_reply_date }</span></h2>
             <div class="host_message" >${act_comm_vo.comm_reply_cont }</div>
             <br>
             
@@ -606,7 +626,7 @@ color: #eee;
 				<div class="modal-content">
 					<div class="modal-header">
 						<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-						<h4 class="modal-title"><span class="fa fa-smile-o"></span>活動追蹤成功</h4>
+						<h4 class="modal-title  track_act_success"><span class="fa fa-smile-o"></span>活動追蹤成功</h4>
 					</div>
 					<div class="modal-body">
 						您可以在活動追蹤頁面查看您所追蹤的活動

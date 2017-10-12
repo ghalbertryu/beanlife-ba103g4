@@ -248,6 +248,7 @@ List<Gift_dataVO> list=gift_dataSvc.getAll();
               --%>
            
           </div>
+          <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
             <%@ include file="page2.file" %>
         </div>
         
@@ -288,7 +289,7 @@ List<Gift_dataVO> list=gift_dataSvc.getAll();
 				<span class="input-group-btn">
 					<button type="button" class="btn btn-default" data-dir="dwn"><span class="glyphicon glyphicon-minus"></span></button>
 				</span>
-				<input type="text"   name="GIFT_REMAIN"  class="form-control text-center" value="<%= (gift_data_VO==null)? "1":gift_data_VO.getGift_remain()%>">
+				<input type="text"  maxlength="3" name="GIFT_REMAIN"  class="form-control text-center" value="<%= (gift_data_VO==null)? "1":gift_data_VO.getGift_remain()%>">
 				<span class="input-group-btn">
 					<button   type="button" class="btn btn-default" data-dir="up"><span class="glyphicon glyphicon-plus"></span></button>
 				</span>
@@ -300,7 +301,7 @@ List<Gift_dataVO> list=gift_dataSvc.getAll();
 				<span class="input-group-btn">
 					<button  type="button" class="btn btn-default" data-dir="dwn"><span class="glyphicon glyphicon-minus"></span></button>
 				</span>
-				<input type="text"  name="GIFT_PT" class="form-control text-center" value="<%= (gift_data_VO==null)? "1":gift_data_VO.getGift_pt()%>">
+				<input type="text" maxlength="3" name="GIFT_PT" class="form-control text-center" value="<%= (gift_data_VO==null)? "1":gift_data_VO.getGift_pt()%>">
 				<span class="input-group-btn">
 					<button type="button" class="btn btn-default" data-dir="up"><span class="glyphicon glyphicon-plus"></span></button>
 				</span>
@@ -388,7 +389,7 @@ List<Gift_dataVO> list=gift_dataSvc.getAll();
 				<span class="input-group-btn">
 					<button type="button" class="btn btn-default" data-dir="dwn"><span class="glyphicon glyphicon-minus"></span></button>
 				</span>
-				<input type="text"   name="gift_remain"  class="form-control text-center" value="${gift_data_vo.gift_remain }">
+				<input type="text" maxlength="3"  name="gift_remain"  class="form-control text-center" value="${gift_data_vo.gift_remain }">
 				<span class="input-group-btn">
 					<button   type="button" class="btn btn-default" data-dir="up"><span class="glyphicon glyphicon-plus"></span></button>
 				</span>
@@ -400,7 +401,7 @@ List<Gift_dataVO> list=gift_dataSvc.getAll();
 				<span class="input-group-btn">
 					<button  type="button" class="btn btn-default" data-dir="dwn"><span class="glyphicon glyphicon-minus"></span></button>
 				</span>
-				<input type="text"  name="gift_pt" class="form-control text-center" value="${gift_data_vo.gift_pt }">
+				<input type="text" maxlength="3" name="gift_pt" class="form-control text-center" value="${gift_data_vo.gift_pt }">
 				<span class="input-group-btn">
 					<button type="button" class="btn btn-default" data-dir="up"><span class="glyphicon glyphicon-plus"></span></button>
 				</span>
@@ -439,7 +440,7 @@ List<Gift_dataVO> list=gift_dataSvc.getAll();
 	
 	
 	
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+    
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
     <script type="text/javascript">
     if(("a${gift_data_VO.gift_img}"!="a")){

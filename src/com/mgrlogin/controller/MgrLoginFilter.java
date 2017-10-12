@@ -42,11 +42,11 @@ public class MgrLoginFilter implements Filter {
 //			session.setAttribute("mem_ac","mrbrown");
 //			System.out.println("filterSet");
 			System.out.println("url= "+req.getContextPath()+"/BackEnd/index.jsp");
-			session.setAttribute("location", req.getServletPath());
+			session.setAttribute("backEnd_location", req.getServletPath());
 			System.out.println("req.getServletPath()= "+req.getServletPath());
 			res.sendRedirect(req.getContextPath()+"/BackEnd/index.jsp");
 			
-			chain.doFilter(request, response);
+			
 			return;
 		} else {
 //			System.out.println("filterElse");

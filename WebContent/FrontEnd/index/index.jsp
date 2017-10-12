@@ -36,7 +36,13 @@
     pageContext.setAttribute("actlist",actlist);    
 %>
 
+<style>
 
+.mgb30{
+cursor: pointer;
+}
+
+</style>
 
 
 
@@ -275,6 +281,7 @@ var $btnFoProd = $("button.bk${prodVO.prod_no}").click(function(){
 									
 									<div class="row">
 										<c:forEach var="actVO" items="${actlist}">
+										<form  method="post" action="<%=request.getContextPath() %>/act_management/act_managementServlet">
 											<div class="row mgb30 mgt20 ">
 												<div class="col-xs-12 col-sm-6">
 													<img class="img-responsive  mg-auto vam-img" src="<%=request.getContextPath()%>/act/actImg.do?act_no=${actVO.act_no}&index=1">
@@ -290,6 +297,10 @@ var $btnFoProd = $("button.bk${prodVO.prod_no}").click(function(){
 													</button>
 												</div>
 											</div>
+											<input type="hidden" name=action  value="goto_act_detail" >
+      <input type="hidden"  name="act_no"  value="${actVO.act_no }">
+      <input type="hidden"  name="act.jsp" value="<%=request.getServletPath() %>">
+											 </form>
 										</c:forEach>
 									</div>
 									
@@ -310,7 +321,18 @@ var $btnFoProd = $("button.bk${prodVO.prod_no}").click(function(){
 
 
 
+<script>
+$(".mgb30").click(function(){
+$(this).parent().submit();
+	
+	
+	
+	
+})
 
+
+
+</script>
 
 
 

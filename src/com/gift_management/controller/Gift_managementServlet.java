@@ -8,6 +8,7 @@ import java.io.PrintWriter;
 import java.io.UnsupportedEncodingException;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.LinkedList;
 import java.util.List;
@@ -46,6 +47,49 @@ public class Gift_managementServlet extends HttpServlet{
 		req.setCharacterEncoding("UTF-8");
 		
 		String action = req.getParameter("action");
+		
+		
+		if("select_by_appply_stat".equals(action)){
+			List<String> openTab2=new LinkedList<String>();
+			 openTab2.add("baba");
+				req.setAttribute("openTab2", openTab2);
+			try{
+				String apply_stat=req.getParameter("apply_stat");
+				req.setAttribute("apply_stat", apply_stat);
+				
+				
+				if(!apply_stat.equals("全顯示")){
+				Convert_giftService convert_giftSvc=new Convert_giftService();
+				List<Convert_giftVO> convert_gift_list=new ArrayList<Convert_giftVO>();
+				List<Convert_giftVO> convert_gift_listall=convert_giftSvc.getAll();
+				 for(int i=0;i<convert_gift_listall.size();i++){
+					 if(convert_gift_listall.get(i).getApply_stat().equals(apply_stat)){
+						 convert_gift_list.add(convert_gift_listall.get(i));
+					 }
+					 
+					 
+				 }
+				
+				req.setAttribute("convert_gift_list", convert_gift_list);
+				}
+				
+				
+				String url=req.getParameter("gift_data_frontEnd.jsp");
+				RequestDispatcher dispatcher=req.getRequestDispatcher(url);
+				dispatcher.forward(req, res);
+				
+				
+				
+			}catch(Exception e){
+				System.out.println("track error");
+				String url=req.getParameter("gift_data_frontEnd.jsp");
+				RequestDispatcher dispatcher=req.getRequestDispatcher(url);
+				dispatcher.forward(req, res);
+			}
+			
+			
+			
+		}
 		
 		if("modify_total_pt".equals(action)){
 			 List<String> errorMsgs = new LinkedList<String>();

@@ -1,9 +1,8 @@
 package com.act_comm.model;
 
-import java.io.Serializable;
 import java.sql.Date;
 
-public class Act_commVO implements Comparable,Serializable {
+public class Act_commVO_2 {
 	private String comm_no;
 	private String act_no;
 	private String mem_ac;
@@ -11,7 +10,7 @@ public class Act_commVO implements Comparable,Serializable {
 	private Date comm_date;
 	private String comm_reply_cont;
 	private Date comm_reply_date;
-	public Act_commVO() {
+	public Act_commVO_2() {
 		super();
 	}
 	public String getComm_no() {
@@ -57,37 +56,9 @@ public class Act_commVO implements Comparable,Serializable {
 	public void setComm_reply_date(Date cOMM_REPLY_DATE) {
 		comm_reply_date = cOMM_REPLY_DATE;
 	}
-	@Override
-	public int compareTo(Object obj) {
-		// TODO Auto-generated method stub
-		Act_commVO objVO=(Act_commVO) obj;
-		System.out.println("dateToTimestamp(this.getComm_date()).getTime()= "+dateToTimestamp(this.getComm_date()).getTime()+" ,dateToTimestamp(objVO.getComm_date()).getTime()= "+dateToTimestamp(objVO.getComm_date()).getTime());
-		System.out.println(dateToTimestamp(this.getComm_date()));
-		if(dateToTimestamp(this.getComm_date()).getTime()<dateToTimestamp(objVO.getComm_date()).getTime()){
-			
-			return 1;
-		}else if(dateToTimestamp(this.getComm_date()).getTime()>dateToTimestamp(objVO.getComm_date()).getTime()){
-			return -1;
-		}else{
-		
-		
-		return 0;
-		}
-	}
 	
 	
-	public static java.sql.Date timestampToDate(java.sql.Timestamp timestamp){
-		java.util.Date  test_timestamp=timestamp;
-		java.sql.Date test_date=new java.sql.Date(test_timestamp.getTime());
-		return test_date;
-	}
-
-	public static java.sql.Timestamp dateToTimestamp(java.sql.Date date){
-		
-		java.sql.Timestamp timestamp = new java.sql.Timestamp(date.getTime());
-		return timestamp;
-		
-	}
+	
 	
 	
 }
