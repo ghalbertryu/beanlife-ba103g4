@@ -78,7 +78,11 @@
             <div class="dropdown pull-right">
                       <a class="navbar-brand dropdown-toggle" data-toggle="dropdown" href="<%=request.getContextPath()%>/FrontEnd/cart/cart.jsp">
                         <span class="glyphicon glyphicon-shopping-cart"></span>
-                        <span id="cartSize" class="badge cus-badge">${cart_listSvc.getVOsByMem(mem_ac).size()}</span>
+                        <c:set var="cartSize" value="0"/>
+                        <c:forEach var="cart_listVO" items="${cart_listSvc.getVOsByMem(mem_ac)}">
+                            <c:set var="cartSize" value="${cart_listVO.prod_amount+cartSize}"/>
+                        </c:forEach>
+                        <span id="cartSize" class="badge cus-badge">${cartSize}</span>
                       </a>
                       <ul id="cartList" class="dropdown-menu zidx5">
 	                    

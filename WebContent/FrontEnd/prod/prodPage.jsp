@@ -156,7 +156,8 @@
                                     運費：NT$${prodVO.send_fee}<span class="text-warning bold mgl20">滿$${storeSvc.getonestore(prodVO.store_no).store_free_ship}免運費</span><br>
                                     供應數量：${prodVO.prod_sup}
                                 </p>
-
+                                
+								<c:if test="${prodVO.store_no!=sessionScope.store_no}">
                                 <div class="container-fluid">
                                     <div class="row">
                                         <div class="col-xs-7 col-sm-6 pad0">
@@ -171,7 +172,7 @@
                                         </div>
                                     </div>
                                 </div>
-
+								</c:if>
 
                             </div>
                         </div>
@@ -230,15 +231,17 @@
                 if(jdata.err!=null){
                     alert(jdata.err);
                 } else {
-                    $('#cartSize').text(jdata.length);
                     $('#cartList').empty();
+                    var cartSize = 0;
                     for(var i = 0; i<jdata.length; i++){
                         $('#cartList').append('<li><a href="#">'+
                                 jdata[i].prod_name+'　<span>$'+jdata[i].prod_price+
                                 'ｘ'+jdata[i].amount+'</span></a></li>');
+                        cartSize += Number(jdata[i].amount);
                     }
                     $('#cartList').append('<li role="presentation" class="divider"></li>'+
                             '<a href="<%=request.getContextPath()%>/FrontEnd/cart/cart.jsp"><div  class="btn btn-info pull-right">前往購物車</div></a>');
+                    $('#cartSize').text(cartSize);
                     $("[name='amount']").val(1);
                     console.log('成功加入購物車');
                     isAdd=true;

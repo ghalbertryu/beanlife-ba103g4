@@ -296,10 +296,19 @@
 						    
 							<!-- 標籤面板：內容區 -->
 						    <div class="tab-content">
+
+
 						    
 						    <c:forEach items="${ordVOsList}" varStatus="count">
 						   
 						        <div role="tabpanel" class="tab-pane ${(count.count==param.status)?'active':''}" id="tab${count.count}">
+
+						        	<c:if test="${ordVOsList.get(count.index).size()==0}">
+										<div class="col-xs-12 col-sm-12 text-center padt20">
+											<h2 class="tx-gray">目前尚無訂單</h2>
+										</div>
+									</c:if>
+									
  									<!--//////////////////////////////////////// -->
  									<c:forEach var="ordVO" items="${ordVOsList.get(count.index)}">
 									<c:set var="storeVO" value="${storeSvc.getOneStore(prodSvc.getOneProd(ordSvc.getOrd_listByOrd(ordVO.ord_no).toArray()[0].prod_no).store_no)}" scope="page"/>
@@ -478,6 +487,9 @@ var $btnStoreX = $(".${storeVO.store_no}").click(function(){
 				alert('Ajax request 發生錯誤');
 			}
 		});
+		$("#modal-inner").on('shown.bs.modal', function () {
+        	 initMap();
+   	 	});
 	});
 	
 
