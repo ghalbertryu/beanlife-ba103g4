@@ -2,12 +2,17 @@ package com.msg.model;
 
 import java.sql.Connection;
 import java.sql.Date;
+import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.ResultSetMetaData;
 import java.sql.SQLException;
+import java.sql.Timestamp;
 import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.LinkedHashSet;
 import java.util.List;
+import java.util.Set;
 
 import javax.naming.Context;
 import javax.naming.InitialContext;
@@ -28,8 +33,9 @@ public class MsgDAO implements MsgDAO_interface {
 	
 	static String key;	
 	
+
 	private static final String INSERT_STMT = 
-		"INSERT INTO MSG (msg_no, mem_sen, mem_rec, msg_cont, msg_send_date, msg_stat) VALUES ('L'||QA_NO_SEQ.NEXTVAL, ?, ?, ?, ?, ?)";
+		"INSERT INTO MSG (msg_no, mem_sen, mem_rec, msg_cont, msg_send_date, msg_stat) VALUES ('L'||QA_NO_SEQ.NEXTVAL, ?, ?, ?, sysdate, ?)";
 	private static final String GET_ALL_STMT = 
 		"SELECT msg_no, mem_sen, mem_rec, msg_cont, to_char(msg_send_date,'yyyy-mm-dd') msg_send_date, msg_stat FROM MSG order by msg_no";
 	private static final String GET_ONE_STMT = 
@@ -38,6 +44,12 @@ public class MsgDAO implements MsgDAO_interface {
 		"DELETE FROM MSG where msg_no = ?";
 	private static final String UPDATE = 
 		"UPDATE MSG set mem_sen=?, mem_rec=?, msg_cont=?, msg_send_date=?, msg_stat=? where msg_no =?";
+	private static final String GET_ALLPAIR_BY_MEMSEN = 
+			"select mem_sen from msg where (mem_sen = ? or mem_rec = ? ) and msg_stat = '開啟' group by mem_sen";
+	private static final String GET_ALLPAIR_BY_MEMREC = 
+			"select mem_rec from msg where (mem_sen = ? or mem_rec = ? ) and msg_stat = '開啟' group by mem_rec";
+	private static final String GET_ALL_BY_PAIR = 
+			"SELECT * FROM MSG where ((mem_sen=? and mem_rec =?) or (mem_rec = ? and mem_sen=?) )and msg_stat = '開啟' order by msg_no";
 	
 	
 	@Override
@@ -55,8 +67,8 @@ public class MsgDAO implements MsgDAO_interface {
 			pstmt.setString(1, msgVO.getMem_sen());
 			pstmt.setString(2, msgVO.getMem_rec());
 			pstmt.setString(3, msgVO.getMsg_cont());
-			pstmt.setDate(4, msgVO.getMsg_send_date());
-			pstmt.setString(5, msgVO.getMsg_stat());
+//			pstmt.setDate(4, msgVO.getMsg_send_date());
+			pstmt.setString(4, msgVO.getMsg_stat());
 
 
 			pstmt.executeUpdate();
@@ -115,7 +127,7 @@ public class MsgDAO implements MsgDAO_interface {
 			pstmt.setString(1, msgVO.getMem_sen());
 			pstmt.setString(2, msgVO.getMem_rec());
 			pstmt.setString(3, msgVO.getMsg_cont());
-			pstmt.setDate(4, msgVO.getMsg_send_date());
+			pstmt.setTimestamp(4, new Timestamp(msgVO.getMsg_send_date().getTime()));
 			pstmt.setString(5, msgVO.getMsg_stat());
 			pstmt.setString(6, msgVO.getMsg_no());
 
@@ -300,58 +312,131 @@ public class MsgDAO implements MsgDAO_interface {
 		return list;
 	}
 	
-	public static void main(String[] args) {
-
-		MsgDAO dao = new MsgDAO();
-
-		// 新增
-		MsgVO msgVO = new MsgVO();
-		msgVO.setMem_sen("mamabeak");
-		msgVO.setMem_rec("amy39");
-		msgVO.setMsg_cont("hihihihihihi");
-		msgVO.setMsg_send_date(Date.valueOf("2005-01-01"));
-		msgVO.setMsg_stat("未讀");
+	@Override
+	public Set<String> getAllPairByMem(String mem_ac) {
+		Set<String> set = new LinkedHashSet<>();
+	
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+	
+		try {
+	
+			con = ds.getConnection();
+			pstmt = con.prepareStatement(GET_ALLPAIR_BY_MEMSEN);
+			pstmt.setString(1, mem_ac);
+			pstmt.setString(2, mem_ac);
+			rs = pstmt.executeQuery();
+			
+			while (rs.next()) {
+				set.add(rs.getString("mem_sen"));
+			}
+			
+			pstmt = con.prepareStatement(GET_ALLPAIR_BY_MEMREC);
+			pstmt.setString(1, mem_ac);
+			pstmt.setString(2, mem_ac);
+			rs = pstmt.executeQuery();
+			while (rs.next()) {
+				set.add(rs.getString("mem_rec"));
+			}
 		
-		dao.insert(msgVO);
-
-		
-
-		// 修改
-		MsgVO msgVO2 = new MsgVO();
-		msgVO2.setMsg_no(key);
-		msgVO2.setMem_sen("mamabeak");
-		msgVO2.setMem_rec("amy39");
-		msgVO2.setMsg_cont("123123hihihi");
-		msgVO2.setMsg_send_date(Date.valueOf(java.time.LocalDate.now()));
-		msgVO2.setMsg_stat("已讀");
-		dao.update(msgVO2);
-
-
-
-		// 查詢
-		MsgVO msgVO3 = dao.findByPrimaryKey(key);
-		System.out.print(msgVO3.getMsg_no() + ",");
-		System.out.print(msgVO3.getMem_sen() + ",");
-		System.out.print(msgVO3.getMem_rec() + ",");
-		System.out.print(msgVO3.getMsg_cont() + ",");
-		System.out.print(msgVO3.getMsg_send_date() + ",");
-		System.out.println(msgVO3.getMsg_stat() + ",");
-		System.out.println("---------------------");
-		
-		// 刪除
-		dao.delete(key);
-
-		// 查詢
-		List<MsgVO> list = dao.getAll();
-		for (MsgVO amsgVO : list) {
-			System.out.print(amsgVO.getMsg_no() + ",");
-			System.out.print(amsgVO.getMem_sen() + ",");
-			System.out.print(amsgVO.getMem_rec() + ",");
-			System.out.print(amsgVO.getMsg_cont() + ",");
-			System.out.print(amsgVO.getMsg_send_date() + ",");
-			System.out.println(amsgVO.getMsg_stat() + ",");
-			System.out.println();
+			
+			set.remove(mem_ac);
+	
+			// Handle any driver errors
+		} catch (SQLException se) {
+			throw new RuntimeException("A database error occured. "
+					+ se.getMessage());
+			// Clean up JDBC resources
+		} finally {
+			if (rs != null) {
+				try {
+					rs.close();
+				} catch (SQLException se) {
+					se.printStackTrace(System.err);
+				}
+			}
+			if (pstmt != null) {
+				try {
+					pstmt.close();
+				} catch (SQLException se) {
+					se.printStackTrace(System.err);
+				}
+			}
+			if (con != null) {
+				try {
+					con.close();
+				} catch (Exception e) {
+					e.printStackTrace(System.err);
+				}
+			}
 		}
+	
+		return set;
 	}
+
+	@Override
+	public Set<MsgVO> getAllByPair(String mem_ac1, String mem_ac2) {
+		Set<MsgVO> set = new LinkedHashSet<MsgVO>();
+		MsgVO msgVO = null;
+
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+
+		try {
+
+			con = ds.getConnection();
+			pstmt = con.prepareStatement(GET_ALL_BY_PAIR);
+			pstmt.setString(1, mem_ac1);
+			pstmt.setString(2, mem_ac2);
+			pstmt.setString(3, mem_ac1);
+			pstmt.setString(4, mem_ac2);
+			rs = pstmt.executeQuery();
+
+			while (rs.next()) {
+				// empVO 也稱為 Domain objects
+				msgVO = new MsgVO();
+				msgVO.setMsg_no(rs.getString("msg_no"));
+				msgVO.setMem_sen(rs.getString("mem_sen"));
+				msgVO.setMem_rec(rs.getString("mem_rec"));
+				msgVO.setMsg_cont(rs.getString("msg_cont"));	
+				msgVO.setMsg_send_date(new Date(rs.getTimestamp("msg_send_date").getTime()));	
+				msgVO.setMsg_stat(rs.getString("msg_stat"));		
+				set.add(msgVO); // Store the row in the list
+			}
+
+			// Handle any driver errors
+		} catch (SQLException se) {
+			throw new RuntimeException("A database error occured. "
+					+ se.getMessage());
+			// Clean up JDBC resources
+		} finally {
+			if (rs != null) {
+				try {
+					rs.close();
+				} catch (SQLException se) {
+					se.printStackTrace(System.err);
+				}
+			}
+			if (pstmt != null) {
+				try {
+					pstmt.close();
+				} catch (SQLException se) {
+					se.printStackTrace(System.err);
+				}
+			}
+			if (con != null) {
+				try {
+					con.close();
+				} catch (Exception e) {
+					e.printStackTrace(System.err);
+				}
+			}
+		}
+		return set;
+	}
+	
+	
 
 }

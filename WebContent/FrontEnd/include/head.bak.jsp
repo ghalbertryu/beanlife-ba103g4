@@ -7,16 +7,14 @@
 <%@ page import="com.prod.model.*"%>
 <%@ page import="com.store.model.*"%>
 <%@ page import="com.cart_list.model.*"%>
-<%@ page import="com.mem.model.*"%>
-<%@ page import="com.msg.model.*"%>
 
+
+<jsp:useBean id="prodSvc" scope="page" class="com.prod.model.ProdService" />
 <jsp:useBean id="storeSvc" scope="page" class="com.store.model.StoreService" />
 <jsp:useBean id="cart_listSvc" scope="page" class="com.cart_list.model.Cart_listService" />
-<jsp:useBean id="msgSvc" scope="page" class="com.msg.model.MsgService" />
-<jsp:useBean id="prodSvc" scope="page" class="com.prod.model.ProdService" />
 
 <c:set var="mem_ac" value="${sessionScope.mem_ac}" scope="page"/>
-<c:set var="urNames" value="${msgSvc.getAllPairByMem(mem_ac)}" scope="page"/>
+
 <c:set var="cart_listSet" value="${cart_listSvc.getVOsByMem(mem_ac)}" scope="page"/>
 
 
@@ -212,205 +210,22 @@
     
 <!--  --------------------------------------------------------------跳窗結束---------------------------------------------------------------->
 
-
-<!--  --------------------------------------------------------------私訊開始---------------------------------------------------------------->
-			<div id="msgOn" class="btn  msgBtn bg-light-g">
-               	 私訊
-           </div>
-			
-
-           <div class="msg">
-              <div class="container-fluid">
-                <div class="row">
-                  <div class="col-xs-12 col-sm-12">
-                    <span id="msgOff" class="btn btn-sm glyphicon glyphicon-minus pull-right"></span>
-                  </div>
-                </div>
-              </div>
- 
-              <div role="tabpanel">
-                  <!-- 標籤面板：標籤區 -->
-                  <ul class="nav nav-tabs" role="tablist" id="msgTab">
-                      <li role="presentation"  class="active" count="0" id="msgTab0">
-                          <a href="#msg0" aria-controls="msg0" role="tab" data-toggle="tab" name="SYS">
-                            SYS
-                          </a>
-                           
-                      </li>
-                      
-                      <c:forEach var="urName" items="${urNames}" varStatus="s">
-					        <li role="presentation" count="${s.count}" id="msgTab${s.count}">
-					            <a href="#msg${s.count}" aria-controls="msg${s.count}" role="tab" data-toggle="tab" name="${urName}">
-					           		${urName}
-					           		<button id="msgClose${s.count}" type="button" class="close msgClose" count="${s.count}">&times;</button>
-					            </a>
-					        </li>
-				        </c:forEach>
-                      
-                     
-                     
-  
-                  </ul>
-              
-                  <!-- 標籤面板：內容區 -->
-                  <div class="tab-content ">
-  
-  
-                   <div role="tabpanel" class="tab-pane active" id="msg0">
-                    <div class="container-fluid ">
-                      <div id="${mem_ac}sys" class="row  fix-h30 scrollbar-macosx" index="1">
-                      
-                        <div class="container-fluid">
-                          <div class="row">
-                          
-                            <div class="media">
-                              <div class="media-left">
-                                <img  class="media-object round-img" src="http://fakeimg.pl/50x50/00CED1/FFF/?text=img+placeholder">
-                              </div>
-                              <div class="media-body">
-                                <p class="col-xs-11 col-sm-10 well">xxx.
-                                </p>
-                              </div>
-                            </div>
-
-                          </div>
-                        </div>
-                        
-                      </div>
-                    </div>
-                    
-                    <div>
-                      <textarea class="form-control" rows="3" placeholder="輸入私訊..." id="msgIn${mem_ac}sys" disabled></textarea>
-                      <span id="submit${mem_ac}sys" class="btn btn-primary btn-sm pull-right" disabled>送出</span>
-                    </div>
-                    
-                  </div>
-  
-  
-
-<!-- ------------------------------------------------------------------------------------------------------------------------- -->
-
-<c:forEach var="urName" items="${urNames}" varStatus="s">
-
-
-						     <div role="tabpanel" class="tab-pane" id="msg${s.count}">
-									<div class="container-fluid ">
-										<div id="${mem_ac}${urName}" class="row fix-h30 scrollbar-macosx" index="${s.count+1}">
-										
-<c:forEach var="msgVO" items="${msgSvc.getAllByPair(mem_ac,urName)}">
-
-											<div class="container-fluid">
-												<div class="row">
-												
-												<c:if test="${msgVO.mem_sen==urName}">
-													<div class="media">
-														<div class="media-left">
-															<img  class="media-object round-img w50" src="<%=request.getContextPath()%>/mem/memImg.do?memAc=${urName}">
-														</div>
-														<div class="media-body">
-															<p class="col-xs-11 col-sm-10 well">
-																${msgVO.msg_cont}
-															</p>
-															
-														</div>
-													</div>
-												</c:if>
-												
-												<c:if test="${msgVO.mem_sen==mem_ac}">
-													<div class="media">
-														<div class="media-body">
-															<div class="col-xs-11 col-xs-offset-1 col-sm-10 col-sm-offset-2">
-																<div class=" pull-right  well bg-light-g">${msgVO.msg_cont}</div>
-															</div>
-														</div>
-														<div class="media-right">
-															<img class="media-object round-img w50" src="<%=request.getContextPath()%>/mem/memImg.do?memAc=${mem_ac}">
-														</div>
-													</div>
-												</c:if>
-
-													
-												</div>
-											</div>
-</c:forEach> <%-- msgVOs--%>
-
-										</div>
-
-									</div>
-									<div>
-										<textarea class="form-control" rows="3" placeholder="輸入私訊..." id="msgIn${mem_ac}${urName}"></textarea>
-										<span id="submit${mem_ac}${urName}" class="btn btn-primary btn-sm pull-right">送出</span>
-									</div>
-									
-						        </div>
-
-
-<script type="text/javascript">
-
-$(document).ready(function(){
-	connect('${mem_ac}','${urName}');
-	$('#submit${mem_ac}${urName}').click(function(){
-// 		console.log('sub${mem_ac}${urName}');
-		sendMessage('${mem_ac}','${urName}');
-	});
-	$('#msgIn${mem_ac}${urName}').keypress(function(e){
-		if(e.keyCode == 13){
-			sendMessage('${mem_ac}','${urName}');
-		}
-	});
-});
-
-</script>
-
-</c:forEach> <%-- urNames --%>
-<!-- ------------------------------------------------------------------------------------------------------------------------- -->
-  
-  
-                  </div>
-              </div>
-           </div>
-
-<!--  --------------------------------------------------------------私訊結束---------------------------------------------------------------->
-
-<style type="text/css">
-
-	.fix-h30{
-		height:30vh;
-		overflow-y: auto;
-		overflow-x: hidden;
-	}
-	.msg{
-/* 		margin-top:50vh; */
-		z-index: 1000; position: fixed; right: 30px; bottom: 0; width:300px; 
-    background-color:snow;
-	}
-	.msgBtn{
-/* 		margin-top:50vh; */
-		z-index: 1000; position: fixed; right: 30px; bottom: 0;
-	}
-
-</style>
-			
-			
-
 <script type="text/javascript">
   $(document).ready(function(){  
     $('#btn-search').click(function(){
         $('#funcbar').slideToggle('300');
     });
   });
-
+  
 	
   if(${sessionScope.showLogin}){
       $('#modal-login').modal("show");
   }
-
   $('#login').click(function(){
 	  $('#modal-login').modal("show");
 	  return false;
   });
-
-
+  
 </script>
 <c:set var="showLogin" value="${false}" scope="session"/>
 

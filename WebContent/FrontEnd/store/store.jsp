@@ -52,11 +52,7 @@
 	</div>
 
 	
-<style type="text/css">
-	*{
-		
-	}
-</style>	      
+   
 		
 
 
