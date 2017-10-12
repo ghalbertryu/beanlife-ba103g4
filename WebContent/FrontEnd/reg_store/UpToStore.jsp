@@ -36,27 +36,27 @@
 			<tr>
 				<td>店家名稱:</td>
 				<td><input type="TEXT" name="store_name" size="45"
-					value="${storeVO.store_name}" /></td>
+					value="" /></td>
 			</tr>
 			<tr>
 				<td>統一編號:</td>
 				<td><input type="TEXT" name="tax_id_no" size="45" 
-					value="${storeVO.tax_id_no}" /></td>
+					value="" /></td>
 			</tr>
 			<tr>
 				<td>公司電話:</td>
 				<td><input type="TEXT" name="store_phone" size="45" pattern="0\d{1,2}-?(\d{1,4})-?(\d{1,4})" placeholder="EX:02-123-456"
-					value="${storeVO.store_phone}" /></td>
+					value="" /></td>
 			</tr>
 			<tr>
 				<td>店家住址:</td>
 				<td><input type="TEXT" id="address" name="store_add" size="45"
-					class="add" value="${storeVO.store_add}" /></td>
+					class="add" value="" /></td>
 			</tr>
 			<tr>
 				<td>店家介紹:</td>
 				<td><textarea rows="4" cols="50" name="store_cont"
-						placeholder="EX:媽媽嘴曾經發生命案糾咪">${storeVO.store_cont}</textarea></td>
+						placeholder="EX:媽媽嘴曾經發生命案糾咪"></textarea></td>
 			</tr>
 			<tr>
 				<td>匯款資訊：</td>
@@ -64,13 +64,13 @@
 						placeholder="EX:匯款銀行：彰化銀行 蘆洲分行 
 戶名：陳建儒 
 銀行代碼：009  
-銀行帳號：9832-51-326845-00">${storeVO.store_atm_info}</textarea></td>
+銀行帳號：9832-51-326845-00"></textarea></td>
 			</tr>
 
 			<tr>
 				<td>免運費金額:</td>
 				<td><input type="number" name="store_free_ship" size="45" min="0" step="1"
-					value="${storeVO.store_free_ship}" /></td>
+					value="" /></td>
 			</tr>
 	
 			<tr>

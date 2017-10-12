@@ -45,10 +45,10 @@ private static final Map<Set<String>,  Set<Session>> pairSessions = Collections.
 			pairSessions.put(pairSet, setSessions);
 		}
 	
-		System.out.println(userSession.getId() + ": ¤w³s½u");
+		System.out.println(userSession.getId() + ": å·²é€£ç·š");
 		System.out.println(myName + ": myName");
 		System.out.println(urName + ": urName");
-//		userSession.getBasicRemote().sendText("WebSocket ³s½u¦¨¥\");
+//		userSession.getBasicRemote().sendText("WebSocket é€£ç·šæˆåŠŸ");
 	}
 
 	

@@ -111,18 +111,18 @@
 				<tr>
 					<td>烘焙度*</td>
 					<td><select size="1" name="roast">
-							<option value="極淺焙"
-								${prodvo.roast.equals("極淺焙") ? "SELECTED" : ""}>極淺焙</option>
-							<option value="淺焙" ${prodvo.roast.equals("淺焙") ? "SELECTED" : ""}>淺焙</option>
-							<option value="中焙" ${prodvo.roast.equals("中焙") ? "SELECTED" : ""}>中焙</option>
-							<option value="中深焙"
-								${prodvo.roast.equals("中深焙") ? "SELECTED" : ""}>中深焙</option>
-							<option value="城市烘焙"
-								${prodvo.roast.equals("城市烘焙") ? "SELECTED" : ""}>城市烘焙</option>
-							<option value="深焙" ${prodvo.roast.equals("深焙") ? "SELECTED" : ""}>深焙</option>
-							<option value="法式烘焙"
-								${prodvo.roast.equals("法式烘焙") ? "SELECTED" : ""}>法式烘焙</option>
-							<option value="重焙" ${prodvo.roast.equals("重焙") ? "SELECTED" : ""}>重焙</option>
+							<option value="0"
+								${prodvo.roast.equals("0") ? "SELECTED" : ""}>極淺焙</option>
+							<option value="1" ${prodvo.roast.equals("1") ? "SELECTED" : ""}>淺焙</option>
+							<option value="2" ${prodvo.roast.equals("2") ? "SELECTED" : ""}>中焙</option>
+							<option value="3"
+								${prodvo.roast.equals("3") ? "SELECTED" : ""}>中深焙</option>
+							<option value="4"
+								${prodvo.roast.equals("4") ? "SELECTED" : ""}>城市烘焙</option>
+							<option value="5" ${prodvo.roast.equals("5") ? "SELECTED" : ""}>深焙</option>
+							<option value="6"
+								${prodvo.roast.equals("6") ? "SELECTED" : ""}>法式烘焙</option>
+							<option value="7" ${prodvo.roast.equals("7") ? "SELECTED" : ""}>重焙</option>
 					</select></td>
 					<td></td>
 				</tr>

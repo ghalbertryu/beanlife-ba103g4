@@ -39,7 +39,7 @@
 			<div class="col-xs-12 col-sm-4 col-sm-offset-4 text-center mgt20">
 				<span>${memVO.mem_ac}</span><br>
 				${mem_gradeSvc.getOneMem_grade(memVO.grade_no).grade_title}　${memVO.mem_pt}/${memVO.mem_total_pt}<br>
-				<small>修改資料　<a href="<%=request.getContextPath()%>/FrontEnd/gift/gift_data_frontEnd.jsp">積分兌換</a>　<a href="<%=request.getContextPath()%>/FrontEnd/reg_store/UpToStore.jsp">申請店家</a></small>
+				<small><a href="<%=request.getContextPath()%>/FrontEnd/reg_mem/mem_data.jsp">修改資料</a>　<a href="<%=request.getContextPath()%>/FrontEnd/gift/gift_data_frontEnd.jsp">積分兌換</a>　<a href="<%=request.getContextPath()%>/FrontEnd/reg_store/UpToStore.jsp">申請店家</a></small>
 			</div>
 		</div>
 	</div>

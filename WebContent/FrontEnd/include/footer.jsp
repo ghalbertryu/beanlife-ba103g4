@@ -11,7 +11,7 @@
             <a href="#">常見問題</a>
           </div>
           <div class="col-xs-12 col-sm-1">
-            <a href="#">聯絡我們</a>
+            <a href="<%=request.getContextPath()%>/FrontEnd/contact_us/contact_us.jsp">聯絡我們</a>
           </div>
           <div class="col-xs-12 col-sm-1">
             <a href="#">商業合作</a>
