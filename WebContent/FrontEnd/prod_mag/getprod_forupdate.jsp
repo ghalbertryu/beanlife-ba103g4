@@ -255,16 +255,17 @@
 				</tr>
 				<tr>
 				<td>
-					
+						
 						<input type="submit" value="修改商品資料" class="btn btn-info">
 						<input type="hidden" name="prod_no" value="${prodvo.prod_no}">
 						<input type="hidden" name="store_no" value="${storeVO.store_no}">
 						<input type="hidden" name="action" value="update_prod">
-					</FORM>
+						<input type="hidden" name="whichPage" value="<%=request.getAttribute("whichPage")%>">
 				</td>
+				<td><input type ="button" onclick="history.back()" value="取消" class="btn btn-info"></input></td>
 				</tr>
 			</table>
-
+			</FORM>
 		</div>
 	</div>
 </div>

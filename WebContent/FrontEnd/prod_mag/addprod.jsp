@@ -52,7 +52,7 @@
 					<td></td>
 				</tr>
 				<tr>
-					<td>生豆等級</td>
+					<td>生豆等級*</td>
 					<td><input type="radio" name="bean_grade" value="G1" ${(prodVO.bean_grade==("G1")) ? "checked" : ""}>G1 
 						<input type="radio" name="bean_grade" value="G2" ${(prodVO.bean_grade==("G2")) ? "checked" : ""}>G2 
 						<input type="radio" name="bean_grade" value="G3" ${(prodVO.bean_grade==("G3")) ? "checked" : ""}>G3 
@@ -116,7 +116,7 @@
 					<td></td>
 				</tr>
 				<tr>
-					<td>風味-酸度</td>
+					<td>風味-酸度*</td>
 					<td><input type="radio" name="bean_attr_acid" value="1" ${(prodVO.bean_attr_acid==1) ? "checked" : ""}>1 
 					<input type="radio" name="bean_attr_acid" value="2" ${(prodVO.bean_attr_acid==2) ? "checked" : ""}>2 
 					<input type="radio" name="bean_attr_acid" value="3" ${(prodVO.bean_attr_acid==3) ? "checked" : ""}>3 
@@ -126,7 +126,7 @@
 					<td></td>
 				</tr>
 				<tr>
-					<td>風味-香氣</td>
+					<td>風味-香氣*</td>
 					<td><input type="radio" name="bean_attr_aroma" value="1" ${(prodVO.bean_attr_aroma==1) ? "checked" : ""}>1 
 					<input type="radio" name="bean_attr_aroma" value="2" ${(prodVO.bean_attr_aroma==2) ? "checked" : ""}>2 
 					<input type="radio" name="bean_attr_aroma" value="3"${(prodVO.bean_attr_aroma==3) ? "checked" : ""}>3 
@@ -136,7 +136,7 @@
 					<td></td>
 				</tr>
 				<tr>
-					<td>風味-醇度</td>
+					<td>風味-醇度*</td>
 					<td><input type="radio" name="bean_attr_body" value="1" ${(prodVO.bean_attr_body==1) ? "checked" : ""}>1 
 					<input type="radio" name="bean_attr_body" value="2" ${(prodVO.bean_attr_body==2) ? "checked" : ""}>2 
 					<input type="radio" name="bean_attr_body" value="3"	${(prodVO.bean_attr_body==3) ? "checked" : ""}>3 
@@ -146,7 +146,7 @@
 					<td></td>
 				</tr>
 				<tr>
-					<td>風味-餘味</td>
+					<td>風味-餘味*</td>
 					<td><input type="radio" name="bean_attr_after" value="1" ${(prodVO.bean_attr_after==1) ? "checked" : ""}>1 
 						<input type="radio" name="bean_attr_after" value="2" ${(prodVO.bean_attr_after==2) ? "checked" : ""}>2 
 						<input type="radio" name="bean_attr_after" value="3" ${(prodVO.bean_attr_after==3) ? "checked" : ""}>3 
@@ -156,7 +156,7 @@
 					<td></td>
 				</tr>
 				<tr>
-					<td>風味-平衡度</td>
+					<td>風味-平衡度*</td>
 					<td><input type="radio" name="bean_attr_bal" value="1" ${(prodVO.bean_attr_bal==1) ? "checked" : ""}>1 
 						<input type="radio" name="bean_attr_bal" value="2" ${(prodVO.bean_attr_bal==2) ? "checked" : ""}>2 
 						<input type="radio" name="bean_attr_bal" value="3" ${(prodVO.bean_attr_bal==3) ? "checked" : ""}>3 
@@ -266,11 +266,14 @@
 					</td>
 					<td></td>
 				</tr>
-		</table>
-		<br> <input type="hidden" name="action" value="insert"> 
-			 <input type="submit" value="送出新增" class="btn btn-info">
-			 <input type="hidden" name="prod_no" value="${prodvo.prod_no}">
-			 <input type="hidden" name="store_no" value="${storeVO.store_no}">
+				<tr>
+				<td><input type="submit" value="送出新增" class="btn btn-info"></td>
+				<td><input type ="button" onclick="history.back()" value="取消" class="btn btn-info"></input></td>
+				</tr>
+			 </table>
+				<input type="hidden" name="action" value="insert">
+			 	<input type="hidden" name="prod_no" value="${prodvo.prod_no}">
+				<input type="hidden" name="store_no" value="${storeVO.store_no}">
 			</FORM>
 				
 		</div>

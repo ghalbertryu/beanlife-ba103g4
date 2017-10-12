@@ -21,9 +21,9 @@ StoreService storeSvc = new StoreService();
 
 
 StoreVO storeVO=(StoreVO)storeSvc.getonestore(store_no);
-session.setAttribute("storeVO",storeVO);
+request.setAttribute("storeVO",storeVO);
 
-OrdVO ordVO=(OrdVO) session.getAttribute("ordVO");
+OrdVO ordVO=(OrdVO) request.getAttribute("ordVO");
 %>
 <c:set var="ord_listVOs" value="${ordSvc.getOrd_listByOrd(ordVO.ord_no)}"/>
 
@@ -134,12 +134,13 @@ OrdVO ordVO=(OrdVO) session.getAttribute("ordVO");
 						<FORM METHOD="post"
 										ACTION="<%=request.getContextPath()%>/ord/Ord_manag.do">
 										<input type=${ordVO.ord_stat.equals("已確認付款") ? "text" : "hidden" } name="send_id" value="${ordVO.send_id}" >
-										<input type=${ordVO.ord_stat.equals("未付款")||ordVO.ord_stat.equals("已出貨") ? "hidden" : "submit"} value="${ordVO.ord_stat.equals("已付款") ? "確認已付款" : '發出出貨通知'}" class="btn-info"> 
+										<input type=${ordVO.ord_stat.equals("未付款")||ordVO.ord_stat.equals("已出貨") ? "hidden" : "submit"} value="${ordVO.ord_stat.equals("已付款") ? "確認已付款" : '發出出貨通知'}" class="btn-info">
 										<input type="hidden" name="ord_no" value="${ordVO.ord_no}">
 										<input type="hidden" name="ord_stat" value="${ordVO.ord_stat}">
 										<input type="hidden" name="action" value="update_stat">
 										<input type="hidden" name="ordmem_ac" value="${ordVO.mem_ac}">
 										<span>${ordVO.ord_stat.equals("已確認付款") ? "請輸入物流編號並發出出貨通知" : ''}</span>
+										<a href="<%=request.getContextPath()%>/FrontEnd/ord_mag/listAllorder_bystore.jsp" class="btn btn-info" role="button">返回上頁</a>
 							</FORM>
 						
 					</div>

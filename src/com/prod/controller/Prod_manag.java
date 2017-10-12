@@ -482,9 +482,7 @@ public class Prod_manag extends HttpServlet {
 					errorMsgs.add("請輸入商品名稱");
 				}
 				
-				if(prod_stat==null){
-					errorMsgs.add("請選擇上下架狀態");
-				}
+				
 				
 				Double prod_wt = null;
 

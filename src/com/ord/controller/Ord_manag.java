@@ -48,7 +48,9 @@ public class Ord_manag extends HttpServlet {
 				/*************************** 1.接收請求參數 ****************************************/
 				String ord_no = new String(req.getParameter("ord_no"));
 				String whichPage = req.getParameter("whichPage"); // 送出修改的來源網頁的第幾頁(只用於:istAllEmp.jsp)
-				req.setAttribute("whichPage", whichPage); // 送出修改的來源網頁的第幾頁,
+				HttpSession session=req.getSession();
+				
+				session.setAttribute("whichPage", whichPage); // 送出修改的來源網頁的第幾頁,
 
 				/*************************** 2.開始查詢資料 ****************************************/
 				OrdService ordSvc = new OrdService();
@@ -92,6 +94,7 @@ public class Ord_manag extends HttpServlet {
 
 				String send_id = req.getParameter("send_id");
 				String ordmem_ac = req.getParameter("ordmem_ac");
+				
 
 				OrdVO ordVO = new OrdVO();
 				OrdService ordSvc = new OrdService();
@@ -164,20 +167,21 @@ public class Ord_manag extends HttpServlet {
 				
 				
 				Set<OrdVO> ordVOs  = new LinkedHashSet<OrdVO>();
-				HttpSession session =req.getSession();
+				HttpSession session = req.getSession();
 				Set<OrdVO> ordvos_stat=(Set<OrdVO>) session.getAttribute("ordVOs");
-				
+				System.out.println(ordvos_stat);
 				if(ord_stat.equals("getAll")){
 					ordVOs.addAll(ordvos_stat);
 				}else {
 					for (OrdVO ordvo : ordvos_stat){
 						 if(ordvo.getOrd_stat().equals(ord_stat)){
 							ordVOs.add(ordvo);
+							
 						}
 						
 					}
 				}
-				
+				System.out.println(12);
 				
 				System.out.println(ordVOs);
 				

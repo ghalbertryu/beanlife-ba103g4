@@ -13,6 +13,7 @@
 <%
 // 	session.setAttribute("store_no", "S1000000002");
 	String store_no = (String) session.getAttribute("store_no");
+	
 	StoreService storeSvc = new StoreService();
 	ProdService prodSvc = new ProdService();
 	OrdService ordSvc = new OrdService();
@@ -33,8 +34,8 @@
 			ordVOs.add(ordSvc.getOrdByOrdno(ord_listVO.getOrd_no()));
 		}
 	}
-
 	session.setAttribute("ordVOs",ordVOs);
+	
 %>
 
 
@@ -109,7 +110,7 @@
 					</tr>
 				</c:forEach>
 			</table>
-				<%@ include file="page2.file"%>
+				　　<%@ include file="page2.file"%>
 		</div>
 	</div>
 

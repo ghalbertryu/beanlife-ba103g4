@@ -62,7 +62,7 @@
 					<td></td>
 				</tr>
 				<tr>
-					<th>公司審核狀態：</th>
+					<th>審核狀態：</th>
 					<th>${storeVO.store_stat}</th>
 					<th></th>
 				</tr>
@@ -122,7 +122,7 @@
 					<input	type="hidden" name="store_add_lat" id="lat" size="45" value="${storeVO.store_add_lat}" />
 					<input	type="hidden" name="store_add_lon" id="lng" size="45" value="${storeVO.store_add_lon}" />
 					<input	type="hidden" name="store_no"  size="45" value="${storeVO.store_no}" />
-					<input	type="submit" value="確認修改" />
+					<input	type="submit" value="確認修改" /><input type ="button" onclick="history.back()" value="取消"></input>
 			</FORM>
 		</div>
 	</div>

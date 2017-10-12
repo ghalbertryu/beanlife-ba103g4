@@ -8,9 +8,21 @@
 %>
 
 <%  
- 	if(request.getAttribute("ordVOs")!=null){
+	
+	
+	try{
+	String pageget=(String) session.getAttribute("whichPage");
+		whichPage=Integer.parseInt(pageget);
+		
+	}catch(Exception e){
+	
+	}
+	if(request.getAttribute("ordVOs")!=null){
  		ordVOs = (Set<OrdVO>) request.getAttribute("ordVOs");
  	}
+
+
+ 	
     rowNumber=ordVOs.size();
     if (rowNumber%rowsPerPage !=0)
      pageNumber=rowNumber/rowsPerPage +1;
@@ -21,18 +33,28 @@
     pageIndexArray[i-1]=i*rowsPerPage-rowsPerPage;
 %>
 
-<%  try {
-      whichPage = Integer.parseInt(request.getParameter("whichPage"));
+<%  
+try {
+	  if(session.getAttribute("whichPage")==null){
+	  	whichPage = Integer.parseInt(request.getParameter("whichPage"));
+	  }
+      
+      
+      
       pageIndex=pageIndexArray[whichPage-1];
     } catch (NumberFormatException e) { //第一次執行的時候
+    
        whichPage=1;
        pageIndex=0;
     } catch (ArrayIndexOutOfBoundsException e) { //總頁數之外的錯誤頁數
+    
          if (pageNumber>0){
               whichPage=pageNumber;
               pageIndex=pageIndexArray[pageNumber-1];
          }
     } 
+    session.removeAttribute("whichPage");
+   
 %>
 <%if (pageNumber>0){%>
 <b><font color= red>第<%=whichPage%>/<%=pageNumber%>頁　</font></b>

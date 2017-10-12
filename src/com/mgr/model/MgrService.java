@@ -16,14 +16,14 @@ public class MgrService {
 
 		MgrVO mgrVO = new MgrVO();
 
-		mgrVO.setMGR_NO(MGR_NO);
-		mgrVO.setMGR_PWD(MGR_PWD);
-		mgrVO.setMGR_NAME(MGR_NAME);
-		mgrVO.setMGR_GENDER(MGR_GENDER);
-		mgrVO.setMGR_BIRTH(MGR_BIRTH);
-		mgrVO.setMGR_EMAIL(MGR_EMAIL);
-		mgrVO.setMGR_PHONE(MGR_PHONE);
-		mgrVO.setMGR_REG_DATE(MGR_REG_DATE);
+		mgrVO.setMgr_no(MGR_NO);
+		mgrVO.setMgr_pwd(MGR_PWD);
+		mgrVO.setMgr_name(MGR_NAME);
+		mgrVO.setMgr_gender(MGR_GENDER);
+		mgrVO.setMgr_birth(MGR_BIRTH);
+		mgrVO.setMgr_email(MGR_EMAIL);
+		mgrVO.setMgr_phone(MGR_PHONE);
+		mgrVO.setMgr_reg_date(MGR_REG_DATE);
 		dao.insert(mgrVO);
 
 		return mgrVO;
@@ -33,14 +33,14 @@ public class MgrService {
 			String MGR_GENDER, Date MGR_BIRTH, String MGR_EMAIL, String MGR_PHONE, Date MGR_REG_DATE) {
 
 		MgrVO mgrVO = new MgrVO();
-		mgrVO.setMGR_NO(MGR_NO);
-		mgrVO.setMGR_PWD(MGR_PWD);
-		mgrVO.setMGR_NAME(MGR_NAME);
-		mgrVO.setMGR_GENDER(MGR_GENDER);
-		mgrVO.setMGR_BIRTH(MGR_BIRTH);
-		mgrVO.setMGR_EMAIL(MGR_EMAIL);
-		mgrVO.setMGR_PHONE(MGR_PHONE);
-		mgrVO.setMGR_REG_DATE(MGR_REG_DATE);
+		mgrVO.setMgr_no(MGR_NO);
+		mgrVO.setMgr_pwd(MGR_PWD);
+		mgrVO.setMgr_name(MGR_NAME);
+		mgrVO.setMgr_gender(MGR_GENDER);
+		mgrVO.setMgr_birth(MGR_BIRTH);
+		mgrVO.setMgr_email(MGR_EMAIL);
+		mgrVO.setMgr_phone(MGR_PHONE);
+		mgrVO.setMgr_reg_date(MGR_REG_DATE);
 		dao.update(mgrVO);
 
 		return mgrVO;

@@ -1,35 +1,70 @@
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-<table border="0">    
- <tr>
-  <%if (rowsPerPage<rowNumber) {%>
-    <%if(pageIndex>=rowsPerPage){%>
-        <td><A href="<%=request.getRequestURI()%>?whichPage=1">至第一頁</A>&nbsp;</td>
-        <td><A href="<%=request.getRequestURI()%>?whichPage=<%=whichPage-1%>">上一頁 </A>&nbsp;</td>
-    <%}%>
+
+
+<style>
+.pagination>li .active_button{
+z-index: 3;
+    color: #fff;
+    cursor: default;
+    background-color: #337ab7;
+    border-color: #337ab7;
+}
+
+.pagination{
+left: 50%;
+transform: translate(-50%,0%);
+}
+
+
+</style>
+
+
+
+<%if (rowsPerPage<rowNumber) {%>
+		<ul class="pagination">
+		 <%if(pageIndex>=rowsPerPage){%>
+		
+		 
+		  <li><a href="<%=request.getRequestURI()%>?whichPage=<%=whichPage-1%>">&laquo;</a></li>
+		   <%}%>  
+		    <% for(int i=0;i<whichPage;i++){%>
+		  <li><a class="myWhichPage"  href="<%=request.getRequestURI()%>?whichPage=<%=i+1%>"><%=i+1%></a></li>
+		  
+		  <%}%>  
+		  <%if(pageIndex<pageIndexArray[pageNumber-1]){%>
+		  <li><a href="<%=request.getRequestURI()%>?whichPage=<%=whichPage+1%>">&raquo;</a></li>
+		   <%}%>  
+		</ul>
+
+ <%}%>  
+
+
+
+
   
-    <%if(pageIndex<pageIndexArray[pageNumber-1]){%>
-        <td><A href="<%=request.getRequestURI()%>?whichPage=<%=whichPage+1%>">下一頁</A>&nbsp;</td>
-        <td><A href="<%=request.getRequestURI()%>?whichPage=<%=pageNumber%>">至最後一頁</A>&nbsp;</td>
-    <%}%>
-  <%}%>  
- </tr>
-</table>    
-<%if ( pageNumber > 1) {%>
-<table border="0">   
- <tr> 
-        <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-        </td>
-   <FORM METHOD="post" ACTION="<%=request.getRequestURI()%>">   
-        <td>
-           <select size="1" name="whichPage">
-        <%for (int i=1; i<=pageNumber; i++){%>
-           <option value="<%=i%>">跳至第<%=i%>頁
-        <%}%> 
-           </select>
-           <input type="submit" value="確定" >  
-        </td>
-   </FORM>
- </tr>
-</table>
-<%}%>
+
+
+
+<script>
+for(var i=0;i<$(".myWhichPage").length;i++){
+if($(".myWhichPage").eq(i).text()==<%=whichPage%>){
+$(".myWhichPage").eq(i).addClass("active_button");
+
+}else{
+$(".myWhichPage").eq(i).removeClass("active_button");
+}
+
+
+}
+
+
+</script>
+
+
+
+
+
+
+
+
+

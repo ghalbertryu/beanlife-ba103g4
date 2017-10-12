@@ -149,12 +149,13 @@
 				<img src="<%=store_pic3 %>" width="150px">
 				</output></td>
 			</tr>
+			
 		</table>
 		<br> <input type="hidden" name="action" value="insert"> 
 		<input	type="hidden" name="mem_ac" value="${mem_ac}"> 
 		<input	type="hidden" name="store_add_lat" id="lat" size="45" value="${storeVO.store_add_lat}" />
 		<input	type="hidden" name="store_add_lon" id="lng" size="45" value="${storeVO.store_add_lon}" /> 
-		<input	type="submit" value="送出新增" />
+		<input	type="submit" value="送出新增" /><input type ="button" onclick="history.back()" value="取消"></input>
 	</FORM>
 
 </div>
