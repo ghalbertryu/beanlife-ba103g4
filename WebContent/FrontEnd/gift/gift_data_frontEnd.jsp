@@ -418,7 +418,13 @@ $(".gift_amount").change(function(){
 	$(this).val(0);
 	 $("#modal-update").modal({show: true});
 	}
-	if($(this).val()>$(this).parent().next().children().text()){
+	var val=$(this).val();
+	var text=$(this).parent().next().children().text();
+	if(parseInt(val)>parseInt(text)){
+		
+		console.log("this.val= "+val);
+		console.log("this.text= "+text);
+		console.log(parseInt(val)>parseInt(text));
 		$(this).val(0);
 		 $("#modal-notEnough").modal({show: true});
 	}
