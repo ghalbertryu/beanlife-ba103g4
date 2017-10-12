@@ -78,7 +78,7 @@ public class ProdServletBack extends HttpServlet {
 				ProdService prodSvc = new ProdService();
 				Set<ProdVO> prodVOs = new LinkedHashSet<>();
 				for(int i=0 ;i<Math.min(list.size(),10);i++){
-					prodVOs.add(prodSvc.getOneProd(list.get(i).getKey()));		
+					prodVOs.add(prodSvc.getOneProdR(list.get(i).getKey()));		
 				}
 				
 				ServletContext context = getServletContext();

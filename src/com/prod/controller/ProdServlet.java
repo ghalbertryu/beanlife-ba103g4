@@ -52,25 +52,13 @@ public class ProdServlet extends HttpServlet {
 				mapBack.put("others", others);
 				session.setAttribute("mapBack", mapBack);
 				
-				
-				if(roast.equals("0")){
-					roast="";
-				} else if(roast.equals("1")){
-					roast = "極淺焙"	;	
-				} else if (roast.equals("2")){
-					roast = "淺焙";
-				}else if (roast.equals("3")){
-					roast = "中焙";
-				}else if (roast.equals("4")){
-					roast = "中深焙";
-				}else if (roast.equals("5")){
-					roast = "城市烘焙";
-				}else if (roast.equals("6")){
-					roast = "深焙";
-				}else if (roast.equals("7")){
-					roast = "法式烘焙";
-				}else if (roast.equals("8")){
-					roast = "重焙";
+				System.out.println(roast.contains(","));
+				String[] roastRange = roast.split(",");
+				System.out.println(roastRange[0]);
+				if(Integer.parseInt(roastRange[0])>Integer.parseInt(roastRange[1])){
+					String str = roastRange[0];
+					roastRange[0]=roastRange[1];
+					roastRange[1]=str;
 				}
 				
 				
@@ -81,7 +69,8 @@ public class ProdServlet extends HttpServlet {
 				Map<String, String[]> map = new TreeMap<String, String[]>();
 				map.put("bean_contry", new String[] {bean_contry});
 				map.put("proc", new String[] { proc });
-				map.put("roast", new String[] {roast });
+				map.put("roast0", new String[] {roastRange[0] });
+				map.put("roast1", new String[] {roastRange[1] });
 
 //				map.put("action", new String[] { "searchProds" }); // 注意Map裡面會含有action的key
 
@@ -100,7 +89,7 @@ public class ProdServlet extends HttpServlet {
 				
 				
 				ProdService prodSvc = new ProdService();
-				List<ProdVO> list  = prodSvc.getAll(map,map2);
+				List<ProdVO> list  = prodSvc.getAllR(map,map2);
 				
 				/***************************3.查詢完成,準備轉交(Send the Success view)************/
 				req.setAttribute("searchRs", list); // 資料庫取出的list物件,存入request

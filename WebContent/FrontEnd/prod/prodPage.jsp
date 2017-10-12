@@ -26,7 +26,7 @@
 <jsp:useBean id="qaSvc" scope="page" class="com.qa.model.QaService" />
 
 <c:set var="mem_ac" value="${session.mem_ac}" scope="page"/>
-<c:set var="prodVO" value="${prodSvc.getOneProd(param.prodNo)}" scope="page"/>
+<c:set var="prodVO" value="${prodSvc.getOneProdR(param.prodNo)}" scope="page"/>
 <c:set var="storeVO" value="${storeSvc.getOneStore(prodVO.store_no)}"/>
 <c:set var="fo_list" value="${fo_prodSvc.getAllByMem(mem_ac)}" scope="page"/>
 <c:set var="like_rev_list" value="${like_revSvc.getAllByMem(mem_ac)}" scope="page"/>

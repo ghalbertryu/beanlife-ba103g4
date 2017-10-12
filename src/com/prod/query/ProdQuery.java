@@ -8,11 +8,17 @@ public class ProdQuery {
 
 		String aCondition = null;
 		
-		if ("bean_contry".equals(columnName) || "proc".equals(columnName) || "roast".equals(columnName) || "prod_no".equals(columnName) || "store_no".equals(columnName)) // 用於其他
+		if ("bean_contry".equals(columnName) || "proc".equals(columnName) || "prod_no".equals(columnName) || "store_no".equals(columnName)) // 用於其他
 			aCondition = columnName + "=" + " '" + value + "' ";
 		else if ("prod_name".equals(columnName) || "bean_type".equals(columnName)|| "bean_grade".equals(columnName)|| "bean_region".equals(columnName)
 				|| "bean_farm".equals(columnName)|| "bean_farmer".equals(columnName)|| "prod_cont".equals(columnName)|| "prod_stat".equals(columnName)|| "bean_aroma".equals(columnName)) // 用於varchar
 			aCondition = "lower("+columnName + ") like lower('%" + value + "%')";
+		else if ("roast0".equals(columnName)){
+			aCondition= "roast between '"+value+"' ";
+		}else if ("roast1".equals(columnName)){
+			aCondition=" '"+value+"' ";
+		}
+			
 		else if ("".equals(columnName))                          // 用於Oracle的date
 			aCondition = "to_char(" + columnName + ",'yyyy-mm-dd')='" + value + "'";
 

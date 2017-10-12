@@ -67,7 +67,7 @@
 									<c:forEach var="cart_listVO" items="${cart_listSvc.getVOsByMem(mem_ac)}">
 									<c:if test="${prodSvc.getOneProd(cart_listVO.prod_no).store_no==storeVO.store_no}">
 									<c:set var="count" value="${count+1}"/>
-									<c:set var="prodVO" value="${prodSvc.getOneProd(cart_listVO.prod_no)}"/>
+									<c:set var="prodVO" value="${prodSvc.getOneProdR(cart_listVO.prod_no)}"/>
 		
 									<!-- ////////////////////////////// -->
 									<tbody id="tbody${prodVO.prod_no}">

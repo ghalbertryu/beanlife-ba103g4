@@ -23,7 +23,7 @@
 
 <jsp:include page="/FrontEnd/include/head.jsp"/>
 <c:set var="mem_ac" value="${sessionScope.mem_ac}" scope="page"/>
-<c:set var="prodlist" value="${(searchRs==null)?prodSvc.all:searchRs}" scope="page"/>
+<c:set var="prodlist" value="${(searchRs==null)?prodSvc.allR:searchRs}" scope="page"/>
 <c:set var="fo_list" value="${fo_prodSvc.getAllByMem(mem_ac)}" scope="page"/>
 <c:set var="like_rev_list" value="${like_revSvc.getAllByMem(mem_ac)}" scope="page"/>
 <c:set var="cart_listSet" value="${cart_listSvc.getVOsByMem(mem_ac)}" scope="page"/>
@@ -58,7 +58,7 @@
         </div>
         <div class="col-xs-12 col-sm-3 padt10 mgb30">
           <!-- <input type="range" name="roast" min="0" max="8" value="${(mapBack.get('roast')==null)?'0':mapBack.get('roast')}"> -->
-          <input class="roast" type="text" min="0" max="7" value="0,7" name="bean_roast" step="1" />
+          <input class="roast" type="text" min="0" max="7" value="${(mapBack.get('roast')==null)?'0,7':mapBack.get('roast')}" name="roast" step="1" />
         </div>
         <div class="col-xs-12 col-sm-3 mgb10">
           

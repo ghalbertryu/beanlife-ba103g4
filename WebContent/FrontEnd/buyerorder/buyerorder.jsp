@@ -332,7 +332,7 @@
 
 										<c:set var="totalAmount" value="0"/>
 										<c:forEach var="ord_listVO" items="${ordSvc.getOrd_listByOrd(ordVO.ord_no)}">
-											<c:set var="prodVO" value="${prodSvc.getOneProd(ord_listVO.prod_no)}"/>
+											<c:set var="prodVO" value="${prodSvc.getOneProdR(ord_listVO.prod_no)}"/>
 											
 										<!-- ////////////////////////////// -->
 										<tbody>
