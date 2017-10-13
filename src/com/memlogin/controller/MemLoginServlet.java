@@ -84,6 +84,11 @@ public class MemLoginServlet extends HttpServlet {
 					session.setAttribute("showLogin", true); 
 					return;
 					
+				} else if(memSvc.getOneMem(mem_ac).getMem_stat().equals("停權")){
+					errorMsgs.put("login_err","已停權");
+					System.out.println("已停權");
+					session.setAttribute("showLogin", true); 
+					return;
 				//success login
 				} else {
 					StoreService storeSvc = new StoreService();
