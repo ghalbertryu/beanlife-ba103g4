@@ -206,10 +206,10 @@ text-align: center;
 								<td>${storeVO.mem_ac}</td>
 								<td>${storeVO.tax_id_no}</td>
 								<td>${storeVO.store_name}</td>							
-								<td><img width="100px" src="<%=request.getContextPath()%>/store/StoreImg.do?store_no=${storeVO.store_no}&index=0"></td>
-								<td><img width="100px" src="<%=request.getContextPath()%>/store/StoreImg.do?store_no=${storeVO.store_no}&index=1" ></td>
-								<td><img width="100px" src="<%=request.getContextPath()%>/store/StoreImg.do?store_no=${storeVO.store_no}&index=2" ></td>
-								<td><img width="100px" src="<%=request.getContextPath()%>/store/StoreImg.do?store_no=${storeVO.store_no}&index=3" ></td>
+								<td><img width="100px" src="<%=request.getContextPath()%>/store/storeImg.do?store_no=${storeVO.store_no}&index=0"></td>
+								<td><img width="100px" src="<%=request.getContextPath()%>/store/storeImg.do?store_no=${storeVO.store_no}&index=1" ></td>
+								<td><img width="100px" src="<%=request.getContextPath()%>/store/storeImg.do?store_no=${storeVO.store_no}&index=2" ></td>
+								<td><img width="100px" src="<%=request.getContextPath()%>/store/storeImg.do?store_no=${storeVO.store_no}&index=3" ></td>
 								<td class="my_store_stat"  ${(storeVO.store_no==param.store_no) ? 'bgcolor=#CCCCFF':''}>${storeVO.store_stat}</td>
 								<td>
 									<FORM METHOD="post"
