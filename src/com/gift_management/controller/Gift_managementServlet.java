@@ -217,6 +217,7 @@ public class Gift_managementServlet extends HttpServlet{
 			  List<String> errorMsgs = new LinkedList<String>();
 			  req.setAttribute("errorMsgs", errorMsgs);
 	try{		  
+		System.out.println("track1 ");
 		Integer gift_amount=new Integer(req.getParameter("gift_amount"));
 			String mem_ac=req.getParameter("mem_ac").trim();
 			java.sql.Date apply_date=new java.sql.Date(new Date().getTime());
@@ -226,7 +227,7 @@ public class Gift_managementServlet extends HttpServlet{
 				errorMsgs.add("請輸入收件人姓名");
 			}
 			
-	
+			System.out.println("track2 ");
 				  String apply_phone=req.getParameter("apply_phone").trim();
 				  try{
 				if(apply_phone.trim().length()!=10){
@@ -238,7 +239,7 @@ public class Gift_managementServlet extends HttpServlet{
 					  errorMsgs.add("電話格式錯誤");
 				  }
 				
-				
+				  System.out.println("track3 ");
 				String apply_add =req.getParameter("apply_add").trim();
 				if(apply_add.trim().length()==0){
 					errorMsgs.add("請輸入收件人地址");
@@ -250,17 +251,19 @@ public class Gift_managementServlet extends HttpServlet{
 			convert_gift_vo.setApply_name(apply_name);
 			convert_gift_vo.setApply_phone(apply_phone);
 			convert_gift_vo.setApply_add(apply_add);
+			System.out.println("track4 ");
 			req.setAttribute("convert_gift_vo", convert_gift_vo);
 			req.setAttribute("apply_date", apply_date);
 			req.setAttribute("gift_amount", gift_amount);
 	if (!errorMsgs.isEmpty()) {
-	
+		System.out.println("track empty ");
 					String url=req.getParameter("buy_gift.jsp");
 					RequestDispatcher failureView = req
 							.getRequestDispatcher(url);
 					failureView.forward(req, res);
 					return;
 				}
+	System.out.println("track5 ");
 	Convert_giftService convert_giftSvc=new Convert_giftService();
 	convert_giftSvc.addConvert_gift(mem_ac, apply_name, apply_phone, gift_no,gift_amount, apply_date, apply_stat, apply_add, null, null);
 	HttpSession session=req.getSession();
@@ -268,6 +271,7 @@ public class Gift_managementServlet extends HttpServlet{
 	Integer gift_pt=gift_data_vo.getGift_pt();
 	MemService memSvc=new MemService();
 	MemVO mem_vo= memSvc.getOneProd(mem_ac);
+	System.out.println("track6 ");
 	Integer mem_pt=  mem_vo.getMem_pt();
 	mem_pt=mem_pt-(gift_amount*gift_pt);
 	mem_vo.setMem_pt(mem_pt);
@@ -275,11 +279,12 @@ public class Gift_managementServlet extends HttpServlet{
 	Integer gift_remain=gift_data_vo.getGift_remain();
 	gift_remain =gift_remain-gift_amount;
 	gift_data_vo.setGift_remain(gift_remain);
+	System.out.println("track7 ");
 	Gift_dataService gift_dataSvc=new Gift_dataService();
 	gift_dataSvc.updateGift_data(gift_data_vo.getGift_no(), gift_data_vo.getGift_name(),gift_data_vo.getGift_remain(),gift_data_vo.getGift_cont(),gift_data_vo.getGift_img(),gift_data_vo.getGift_pt(),gift_data_vo.getGift_launch_date());
 	
 	
-	
+	System.out.println("track8 ");
 	
 	
 	session.removeAttribute("gift_data_vo");
@@ -296,7 +301,7 @@ public class Gift_managementServlet extends HttpServlet{
 	
 	
 	}catch(Exception e){
-		
+		System.out.println("track error "+e.getMessage());
 					String url=req.getParameter("buy_gift.jsp");
 					RequestDispatcher failureView = req
 							.getRequestDispatcher(url);

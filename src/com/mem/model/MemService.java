@@ -107,7 +107,7 @@ public class MemService {
 
 	public MemVO getOneMem(String mem_ac) {//
 		 MemVO memvo=dao.findByPrimaryKey(mem_ac);
-		 memvo.setMem_pwd(null);
+//		 memvo.setMem_pwd(null);
 		 return memvo;
 	}
 
