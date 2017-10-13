@@ -11,18 +11,22 @@
 <jsp:include page="/FrontEnd/include/head.jsp"/>
 <c:set var="mem_ac" value="${sessionScope.mem_ac}" scope="page"/>
 <%
-// 	session.setAttribute("store_no", "S1000000002");
-	String store_no = (String) session.getAttribute("store_no");
-	
+
+	String mem_ac = (String) session.getAttribute("mem_ac");
 	StoreService storeSvc = new StoreService();
+	
+	StoreVO storeVO=storeSvc.getOneByMem(mem_ac);
+	pageContext.setAttribute("storeVO", storeVO); 
+	String store_no = storeVO.getStore_no();
+	pageContext.setAttribute("store_no", store_no); 
+	
 	ProdService prodSvc = new ProdService();
 	OrdService ordSvc = new OrdService();
 	
-	StoreVO storeVO=(StoreVO)storeSvc.getonestore(store_no);
 	request.setAttribute("storeVO",storeVO);
 	
 	
-	Set<ProdVO> prodVOs = storeSvc.getProdsByStore_no(store_no);
+	Set<ProdVO> prodVOs = storeSvc.getProdsByStore_no(storeVO.getStore_no());
 	request.setAttribute("prodVOs",prodVOs);
 	
 	

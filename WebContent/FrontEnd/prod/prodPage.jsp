@@ -157,7 +157,7 @@
                                     供應數量：${prodVO.prod_sup}
                                 </p>
                                 
-								<c:if test="${prodVO.store_no!=sessionScope.store_no}">
+								<c:if test="${prodVO.store_no!=storeSvc.getOneByMem(mem_ac).store_no}">
                                 <div class="container-fluid">
                                     <div class="row">
                                         <div class="col-xs-7 col-sm-6 pad0">

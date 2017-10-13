@@ -14,6 +14,8 @@
 	
 	StoreVO storeVO=storeSvc.getOneByMem(mem_ac);
 	pageContext.setAttribute("storeVO", storeVO); 
+	String store_no = storeVO.getStore_no();
+	pageContext.setAttribute("store_no", store_no);  
 	ProdVO prodVO = (ProdVO) request.getAttribute("prodVO");
 %>
 

@@ -16,14 +16,17 @@
 <jsp:useBean id="ordSvc" scope="page" class="com.ord.model.OrdService"/>
 <%
 
-String store_no = (String) session.getAttribute("store_no");
-StoreService storeSvc = new StoreService();
-
-
-StoreVO storeVO=(StoreVO)storeSvc.getonestore(store_no);
-request.setAttribute("storeVO",storeVO);
-
-OrdVO ordVO=(OrdVO) request.getAttribute("ordVO");
+	String mem_ac = (String) session.getAttribute("mem_ac");
+	StoreService storeSvc = new StoreService();
+	
+	
+	StoreVO storeVO=storeSvc.getOneByMem(mem_ac);
+	pageContext.setAttribute("storeVO", storeVO); 
+	String store_no = storeVO.getStore_no();
+	pageContext.setAttribute("store_no", store_no); 
+	request.setAttribute("storeVO",storeVO);
+	
+	OrdVO ordVO=(OrdVO) request.getAttribute("ordVO");
 %>
 <c:set var="ord_listVOs" value="${ordSvc.getOrd_listByOrd(ordVO.ord_no)}"/>
 

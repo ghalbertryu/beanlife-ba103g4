@@ -8,15 +8,16 @@
 <jsp:include page="/FrontEnd/include/head.jsp"/>
 <c:set var="mem_ac" value="${sessionScope.mem_ac}" scope="page"/>
 <%
-	
-	session.getAttribute("store_no");
-	String store_no = (String) session.getAttribute("store_no");
+	String mem_ac = (String) session.getAttribute("mem_ac");
 	StoreService storeSvc = new StoreService();
+	
+	StoreVO storeVO=storeSvc.getOneByMem(mem_ac);
+	pageContext.setAttribute("storeVO", storeVO);
+	String store_no = storeVO.getStore_no();
+	pageContext.setAttribute("store_no", store_no); 
 	Set<ProdVO> set;
-	set = storeSvc.getProdsByStore_no(store_no);
+	set = storeSvc.getProdsByStore_no(storeVO.getStore_no());
 	session.setAttribute("set", set);
-	StoreVO storeVO=storeSvc.getonestore(store_no);
-	session.setAttribute("storeVO", storeVO); 
 %>
 
 
