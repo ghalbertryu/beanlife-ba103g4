@@ -85,6 +85,7 @@ public class ProdServlet extends HttpServlet {
 				map2.put("bean_farmer", new String[] {others });
 				map2.put("bean_aroma", new String[] {others });
 				map2.put("prod_stat", new String[] {others });
+				map2.put("prod_cont", new String[] {others });
 				
 				
 				

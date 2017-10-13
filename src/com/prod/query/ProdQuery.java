@@ -73,7 +73,7 @@ public class ProdQuery {
 		Map<String, String[]> map = new TreeMap<String, String[]>();
 		map.put("bean_contry", new String[] { "" });
 		map.put("proc", new String[] { "日曬" });
-		map.put("roast", new String[] { "淺焙" });
+		map.put("roast", new String[] { "0" });
 
 		map.put("action", new String[] { "searchProds" }); // 注意Map裡面會含有action的key
 		
