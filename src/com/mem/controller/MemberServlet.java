@@ -52,7 +52,12 @@ public class MemberServlet extends HttpServlet {
 				String mem_ac = req.getParameter("mem_ac").trim().toLowerCase();
 				String mem_pwd = req.getParameter("mem_pwd").trim();
 				String mem_phone = req.getParameter("mem_phone").trim();
-				
+				String code =req.getParameter("code").trim();
+				HttpSession session=req.getSession();
+				String code_auth=(String)session.getAttribute("code");
+				if(code.equals(code_auth)==false){
+					errorMsgs.add("手機驗證碼不正確");
+				}
 				
 				MemService memSvc = new MemService();
 				List<MemVO> memVOs=memSvc.getAll();
@@ -90,16 +95,7 @@ public class MemberServlet extends HttpServlet {
 				if(mem_phone.matches(mem_phone_reg)==false){
 					errorMsgs.add("手機不符合格式");
 				}
-//				int authcode;
-//				if(errorMsgs.size()==0){
-//					authcode=(int)(Math.random()*9999)+1;
-//					
-//					
-//					Send se = new Send();
-//					String[] tel ={mem_phone};
-//				 	String message = String.valueOf(authcode).trim();
-//				 	se.sendMessage(tel , "您的認證碼為："+message);
-//				}
+//				
 				
 				
 				
@@ -123,7 +119,7 @@ public class MemberServlet extends HttpServlet {
 				 * 3.查詢完成,準備轉交(Send the Success view)
 				 *************/
 				
-				HttpSession session = req.getSession();
+				
 				
 				req.setAttribute("memVO", memVO); // 資料庫取出的會員 放入req
 				String url = "/FrontEnd/reg_mem/Finreg.jsp";
@@ -138,7 +134,7 @@ public class MemberServlet extends HttpServlet {
 				failureView.forward(req, res);
 			}
 		}
-		if ("loginnow".equals(action)) { // 來自reg_member.jsp的請求
+		if ("authphone".equals(action)) { // 來自reg_member.jsp的請求
 
 			List<String> errorMsgs = new LinkedList<String>();
 			
@@ -148,8 +144,28 @@ public class MemberServlet extends HttpServlet {
 				/***************************
 				 * 1.接收請求參數 - 輸入格式的錯誤處理
 				 **********************/
+				String authphone=req.getParameter("authphone").trim();
+				String mem_ac = req.getParameter("mem_ac").trim();
+				String mem_pwd = req.getParameter("mem_pwd").trim();
 				
 				
+				System.out.println(authphone);
+				
+				
+				
+					int authcode;
+				
+					authcode=(int)(Math.random()*9999)+1000;
+					
+					
+					Send se = new Send();
+					String[] tel ={authphone};
+				 	String code = String.valueOf(authcode).trim();
+				 	se.sendMessage(tel , "您的認證碼為："+code);
+				MemVO memVO = new MemVO();
+				memVO.setMem_ac(mem_ac);
+				memVO.setMem_pwd(mem_pwd);
+				memVO.setMem_phone(authphone);
 				
 				
 				/*************************** 2.開始新增資料 ***************************************/
@@ -160,9 +176,9 @@ public class MemberServlet extends HttpServlet {
 				 *************/
 				
 				HttpSession session = req.getSession();
-				
-				session.setAttribute("showLogin", true); // 資料庫取出的會員 放入req
-				String url = "/FrontEnd/index/index.jsp";
+				req.setAttribute("memVO", memVO);
+				session.setAttribute("code", code); // 資料庫取出的會員 放入req
+				String url = "/FrontEnd/reg_mem/reg_member.jsp";
 				RequestDispatcher successView = req.getRequestDispatcher(url); // 成功轉交
 																				// listOneEmp.jsp
 				successView.forward(req, res);
@@ -323,6 +339,42 @@ public class MemberServlet extends HttpServlet {
 				/***************************
 				 * 3.查詢完成,準備轉交(Send the Success view)
 				 *************/
+				String url = "/FrontEnd/index/index.jsp";
+				RequestDispatcher successView = req.getRequestDispatcher(url); // 成功轉交
+																				// listOneEmp.jsp
+				successView.forward(req, res);
+
+				/*************************** 其他可能的錯誤處理 *************************************/
+			} catch (Exception e) {
+				errorMsgs.add("無法取得資料:" + e.getMessage());
+				RequestDispatcher failureView = req.getRequestDispatcher("/FrontEnd/reg_mem/reg_member.jsp");
+				failureView.forward(req, res);
+			}
+		}
+		if ("loginnow".equals(action)) { // 來自reg_member.jsp的請求
+
+			List<String> errorMsgs = new LinkedList<String>();
+			
+			req.setAttribute("errorMsgs", errorMsgs);
+
+			try {
+				/***************************
+				 * 1.接收請求參數 - 輸入格式的錯誤處理
+				 **********************/
+				
+				
+				
+				
+				/*************************** 2.開始新增資料 ***************************************/
+				
+				
+				/***************************
+				 * 3.查詢完成,準備轉交(Send the Success view)
+				 *************/
+				
+				HttpSession session = req.getSession();
+				
+				session.setAttribute("showLogin", true); // 資料庫取出的會員 放入req
 				String url = "/FrontEnd/index/index.jsp";
 				RequestDispatcher successView = req.getRequestDispatcher(url); // 成功轉交
 																				// listOneEmp.jsp
