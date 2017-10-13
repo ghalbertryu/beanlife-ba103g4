@@ -179,23 +179,23 @@
 			</tr>
 			<tr>
 				<td>證件照:</td>
-				<td><img src="<%=request.getContextPath()%>/store/StoreImg.do?store_no=${storeVO.store_no}&index=0" width='100'>
+				<td><img src="<%=request.getContextPath()%>/store/storeImg.do?store_no=${storeVO.store_no}&index=0" width='100'>
 				<td></td>
 			</tr>
 			<tr>
 				<td>店家照1:</td>
-				<td><img src="<%=request.getContextPath()%>/store/StoreImg.do?store_no=${storeVO.store_no}&index=1" width=100></td>
+				<td><img src="<%=request.getContextPath()%>/store/storeImg.do?store_no=${storeVO.store_no}&index=1" width=100></td>
 				<td></td>
 			</tr>
 			<tr>
 				<td>店家照2:</td>
-				<td><img src="<%=request.getContextPath()%>/store/StoreImg.do?store_no=${storeVO.store_no}&index=2" width=100></td>
+				<td><img src="<%=request.getContextPath()%>/store/storeImg.do?store_no=${storeVO.store_no}&index=2" width=100></td>
 				<td></td>
 				
 			</tr>
 			<tr>
 				<td>店家照3:</td>
-				<td><img src="<%=request.getContextPath()%>/store/StoreImg.do?store_no=${storeVO.store_no}&index=3" width=100></td>
+				<td><img src="<%=request.getContextPath()%>/store/storeImg.do?store_no=${storeVO.store_no}&index=3" width=100></td>
 				<td></td>
 			</tr>
 			<tr>
