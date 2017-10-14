@@ -103,11 +103,24 @@
   
   $(function(){
 	 $('#searchClear').click(function(){
-// 		 console.log($('option .proc'));
-		 $('.proc').each(function(){
-			 console.log($(this).prop('selected'));
-			
+		$('.country').each(function(){
+			 if($(this).val()==''){
+				 $(this).prop('selected',true);
+			 } else {
+				 $(this).prop('selected',false);
+			 }
 		});
+		 $('.proc').each(function(){
+			 if($(this).val()==''){
+				 $(this).prop('selected',true);
+			 } else {
+				 $(this).prop('selected',false);
+			 }
+		});
+		$('input.roast:text').val('0,7');
+		$('input:text[name="others"]').val('');
+		console.log($(".roast").asRange('val'));
+
 		 return false;
 	 }); 
   });
