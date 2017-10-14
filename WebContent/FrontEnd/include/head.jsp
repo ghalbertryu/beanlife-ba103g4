@@ -9,10 +9,12 @@
 <%@ page import="com.cart_list.model.*"%>
 <%@ page import="com.mem.model.*"%>
 <%@ page import="com.msg.model.*"%>
+<%@ page import="com.sys_msg.model.*"%>
 
 <jsp:useBean id="storeSvc" scope="page" class="com.store.model.StoreService" />
 <jsp:useBean id="cart_listSvc" scope="page" class="com.cart_list.model.Cart_listService" />
 <jsp:useBean id="msgSvc" scope="page" class="com.msg.model.MsgService" />
+<jsp:useBean id="sys_msgSvc" scope="page" class="com.sys_msg.model.Sys_msgService" />
 <jsp:useBean id="prodSvc" scope="page" class="com.prod.model.ProdService" />
 
 <c:set var="mem_ac" value="${sessionScope.mem_ac}" scope="page"/>
@@ -220,12 +222,12 @@
 
 
 <!--  --------------------------------------------------------------私訊開始---------------------------------------------------------------->
-			<div id="msgOn" class="btn  msgBtn bg-light-g">
+			<div id="msgOn" class="btn  msgBtn bg-light-g" style="display:none;">
                	 私訊
            </div>
 			
 
-           <div class="msg">
+           <div class="msg" style="display:none;">
               <div class="container-fluid">
                 <div class="row">
                   <div class="col-xs-12 col-sm-12">
@@ -239,7 +241,7 @@
                   <ul class="nav nav-tabs" role="tablist" id="msgTab">
                       <li role="presentation"  class="active" count="0" id="msgTab0">
                           <a href="#msg0" aria-controls="msg0" role="tab" data-toggle="tab" name="SYS">
-                            SYS
+                           	 通知
                           </a>
                            
                       </li>
@@ -265,23 +267,25 @@
                    <div role="tabpanel" class="tab-pane active" id="msg0">
                     <div class="container-fluid ">
                       <div id="${mem_ac}sys" class="row  fix-h30 scrollbar-macosx" index="1">
-                      
+ 
+ <c:forEach var="sys_msgVO" items="${sys_msgSvc.getAllByMem(mem_ac)}">                     
                         <div class="container-fluid">
                           <div class="row">
                           
                             <div class="media">
                               <div class="media-left">
-                                <img  class="media-object round-img" src="http://fakeimg.pl/50x50/00CED1/FFF/?text=img+placeholder">
+                                <img  class="media-object round-img w50" src="<%=request.getContextPath()%>/mem/memImg.do">
                               </div>
                               <div class="media-body">
-                                <p class="col-xs-11 col-sm-10 well">xxx.
+                                <p class="col-xs-11 col-sm-10 well">
+									${sys_msgVO.msg_cont}
                                 </p>
                               </div>
                             </div>
 
                           </div>
                         </div>
-                        
+</c:forEach> 
                       </div>
                     </div>
                     
@@ -311,7 +315,9 @@
 												<c:if test="${msgVO.mem_sen==urName}">
 													<div class="media">
 														<div class="media-left">
+															<a class="showStore" name="${storeSvc.getOneByMem(urName).store_no}" href='#modal-inner' data-toggle="modal">
 															<img  class="media-object round-img w50" src="<%=request.getContextPath()%>/mem/memImg.do?memAc=${urName}">
+															</a>
 														</div>
 														<div class="media-body">
 															<p class="col-xs-11 col-sm-10 well">
@@ -388,7 +394,7 @@ $(document).ready(function(){
 	.msg{
 /* 		margin-top:50vh; */
 		z-index: 1000; position: fixed; right: 30px; bottom: 0; width:300px; 
-    background-color:snow;
+    	background-color:snow;
 	}
 	.msgBtn{
 /* 		margin-top:50vh; */

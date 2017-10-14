@@ -155,7 +155,7 @@ cursor: pointer;
 
 				                      <!-- ////////////////////////////// -->
 				                      <div class="col-xs-6 col-sm-3 padt10">
-				                        <a id="${prodVO.prod_no}" href='#modal-inner' data-toggle="modal">
+				                        <a id="${prodVO.prod_no}" class="showProd" name="${prodVO.prod_no}" href='#modal-inner' data-toggle="modal">
 				                          
 				                          <img class="img-responsive  mg-auto vam-img  rd10" src="<%=request.getContextPath()%>/prod/prodImg.do?prod_no=${prodVO.prod_no}&index=1">
 				                          
@@ -184,29 +184,6 @@ cursor: pointer;
 				                      
 				                      
 <script>
-//show Prod
-var $modalX = $("#modalX");
-var $btn = $("#${prodVO.prod_no}").click(function(){
-		var prodNo =  $("#${prodVO.prod_no}").attr("id");
-		var urlstr = '<%=request.getContextPath()%>/FrontEnd/prod/prodPage.jsp?prodNo='+prodNo;
-		$.ajax({
-			url : urlstr,
-			type : 'GET',
-			dataType: "html",
-			async: false,
-			success : function(result) {
-				while($modalX.children().length > 0){
-					$modalX.empty();
-				}
-				
-				$modalX.html(result);
-			},
-			error : function(xhr) {
-				alert('Ajax request 發生錯誤');
-			}
-		});
-		$modalX.scrollTop(0);
-	});
 
 //foProd
 var $btnFoProd = $("button.bk${prodVO.prod_no}").click(function(){
@@ -229,7 +206,7 @@ var $btnFoProd = $("button.bk${prodVO.prod_no}").click(function(){
             } else {
                 if(jdata.isAdd==1){
 					$('.bk${prodVO.prod_no}.count').each(function(){$(this).text(jdata.count)})
-						$('button.bk${prodVO.prod_no}').addClass('bor-info');
+					$('button.bk${prodVO.prod_no}').addClass('bor-info');
                     $('.bk${prodVO.prod_no}').addClass('text-info');
                     $('.bk${prodVO.prod_no}').removeClass('tx-gray');
                 } else{

@@ -1,6 +1,8 @@
 package com.store.model;
 
 import java.sql.Date;
+import java.util.ArrayList;
+import java.util.LinkedHashSet;
 import java.util.List;
 import java.util.Set;
 
@@ -163,14 +165,44 @@ public class StoreService {
 	public List<StoreVO> getstatstr(String store_stat){
 		return getVOsByStat(store_stat);
 	}
-	
+
 	public Set<ProdVO> getProdsByStore(String store_no){
 		return dao.getProdsByStore_no(store_no);
 	}
+	public Set<ProdVO> getProdsByStoreR(String store_no){
+		Set<ProdVO> prodVOs = dao.getProdsByStore_no(store_no);
+		Set<ProdVO> prodVOs2 = new LinkedHashSet<ProdVO>();
+		for (ProdVO prodVO : prodVOs) {
+			prodVO = transToCht(prodVO);
+			prodVOs2.add(prodVO);
+		}
+		return prodVOs2;
+	}
 	//小寫方法
 	public Set<ProdVO> getProdsByStore_no(String store_no){
-		return getProdsByStore(store_no);
+		return getProdsByStoreR(store_no);
 	}
 
+	
+	private ProdVO transToCht(ProdVO prodVO) {
+		if (prodVO.getRoast().equals("0")) {
+			prodVO.setRoast("極淺焙");
+		} else if (prodVO.getRoast().equals("1")) {
+			prodVO.setRoast("淺焙");
+		} else if (prodVO.getRoast().equals("2")) {
+			prodVO.setRoast("中焙");
+		} else if (prodVO.getRoast().equals("3")) {
+			prodVO.setRoast("中深焙");
+		} else if (prodVO.getRoast().equals("4")) {
+			prodVO.setRoast("城市烘焙");
+		} else if (prodVO.getRoast().equals("5")) {
+			prodVO.setRoast("深焙");
+		} else if (prodVO.getRoast().equals("6")) {
+			prodVO.setRoast("法式烘焙");
+		} else if (prodVO.getRoast().equals("7")) {
+			prodVO.setRoast("重焙");
+		}
+		return prodVO;
+	}
 	
 }

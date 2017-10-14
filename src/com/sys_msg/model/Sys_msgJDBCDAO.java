@@ -9,6 +9,7 @@ import java.sql.ResultSetMetaData;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Set;
 
 public class Sys_msgJDBCDAO implements Sys_msgDAO_Interface{
 	String driver = "oracle.jdbc.driver.OracleDriver";
@@ -349,6 +350,12 @@ public class Sys_msgJDBCDAO implements Sys_msgDAO_Interface{
 			System.out.print(asys_msgVO.getMsg_send_date() + ",");
 			System.out.println();
 		}
+	}
+
+	@Override
+	public Set<Sys_msgVO> getAllByMem(String mem_ac) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 }

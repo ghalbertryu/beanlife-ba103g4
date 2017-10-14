@@ -20,7 +20,7 @@
     
 <c:set var="mem_ac" value="${session.mem_ac}" scope="page"/>
 <c:set var="storeVO" value="${storeSvc.getOneStore(param.storeNo)}" scope="page"/>
-<c:set var="prodSet" value="${storeSvc.getProdsByStore(param.storeNo)}" scope="page"/>
+<c:set var="prodSet" value="${storeSvc.getProdsByStoreR(param.storeNo)}" scope="page"/>
 <c:set var="fo_prodlist" value="${fo_prodSvc.getAllByMem(mem_ac)}" scope="page"/>
 <c:set var="fo_storelist" value="${fo_storeSvc.getAllByMem(mem_ac)}" scope="page"/>
 
@@ -139,15 +139,14 @@
 
 	                      <!-- ////////////////////////////// -->
 	                      <div class="col-xs-12 col-sm-3 padt10">
-<%-- 	                        <a id="sp${prodVO.prod_no}" href='#modal-inner' data-toggle="modal"> --%>
-	                        <a id="sp${prodVO.prod_no}" href='${prodVO.prod_no}' data-toggle="modal">
+	                        <a id="sp${prodVO.prod_no}" class="changeProd" name="${prodVO.prod_no}" href='${prodVO.prod_no}' data-toggle="modal">
 	                          <img class="img-responsive  mg-auto vam-img  rd10" src="<%=request.getContextPath()%>/prod/prodImg.do?prod_no=${prodVO.prod_no}&index=1">
 	                          
 	                          <h4 class="bold">${prodVO.prod_name}</h4>
 	                          <p class="inline-b bold text-info">NT$ ${prodVO.prod_price}</p>
 	                         
 							  
-	                          <button type="button" class="btn btn-default btn-xs zidx5 pull-right ${(isFollow)?'bor-info':''}" aria-label="Left Align">
+	                          <button type="button" class="bk${prodVO.prod_no} btn btn-default btn-xs zidx5 pull-right ${(isFollow)?'bor-info':''}" aria-label="Left Align">
 	                              <span class="${(isFollow)?'text-info':'tx-gray'}">${fo_prodSvc.getCountByProd(prodVO.prod_no)}</span>
 	                              <span class="glyphicon glyphicon-bookmark ${(isFollow)?'text-info':'tx-gray'}" aria-hidden="true"></span>	
 	                          </button>
@@ -165,32 +164,50 @@
 	                          </div>
 	                        </a>
 	                      </div>
-				                      
-				                      
+	                      
+	                      
 <script>
-var $modalX = $("#modalX");
-var $btn = $("#sp${prodVO.prod_no}").click(function(){
-		var prodNo =  $("#sp${prodVO.prod_no}").attr("href");
-		var urlstr = '<%=request.getContextPath()%>/FrontEnd/prod/prodPage.jsp?prodNo='+prodNo;
-		$.ajax({
-			url : urlstr,
-			type : 'GET',
-			dataType: "html",
-			async: false,
-			success : function(result) {
-				while($modalX.children().length > 0){
-					$modalX.empty();
-				}
-				
-				$modalX.html(result);
-			},
-			error : function(xhr) {
-				alert('Ajax request 發生錯誤');
-			}
-		});
-		$modalX.scrollTop(0);
-	});
-</script>
+
+//foProd
+var $btnFoProd = $("button.bk${prodVO.prod_no}").click(function(){
+	if(${mem_ac==null}){
+		 $('#modal-login').modal("show");
+		 return false;
+	}
+    var $action = "foProd";
+    var $prod_no = "${prodVO.prod_no}"
+    $.ajax({
+        url : "<%=request.getContextPath()%>/fo_prod/fo_prodAjax.do",
+        type : 'post',
+        contentType: "application/json",
+        data: JSON.stringify({action:$action, prod_no: $prod_no}),
+        dataType: "JSON",
+        async: false,
+        success : function(jdata) {     
+            if(jdata.err!=null){
+                alert(jdata.err);
+            } else {
+                if(jdata.isAdd==1){
+					$('.bk${prodVO.prod_no}.count').each(function(){$(this).text(jdata.count)})
+					$('button.bk${prodVO.prod_no}').addClass('bor-info');
+                    $('.bk${prodVO.prod_no}').addClass('text-info');
+                    $('.bk${prodVO.prod_no}').removeClass('tx-gray');
+                } else{
+					$('.bk${prodVO.prod_no}.count').each(function(){$(this).text(jdata.count)})
+                    $('button.bk${prodVO.prod_no}').removeClass('bor-info');
+                    $('.bk${prodVO.prod_no}').removeClass('text-info');
+                    $('.bk${prodVO.prod_no}').addClass('tx-gray');
+                }
+            }
+        },
+        error : function(xhr) {
+            console.log('修改收藏失敗');
+        }
+    });
+    return false;
+});
+</script> 				                      
+				                     
 
 				    	</c:forEach>
 
@@ -219,6 +236,35 @@ var $btn = $("#sp${prodVO.prod_no}").click(function(){
       });
   };
 
+var $modalX = $("#modalX");
+$(function(){
+	//changeProd
+	$(".changeProd").click(function(){
+		changeProd($(this).attr("name"));
+	});
+});
+  
+function changeProd($prodNo){
+// 	var prodNo =  $("#sp${prodVO.prod_no}").attr("href");
+	var urlstr = '<%=request.getContextPath()%>/FrontEnd/prod/prodPage.jsp?prodNo='+$prodNo;
+	$.ajax({
+		url : urlstr,
+		type : 'GET',
+		dataType: "html",
+		async: false,
+		success : function(result) {
+			while($modalX.children().length > 0){
+				$modalX.empty();
+			}
+			
+			$modalX.html(result);
+		},
+		error : function(xhr) {
+			alert('Ajax request 發生錯誤');
+		}
+	});
+	$modalX.scrollTop(0);
+}
 
 //foStore
 var $btnFoStore = $("#modal-inner button.bk${storeVO.store_no}").click(function(){

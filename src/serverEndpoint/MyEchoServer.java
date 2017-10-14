@@ -8,6 +8,7 @@ import javax.websocket.server.ServerEndpoint;
 import com.google.gson.Gson;
 import com.google.gson.JsonObject;
 import com.msg.model.MsgService;
+import com.sys_msg.model.Sys_msgService;
 
 import javax.websocket.Session;
 import javax.websocket.OnOpen;
@@ -54,10 +55,12 @@ private static final Map<Set<String>,  Set<Session>> pairSessions = Collections.
 	
 	@OnMessage
 	public void onMessage(@PathParam("myName") String myName, @PathParam("urName") String urName,Session userSession, String message) {
+
+		System.out.println("onMessage " + message);
 		Gson gson = new Gson();
 		JsonObject jsonObject = gson.fromJson(message, JsonObject.class);
 		MsgService msgSvc = new MsgService();
-		
+		//seal msg
 		if(jsonObject.get("action")!=null){
 			String action = jsonObject.get("action").getAsString();
 			if(action.equals("toSeal")){
@@ -76,21 +79,31 @@ private static final Map<Set<String>,  Set<Session>> pairSessions = Collections.
 		for (Session session: pairSessions.get(pairSet)){
 			if (session.isOpen()){
 				session.getAsyncRemote().sendText(message);
-			}
+			}			
+		}
+		
+		// save to DB
+		if(myName.equals("sys")){
+			Sys_msgService sys_msgSvc = new Sys_msgService();
+			String msg_cont = jsonObject.get("message").getAsString();
+			sys_msgSvc.addSys_msg(urName, msg_cont);
+		}else{
 			String msg_cont = jsonObject.get("message").getAsString();
 			msgSvc.addMsgVO(myName, urName, msg_cont);
-		}
-		//syskey
-		Set<String> sysSet=  Collections.synchronizedSet(new HashSet<String>());
-		sysSet.add(urName);
-		sysSet.add("sys");
-		//map
-		if( pairSessions.get(sysSet)!=null){
-			for (Session session: pairSessions.get(sysSet)){
-				if (session.isOpen())
-					session.getAsyncRemote().sendText(message);
+			
+			//syskey
+			Set<String> sysSet=  Collections.synchronizedSet(new HashSet<String>());
+			sysSet.add(urName);
+			sysSet.add("sys");
+			//map
+			if( pairSessions.get(sysSet)!=null){
+				for (Session session: pairSessions.get(sysSet)){
+					if (session.isOpen())
+						session.getAsyncRemote().sendText(message);
+				}
 			}
 		}
+
 		
 		System.out.println(pairSet+ "Message received: " + message);
 	}

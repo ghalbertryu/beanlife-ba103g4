@@ -316,7 +316,7 @@
 									<div class="container-fluid padt10 mgt20">
 										<div class="row">
 											<div class="col-xs-4 col-sm-6 bold pull-left">
-												<h4><a class="${storeVO.store_no}" name="${storeVO.store_no}" href='#modal-inner' data-toggle="modal">
+												<h4><a class="showStore" name="${storeVO.store_no}" href='#modal-inner' data-toggle="modal">
 													${storeVO.store_name}
 												</a><span class="msgTo glyphicon glyphicon-comment" id="${storeVO.mem_ac}"></span></h4>
 											</div>
@@ -341,7 +341,7 @@
 													<div class="container-fluid">
 										                <div class="row zidx0">
 										                
-										                <a class="${prodVO.prod_no}" name="${prodVO.prod_no}" href='#modal-inner' data-toggle="modal">
+										                <a class="showProd" name="${prodVO.prod_no}" href='#modal-inner' data-toggle="modal">
 										                  <div class="col-xs-3 col-sm-2 vam-div60 pad0">
 										                    <img class="img-responsive mg-auto vam-img rd5 " src="<%=request.getContextPath()%>/prod/prodImg.do?prod_no=${prodVO.prod_no}&index=1">
 										                  </div>
@@ -375,29 +375,7 @@
 				
 				
 <script> 
-//Prod View
-var $modalX = $("#modalX");
-var $btnPordX = $(".${prodVO.prod_no}").click(function(){
-		var prodNo =  $(".${prodVO.prod_no}").attr("name");
-		var urlstr = '<%=request.getContextPath()%>/FrontEnd/prod/prodPage.jsp?prodNo='+prodNo;
-		$.ajax({
-			url : urlstr,
-			type : 'GET',
-			dataType: "html",
-			async: false,
-			success : function(result) {
-				while($modalX.children().length > 0){
-					$modalX.empty();
-				}
-				
-				$modalX.html(result);
-			},
-			error : function(xhr) {
-				alert('Ajax request 發生錯誤');
-			}
-		});
-		
-	});
+
 	
 //show Review Modal
 <c:if test="${ordVO.ord_stat=='已出貨'}">
@@ -467,31 +445,7 @@ var $btnRev = $("#rev${ordVO.ord_no}${prodVO.prod_no}").click(function(){
 									
 <script>
 
-//show Store
-var $modalX = $("#modalX");
-var $btnStoreX = $(".${storeVO.store_no}").click(function(){
-		var storeNo =  $(".${storeVO.store_no}").attr("name");
-		var urlstr = '<%=request.getContextPath()%>/FrontEnd/store/storePage.jsp?storeNo='+ storeNo;
-		$.ajax({
-			url : urlstr,
-			type : 'GET',
-			dataType: "html",
-			async: false,
-			success : function(result) {
-				while($modalX.children().length > 0){
-					$modalX.empty();
-				}
-				$modalX.html(result);
-			},
-			error : function(xhr) {
-				alert('Ajax request 發生錯誤');
-			}
-		});
-		$("#modal-inner").on('shown.bs.modal', function () {
-        	 initMap();
-   	 	});
-	});
-	
+
 
 <c:if test="${ordVO.ord_stat=='未付款'}">
 //show PayInfo
@@ -558,7 +512,6 @@ var $btnDel = $("#del${ordVO.ord_no}").click(function(){
 		        </div>
 		    </div>
 		    
-
 
 
 

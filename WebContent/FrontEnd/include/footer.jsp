@@ -1,4 +1,5 @@
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <c:set var="mem_ac" value="${sessionScope.mem_ac}" scope="page"/>
 <!-- ----------------------------------------------FOOTER--------------------------------------------------------- -->
     <div class="footer">
@@ -30,6 +31,66 @@
 
 <script type="text/javascript">
 
+$(function(){
+	//showStore
+	$(".showStore").click(function(){
+		showStore($(this).attr("name"));
+	});
+	//showProd
+	$(".showProd").click(function(){
+		showProd($(this).attr("name"));
+	});
+});
+
+//show Store function
+function showStore ($storeNo){
+	var $modalX = $("#modalX");
+// 	var storeNo =  $(".${storeVO.store_no}").attr("name");
+	var urlstr = '<%=request.getContextPath()%>/FrontEnd/store/storePage.jsp?storeNo='+ $storeNo;
+	$.ajax({
+		url : urlstr,
+		type : 'GET',
+		dataType: "html",
+		async: false,
+		success : function(result) {
+			while($modalX.children().length > 0){
+				$modalX.empty();
+			}
+			$modalX.html(result);
+		},
+		error : function(xhr) {
+			alert('Ajax request 發生錯誤');
+		}
+	});
+	$("#modal-inner").on('shown.bs.modal', function () {
+    	 initMap();
+	});
+}
+
+
+//show Prod function
+function showProd($prodNo){
+	var $modalX = $("#modalX");
+// 	var prodNo =  $(".${prodVO.prod_no}").attr("name");
+	var urlstr = '<%=request.getContextPath()%>/FrontEnd/prod/prodPage.jsp?prodNo='+$prodNo;
+	$.ajax({
+		url : urlstr,
+		type : 'GET',
+		dataType: "html",
+		async: false,
+		success : function(result) {
+			while($modalX.children().length > 0){
+				$modalX.empty();
+			}
+			
+			$modalX.html(result);
+		},
+		error : function(xhr) {
+			alert('Ajax request 發生錯誤');
+		}
+	});
+}
+
 
 //<!--  --------------------------------------------------------------私訊---------------------------------------------------------------->
 $(function(){
@@ -40,7 +101,6 @@ $(function(){
 	 }
 	
 	//.msg display
-	 $('.msg').hide();
 	 $('.msgBtn').show();
 	  
 	 $('#msgOff').click(function(){
@@ -184,6 +244,8 @@ function connect(myName,urName) {
       		openMsg(jsonObj.userName);
       	}
       	return false;
+      }else if ((urName=='sys' && jsonObj.userName=='sys')){
+    	  
       }
 
       var msghtml ='';
@@ -244,6 +306,72 @@ function updateStatus(newStatus) {
 
 </script>
 
+
+
+<c:set var="myName" value="${requestScope.myName}" scope="page"/>
+<c:set var="urName" value="${requestScope.urName}" scope="page"/>
+<c:set var="message" value="${requestScope.message}" scope="page"/>
+
+						      
+<!-- ////////////////////webSocketSys//////////////////// -->
+<c:if test="${requestScope.myName!=null}">
+<script type="text/javascript">
+
+$(document).ready(function(){
+	connectSys('${myName}','${urName}');
+});
+
+
+
+////////////////////webSocket
+var host = window.location.host;
+var path = window.location.pathname;
+var webCtx = path.substring(0, path.indexOf('/', 1));
+
+var webSocketSys = null;
+function connectSys(myName,urName) {
+	// 建立 websocket 物件
+	var MyPoint = "/MyEchoServer/"+myName+"/"+urName;
+	var endPointURL = "ws://" + window.location.host + webCtx + MyPoint;
+	webSocketSys = new WebSocket(endPointURL);
+
+	//onopen
+	webSocketSys.onopen = function(event) {
+		sendMessageSys("${message}");
+	};
+
+	//onmessage
+	webSocketSys.onmessage = function(event) {
+	 
+	};
+
+	//onclose
+	webSocketSys.onclose = function(event) {
+		console.log('sys close');
+		// updateStatus("WebSocket 已離線");
+	};
+}
+
+function sendMessageSys(message) {
+	console.log('sys send');
+    var jsonObj = {"userName" : "sys", "message" : message};
+    webSocketSys.send(JSON.stringify(jsonObj));
+    console.log('sendEnd');
+    disconnectSys();
+}
+
+
+function disconnectSys () {
+	webSocketSys.close();
+
+}
+
+
+function updateStatus(newStatus) {
+	// statusOutput.innerHTML = newStatus;
+}
+</script>
+</c:if>
 
   </body>
 </html>

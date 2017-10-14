@@ -103,7 +103,7 @@
 
 
                                     <div class="row mgt20">
-                                        <div class="col-xs-12 col-sm-11 col-sm-offset-1 pointer" id="pp${prodVO.store_no}" href="${prodVO.store_no}" data-toggle="modal">
+                                        <div class="col-xs-12 col-sm-11 col-sm-offset-1 pointer changeStore" id="pp${prodVO.store_no}" name="${prodVO.store_no}" href="${prodVO.store_no}" data-toggle="modal">
                                             <h4 class="bold text-info">${storeSvc.getonestore(prodVO.store_no).store_name}</h4>
                                             <p>
                                                 地址： ${storeSvc.getonestore(prodVO.store_no).store_add}<br>
@@ -672,27 +672,36 @@ var $replyBtn = $("#replyBtn${qaVO.qa_no}").click(function(){
 
 
 <script>
+
 var $modalX = $("#modalX");
-var $btn = $("#pp${prodVO.store_no}").click(function(){
-        var storeNo =  $("#pp${prodVO.store_no}").attr("href");
-        var urlstr = '<%=request.getContextPath()%>/FrontEnd/store/storePage.jsp?storeNo='+ storeNo;
-        $.ajax({
-            url : urlstr,
-            type : 'GET',
-            dataType: "html",
-            async: false,
-            success : function(result) {
-                while($modalX.children().length > 0){
-                    $modalX.empty();
-                }
-                $modalX.html(result);
-            },
-            error : function(xhr) {
-                alert('Ajax request 發生錯誤');
+$(function(){
+	//changeStore
+	$(".changeStore").click(function(){
+		changeStore($(this).attr("name"));
+	});
+});
+
+//change store function
+function changeStore($storeNo){
+// 	var storeNo =  $("#pp${prodVO.store_no}").attr("href");
+    var urlstr = '<%=request.getContextPath()%>/FrontEnd/store/storePage.jsp?storeNo='+ $storeNo;
+    $.ajax({
+        url : urlstr,
+        type : 'GET',
+        dataType: "html",
+        async: false,
+        success : function(result) {
+            while($modalX.children().length > 0){
+                $modalX.empty();
             }
-        });
-        $modalX.scrollTop(0);
+            $modalX.html(result);
+        },
+        error : function(xhr) {
+            alert('Ajax request 發生錯誤');
+        }
     });
+    $modalX.scrollTop(0);
+}
 
 var $askBtn = $("#askBtn").click(function(){
 		if(${mem_ac==null}){

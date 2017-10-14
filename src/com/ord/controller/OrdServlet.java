@@ -186,7 +186,15 @@ public class OrdServlet extends HttpServlet {
 				for(int i =0; i<count;i++){
 					cart_listSvc.deleteCart_list(prod_noAry[i], mem_ac);
 				}
-
+				
+				//SysMsg
+				String myName = "sys";
+				String urName = mem_ac;
+				String message = "已成功訂購";
+				req.setAttribute("myName", myName);
+				req.setAttribute("urName", urName);
+				req.setAttribute("message", message);
+				
 				//forward
 				String stat = "?status=1";
 				String url = "/FrontEnd/buyerorder/buyerorder.jsp"+stat;

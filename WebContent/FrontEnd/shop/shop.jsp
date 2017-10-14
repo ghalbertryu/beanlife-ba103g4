@@ -218,7 +218,7 @@
 		           	}
 		           	pageContext.setAttribute("star",star);
 		         %>
-			         	<a id="${prodVO.prod_no}" href='#modal-inner' data-toggle="modal">
+			         	<a id="${prodVO.prod_no}" class="showProd" name="${prodVO.prod_no}" href='#modal-inner' data-toggle="modal">
                 <div class="row cus-prod-row zidx0">
                   <div class="col-xs-8  col-xs-offset-2 col-sm-2 col-sm-offset-0 vam-div150">
                     <img class="img-responsive mg-auto vam-img  rd10" src="<%=request.getContextPath()%>/prod/prodImg.do?prod_no=${prodVO.prod_no}&index=1">
@@ -248,30 +248,6 @@
                 
                 
 <script>
-//show Prod
-var $modalX = $("#modalX");
-var $btn = $("#${prodVO.prod_no}").click(function(){
-		var prodNo =  $("#${prodVO.prod_no}").attr("id");
-		var urlstr = '<%=request.getContextPath()%>/FrontEnd/prod/prodPage.jsp?prodNo='+prodNo;
-		$.ajax({
-			url : urlstr,
-			type : 'GET',
-			dataType: "html",
-			async: false,
-			success : function(result) {
-				while($modalX.children().length > 0){
-					$modalX.empty();
-				}
-				
-				$modalX.html(result);
-			},
-			error : function(xhr) {
-				alert('Ajax request 發生錯誤');
-			}
-		});
-		$modalX.scrollTop(0);
-	});
-
 
 //foProd
 var $btnFoProd = $("button.bk${prodVO.prod_no}").click(function(){
