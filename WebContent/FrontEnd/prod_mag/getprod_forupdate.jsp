@@ -19,7 +19,16 @@
 	ProdService proSvc = new ProdService();
 	ProdVO prodvo = (ProdVO) request.getAttribute("prodvo");
 %>
+<style>
+textarea {
+  resize : none;
+  width:340px
+}
+.te{
+width:340px
+}
 
+</style>
 
 <div class="content container mgt-depn-nav">
 
@@ -36,20 +45,31 @@
 		</font>
 	</c:if>
 	</div>
+	<div class="col-xs-12 col-sm-2">
+				<table class="store" >
+					<tr><td align="center"><h2>${storeVO.store_name}</h2></td></tr>
+					<tr><td align="center"><img src="<%=request.getContextPath()%>/store/storeImg.do?store_no=${storeVO.store_no}&index=1" width='150'></td></tr>
+					<tr><td align="center"><h4><a class="showStore" name="${storeVO.store_no}" href='#modal-inner' data-toggle="modal" >預覽商場</a></h4></td></tr>
+					<tr><td align="center"><h4><a href="<%=request.getContextPath()%>/FrontEnd/store_mag/store_databypass.jsp">修改店家資料</a></h4></td></tr>
+				</table>
+				
+				</div>
 	<div class="shop">
-		<div class="product col-sm-4">
-			<table class=" table-bordered table-responsive pro_one">
-				<FORM METHOD="post"
+		<div class="product col-sm-10">
+		<h3>商品資料修改</h3>
+		<FORM METHOD="post"
 					ACTION="<%=request.getContextPath()%>/prod/Prod_manag.do" name="form1" enctype="multipart/form-data">
+			<table class="table-responsive pro_one">
+			<caption ></caption>
 				<tr>
 					<td>商品名稱*</td>
-					<td><input type="text" name="prod_name"
+					<td><input type="text" name="prod_name" class="te"
 						value="${prodvo.prod_name}" size="35"></td>
 					<td></td>
 				</tr>
 				<tr>
 					<td>豆種</td>
-					<td><input type="text" name="bean_type"
+					<td><input type="text" name="bean_type" class="te"
 						value="${prodvo.bean_type}" size="35"></td>
 					<td></td>
 				</tr>
@@ -69,31 +89,31 @@
 				</tr>
 				<tr>
 					<td>生產國*</td>
-					<td><input type="text" name="bean_contry"
+					<td><input type="text" name="bean_contry" class="te"
 						value="${prodvo.bean_contry}"></td>
 					<td></td>
 				</tr>
 				<tr>
 					<td>地區</td>
-					<td><input type="text" name="bean_region"
+					<td><input type="text" name="bean_region" class="te"
 						value="${prodvo.bean_region}"></td>
 					<td></td>
 				</tr>
 				<tr>
 					<td>農場</td>
-					<td><input type="text" name="bean_farm"
+					<td><input type="text" name="bean_farm" class="te"
 						value="${prodvo.bean_farm}"></td>
 					<td></td>
 				</tr>
 				<tr>
 					<td>生產者</td>
-					<td><input type="text" name="bean_farmer"
+					<td><input type="text" name="bean_farmer" class="te"
 						value="${prodvo.bean_farmer}"></td>
 					<td></td>
 				</tr>
 				<tr>
 					<td>海拔</td>
-					<td><input type="number" name="bean_el"
+					<td><input type="number" name="bean_el" class="te"
 						value="${prodvo.bean_el}"></td>
 					<td></td>
 				</tr>
@@ -200,31 +220,31 @@
 				</tr>
 				<tr>
 					<td>香味</td>
-					<td><input type="text" name="bean_aroma"
+					<td><input type="text" name="bean_aroma" class="te"
 						value="${prodvo.bean_aroma}" size="35"></td>
 					<td></td>
 				</tr>
 				<tr>
 					<td>標價 $NT*</td>
-					<td><input type="number" name="prod_price"
+					<td><input type="number" name="prod_price" class="te"
 						value="${prodvo.prod_price}"></td>
 					<td></td>
 				</tr>
 				<tr>
 					<td>重量 lb(小數後1位)*</td>
-					<td><input type="number" name="prod_wt" step="0.5"
+					<td><input type="number" name="prod_wt" step="0.5" class="te"
 						value="${prodvo.prod_wt}" ></td>
 					<td></td>
 				</tr>
 				<tr>
 					<td>運費*</td>
-					<td><input type="number" name="send_fee"
+					<td><input type="number" name="send_fee" class="te"
 						value="${prodvo.send_fee}"></td>
 					<td></td>
 				</tr>
 				<tr>
 					<td>供應數量*</td>
-					<td><input type="number" name="prod_sup" 
+					<td><input type="number" name="prod_sup"  class="te"
 						value="${prodvo.prod_sup}" ></td>
 					<td></td>
 				</tr>
@@ -236,18 +256,18 @@
 				</tr>
 				<tr>
 					<td>商品圖片-1*</td>
-					<td><img src="<%=request.getContextPath()%>/prod/prodImg.do?prod_no=${prodvo.prod_no}&index=1"></td>
-					<td><input type="file" name="prod_pic1" id="propic1"><output id="pic1"></output></td>
+					<td><output id="pic1"><img src="<%=request.getContextPath()%>/prod/prodImg.do?prod_no=${prodvo.prod_no}&index=1" width="150px"></output></td>
+					<td><input type="file" name="prod_pic1" id="propic1"></td>
 				</tr>
 				<tr>
 					<td>商品圖片-2</td>
-					<td><img src="<%=request.getContextPath()%>/prod/prodImg.do?prod_no=${prodvo.prod_no}&index=2"></td>
-					<td><input type="file" name="prod_pic2" id="propic2"><output id="pic2"></output></td>
+					<td><output id="pic2"><img src="<%=request.getContextPath()%>/prod/prodImg.do?prod_no=${prodvo.prod_no}&index=2" width="150px"></output></td>
+					<td><input type="file" name="prod_pic2" id="propic2"></td>
 				</tr>
 				<tr>
 					<td>商品圖片-3</td>
-					<td><img src="<%=request.getContextPath()%>/prod/prodImg.do?prod_no=${prodvo.prod_no}&index=3"></td>
-					<td><input type="file" name="prod_pic3" id="propic3"><output id="pic3"></output></td>
+					<td><output id="pic3"><img src="<%=request.getContextPath()%>/prod/prodImg.do?prod_no=${prodvo.prod_no}&index=3" width="150px"></output></td>
+					<td><input type="file" name="prod_pic3" id="propic3"></td>
 				</tr>
 				<tr>
 					<td>上架狀態</td>
@@ -257,14 +277,13 @@
 				</tr>
 				<tr>
 				<td>
-						
-						<input type="submit" value="修改商品資料" class="btn btn-info">
+						<input type ="button" onclick="history.back()" value="取消" class="btn btn-info"></input>
 						<input type="hidden" name="prod_no" value="${prodvo.prod_no}">
 						<input type="hidden" name="store_no" value="${storeVO.store_no}">
 						<input type="hidden" name="action" value="update_prod">
 						<input type="hidden" name="whichPage" value="<%=request.getAttribute("whichPage")%>">
 				</td>
-				<td><input type ="button" onclick="history.back()" value="取消" class="btn btn-info"></input></td>
+				<td><input type="submit" value="修改商品資料" class="btn btn-info"></td>
 				</tr>
 			</table>
 			</FORM>
@@ -303,7 +322,7 @@ function handleFileSelect1(evt) {
 						e.target.result, '" title="', escape(theFile.name),
 						'"/>' ].join('');
 				document.getElementById('pic1').insertBefore(span, null);
-				$(".thumb").width(150);
+				$(".thumb").width(70);
 
 			};
 		})(f);
@@ -341,7 +360,7 @@ function handleFileSelect2(evt) {
 						e.target.result, '" title="', escape(theFile.name),
 						'"/>' ].join('');
 				document.getElementById('pic2').insertBefore(span, null);
-				$(".thumb").width(150);
+				$(".thumb").width(70);
 
 			};
 		})(f);
@@ -379,7 +398,7 @@ function handleFileSelect3(evt) {
 						e.target.result, '" title="', escape(theFile.name),
 						'"/>' ].join('');
 				document.getElementById('pic3').insertBefore(span, null);
-				$(".thumb").width(150);
+				$(".thumb").width(70);
 				
 			};
 		})(f);

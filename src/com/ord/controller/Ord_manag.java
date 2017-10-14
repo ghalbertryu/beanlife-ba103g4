@@ -93,18 +93,13 @@ public class Ord_manag extends HttpServlet {
 				String ord_stat = req.getParameter("ord_stat");
 
 				String send_id = req.getParameter("send_id");
-				String ordmem_ac = req.getParameter("ordmem_ac");
+				String urName = req.getParameter("ordmem_ac");
 				
 
 				OrdVO ordVO = new OrdVO();
 				OrdService ordSvc = new OrdService();
 				
-//				Sys_msgVO sys_msgVO = new Sys_msgVO();
-//				Sys_msgService sys_msgSvc = new Sys_msgService();
-//				sys_msgVO.setMem_ac(ordmem_ac);
-//				sys_msgVO.setMsg_cont("您訂購的商品已出貨");
-//				java.sql.Date msg_send_date = new java.sql.Date(new java.util.Date().getTime());
-//				sys_msgVO.setMsg_send_date(msg_send_date);
+				
 				
 				
 				if (ord_stat.equals("已付款")) {
@@ -114,8 +109,15 @@ public class Ord_manag extends HttpServlet {
 				if (ord_stat.equals("已確認付款")) {
 					ordVO = ordSvc.update_sendstat(ord_no, send_id);
 					
-//					sys_msgVO = sys_msgSvc.addSys_msg(sys_msgVO);
+					String myName = "sys";
+					String message = "您訂購的商品已出貨"; 
+					req.setAttribute("myName", myName); 
+					req.setAttribute("urName", urName); 
+					req.setAttribute("message", message);
+
 				}
+				
+				
 
 				// Send the use back to the form, if there were errors
 				if (!errorMsgs.isEmpty()) {

@@ -25,7 +25,7 @@
 			</ul>
 		</font>
 	</c:if>
-	
+	<button class="new">紐</button>
 	<FORM METHOD="post"
 		ACTION="<%=request.getContextPath()%>/mem/mem.do">
 		<table border="1">
@@ -88,8 +88,13 @@ $(".pd").change(function(){
 $(".auth").click(function(){
 	$(".phoneform").submit();
 })
-
+$(".new").click(function(){
+	$(".ac").val("ohyes103");
+	$(".pd").val("zxc123");
+	$(".phone").val("0903567887");
 	
+})
+
 
 </script>
 

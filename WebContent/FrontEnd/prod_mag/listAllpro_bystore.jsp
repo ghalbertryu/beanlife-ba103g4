@@ -7,6 +7,13 @@
 
 <jsp:include page="/FrontEnd/include/head.jsp"/>
 <c:set var="mem_ac" value="${sessionScope.mem_ac}" scope="page"/>
+
+<style>
+
+.showProd:hover {
+    text-decoration: underline;
+}
+</style>
 <%
 	String mem_ac = (String) session.getAttribute("mem_ac");
 	StoreService storeSvc = new StoreService();
@@ -34,11 +41,16 @@
 	</c:if>
 	
 	
+	<div class="product col-sm-2">
+	<table class="store" >
+	<tr><td align="center"><h2>${storeVO.store_name}</h2></td></tr>
+	<tr><td align="center"><img src="<%=request.getContextPath()%>/store/storeImg.do?store_no=${storeVO.store_no}&index=1" width='150'></td></tr>
+	<tr><td align="center"><h4><a class="showStore" name="${storeVO.store_no}" href='#modal-inner' data-toggle="modal" >預覽商場</a></h4></td></tr>
+	<tr><td align="center"><h4><a href="<%=request.getContextPath()%>/FrontEnd/store_mag/store_databypass.jsp">修改店家資料</a></h4></td></tr>
+	</table>
+	</div>
 	
-	
-	<small><a href="<%=request.getContextPath()%>/FrontEnd/store_mag/store_databypass.jsp">修改店家資料</a></small>
-	<div class="shop">
-		<div class="product col-sm-8">
+		<div class="product col-sm-10">
 			<table class="table-bordered table-responsive pro_all">
 				<caption >
 					<font size="20">我的商品</font>
@@ -61,12 +73,7 @@
 							end="<%=pageIndex+rowsPerPage-1%>">
 					<tr>
 						<td>
-						<FORM METHOD="post" ACTION="<%=request.getContextPath()%>/prod/Prod_manag.do">
-						<a class="aprod">${prodVO.prod_name}</a>
-						<input type="hidden" name="prod_no" value="${prodVO.prod_no}">
-						<input type="hidden" name="action" value="getprod_display">
-						<input type="hidden" name="whichPage"value="<%=whichPage%>">  
-						</FORM>
+						<a class="showProd" name="${prodVO.prod_no}" href='#modal-inner' data-toggle="modal" >${prodVO.prod_name}</a>
 						</td>
 						<td><img src="<%=request.getContextPath()%>/prod/prodImg.do?prod_no=${prodVO.prod_no}&index=1"></td>
 						<td>${prodVO.bean_type}</td>
@@ -75,7 +82,7 @@
 						<td>${prodVO.prod_stat}</td>
 						<td><FORM METHOD="post"
 										ACTION="<%=request.getContextPath()%>/prod/Prod_manag.do">
-										<input type="submit" value="修改商品資料" class="btn btn-info"> 
+										<input type="submit" value="修改商品資料" class="btn-primary"> 
 										<input type="hidden" name="prod_no" value="${prodVO.prod_no}">
 										<input type="hidden" name="store_no"	value="<%=store_no%>">  
 										<input type="hidden" name="action" value="getOne_For_Update">
@@ -84,7 +91,7 @@
 						</td>
 						<td><FORM METHOD="post"
 										ACTION="<%=request.getContextPath()%>/prod/Prod_manag.do">
-										<input type="submit" value=${prodVO.prod_stat.equals("上架") ? "下架" : "上架" } class="btn btn-info"> 
+										<input type="submit" value=${prodVO.prod_stat.equals("上架") ? "下架" : "上架" } class=${prodVO.prod_stat.equals("上架") ? "btn-danger" : "btn-info" }> 
 										<input type="hidden" name="prod_no" value="${prodVO.prod_no}">
 										<input type="hidden" name="prod_stat" value="${prodVO.prod_stat}">
 										<input type="hidden" name="action" value="Update_prodstat">
@@ -97,48 +104,7 @@
 			</table>
 				　　<%@ include file="page2.file"%>
 		</div>
-	</div>
 
-
-
-	<div class="modal fade" id="modal-id">
-			<div class="modal-dialog">
-				<div class="modal-content">
-					<div class="modal-header">
-						<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-						<h4 class="modal-title">商品詳情</h4>
-					</div>
-					<div class="modal-body">
-						商品名稱：${prodVO.prod_name}<br>
-						豆種：${prodVO.bean_type}<br>
-						生豆等級：${prodVO.bean_grade}<br>
-						生產國：${prodVO.bean_contry}<br>
-						地區：${prodVO.bean_region}<br>
-						農場：${prodVO.bean_farm}<br>
-						生產者：${prodVO.bean_farmer}<br>
-						海拔：${prodVO.bean_el}<br>
-						處理法：${prodVO.proc}<br>
-						烘焙度：${prodVO.roast}<br>
-						風味-酸度：${prodVO.bean_attr_acid}<br>
-						風味-香氣：${prodVO.bean_attr_aroma}<br>
-						風味-醇度：${prodVO.bean_attr_body}<br>
-						風味-餘味：${prodVO.bean_attr_after}<br>
-						風味-平衡度：${prodVO.bean_attr_bal}<br>
-						香味：${prodVO.bean_aroma}<br>
-						標價  $NT：${prodVO.prod_price}<br>
-						重量  lb：${prodVO.prod_wt}<br>
-						運費：${prodVO.send_fee}<br>
-						供應數量：${prodVO.prod_sup}<br>
-						商品描述：${prodVO.prod_cont}<br>
-						上架狀態：${prodVO.prod_stat}<br>
-						最後編輯時間：${prodVO.ed_time}
-					</div>
-					<div class="modal-footer">
-						<button type="button" class="btn btn-default" data-dismiss="modal">關閉</button>
-					</div>
-				</div>
-			</div>
-		</div>
 		
 </div>		
 		
@@ -149,12 +115,7 @@ $(".pro_all img:first-child").css(
 	    {"width":"70px"}
 	)
 	
-$(".aprod").click(function(){
-	$(this).parent().submit();
-})
-if(${not empty openModal}){
-	$("#modal-id").modal({show:true});
-}
+
 
 </script>
 

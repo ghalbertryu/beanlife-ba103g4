@@ -54,11 +54,18 @@
 			</ul>
 		</font>
 	</c:if>
+	<div class="product col-sm-2">
+		<table class="store" >
+			<tr><td align="center"><h2>${storeVO.store_name}</h2></td></tr>
+			<tr><td align="center"><img src="<%=request.getContextPath()%>/store/storeImg.do?store_no=${storeVO.store_no}&index=1" width='150'></td></tr>
+			<tr><td align="center"><h4><a class="showStore" name="${storeVO.store_no}" href='#modal-inner' data-toggle="modal">預覽商場</a></h4></td></tr>
+			<tr><td align="center"><h4><a href="<%=request.getContextPath()%>/FrontEnd/store_mag/store_databypass.jsp">修改店家資料</a></h4></td></tr>
+		</table>
+	</div>
 	
 	
 	
-	<div class="shop">
-		<div class="product col-sm-8">
+		<div class="product col-sm-10">
 			<table class="table-bordered table-responsive ord_all">
 				<caption >
 					<font size="20">我的訂單</font><br>請選擇狀態
@@ -78,9 +85,11 @@
 				<tr>
 					<th>訂單編號</th>
 					<th>收貨人姓名</th>
+					<th>送貨地址</th>
 					<th>訂單成立時間</th>
 					<th>結帳商品總金額</th>
 					<th>訂單狀態</th>
+					<th></th>
 					<th></th>
 					<th></th>
 					
@@ -98,6 +107,7 @@
 						</FORM>
 						</td>
 						<td>${ordVO.ord_name}</td>
+						<td>${ordVO.ord_add}</td>
 						<td>${ordVO.ord_date}</td>
 						<td>${ordVO.total_pay}</td>
 						<td>${ordVO.ord_stat}</td>
@@ -111,6 +121,7 @@
 										<input type="hidden" name="whichPage"	value="<%=whichPage%>">  
 							</FORM>
 						</td>
+						<td><button class="btn btn-danger msgTo" name="${ordVO.ord_name}">與買家私訊</button></td>
 					</tr>
 				</c:forEach>
 			</table>
@@ -118,7 +129,7 @@
 		</div>
 	</div>
 
-</div>
+
 <script>
 $("#stat").change(function(){
 	$(this).parent().submit();

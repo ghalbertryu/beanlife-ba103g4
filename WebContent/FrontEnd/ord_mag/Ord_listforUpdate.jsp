@@ -45,7 +45,17 @@
 			</ul>
 		</font>
 	</c:if>
-				<div class="col-xs-12 col-sm-8">
+	
+				<div class="col-xs-12 col-sm-2">
+				<table class="store" >
+					<tr><td align="center"><h2>${storeVO.store_name}</h2></td></tr>
+					<tr><td align="center"><img src="<%=request.getContextPath()%>/store/storeImg.do?store_no=${storeVO.store_no}&index=1" width='150'></td></tr>
+					<tr><td align="center"><h4><a class="showStore" name="${storeVO.store_no}" href='#modal-inner' data-toggle="modal" >預覽商場</a></h4></td></tr>
+					<tr><td align="center"><h4><a href="<%=request.getContextPath()%>/FrontEnd/store_mag/store_databypass.jsp">修改店家資料</a></h4></td></tr>
+				</table>
+				
+				</div>
+				<div class="col-xs-12 col-sm-10">
 					<table class="table-bordered table-responsive ord_list">
 				<caption >
 					<font size="16" class="listcap">訂單明細</font>
@@ -77,9 +87,9 @@
 			<br>
 		
 			
-				<div class="col-xs-12 col-sm-4">
+				<div class="col-xs-12 col-sm-2 ">
 				</div>
-				<div class="col-xs-12 col-sm-8">
+				<div class="col-xs-12 col-sm-10 ">
 					<table class="table-bordered customer">
 						<caption class="customerca"><B>買家資訊</B></caption>
 						<tr><td>收貨人</td><td>${ordVO.ord_name}</td><td>買家帳號</td><td>${ordVO.mem_ac}</td></tr>
@@ -90,9 +100,9 @@
 
 			
 			
-				<div class="col-xs-12 col-sm-4">
+				<div class="col-xs-12 col-sm-2">
 				</div>
-				<div class="col-xs-12 col-sm-8">
+				<div class="col-xs-12 col-sm-10">
 				<br>
 					<span>
 						付款資訊：
@@ -119,10 +129,10 @@
 	
 		
 			<div class="row">
-				<div class="col-xs-12 col-sm-4">
+				<div class="col-xs-12 col-sm-2">
 					
 				</div>
-				<div class="col-xs-12 col-sm-8">
+				<div class="col-xs-12 col-sm-10">
 					<div class="col-xs-12 col-sm-12">
 						<br>
 						<table class="bar table-bordered">

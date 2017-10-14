@@ -39,8 +39,17 @@
 			</ul>
 		</font>
 	</c:if>
+	<div class="col-xs-12 col-sm-2">
+				<table class="store" >
+					<tr><td align="center"><h2>${storeVO.store_name}</h2></td></tr>
+					<tr><td align="center"><img src="<%=request.getContextPath()%>/store/storeImg.do?store_no=${storeVO.store_no}&index=1" width='150'></td></tr>
+					<tr><td align="center"><h4><a class="showStore" name="${storeVO.store_no}" href='#modal-inner' data-toggle="modal" >預覽商場</a></h4></td></tr>
+					<tr><td align="center"><h4><a href="<%=request.getContextPath()%>/FrontEnd/store_mag/store_databypass.jsp">修改店家資料</a></h4></td></tr>
+				</table>
+				
+				</div>
 	<div class="shop">
-		<div class="shop col-sm-8">
+		<div class="shop col-sm-10">
 		<FORM METHOD="POST"
 		ACTION="<%=request.getContextPath()%>/store/ToStore.do" name="form1" enctype="multipart/form-data">
 			<table class="table_shop">
@@ -104,25 +113,26 @@
 				
 				<tr>
 					<td>店家照片1</td>
-					<td><output id="mylist1"><img src="<%=request.getContextPath()%>/store/storeImg.do?store_no=${storeVO.store_no}&index=1" width='100'></output></td>
+					<td><output id="mylist1"><img src="<%=request.getContextPath()%>/store/storeImg.do?store_no=${storeVO.store_no}&index=1" width='150'></output></td>
 					<td><input type="file" name="store_pic1" value="上傳" id="storepic1"></td>
 				</tr>
 				<tr>
 					<td>店家照片2</td>
-					<td><output id="mylist2"><img src="<%=request.getContextPath()%>/store/storeImg.do?store_no=${storeVO.store_no}&index=2" width='100'></output></td>
+					<td><output id="mylist2"><img src="<%=request.getContextPath()%>/store/storeImg.do?store_no=${storeVO.store_no}&index=2" width='150'></output></td>
 					<td><input type="file" name="store_pic2" value="上傳" id="storepic2"></td>
 				</tr>
 				<tr>
 					<td>店家照片3</td>
-					<td><output id="mylist3"><img src="<%=request.getContextPath()%>/store/storeImg.do?store_no=${storeVO.store_no}&index=3" width='100'></output></td>
+					<td><output id="mylist3"><img src="<%=request.getContextPath()%>/store/storeImg.do?store_no=${storeVO.store_no}&index=3" width='150'></output></td>
 					<td><input type="file" name="store_pic3" value="上傳" id="storepic3"></td>
 				</tr>
 			</table>
 					<input type="hidden" name="action" value="update_data"> 
 					<input	type="hidden" name="store_add_lat" id="lat" size="45" value="${storeVO.store_add_lat}" />
 					<input	type="hidden" name="store_add_lon" id="lng" size="45" value="${storeVO.store_add_lon}" />
-					<input	type="hidden" name="store_no"  size="45" value="${storeVO.store_no}" />
-					<input	type="submit" value="確認修改" /><input type ="button" onclick="history.back()" value="取消"></input>
+					<input	type="hidden" name="store_no"  size="45" value="${storeVO.store_no}" />　　　
+					<input type ="button" onclick="history.back()" value="取消" class="btn btn-danger"></input>　　　　　　　　　
+					<input	type="submit" value="確認修改" class="btn btn-info"/>
 			</FORM>
 		</div>
 	</div>
