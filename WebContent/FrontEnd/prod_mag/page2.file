@@ -11,7 +11,8 @@ z-index: 3;
 }
 
 .pagination{
-left: 50%;
+position: relative;
+left: 40%;
 transform: translate(-50%,0%);
 }
 
@@ -27,7 +28,7 @@ transform: translate(-50%,0%);
 		 
 		  <li><a href="<%=request.getRequestURI()%>?whichPage=<%=whichPage-1%>">&laquo;</a></li>
 		   <%}%>  
-		    <% for(int i=0;i<whichPage;i++){%>
+		    <% for(int i=0;i<pageNumber;i++){%>
 		  <li><a class="myWhichPage"  href="<%=request.getRequestURI()%>?whichPage=<%=i+1%>"><%=i+1%></a></li>
 		  
 		  <%}%>  

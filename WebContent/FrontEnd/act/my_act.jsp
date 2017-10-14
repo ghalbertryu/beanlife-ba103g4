@@ -421,7 +421,7 @@ font-weight: 800;
 					</div>
 					<div class="modal-footer">
 						<button type="button" class="btn btn-default" data-dismiss="modal">關閉</button>
-						<button type="button" class="btn btn-primary"><span class="fa fa-volume-control-phone"></span>開啟群組私訊</button>
+					<%-- 	<button type="button" class="btn btn-primary"><span class="fa fa-volume-control-phone"></span>開啟群組私訊</button> --%>
 					</div>
 				</div>
 			</div>

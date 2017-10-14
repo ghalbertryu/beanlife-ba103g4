@@ -2,7 +2,7 @@
 
 
 <style>
-.pagination>li .active_button{
+.pagination  .active_button{
 z-index: 3;
     color: #fff;
     cursor: default;
