@@ -11,6 +11,7 @@
 <%@ page import="com.like_rev.model.*"%>
 <%@ page import="com.qa.model.*"%>
 <%@ page import="com.mem.model.*"%>
+<%@ page import="com.mem_grade.model.*"%>
 <%@ page import="com.ord.model.*"%>
 
 
@@ -24,6 +25,7 @@
 <jsp:useBean id="reviewSvc" scope="page" class="com.review.model.ReviewService" />
 <jsp:useBean id="like_revSvc" scope="page" class="com.like_rev.model.Like_revService" />
 <jsp:useBean id="qaSvc" scope="page" class="com.qa.model.QaService" />
+<jsp:useBean id="mem_gradeSvc" scope="page" class="com.mem_grade.model.Mem_gradeService" />
 
 <c:set var="mem_ac" value="${session.mem_ac}" scope="page"/>
 <c:set var="prodVO" value="${prodSvc.getOneProdR(param.prodNo)}" scope="page"/>
@@ -161,7 +163,7 @@
                                 <div class="container-fluid">
                                     <div class="row">
                                     	<c:if test="${prodVO.prod_stat=='下架'}">
-			                                <div class="btn btn-default btn-warning">下架中</div>
+			                                <div class="btn btn-block btn-warning" disabled>下架中</div>
 		                                </c:if>
                                         <div class="col-xs-7 col-sm-6 pad0">
                                         	<c:if test="${prodVO.prod_stat=='上架'}" var="disable">

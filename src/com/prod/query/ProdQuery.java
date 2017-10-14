@@ -95,7 +95,7 @@ public class ProdQuery {
 				          + get_WhereCondition(map)
 				          + "and ("
 				          + get_ElseCondition(map2)
-				          + ")"
+				          + ") and prod_stat='上架' "
 				          + "order by prod_no desc";
 		System.out.println(finalSQL);
 

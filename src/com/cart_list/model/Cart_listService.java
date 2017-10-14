@@ -1,5 +1,8 @@
 package com.cart_list.model;
+import java.util.LinkedHashSet;
 import java.util.Set;
+
+import com.prod.model.ProdService;
 
 
 public class Cart_listService {
@@ -11,7 +14,15 @@ public class Cart_listService {
 	}
 	
 	public Set<Cart_listVO> getVOsByMem(String mem_ac){
-		return dao.getByMem(mem_ac);
+		Set<Cart_listVO> set = dao.getByMem(mem_ac);
+		Set<Cart_listVO> set2 = new LinkedHashSet<Cart_listVO>();
+		ProdService prodSvc = new ProdService();
+		for(Cart_listVO cart_listVO : set){
+			if(prodSvc.getOneProd(cart_listVO.getProd_no()).getProd_stat().equals("上架")){
+				set2.add(cart_listVO);
+			}
+		}
+		return set2;
 	}
 	
 	public Cart_listVO addCart_list(String prod_no,String mem_ac,Integer prod_amount){

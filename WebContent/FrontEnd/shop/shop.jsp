@@ -25,7 +25,7 @@
 
 <jsp:include page="/FrontEnd/include/head.jsp"/>
 <c:set var="mem_ac" value="${sessionScope.mem_ac}" scope="page"/>
-<c:set var="prodlist" value="${(searchRs==null)?prodSvc.allR:searchRs}" scope="page"/>
+<c:set var="prodlist" value="${(searchRs==null)?hotProdVOs:searchRs}" scope="page"/>
 <c:set var="fo_list" value="${fo_prodSvc.getAllByMem(mem_ac)}" scope="page"/>
 <c:set var="like_rev_list" value="${like_revSvc.getAllByMem(mem_ac)}" scope="page"/>
 <c:set var="cart_listSet" value="${cart_listSvc.getVOsByMem(mem_ac)}" scope="page"/>
@@ -43,19 +43,19 @@
       <div class="container padt8">
         <div class="col-xs-12 col-sm-2 col-sm-offset-1">
           <select class="form-control" name="bean_contry">
-            <option value="" ${(mapBack.get('bean_contry')==null)?'selected':'' }>請選擇產地</option>
+            <option class="country" value="" ${(mapBack.get('bean_contry')==null)?'selected':'' }>請選擇產地</option>
             <c:forEach var="country" items="${countrys}">
-				<option value="${country}" ${(mapBack.get('bean_contry')==country)?'selected':'' }>${country}</option>
+				<option class="country" value="${country}" ${(mapBack.get('bean_contry')==country)?'selected':'' }>${country}</option>
             </c:forEach>
             </select>
         </div>
         <div class="col-xs-12 col-sm-2">
           <select class="form-control" name="proc">
-            	<option value="" ${(mapBack.get('proc')==null)?'selected':'' }>請選擇處理法</option>
-                <option value="日曬" ${(mapBack.get('proc')=='日曬')?'selected':'' }>日曬</option>
-                <option value="半水洗" ${(mapBack.get('proc')=='半水洗')?'selected':'' }>半水洗</option>
-                <option value="水洗" ${(mapBack.get('proc')=='水洗')?'selected':'' }>水洗</option>
-                <option value="蜜處理" ${(mapBack.get('proc')=='蜜處理')?'selected':'' }>蜜處理</option>
+            	<option class="proc" value="" ${(mapBack.get('proc')==null)?'selected':'' }>請選擇處理法</option>
+                <option class="proc" value="日曬" ${(mapBack.get('proc')=='日曬')?'selected':'' }>日曬</option>
+                <option class="proc" value="半水洗" ${(mapBack.get('proc')=='半水洗')?'selected':'' }>半水洗</option>
+                <option class="proc" value="水洗" ${(mapBack.get('proc')=='水洗')?'selected':'' }>水洗</option>
+                <option class="proc" value="蜜處理" ${(mapBack.get('proc')=='蜜處理')?'selected':'' }>蜜處理</option>
             </select>
         </div>
         <div class="col-xs-12 col-sm-3 padt10 mgb30">
@@ -72,7 +72,11 @@
                  <span class="glyphicon glyphicon-search"></span>
                </button>
              </div>
-           </div>
+             <div id="searchClear" class="input-group-btn">
+               <button class="btn btn-default">
+                 <span class="glyphicon glyphicon-remove"></span>
+               </button>
+			</div>
          
         </div>
       </div>
@@ -95,6 +99,17 @@
       $('.asRange-pointer-2 .asRange-tip').text($roast[$(".roast").asRange('get')[1]]);
     });
 
+  });
+  
+  $(function(){
+	 $('#searchClear').click(function(){
+// 		 console.log($('option .proc'));
+		 $('.proc').each(function(){
+			 console.log($(this).prop('selected'));
+			
+		});
+		 return false;
+	 }); 
   });
 </script>
 

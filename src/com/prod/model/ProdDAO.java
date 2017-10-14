@@ -532,7 +532,7 @@ public class ProdDAO implements ProdDAO_interface {
 					          + ProdQuery.get_WhereCondition(map)
 					          + str1
 					          + ProdQuery.get_ElseCondition(map2)
-					          + ")"
+					          + ") and prod_stat='上架' "
 					          + "order by prod_no desc";
 			System.out.println(finalSQL);
 			
