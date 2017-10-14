@@ -593,7 +593,7 @@ text-align: center;
       <%--	<img src="<%=request.getContextPath()%>/MemImg.do?mem_ac=${mem_vo.mem_ac}">  --%>  
         </div>
         <p class="my_org_cont">${act_vo.org_cont } </p>
-        <button class="contractHost btn-success btn-lg">聯絡主辦單位</button>
+        <button class="contractHost btn-success btn-lg msgTo" name="${act_vo.mem_ac}">聯絡主辦單位</button>
       </div>
     </div>
   </div>
@@ -660,6 +660,10 @@ text-align: center;
  
  
  <script>
+ 
+ 
+ 
+ 
  
  var new_act_cont=$(".my_act_cont").text().replace(/\n/g,"<br>");
  $(".my_act_cont").html(new_act_cont);

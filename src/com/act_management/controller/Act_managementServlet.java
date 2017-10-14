@@ -262,6 +262,9 @@ if("confirm_mem_pay".equals(action)){
 			
 		
 			String mem_ac=act_vo.getMem_ac();
+			
+			
+			
 			String msg_cont="活動編號"+act_no+"，活動名稱"+act_vo.getAct_name()+"    審核失敗，不通過原因為: "+re_cont+"，請至個人活動頁面修正，修正後將重新審核，謝謝!!";
 			java.sql.Date msg_send_date=new java.sql.Date(new Date().getTime());
 			Sys_msgService sys_msgSvc=new Sys_msgService();
@@ -271,7 +274,14 @@ if("confirm_mem_pay".equals(action)){
 			 sys_msg_vo.setMsg_send_date(msg_send_date);
 			 sys_msgSvc.addSys_msg(sys_msg_vo);
 			
-		
+			
+			
+//			String myName = "sys"; 
+//			String urName = mem_ac;//發給通知會員的帳號 
+//			String message = "活動編號"+act_no+"，活動名稱"+act_vo.getAct_name()+"    審核失敗，不通過原因為: "+re_cont+"，請至個人活動頁面修正，修正後將重新審核，謝謝!!";
+//			req.setAttribute("myName", myName); 
+//			req.setAttribute("urName", urName); 
+//			req.setAttribute("message", message);	
 			
 			
 			
@@ -319,6 +329,7 @@ if("confirm_mem_pay".equals(action)){
 			act_vo.setAct_stat(act_stat);
 			actSvc.updateAct(act_vo);
 			String mem_ac=act_vo.getMem_ac();
+			
 			String msg_cont="活動編號"+act_no+"，活動名稱"+act_vo.getAct_name()+"    已審核通過，將開始受理報名，謝謝!!";
 			java.sql.Date msg_send_date=new java.sql.Date(new Date().getTime());
 			Sys_msgService sys_msgSvc=new Sys_msgService();
@@ -331,6 +342,17 @@ if("confirm_mem_pay".equals(action)){
 			 sys_msg_vo.setMsg_send_date(msg_send_date);
 			
 			 sys_msgSvc.addSys_msg(sys_msg_vo);
+			
+//			String myName = "sys"; 
+//			String urName = mem_ac;//發給通知會員的帳號 
+//			 
+//			String message = "活動編號"+act_no+"，活動名稱"+act_vo.getAct_name()+"    已審核通過，將開始受理報名，謝謝!!"; 
+//			req.setAttribute("myName", myName); 
+//			req.setAttribute("urName", urName); 
+//			req.setAttribute("message", message);
+			
+			
+			
 			String url=req.getParameter("action_check.jsp");
 			RequestDispatcher dispatcher=req.getRequestDispatcher(url);
 			dispatcher.forward(req, res);
@@ -385,32 +407,47 @@ if("confirm_mem_pay".equals(action)){
 			for(int i=0;i<mem_ac_array.length;i++){
 				System.out.println("track7");
 				String mem_ac=mem_ac_array[i];
-				System.out.println("track7.1");
-				System.out.println("act_no= "+act_no);
-				System.out.println("mem_ac= "+mem_ac);
+				
 			Act_pairVO act_pair_vo=act_pairSvc.getOneAct_pair(act_no, mem_ac);
-			System.out.println("track7.2");
+			
 			String pay_state=act_pair_vo.getPay_state();
-			System.out.println("track3");
-			String msg_cont;
-			System.out.println("pay_state= "+pay_state);
+			
+//			String msg_cont;
+//			
+//			if(pay_state.equals("已繳費")){
+//					
+//				 msg_cont="活動編號"+act_no+"，活動名稱"+act_name+"     已被取消，系統已自動退款，歡迎再次參加活動!!";
+//			}else{
+//				 msg_cont="活動編號"+act_no+"，活動名稱"+act_name+"     已被取消，歡迎再次參加活動!!";
+//			}
+//				java.sql.Date msg_send_date=new java.sql.Date(new Date().getTime());
+//				Sys_msgService sys_msgSvc=new Sys_msgService();
+//				Sys_msgVO sys_msg_vo=new Sys_msgVO();
+//				System.out.println("track8");
+//				 sys_msg_vo.setMem_ac(mem_ac);
+//				
+//				 sys_msg_vo.setMsg_cont(msg_cont);
+//				
+//				 sys_msg_vo.setMsg_send_date(msg_send_date);
+//				
+//				 sys_msgSvc.addSys_msg(sys_msg_vo);
+			
+			String myName = "sys"; 
+			String urName = mem_ac;//發給通知會員的帳號 
+			 
+			String message ;
 			if(pay_state.equals("已繳費")){
-					
-				 msg_cont="活動編號"+act_no+"，活動名稱"+act_name+"     已被取消，系統已自動退款，歡迎再次參加活動!!";
+				message="活動編號"+act_no+"，活動名稱"+act_name+"     已被取消，系統已自動退款，歡迎再次參加活動!!";
 			}else{
-				 msg_cont="活動編號"+act_no+"，活動名稱"+act_name+"     已被取消，歡迎再次參加活動!!";
+				message="活動編號"+act_no+"，活動名稱"+act_name+"     已被取消，歡迎再次參加活動!!";
 			}
-				java.sql.Date msg_send_date=new java.sql.Date(new Date().getTime());
-				Sys_msgService sys_msgSvc=new Sys_msgService();
-				Sys_msgVO sys_msg_vo=new Sys_msgVO();
-				System.out.println("track8");
-				 sys_msg_vo.setMem_ac(mem_ac);
-				
-				 sys_msg_vo.setMsg_cont(msg_cont);
-				
-				 sys_msg_vo.setMsg_send_date(msg_send_date);
-				
-				 sys_msgSvc.addSys_msg(sys_msg_vo);
+			
+			req.setAttribute("myName", myName); 
+			req.setAttribute("urName", urName); 
+			req.setAttribute("message", message);
+			
+			
+			
 				
 				 MemService memSvc=new MemService();
 					MemVO mem_vo=memSvc.getOneProd(mem_ac);
@@ -524,14 +561,25 @@ if("confirm_mem_pay".equals(action)){
 			ActService actSvc=new ActService();
 			ActVO act_vo= actSvc.getOneAct(act_no);
 			actSvc.reduce_mem_count(act_no);
-			String msg_cont="活動編號"+act_no+"，活動名稱"+act_vo.getAct_name()+"  已完成退款!!";
-			java.sql.Date msg_send_date=new java.sql.Date(new Date().getTime());
-			Sys_msgService sys_msgSvc=new Sys_msgService();
-			Sys_msgVO sys_msg_vo=new Sys_msgVO();
-			 sys_msg_vo.setMem_ac(mem_ac);
-			 sys_msg_vo.setMsg_cont(msg_cont);
-			 sys_msg_vo.setMsg_send_date(msg_send_date);
-			 sys_msgSvc.addSys_msg(sys_msg_vo);
+			
+//			String msg_cont="活動編號"+act_no+"，活動名稱"+act_vo.getAct_name()+"  已完成退款!!";
+//			java.sql.Date msg_send_date=new java.sql.Date(new Date().getTime());
+//			Sys_msgService sys_msgSvc=new Sys_msgService();
+//			Sys_msgVO sys_msg_vo=new Sys_msgVO();
+//			 sys_msg_vo.setMem_ac(mem_ac);
+//			 sys_msg_vo.setMsg_cont(msg_cont);
+//			 sys_msg_vo.setMsg_send_date(msg_send_date);
+//			 sys_msgSvc.addSys_msg(sys_msg_vo);
+			
+			String myName = "sys"; 
+			String urName = mem_ac;//發給通知會員的帳號 
+			 
+			String message = "活動編號"+act_no+"，活動名稱"+act_vo.getAct_name()+"  已完成退款!!";
+			req.setAttribute("myName", myName); 
+			req.setAttribute("urName", urName); 
+			req.setAttribute("message", message);
+			
+			
 			
 			 MemService memSvc=new MemService();
 				MemVO mem_vo=memSvc.getOneProd(mem_ac);
@@ -655,7 +703,11 @@ if("confirm_mem_pay".equals(action)){
 			Integer min_mem=new Integer(act_vo.getMin_mem());
 			Integer max_mem=new Integer(act_vo.getMax_mem());
 			String act_stat=act_vo.getAct_stat();
-			if(act_stat.equals("可報名") && mem_count>=min_mem){
+			System.out.println("act_stat= "+act_stat);
+			System.out.println("mem_count= "+(mem_count+1));
+			System.out.println("min_mem= "+min_mem);
+			System.out.println("mem_count>=min_mem? = "+((mem_count+1)>=min_mem));
+			if(act_stat.equals("可報名") && (mem_count+1)>=min_mem){
 				act_stat="已成團";
 				act_vo.setAct_stat(act_stat);
 				actSvc.updateAct(act_vo);
@@ -665,15 +717,26 @@ if("confirm_mem_pay".equals(action)){
 	for(int i=0;i<act_pair_list.size();i++){
 	
 		if(act_pair_list.get(i).getAct_no().equals(act_no)){		
-				String msg_cont="活動編號"+act_no+"，活動名稱"+act_vo.getAct_name()+"     已成團，請準時參加活動!!";
-				java.sql.Date msg_send_date=new java.sql.Date(new Date().getTime());
-				Sys_msgService sys_msgSvc=new Sys_msgService();
-				Sys_msgVO sys_msg_vo=new Sys_msgVO();
-		
-				 sys_msg_vo.setMem_ac(act_pair_list.get(i).getMem_ac());
-				 sys_msg_vo.setMsg_cont(msg_cont);
-				 sys_msg_vo.setMsg_send_date(msg_send_date);
-				 sys_msgSvc.addSys_msg(sys_msg_vo);
+//				String msg_cont="活動編號"+act_no+"，活動名稱"+act_vo.getAct_name()+"     已成團，請準時參加活動!!";
+//				java.sql.Date msg_send_date=new java.sql.Date(new Date().getTime());
+//				Sys_msgService sys_msgSvc=new Sys_msgService();
+//				Sys_msgVO sys_msg_vo=new Sys_msgVO();
+//		
+//				 sys_msg_vo.setMem_ac(act_pair_list.get(i).getMem_ac());
+//				 sys_msg_vo.setMsg_cont(msg_cont);
+//				 sys_msg_vo.setMsg_send_date(msg_send_date);
+//				 sys_msgSvc.addSys_msg(sys_msg_vo);
+			
+			String myName = "sys"; 
+			String urName = act_pair_list.get(i).getMem_ac();//發給通知會員的帳號 
+			 
+			String message ="活動編號"+act_no+"，活動名稱"+act_vo.getAct_name()+"     已成團，請準時參加活動!!";
+			req.setAttribute("myName", myName); 
+			req.setAttribute("urName", urName); 
+			req.setAttribute("message", message);
+			
+			
+			
 		}
 	}
 			}
@@ -686,14 +749,23 @@ if("confirm_mem_pay".equals(action)){
 				act_vo.setAct_stat(act_stat);
 				actSvc.updateAct(act_vo);
 		String host_mem_ac=act_vo.getMem_ac();
-		String msg_cont="恭喜，活動編號"+act_no+"，活動名稱"+act_vo.getAct_name()+"     已滿團囉!!";
-		java.sql.Date msg_send_date=new java.sql.Date(new Date().getTime());
-		Sys_msgService sys_msgSvc=new Sys_msgService();
-		Sys_msgVO sys_msg_vo=new Sys_msgVO();
-		sys_msg_vo.setMem_ac(host_mem_ac);
-		 sys_msg_vo.setMsg_cont(msg_cont);
-		 sys_msg_vo.setMsg_send_date(msg_send_date);
-		 sys_msgSvc.addSys_msg(sys_msg_vo);
+//		String msg_cont="恭喜，活動編號"+act_no+"，活動名稱"+act_vo.getAct_name()+"     已滿團囉!!";
+//		java.sql.Date msg_send_date=new java.sql.Date(new Date().getTime());
+//		Sys_msgService sys_msgSvc=new Sys_msgService();
+//		Sys_msgVO sys_msg_vo=new Sys_msgVO();
+//		sys_msg_vo.setMem_ac(host_mem_ac);
+//		 sys_msg_vo.setMsg_cont(msg_cont);
+//		 sys_msg_vo.setMsg_send_date(msg_send_date);
+//		 sys_msgSvc.addSys_msg(sys_msg_vo);
+		
+		String myName = "sys"; 
+		String urName = host_mem_ac;//發給通知會員的帳號 
+		 
+		String message = "恭喜，活動編號"+act_no+"，活動名稱"+act_vo.getAct_name()+"     已滿團囉!!";
+		req.setAttribute("myName", myName); 
+		req.setAttribute("urName", urName); 
+		req.setAttribute("message", message);
+		
 				
 			}		
 			actSvc.update_mem_count(act_no);
@@ -814,7 +886,26 @@ if("confirm_mem_pay".equals(action)){
 				java.sql.Date comm_reply_date=new java.sql.Date(new Date().getTime());
 			
 				act_commSvc.update_response(comm_reply_cont,comm_reply_date,comm_no);
-			
+				
+				Act_commVO act_comm_vo=act_commSvc.getOneAct_comm(comm_no);
+				
+				String mem_ac=act_comm_vo.getMem_ac();
+				String act_no=act_comm_vo.getAct_no();
+				ActService actSvc=new ActService();
+				ActVO act_vo= actSvc.getOneAct(act_no);
+				
+				String myName = "sys"; 
+				String urName = mem_ac;//發給通知會員的帳號 
+				 
+				String message = "活動編號: "+act_no+" 活動名稱: "+act_vo.getAct_name()+" 主辦單位已經回覆囉，請至該活動頁面查看。"; 
+				req.setAttribute("myName", myName); 
+				req.setAttribute("urName", urName); 
+				req.setAttribute("message", message);
+
+				System.out.println("comm successful");
+				
+				
+				
 				String url=req.getParameter("act_detail.jsp");
 				RequestDispatcher successView=req.getRequestDispatcher(url);
 				successView.forward(req, res);
@@ -873,6 +964,24 @@ if("confirm_mem_pay".equals(action)){
 				Act_commService act_commSvc=new Act_commService();
 				act_commSvc.addAct_comm(act_no,mem_ac,comm_cont,comm_date,null,null);
 				System.out.println("track6");
+				
+				ActService actSvc=new ActService();
+				ActVO act_vo= actSvc.getOneAct(act_no);
+				String host_mem_ac=act_vo.getMem_ac();
+				
+				
+				
+				String myName = "sys"; 
+				String urName = host_mem_ac;//發給通知會員的帳號 
+				 
+				String message = "活動編號: "+act_no+" 活動名稱: "+act_vo.getAct_name()+"有訪客留言囉，請到該活動頁面解答訪客的問題。"; 
+				req.setAttribute("myName", myName); 
+				req.setAttribute("urName", urName); 
+				req.setAttribute("message", message);
+
+				
+				
+				
 				String url=req.getParameter("act_detail.jsp");
 				RequestDispatcher successView = req
 						.getRequestDispatcher(url);

@@ -520,8 +520,8 @@ transform: translate(-50%,0%);
 		  $(".magical_button").click(function(){
 			$(".act_op_date").val("2017-11-31 14:00:00");
 			$(".act_ed_date").val("2017-12-31 14:00:00");
-			  $(".host_cont").text("single place coffee lab. \n 從最單純的地方出發，因為這個信念我們使用單一產區精品莊園豆，表現出豆子的特有味道，跳脫以往的只主打義式咖啡的框架， \n 增加手沖和摩卡壺，讓大家體驗同一款咖啡豆不同的表現～ 帶領大家品嚐不同的咖啡風味～");
-			  $(".introduct").text('活動介紹  \n single place coffee lab.想做個有趣的計畫，我們想成為大家的《專屬咖啡師》，方法是你購買single place的三款配方豆我們為大家沖煮，有半磅跟4/1磅可選擇；半磅（225g）的豆子，可沖12杯美式等於一杯只要48元，不但有品質價錢更是優惠，還可以擁有自己的咖啡豆，咖啡豆分三個焙度，讓大家更容易了解自己選擇的咖啡豆特色。 \n 希望滿足各種不同喜好，以及市場求新求變的需求，提供了最完整的服務，讓你無論在辦公、放假、休閒時間，任何時刻都能夠享受一杯好咖啡！ \n \n https://docs.google.com/forms/d/e/1FAIpQLSfOd1ov_H5bdvmA7FmgDSRCkdLl-GAxLXSIKVVTEzd5Xasc4g/viewform \n \n 歡迎公司集體合訂，學生團購，家庭預訂，人人都可以享受一杯好咖啡～');
+			  $(".host_cont").text("single place coffee lab. \n 從最單純的地方出發，因為這個信念我們使用單一\n產區精品莊園豆，表現出豆子的特有味道，跳脫以\n往的只主打義式咖啡的框架，增加手沖和摩卡壺，\n讓大家體驗同一款咖啡豆不同的表現～ 帶領大家品\n嚐不同的咖啡風味～");
+			  $(".introduct").text('活動介紹  \n single place coffee lab.想做個有趣的計畫，我們想成為大家的《專屬咖啡師》\n，方法是你購買single place的三款配方豆我們為大家沖煮，有半磅跟4/1磅可選擇；\n半磅（225g）的豆子，可沖12杯美式等於一杯只要48元，不但有品質價錢更是優\n惠，還可以擁有自己的咖啡豆，咖啡豆分三個焙度，讓大家更容易了解自己選擇的\n咖啡豆特色。 希望滿足各種不同喜好，以及市場求新求變的需求，提供了最完整的\n服務，讓你無論在辦公、放假、休閒時間，任何時刻都能夠享受一杯好咖啡！ \n \n https://docs.google.com/forms/d/e/1FAIpQLSfOd1ov_H5bdvmA7FmgDSRCkdLl-GAxLXSIKVVTEzd5Xasc4g/viewform \n \n 歡迎公司集體合訂，學生團購，家庭預訂，人人都可以享受一杯好咖啡～');
 			                 
 			  
 			  
