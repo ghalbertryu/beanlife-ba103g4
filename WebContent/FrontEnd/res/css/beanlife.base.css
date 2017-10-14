@@ -250,6 +250,9 @@ div .bold{
 
 
 /*全域設定*/
+::-webkit-scrollbar { 
+display:none;
+}
 body{
 	font-family: 微軟正黑體;
 	/*color: #7A3D0B ;*/

@@ -315,9 +315,13 @@
 												<c:if test="${msgVO.mem_sen==urName}">
 													<div class="media">
 														<div class="media-left">
+															<c:if test="${storeSvc.getOneByMem(urName)!=null}">
 															<a class="showStore" name="${storeSvc.getOneByMem(urName).store_no}" href='#modal-inner' data-toggle="modal">
-															<img  class="media-object round-img w50" src="<%=request.getContextPath()%>/mem/memImg.do?memAc=${urName}">
+															</c:if>
+																<img  class="media-object round-img w50" src="<%=request.getContextPath()%>/mem/memImg.do?memAc=${urName}">
+															<c:if test="${storeSvc.getOneByMem(urName)!=null}">
 															</a>
+															</c:if>
 														</div>
 														<div class="media-body">
 															<p class="col-xs-11 col-sm-10 well">

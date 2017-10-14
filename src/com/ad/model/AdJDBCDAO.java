@@ -26,7 +26,10 @@ public class AdJDBCDAO implements AdDAO_interface{
 	private static final String GET_ONE_STMT="select * from ad where AD_NO=?";
 	private static final String DELETE = "delete from ad where ad_no=?";
 	private static final String UPDATE ="update ad set PROD_NO=?,AD_TITLE=?,AD_IMG=?,AD_OP_DATE=?,AD_ED_DATE=? where AD_NO=?";
-	
+	private static final String GET_NOW_AD_STMT ="select * from ad where sysdate between  AD_OP_DATE and  AD_ED_DATE ";
+
+	private static final String GET_NOW_AD_NO_IMG_STMT ="select PROD_NO,AD_TITLE,AD_OP_DATE,AD_ED_DATE from AD where sysdate between  AD_OP_DATE and  AD_ED_DATE ";
+	private static final String GET_NOW_AD_IMG_STMT ="select AD_IMG from AD where AD_NO =? ";
 
 	
 
@@ -305,6 +308,181 @@ public class AdJDBCDAO implements AdDAO_interface{
 		
 		
 	}
+
+	@Override
+	public List<AdVO> getNowAd() {
+		// TODO Auto-generated method stub
+		List<AdVO> list = new ArrayList<AdVO>();
+		AdVO ad_vo = null;
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+
+		try {
+			Class.forName(driver);
+
+			con = DriverManager.getConnection(url, userid, password);
+			pstmt = con.prepareStatement(GET_NOW_AD_STMT);
+			rs = pstmt.executeQuery();
+
+			while (rs.next()) {
+				ad_vo = new AdVO();
+				ad_vo.setAd_no(rs.getString("AD_NO"));
+				ad_vo.setProd_no(rs.getString("PROD_NO"));
+				ad_vo.setAd_title(rs.getString("AD_TITLE"));
+				ad_vo.setAd_img(rs.getBytes("AD_IMG"));
+				ad_vo.setAd_op_date(rs.getDate("AD_OP_DATE"));
+				ad_vo.setAd_ed_date(rs.getDate("AD_ED_DATE"));
+				list.add(ad_vo);
+			}
+
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+
+		} catch (ClassNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} finally {
+			if (rs != null) {
+				try {
+					rs.close();
+				} catch (SQLException se) {
+					se.printStackTrace(System.err);
+				}
+			}
+			if (pstmt != null) {
+				try {
+					pstmt.close();
+				} catch (SQLException se) {
+					se.printStackTrace(System.err);
+				}
+			}
+			if (con != null) {
+				try {
+					con.close();
+				} catch (Exception e) {
+					e.printStackTrace(System.err);
+				}
+			}
+		}
+		return list;
+	}
+
+	@Override
+	public List<AdVO> getNowAdNoImg() {
+		// TODO Auto-generated method stub
+		List<AdVO> list = new ArrayList<AdVO>();
+		AdVO ad_vo = null;
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+
+		try {
+			Class.forName(driver);
+
+			con = DriverManager.getConnection(url, userid, password);
+			pstmt = con.prepareStatement(GET_NOW_AD_NO_IMG_STMT);
+			rs = pstmt.executeQuery();
+
+			while (rs.next()) {
+				ad_vo = new AdVO();
+				ad_vo.setAd_no(rs.getString("AD_NO"));
+				ad_vo.setProd_no(rs.getString("PROD_NO"));
+				ad_vo.setAd_title(rs.getString("AD_TITLE"));
+				ad_vo.setAd_op_date(rs.getDate("AD_OP_DATE"));
+				ad_vo.setAd_ed_date(rs.getDate("AD_ED_DATE"));
+				list.add(ad_vo);
+			}
+
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+
+		} catch (ClassNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} finally {
+			if (rs != null) {
+				try {
+					rs.close();
+				} catch (SQLException se) {
+					se.printStackTrace(System.err);
+				}
+			}
+			if (pstmt != null) {
+				try {
+					pstmt.close();
+				} catch (SQLException se) {
+					se.printStackTrace(System.err);
+				}
+			}
+			if (con != null) {
+				try {
+					con.close();
+				} catch (Exception e) {
+					e.printStackTrace(System.err);
+				}
+			}
+		}
+		return list;
+	}
+
+	@Override
+	public byte[] getNowAdImg(String ad_no) {
+		// TODO Auto-generated method stub
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		byte[] img = null;
+
+		try {
+			Class.forName(driver);
+
+			con = DriverManager.getConnection(url, userid, password);
+			pstmt = con.prepareStatement(GET_NOW_AD_IMG_STMT);
+			pstmt.setString(1, ad_no);
+
+			rs = pstmt.executeQuery();
+			
+			while (rs.next()){
+				img = rs.getBytes("AD_IMG");
+			}
+
+
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+
+		} catch (ClassNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} finally {
+			if (rs != null) {
+				try {
+					rs.close();
+				} catch (SQLException se) {
+					se.printStackTrace(System.err);
+				}
+			}
+			if (pstmt != null) {
+				try {
+					pstmt.close();
+				} catch (SQLException se) {
+					se.printStackTrace(System.err);
+				}
+			}
+			if (con != null) {
+				try {
+					con.close();
+				} catch (Exception e) {
+					e.printStackTrace(System.err);
+				}
+			}
+		}
+		return img;
+	}
+
 	public static void main(String[] args) throws IOException {
 		// TODO Auto-generated method stub
 		AdJDBCDAO dao=new AdJDBCDAO();
@@ -340,7 +518,18 @@ public class AdJDBCDAO implements AdDAO_interface{
 		
 		
 		
-		List<AdVO> list=dao.getAll();
+//		List<AdVO> list=dao.getAll();
+//		for(AdVO ad_vo4:list){
+//			System.out.print(ad_vo4.getAd_no());
+//			System.out.print(ad_vo4.getProd_no());
+//			System.out.print(ad_vo4.getAd_title());
+//			System.out.print(ad_vo4.getAd_img());
+//			System.out.print(ad_vo4.getAd_op_date());
+//			System.out.print(ad_vo4.getAd_ed_date());
+//			System.out.println();
+		
+		
+		List<AdVO> list=dao.getNowAd();
 		for(AdVO ad_vo4:list){
 			System.out.print(ad_vo4.getAd_no());
 			System.out.print(ad_vo4.getProd_no());

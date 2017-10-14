@@ -160,15 +160,20 @@
 								<c:if test="${prodVO.store_no!=storeSvc.getOneByMem(mem_ac).store_no}">
                                 <div class="container-fluid">
                                     <div class="row">
+                                    	<c:if test="${prodVO.prod_stat=='下架'}">
+			                                <div class="btn btn-default btn-warning">下架中</div>
+		                                </c:if>
                                         <div class="col-xs-7 col-sm-6 pad0">
+                                        	<c:if test="${prodVO.prod_stat=='上架'}" var="disable">
                                             <span id="sub" class="glyphicon glyphicon-minus btn btn-default btn-sm btn-danger" aria-hidden="true"></span>
                                             <input class="btn w50" type="text" maxlength="3" name="amount" value="1">
                                             <span id="add" class="glyphicon glyphicon-plus  btn btn-default btn-sm btn-danger" aria-hidden="true"></span>
-
+											</c:if>
                                         </div>
                                         <div class="col-xs-5 col-sm-6">
-                                            <div id="intoCart" class="btn btn-default btn-info">加入購物車</div>
-
+                                        	<c:if test="${prodVO.prod_stat=='上架'}">
+                                            	<div id="intoCart" class="btn btn-default btn-info">加入購物車</div>
+											</c:if>
                                         </div>
                                     </div>
                                 </div>

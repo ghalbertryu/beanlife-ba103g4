@@ -9,6 +9,7 @@
 <%@ page import="com.review.model.*"%>
 <%@ page import="com.like_rev.model.*"%>
 <%@ page import="com.qa.model.*"%>
+<%@ page import="com.ad.model.*"%>
 <%@ page import="com.cart_list.model.*"%>
 
 
@@ -18,6 +19,7 @@
 <jsp:useBean id="storeSvc" scope="page" class="com.store.model.StoreService" />
 <jsp:useBean id="like_revSvc" scope="page" class="com.like_rev.model.Like_revService" />
 <jsp:useBean id="qaSvc" scope="page" class="com.qa.model.QaService" />
+<jsp:useBean id="adSvc" scope="page" class="com.ad.model.AdService" />
 <jsp:useBean id="cart_listSvc" scope="page" class="com.cart_list.model.Cart_listService" />
 
 
@@ -128,15 +130,25 @@
           <div id="ad-cas" class="carousel slide" data-ride="carousel">
               <!-- 幻燈片主圖區 -->
               <div class="carousel-inner">
-                  <div class="item active">
-                      <img src="<%=request.getContextPath()%>/FrontEnd/res/img/ad1.png" alt="ad_pic1">
-                  </div>
-                  <div class="item">
-                      <img src="<%=request.getContextPath()%>/FrontEnd/res/img/ad2.png" alt="ad_pic2">
-                  </div>
-                  <div class="item">
-                      <img src="<%=request.getContextPath()%>/FrontEnd/res/img/ad3.png" alt="ad_pic3">
-                  </div>
+				  <c:forEach var="adVO" items="${adSvc.getNowAd()}" varStatus="s">
+				  	 <div class="item ${(s.count==1)?'active':''}">
+				  	 	<a class="showProd" name="${adVO.prod_no}" href='#modal-inner' data-toggle="modal"> 
+                      		<img src="<%=request.getContextPath()%>/AdImg.do?ad_no=${adVO.ad_no}" alt="ad_pic${s.count }">
+                     	</a>
+                 	 </div>
+				  </c:forEach>
+				  
+				  <c:if test="${adSvc.getNowAd().size()==0}">
+	                  <div class="item active">
+	                      <img src="<%=request.getContextPath()%>/FrontEnd/res/img/ad1.png" alt="ad_pic1">
+	                  </div>
+	                  <div class="item">
+	                      <img src="<%=request.getContextPath()%>/FrontEnd/res/img/ad2.png" alt="ad_pic2">
+	                  </div>
+	                  <div class="item">
+	                      <img src="<%=request.getContextPath()%>/FrontEnd/res/img/ad3.png" alt="ad_pic3">
+	                  </div>
+                  </c:if>
               </div>
               <!-- 上下頁控制區 -->
               <a class="left carousel-control" href="#ad-cas" data-slide="prev"><span class="glyphicon glyphicon-chevron-left"></span></a>

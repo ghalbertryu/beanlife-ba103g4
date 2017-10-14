@@ -10,5 +10,9 @@ public interface AdDAO_interface {
      public void delete(String AD_NO);
      public AdVO findByPrimaryKey(String AD_NO);
      public List<AdVO> getAll();
+     public List<AdVO> getNowAd();
+     public List<AdVO> getNowAdNoImg();
+     public byte[] getNowAdImg(String ad_no);
+
      
 }

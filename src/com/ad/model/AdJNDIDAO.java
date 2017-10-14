@@ -2,6 +2,7 @@ package com.ad.model;
 
 import java.sql.Blob;
 import java.sql.Connection;
+import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -33,8 +34,10 @@ public class AdJNDIDAO implements AdDAO_interface{
 	private static final String GET_ONE_STMT="select * from ad where AD_NO=?";
 	private static final String DELETE = "delete from ad where ad_no=?";
 	private static final String UPDATE ="update ad set PROD_NO=?,AD_TITLE=?,AD_IMG=?,AD_OP_DATE=?,AD_ED_DATE=? where AD_NO=?";
-	
-	
+	private static final String GET_NOW_AD_STMT ="select * from ad where sysdate between  ad_op_date and  ad_ed_date ";
+	private static final String GET_NOW_AD_NO_IMG_STMT ="select AD_NO, PROD_NO,AD_TITLE,AD_OP_DATE,AD_ED_DATE from AD where sysdate between  AD_OP_DATE and  AD_ED_DATE ";
+	private static final String GET_NOW_AD_IMG_STMT ="select AD_IMG from AD where AD_NO =? ";
+
 	
 	@Override
 	public void insert(AdVO ad_VO) {
@@ -274,6 +277,165 @@ public class AdJNDIDAO implements AdDAO_interface{
 		}
 		return list;
 		
+	}
+	
+	@Override
+	public List<AdVO> getNowAd() {
+		// TODO Auto-generated method stub
+		List<AdVO> list = new ArrayList<AdVO>();
+		AdVO ad_vo = null;
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+
+		try {
+
+			con = ds.getConnection();
+			pstmt = con.prepareStatement(GET_NOW_AD_STMT);
+			rs = pstmt.executeQuery();
+
+			while (rs.next()) {
+				ad_vo = new AdVO();
+				ad_vo.setAd_no(rs.getString("AD_NO"));
+				ad_vo.setProd_no(rs.getString("PROD_NO"));
+				ad_vo.setAd_title(rs.getString("AD_TITLE"));
+				ad_vo.setAd_img(rs.getBytes("AD_IMG"));
+				ad_vo.setAd_op_date(rs.getDate("AD_OP_DATE"));
+				ad_vo.setAd_ed_date(rs.getDate("AD_ED_DATE"));
+				list.add(ad_vo);
+			}
+
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+
+		} finally {
+			if (rs != null) {
+				try {
+					rs.close();
+				} catch (SQLException se) {
+					se.printStackTrace(System.err);
+				}
+			}
+			if (pstmt != null) {
+				try {
+					pstmt.close();
+				} catch (SQLException se) {
+					se.printStackTrace(System.err);
+				}
+			}
+			if (con != null) {
+				try {
+					con.close();
+				} catch (Exception e) {
+					e.printStackTrace(System.err);
+				}
+			}
+		}
+		return list;
+	}
+	
+	@Override
+	public List<AdVO> getNowAdNoImg() {
+		// TODO Auto-generated method stub
+		List<AdVO> list = new ArrayList<AdVO>();
+		AdVO ad_vo = null;
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+
+		try {
+			con = ds.getConnection();
+			pstmt = con.prepareStatement(GET_NOW_AD_NO_IMG_STMT);
+			rs = pstmt.executeQuery();
+
+			while (rs.next()) {
+				ad_vo = new AdVO();
+				ad_vo.setAd_no(rs.getString("AD_NO"));
+				ad_vo.setProd_no(rs.getString("PROD_NO"));
+				ad_vo.setAd_title(rs.getString("AD_TITLE"));
+				ad_vo.setAd_op_date(rs.getDate("AD_OP_DATE"));
+				ad_vo.setAd_ed_date(rs.getDate("AD_ED_DATE"));
+				list.add(ad_vo);
+			}
+
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+
+		} finally {
+			if (rs != null) {
+				try {
+					rs.close();
+				} catch (SQLException se) {
+					se.printStackTrace(System.err);
+				}
+			}
+			if (pstmt != null) {
+				try {
+					pstmt.close();
+				} catch (SQLException se) {
+					se.printStackTrace(System.err);
+				}
+			}
+			if (con != null) {
+				try {
+					con.close();
+				} catch (Exception e) {
+					e.printStackTrace(System.err);
+				}
+			}
+		}
+		return list;
+	}
+
+	@Override
+	public byte[] getNowAdImg(String ad_no) {
+		// TODO Auto-generated method stub
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		byte[] img = null;
+
+		try {
+			con = ds.getConnection();
+			pstmt = con.prepareStatement(GET_NOW_AD_IMG_STMT);
+			pstmt.setString(1, ad_no);
+				
+			rs = pstmt.executeQuery();
+			while (rs.next()){
+				img = rs.getBytes("AD_IMG");
+			}
+
+
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+
+		} finally {
+			if (rs != null) {
+				try {
+					rs.close();
+				} catch (SQLException se) {
+					se.printStackTrace(System.err);
+				}
+			}
+			if (pstmt != null) {
+				try {
+					pstmt.close();
+				} catch (SQLException se) {
+					se.printStackTrace(System.err);
+				}
+			}
+			if (con != null) {
+				try {
+					con.close();
+				} catch (Exception e) {
+					e.printStackTrace(System.err);
+				}
+			}
+		}
+		return img;
 	}
 
 }

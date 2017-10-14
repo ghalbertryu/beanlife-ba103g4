@@ -117,7 +117,7 @@ $(function(){
 	$('.msgTo').click(function (){
 		$('#msgOn').click();
 		//check if already open
-		var $urName = $(this).attr('id');
+		var $urName = $(this).attr('name');
 		for(var i =0 ; i <$('#msgTab li').length; i++){
 			if($($('#msgTab li')[i]).children('a').attr('name') == $urName){
 				return;

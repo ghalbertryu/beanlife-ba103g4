@@ -318,7 +318,7 @@
 											<div class="col-xs-4 col-sm-6 bold pull-left">
 												<h4><a class="showStore" name="${storeVO.store_no}" href='#modal-inner' data-toggle="modal">
 													${storeVO.store_name}
-												</a><span class="msgTo glyphicon glyphicon-comment" id="${storeVO.mem_ac}"></span></h4>
+												</a><span class="msgTo pointer tx-g glyphicon glyphicon-comment" name="${storeVO.mem_ac}"></span></h4>
 											</div>
 											<div class="col-xs-8 col-sm-6 pull-right text-right">
 												<small><fmt:formatDate value="${ordVO.ord_date}" pattern="yyyy-MM-dd HH:mm"/></small><br>

@@ -46,4 +46,16 @@ public class AdService {
 		return dao.getAll();
 	}
 	
+	public List<AdVO>getNowAd(){
+		return dao.getNowAd();
+	}
+	
+	public List<AdVO>getNowAdNoImg(){
+		return dao.getNowAdNoImg();
+	}
+	
+	public byte[]getNowAdImg(String ad_no){
+		return dao.getNowAdImg(ad_no);
+	}
+	
 }
