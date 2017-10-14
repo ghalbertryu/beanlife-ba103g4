@@ -193,7 +193,7 @@ pageContext.setAttribute("list",list);
           <c:forEach var="act_vo"  items="${list}"  begin="<%=pageIndex %>" end="<%=pageIndex+rowsPerPage-1%>">
      
           <tr>
-            <td>${act_vo.act_no }</td>
+            <td><a class="link_act" href="<%=request.getContextPath() %>/act_management/act_managementServlet?action=goto_act_detail&act_no=${act_vo.act_no }&act.jsp=<%=request.getServletPath() %>" target="_blank">${act_vo.act_no }</a></td>
             <td>${act_vo.act_name }</td>
             <td>${act_vo.mem_ac }</td>
             <td>NT$${act_vo.act_fee }</td>

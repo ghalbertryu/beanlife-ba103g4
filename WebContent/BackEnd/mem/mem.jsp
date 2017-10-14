@@ -30,6 +30,11 @@
     .mem_pic{
       width: 150px;
       height: 120px;
+      background-size: contain;
+      background-position:center,center;
+      background-repeat: no-repeat;
+      left: 50%;
+      transform: translate(-50%,0%);
     }
     td{
       vertical-align: middle;
@@ -167,7 +172,10 @@ pageContext.setAttribute("list",list);
                 
                 
                 
-                <td><img class="mem_pic" src="<%=request.getContextPath()%>/MemImg.do?mem_ac=${mem_vo.mem_ac}">
+                <td>
+          <%--      <img class="mem_pic" src="<%=request.getContextPath()%>/MemImg.do?mem_ac=${mem_vo.mem_ac}"> --%> 
+          <div class="mem_pic" style="background-image:url('<%=request.getContextPath()%>/MemImg.do?mem_ac=${mem_vo.mem_ac}')" ></div>
+                
                 </td>
                  <td class="my_mem_stat">${mem_vo.mem_stat }</td>
                 <td>

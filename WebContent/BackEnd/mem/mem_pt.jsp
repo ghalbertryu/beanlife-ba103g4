@@ -30,6 +30,11 @@
     .mem_pic{
       width: 150px;
       height: 120px;
+      background-size: contain;
+      background-position:center,center;
+      background-repeat: no-repeat;
+      left: 50%;
+      transform: translate(-50%,0%);
     }
     td{
       vertical-align: middle;
@@ -157,7 +162,10 @@ pageContext.setAttribute("list",list);
                 <td>${mem_vo.mem_lname }${mem_vo.mem_fname } </td>
                 <td>${mem_vo.mem_phone }</td>
                 <td>${mem_vo.mem_add }</td>
-                <td><img class="mem_pic" src="<%=request.getContextPath()%>/MemImg.do?mem_ac=${mem_vo.mem_ac}"></td>
+                <td>
+         <%--       <img class="mem_pic" src="<%=request.getContextPath()%>/MemImg.do?mem_ac=${mem_vo.mem_ac}"> --%> 
+                <div class="mem_pic" style="background-image:url('<%=request.getContextPath()%>/MemImg.do?mem_ac=${mem_vo.mem_ac}')" ></div>
+                </td>
                 
                 
                 <td><div class="now_total_pt">${mem_vo.mem_total_pt }</div>

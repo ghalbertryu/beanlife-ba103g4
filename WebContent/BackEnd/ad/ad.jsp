@@ -28,7 +28,16 @@
     .ad_img{
       width: 150px;
       height: 120px;
+      background-size: contain;
+      background-position:center,center;
+      background-repeat: no-repeat;
+      left: 50%;
+      transform: translate(-50%,0%);
+    
     }
+    
+ 
+    
     td{
       vertical-align: middle;
      
@@ -37,6 +46,7 @@
 .table>tbody>tr>td, .table>tbody>tr>th, .table>tfoot>tr>td, .table>tfoot>tr>th, .table>thead>tr>td, .table>thead>tr>th{
 
   vertical-align: middle;
+  text-align: center;
 }
 .prod_no{
 text-decoration: none;
@@ -55,9 +65,7 @@ text-decoration: none;
 
   padding: 20px;
   }
-    .date_picker  *{
-  
-  }
+   
   .control-label {
   width: 100px;
   float: left;
@@ -84,6 +92,11 @@ text-decoration: none;
   .return_img,.update_return_img{
   width: 150px;
   height: 100px;
+   background-size: contain;
+      background-position:center,center;
+      background-repeat: no-repeat;
+     
+  
   }
   </style>
 <%
@@ -179,7 +192,8 @@ pageContext.setAttribute("list",list);
                 <td  valign="middle">${ad_vo.ad_no }</td>
                 <td> ${my_prodSvc.getOneProd(ad_vo.prod_no).prod_name}</td>
                 <td>${ad_vo.ad_title }</td>
-                <td><img class="ad_img"src="<%=request.getContextPath()%>/AdImg.do?ad_no=${ad_vo.ad_no }"></td>
+           <%--     <td><img class="ad_img"src="<%=request.getContextPath()%>/AdImg.do?ad_no=${ad_vo.ad_no }"></td> --%>
+            <td class="ad_img_td"><div class="ad_img" style="background-image:url('<%=request.getContextPath()%>/AdImg.do?ad_no=${ad_vo.ad_no }')" ></div></td>
                 <td>${ad_vo.ad_op_date }</td>
                 <td>${ad_vo.ad_ed_date }</td>
                 <td>
@@ -289,7 +303,8 @@ pageContext.setAttribute("list",list);
   							ad_img="";
   						}
  						%>	
- 					 	<img class="return_img" src="<%=ad_img %>">
+ 				<%--  	<img class="return_img" src="<%=ad_img %>"> --%>	
+ 				<div class="return_img" style="background-image:url('<%=ad_img %>')" ></div>
  					 	</output>
   						</div>
 
@@ -404,7 +419,8 @@ pageContext.setAttribute("list",list);
   							ad_update_img="";
   						}
  						%>	
- 					 	<img  class="update_return_img" src="<%=ad_update_img %>">
+ 				<%-- 	 	<img  class="update_return_img" src="<%=ad_update_img %>"> --%>
+ 				<div class="update_return_img" style="background-image:url('<%=ad_update_img %>')" ></div>
  					 	</output>
   						</div>
 				

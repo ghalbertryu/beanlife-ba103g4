@@ -403,6 +403,14 @@ color:#7A3D0B;
 .leave_comm_date, .leave_reply_date{
 float: right;
 }
+
+.magical_message_button,.magic_reply_comm{
+float: left;
+}
+.my_org_cont{
+text-align: center;
+}
+
 </style>
 
 
@@ -507,7 +515,9 @@ float: right;
       <h1 class="introduction  small_title"><span class="fa fa-calendar"></span> 活動介紹
         <img src="C:/Users/Java/Desktop/專題照片/mule_coffee.jpg" alt="">
         <hr/>
-        <p>${act_vo.act_cont }</p>
+     <%--   <p class="my_act_cont">${act_vo.act_cont }</p> --%> 
+     <p class="my_act_cont">${act_vo.act_cont }</p>
+     
       </h1>
       <h1  class="actionMap  small_title"><span class="fa fa-map-marker"></span> 活動地圖
         <hr/>
@@ -531,7 +541,9 @@ float: right;
                 
                  <input type="hidden" name="act_detail.jsp" value="<%=request.getServletPath()%>">
             <br>
+            <button class="magical_message_button btn btn-default" type="button"></button>
             <button class="btn-default  response_button"  type="button">留言</button>
+            
             </form>
           </div>
           </div>
@@ -580,7 +592,7 @@ float: right;
         <div class="hostIcon">
       <%--	<img src="<%=request.getContextPath()%>/MemImg.do?mem_ac=${mem_vo.mem_ac}">  --%>  
         </div>
-        <p>${act_vo.org_cont } </p>
+        <p class="my_org_cont">${act_vo.org_cont } </p>
         <button class="contractHost btn-success btn-lg">聯絡主辦單位</button>
       </div>
     </div>
@@ -607,11 +619,12 @@ float: right;
 					<div class="modal-body">
 						 <textarea class="response_message" rows="2" cols="20" wrap="hard" name="comm_reply_cont" placeholder="回覆"></textarea>
 						 <input type="hidden"  name="comm_no"  class="set_comm_no" value="${act_comm_vo.comm_no }">
-						 <input type="hidden" name="act_detail.jsp" value="<%=request.getServletPath() %>">;
+						 <input type="hidden" name="act_detail.jsp" value="<%=request.getServletPath() %>">
 						 <input type="hidden" name="action" value="response_comm">
 						 
 					</div>
 					<div class="modal-footer">
+					<button type="button" class="btn btn-default magic_reply_comm" ></button>
 						<button type="button" class="btn btn-danger" data-dismiss="modal">關閉</button>
 						<button type="submit" class="btn btn-primary">回覆</button>
 					</div>
@@ -647,6 +660,27 @@ float: right;
  
  
  <script>
+ 
+ var new_act_cont=$(".my_act_cont").text().replace(/\n/g,"<br>");
+ $(".my_act_cont").html(new_act_cont);
+ 
+ var new_org_cont=$(".my_org_cont").text().replace(/\n/g,"<br>");
+ $(".my_org_cont").html(new_org_cont);
+ 
+ $(".magic_reply_comm").click(function(){
+	$(".response_message").text("快揪人一起參加啦~~");
+	 
+	 
+	 
+ })
+ 
+ $(".magical_message_button").click(function(){
+		
+		$(".leave_message").text("這個活動真得好讚喔~~");
+		
+	})
+ 
+ 
  
  $(".response_button").click(function(){
 	 

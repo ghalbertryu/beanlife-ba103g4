@@ -27,6 +27,11 @@
     .giftImg {
     height: 350px ;
      vertical-align: top;
+      background-size: cover;
+      background-position:center,center;
+      background-repeat: no-repeat;
+      left: 50%;
+      transform: translate(-50%,0%);
     }
     .abovegiftcard{
   margin-top:50px;
@@ -96,12 +101,29 @@
        width: 150px;
   height: 100px;
   display: none;
+   background-size: cover;
+      background-position:center,center;
+      background-repeat: no-repeat;
+  
+  
        }
        .modify_gift_img{
        width: 150px;
        height: 100px;
+       background-size: contain;
+      background-position:center,center;
+      background-repeat: no-repeat;
        }
      
+     
+     .thumb{
+      background-size: contain;
+      background-position:center,center;
+      background-repeat: no-repeat;
+     }
+     .magical_button{
+     float: left;
+     }
     </style>
     <%
     Gift_dataService gift_dataSvc = new Gift_dataService();
@@ -178,7 +200,10 @@ List<Gift_dataVO> list=gift_dataSvc.getAll();
            <c:forEach var="gift_data_vo"  items="${list}" begin="<%=pageIndex %>" end="<%=pageIndex+rowsPerPage-1%>">
            <FORM METHOD="post" ACTION="<%=request.getContextPath() %>/gift_management/gift_managementServlet" name="form1" >
               <div class="col-xs-4 col-sm-4  abovegiftcard">
-                <div class="giftcard"><img class="giftImg"src="<%=request.getContextPath()%>/GiftImg.do?gift_no=${gift_data_vo.gift_no }" >
+                <div class="giftcard">
+                <%-- <img class="giftImg"src="<%=request.getContextPath()%>/GiftImg.do?gift_no=${gift_data_vo.gift_no }" > --%>
+                <div class="giftImg" style="background-image:url('<%=request.getContextPath()%>/GiftImg.do?gift_no=${gift_data_vo.gift_no }')" ></div>
+                
                   <div class="info">
                     <h3>${gift_data_vo.gift_name}</h3>
                     <p>${gift_data_vo.gift_cont}</p>
@@ -280,7 +305,7 @@ List<Gift_dataVO> list=gift_dataSvc.getAll();
 <FORM METHOD="post" ACTION="<%=request.getContextPath() %>/gift_management/gift_managementServlet" name="form1" enctype="multipart/form-data">
 						 <div class="form-group">
     <label for="ad_title" class="h3">贈品名稱</label>
-    <input type="text" class="form-control" id="ad_title"  name="GIFT_NAME" placeholder="請輸入標題"  value="<%= (gift_data_VO==null)? "":gift_data_VO.getGift_name()%>"/>
+    <input type="text" class="form-control gift_name" id="ad_title"  name="GIFT_NAME" placeholder="請輸入標題"  value="<%= (gift_data_VO==null)? "":gift_data_VO.getGift_name()%>"/>
   					</div>
 						<div class="modal-body">
 				<h3> 剩餘數量</h3>
@@ -289,7 +314,7 @@ List<Gift_dataVO> list=gift_dataSvc.getAll();
 				<span class="input-group-btn">
 					<button type="button" class="btn btn-default" data-dir="dwn"><span class="glyphicon glyphicon-minus"></span></button>
 				</span>
-				<input type="text"  maxlength="3" name="GIFT_REMAIN"  class="form-control text-center" value="<%= (gift_data_VO==null)? "1":gift_data_VO.getGift_remain()%>">
+				<input type="text"  maxlength="3" name="GIFT_REMAIN"  class="form-control text-center gift_remain" value="<%= (gift_data_VO==null)? "1":gift_data_VO.getGift_remain()%>">
 				<span class="input-group-btn">
 					<button   type="button" class="btn btn-default" data-dir="up"><span class="glyphicon glyphicon-plus"></span></button>
 				</span>
@@ -299,9 +324,9 @@ List<Gift_dataVO> list=gift_dataSvc.getAll();
 				<div class="input-group number-spinner">
 
 				<span class="input-group-btn">
-					<button  type="button" class="btn btn-default" data-dir="dwn"><span class="glyphicon glyphicon-minus"></span></button>
+					<button  type="button" class="btn btn-default " data-dir="dwn"><span class="glyphicon glyphicon-minus"></span></button>
 				</span>
-				<input type="text" maxlength="3" name="GIFT_PT" class="form-control text-center" value="<%= (gift_data_VO==null)? "1":gift_data_VO.getGift_pt()%>">
+				<input type="text" maxlength="3" name="GIFT_PT" class="form-control text-center gift_pt" value="<%= (gift_data_VO==null)? "1":gift_data_VO.getGift_pt()%>">
 				<span class="input-group-btn">
 					<button type="button" class="btn btn-default" data-dir="up"><span class="glyphicon glyphicon-plus"></span></button>
 				</span>
@@ -325,14 +350,17 @@ List<Gift_dataVO> list=gift_dataSvc.getAll();
   							gift_img="";
   						}
  						%>	
- 					 	<img class="update_gift_img"  src="<%=gift_img %>">
+ 					<%-- 	<img class="update_gift_img"  src="<%=gift_img %>"> --%> 
+ 					<div class="update_gift_img" style="background-image:url('<%=gift_img %>')" ></div>
+ 					
  					 	</output>
   						</div>
 					<h3>贈品描述</h3>
-					<textarea class="form-control"  name="GIFT_CONT" rows="3"  id="gift_cont"><%= (gift_data_VO==null)? "" :gift_data_VO.getGift_cont()%></textarea>
+					<textarea class="form-control gift_cont"  name="GIFT_CONT" rows="3"  id="gift_cont" ><%= (gift_data_VO==null)? "" :gift_data_VO.getGift_cont()%></textarea>
 
 					</div>
 					<div class="modal-footer">
+					<button class="btn btn-default magical_button" type="button"></button>
 						<button type="button" class="btn btn-default" data-dismiss="modal">關閉</button>
 						<input type="hidden" name="action" value="insert">
 						<input type="hidden" name="GIFT_LAUNCH_DATE" value="" class="nowTime">
@@ -410,7 +438,10 @@ List<Gift_dataVO> list=gift_dataSvc.getAll();
 				<div class="form-group">
   				  <label for="exampleInputFile">贈品圖片</label>
   					  <input type="file" id="myfiles2"  name="gift_img"  value="">
- 					 	<output id="mylist2"><img class="modify_gift_img" src="<%=request.getContextPath()%>/GiftImg.do?gift_no=${gift_data_vo.gift_no }" ></output>
+ 					 	<output id="mylist2">
+ 				<%-- 	 	<img class="modify_gift_img" src="<%=request.getContextPath()%>/GiftImg.do?gift_no=${gift_data_vo.gift_no }" > --%>
+ 					 	<div class="modify_gift_img" style="background-image:url('<%=request.getContextPath()%>/GiftImg.do?gift_no=${gift_data_vo.gift_no }')" ></div>
+ 					 	</output>
   						</div>
 					<h3>贈品描述</h3>
 					<textarea class="form-control"  name="gift_cont" rows="3"  >${gift_data_vo.gift_cont }</textarea>
@@ -443,6 +474,20 @@ List<Gift_dataVO> list=gift_dataSvc.getAll();
     
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
     <script type="text/javascript">
+    
+    $(".magical_button").click(function(){
+    	$(".gift_name").val("精緻瓷杯");
+    	$(".gift_remain").val(20);
+    	$(".gift_pt").val(40);
+    	$(".gift_cont").text("能恰好的詮釋咖啡的細緻香醇。其中，用高級瓷土，混合動物骨粉燒製成的骨瓷咖啡杯， \n 質地輕盈、色澤柔和，密度高，保溫性好，可以使咖啡在杯中更慢的降低溫度 \n，是最能表現出咖啡風味的絕妙選擇。");
+    	
+    	
+    	
+    	
+    })
+    
+    
+    
     if(("a${gift_data_VO.gift_img}"!="a")){
     	$(".update_gift_img").css("display","block");
     }
@@ -487,8 +532,11 @@ List<Gift_dataVO> list=gift_dataSvc.getAll();
 	        return function(e) {
 	          // Render thumbnail.
 	          var span = document.createElement('span');
-	          span.innerHTML = ['<img class="thumb" src="', e.target.result,
-	                            '" title="', escape(theFile.name), '"/>'].join('');
+	          <%--       span.innerHTML = ['<img class="thumb" src="', e.target.result,
+	                            '" title="', escape(theFile.name), '"/>'].join('');  --%> 
+	                                      span.innerHTML = ['<div class="thumb" style="background-image:url(',e.target.result,')"/></div>  '].join('');
+	           
+	          
 	          document.getElementById('mylist').insertBefore(span, null);
 	          $(".thumb").width(150).height(100);
 	                        
@@ -523,8 +571,11 @@ List<Gift_dataVO> list=gift_dataSvc.getAll();
 		        return function(e) {
 		          // Render thumbnail.
 		          var span = document.createElement('span');
-		          span.innerHTML = ['<img class="thumb" src="', e.target.result,
-		                            '" title="', escape(theFile.name), '"/>'].join('');
+		<%--         span.innerHTML = ['<img class="thumb" src="', e.target.result,
+		                            '" title="', escape(theFile.name), '"/>'].join(''); --%> 
+		                            span.innerHTML = ['<div class="thumb" style="background-image:url(',e.target.result,')"/></div>  '].join('');
+		                            	                            
+		                            
 		          document.getElementById('mylist2').insertBefore(span, null);
 		          $(".thumb").width(150).height(100);
 		                        

@@ -90,6 +90,12 @@ List<Gift_dataVO> list=gift_dataSvc.getAll();
       }
       .giftImg{
       height: 350px;
+      width: 100%;
+      background-size: cover;
+      background-position:center,center;
+      background-repeat: no-repeat;
+      
+      
       }
       .gift .card img {
 border-style: none;
@@ -136,6 +142,12 @@ text-align: center;
 .show_gift_pic{
 width: 100px;
 height: 80px;
+background-size: contain;
+      background-position:center,center;
+      background-repeat: no-repeat;
+      left: 50%;
+      transform: translate(-50%,0%);
+
 }
 
 .large_bold{
@@ -231,7 +243,10 @@ font-weight: 900;
     <div class="col-md-12 col-sm-12 range">
       <c:forEach var="gift_data_vo"  items="${list}" begin="<%=pageIndex %>" end="<%=pageIndex+rowsPerPage-1%>">
       <div class="col-md-4 col-sm-4">
-        <div class="card"><img class="giftImg"src="<%=request.getContextPath()%>/GiftImg.do?gift_no=${gift_data_vo.gift_no }" >
+        <div class="card">
+      <%--   <img class="giftImg"src="<%=request.getContextPath()%>/GiftImg.do?gift_no=${gift_data_vo.gift_no }" > --%> 
+        <div class="giftImg" style="background-image:url('<%=request.getContextPath()%>/GiftImg.do?gift_no=${gift_data_vo.gift_no }')" ></div>
+        
           <div class="info">
             <h3  class="display_gift_name"><span class="fa fa-gift"></span>${gift_data_vo.gift_name}</h3>
             <p class="gift_cont">${gift_data_vo.gift_cont}</p>
@@ -280,7 +295,9 @@ font-weight: 900;
 								<td>贈品名稱</td>
 								<td>兌換申請日期</td>
 								<td>兌換申請狀態</td>
+								
 								<td>收貨地址</td>
+								<td>兌換數量</td>
 								<td>出貨日期</td>
 								<td>贈品圖片</td>
 							</tr>
@@ -295,9 +312,16 @@ font-weight: 900;
 								<td>${gift_data_vo.gift_name }</td>
 								<td>${convert_gift_vo.apply_date }</td>
 								<td>${convert_gift_vo.apply_stat }</td>
+								
 								<td>${convert_gift_vo.apply_add }</td>
+								<td>${convert_gift_vo.gift_amount }</td>
 								<td>${(convert_gift_vo.send_date==null)?"無": convert_gift_vo.send_date}</td>
-								<td  class="gift_image"><img class="img-responsive  show_gift_pic"src="<%=request.getContextPath()%>/GiftImg.do?gift_no=${gift_data_vo.gift_no }" ></td>
+								<td  class="gift_image">
+							<%-- 	<img class="img-responsive  show_gift_pic"src="<%=request.getContextPath()%>/GiftImg.do?gift_no=${gift_data_vo.gift_no }" > --%>
+							<div class="img-responsive  show_gift_pic" style="background-image:url('<%=request.getContextPath()%>/GiftImg.do?gift_no=${gift_data_vo.gift_no }')" ></div>
+								
+								
+								</td>
 							</tr>
 							</c:if>
 							</c:forEach>

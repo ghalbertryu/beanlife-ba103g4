@@ -166,6 +166,12 @@ margin-right: 10px;
 width: 10px;
 }
 
+.magical_button{
+left: 50%;
+transform: translate(-50%,0%);
+}
+
+
 </style>
   
 
@@ -185,7 +191,7 @@ width: 10px;
     <h2>3</h2>
   </div>
 </div>
-<h1 class="title"><span class="fa fa-pencil-square-o"></span>填寫活動資訊</h1>
+<h1 class="title"><span class="fa fa-pencil-square-o"></span>填寫活動資訊</h1><button class="btn btn-default magical_button">神奇小按鈕</button>
 <c:if test="${not empty errorMsgs}">
 	<font color='red'  class="myerror" >請修正以下錯誤:
 	<ul>
@@ -210,7 +216,7 @@ width: 10px;
       
         <div class="actionName">
           <h2>活動名稱:</h2>
-          <input type="text"   name="act_name"  value="${(act_vo==null)?"":act_vo.act_name }"/>
+          <input type="text" class="act_name"   name="act_name"  value="${(act_vo==null)?"":act_vo.act_name }"/>
         </div>
         
         <div class="address">
@@ -219,7 +225,7 @@ width: 10px;
         </div>
          <div class="price"  >
           <h2>活動費用: NT</h2>
-          <input type="text"  name="act_fee" value="${(act_vo==null)?"":act_vo.act_fee }"/>
+          <input type="text"  class="act_fee" name="act_fee" value="${(act_vo==null)?"":act_vo.act_fee }"/>
           <span  class="dollor">元</span>
         </div>
         <div class="time">
@@ -251,7 +257,7 @@ width: 10px;
 				<span class="input-group-btn">
 					<button  type="button" class="btn btn-default " data-dir="dwn"><span class="glyphicon glyphicon-minus"></span></button>
 				</span>
-				<input type="text"  name="min_mem" class="form-control text-center" value="${(act_vo==null)?"0":act_vo.min_mem }">
+				<input type="text"  name="min_mem" class="form-control text-center min_mem" value="${(act_vo==null)?"0":act_vo.min_mem }">
 				<span class="input-group-btn">
 					<button type="button" class="btn btn-default add" data-dir="up"><span class="glyphicon glyphicon-plus"></span></button>
 				</span>
@@ -264,7 +270,7 @@ width: 10px;
 				<span class="input-group-btn">
 					<button  type="button" class="btn btn-default " data-dir="dwn"><span class="glyphicon glyphicon-minus"></span></button>
 				</span>
-				<input type="text"  name="max_mem" class="form-control text-center" value="${(act_vo==null)?"0":act_vo.max_mem }">
+				<input type="text"  name="max_mem" class="form-control text-center max_mem" value="${(act_vo==null)?"0":act_vo.max_mem }">
 				<span class="input-group-btn">
 					<button type="button" class="btn btn-default add" data-dir="up"><span class="glyphicon glyphicon-plus"></span></button>
 				</span>
@@ -274,7 +280,7 @@ width: 10px;
           
            <span class="col-md-2 control-label  deadline">報名截止日期:</span>
                 <div class="input-group date form_datetime " data-date="" data-date-format="yyyy-mm-dd hh:ii:00" data-link-field="dtp_input1">
-                    <input class="form-control  test" size="16" type="text"  name="dl_date"    value="${(act_vo==null)?"":dl_date }">
+                    <input class="form-control  test dl_date" size="16" type="text"  name="dl_date"    value="${(act_vo==null)?"":dl_date }">
                     <span class="input-group-addon"><span class="glyphicon glyphicon-remove"></span></span>
 					<span class="input-group-addon"><span class="glyphicon glyphicon-th"></span></span>
                 </div>
@@ -436,6 +442,19 @@ $(".next_step").mouseenter(function(){
 	 
  })
 
+$(".magical_button").click(function(){
+$(".act_name").val("single place coffee lab.專屬咖啡師計畫");
+$(".act_add").val("台中市北區一中街167巷3號");
+$(".act_fee").val(0);
+$(".act_tag").eq(2).attr("checked",true);
+$(".min_mem").val(10);
+$(".max_mem").val(10);
+$(".dl_date").val("2017-10-31 16:00:00");	
+$(".payWay").eq(1).attr("checked",true);
+	
+	
+	
+})
 
 			</script>
 			
