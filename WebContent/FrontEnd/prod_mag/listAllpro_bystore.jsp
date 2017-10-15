@@ -40,7 +40,7 @@
 		</font>
 	</c:if>
 	
-	
+		
 	<div class="product col-sm-2">
 	<table class="store" >
 	<tr><td align="center"><h2>${storeVO.store_name}</h2></td></tr>
@@ -50,6 +50,7 @@
 	</table>
 	</div>
 	
+	<div class="container">
 		<div class="product col-sm-10">
 			<table class="table-bordered table-responsive pro_all">
 				<caption >
@@ -105,7 +106,7 @@
 				　　<%@ include file="page2.file"%>
 		</div>
 
-		
+		</div>
 </div>		
 		
 		

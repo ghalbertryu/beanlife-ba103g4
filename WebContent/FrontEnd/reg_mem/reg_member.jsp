@@ -92,7 +92,9 @@ $(".new").click(function(){
 	$(".ac").val("ohyes103");
 	$(".pd").val("zxc123");
 	$(".phone").val("0903567887");
-	
+	$("#ac1").val("ohyes103");
+	$("#pd1").val("zxc123");
+	$("#authphone").val("0903567887");
 })
 
 

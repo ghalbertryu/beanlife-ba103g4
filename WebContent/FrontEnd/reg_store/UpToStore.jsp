@@ -8,15 +8,22 @@
 <jsp:include page="/FrontEnd/include/head.jsp"/>
 <c:set var="mem_ac" value="${sessionScope.mem_ac}" scope="page"/>
 <%StoreVO storeVO = (StoreVO) request.getAttribute("storeVO"); %>
+<style>
+textarea {
+  resize : none;
+  width:340px
+}
 
+
+</style>
 
 
 <div class="content container mgt-depn-nav">
 	
-	<h3>會員申請店家 - regstore.jsp</h3>
-	
+	<h3>會員申請店家 </h3>
+	<button class="new">紐</button>
 
-	<h3>資料店家:</h3>
+	
 	<%-- 錯誤表列 --%>
 	<c:if test="${not empty errorMsgs}">
 		<font color='red'>請修正以下錯誤:
@@ -30,37 +37,37 @@
 
 	<FORM METHOD="POST"
 		ACTION="<%=request.getContextPath()%>/store/ToStore.do" name="form1" enctype="multipart/form-data">
-		<table border="1">
+		<table class="regstore">
 			<caption>
 				您好：${mem_ac}</caption>
 			<tr>
 				<td>店家名稱:</td>
-				<td><input type="TEXT" name="store_name" size="45"
+				<td><input type="TEXT" name="store_name" size="45" class="store_name"
 					value="" /></td>
 			</tr>
 			<tr>
 				<td>統一編號:</td>
-				<td><input type="TEXT" name="tax_id_no" size="45" 
+				<td><input type="TEXT" name="tax_id_no" size="45" class="tax_id_no"
 					value="" /></td>
 			</tr>
 			<tr>
 				<td>公司電話:</td>
-				<td><input type="TEXT" name="store_phone" size="45" pattern="0\d{1,2}-?(\d{1,4})-?(\d{1,4})" placeholder="EX:02-123-456"
+				<td><input type="TEXT" name="store_phone" size="45" pattern="0\d{1,2}-?(\d{1,4})-?(\d{1,4})" placeholder="EX:02-123-456" class="store_phone"
 					value="" /></td>
 			</tr>
 			<tr>
 				<td>店家住址:</td>
-				<td><input type="TEXT" id="address" name="store_add" size="45"
+				<td><input type="TEXT" id="address" name="store_add" size="45" 
 					class="add" value="" /></td>
 			</tr>
 			<tr>
 				<td>店家介紹:</td>
-				<td><textarea rows="4" cols="50" name="store_cont"
+				<td><textarea rows="4" cols="50" name="store_cont" class="store_cont"
 						placeholder="EX:媽媽嘴曾經發生命案糾咪"></textarea></td>
 			</tr>
 			<tr>
 				<td>匯款資訊：</td>
-				<td><textarea rows="4" cols="50" name="store_atm_info"
+				<td><textarea rows="4" cols="50" name="store_atm_info" class="store_atm_info"
 						placeholder="EX:匯款銀行：彰化銀行 蘆洲分行 
 戶名：陳建儒 
 銀行代碼：009  
@@ -69,7 +76,7 @@
 
 			<tr>
 				<td>免運費金額:</td>
-				<td><input type="number" name="store_free_ship" size="45" min="0" step="1"
+				<td><input type="number" name="store_free_ship" size="45" min="0" step="1" class="store_free_ship"
 					value="" /></td>
 			</tr>
 	
@@ -94,7 +101,7 @@
 			</tr>
 			<tr>
 				<td>店家照1:</td>
-				<td><input type="file" name="store_pic1" id="stpic1"></td>
+				<td><input type="file" name="store_pic1" id="stpic1" ></td>
 				<td><output id="mylist2">
 				<%
 				String store_pic1="";
@@ -153,9 +160,9 @@
 		</table>
 		<br> <input type="hidden" name="action" value="insert"> 
 		<input	type="hidden" name="mem_ac" value="${mem_ac}"> 
-		<input	type="hidden" name="store_add_lat" id="lat" size="45" value="${storeVO.store_add_lat}" />
-		<input	type="hidden" name="store_add_lon" id="lng" size="45" value="${storeVO.store_add_lon}" /> 
-		<input	type="submit" value="送出新增" /><input type ="button" onclick="history.back()" value="取消"></input>
+		<input	type="hidden" name="store_add_lat" id="lat" size="45" value="${storeVO.store_add_lat}" class="store_add_lat"/>
+		<input	type="hidden" name="store_add_lon" id="lng" size="45" value="${storeVO.store_add_lon}" class="store_add_lon"/> 
+		<input type ="button" onclick="history.back()" value="取消" class="btn-info"></input>　　　　　<input	type="submit" value="送出新增"  class="btn-info"/>
 	</FORM>
 
 </div>
@@ -359,7 +366,17 @@
 	document.getElementById('stpic3').addEventListener('change',
 			handleFileSelect4, false);
 
-
+	$(".new").click(function(){
+		$(".store_name").val("爸爸嘴咖啡");
+		$(".tax_id_no").val("42630352");
+		$(".store_phone").val("02-2297-6825")
+		$(".add").val("新北市新莊區明安西路205號");
+		$(".store_cont").val("爸爸嘴是一群愛喝咖啡的同好們合作的一間咖啡工作室，將好咖啡帶入生活中，讓每個愛好者與爸爸嘴共享 CAFE IS LIFE!");
+		$(".store_atm_info").val("匯款銀行：彰化銀行 蘆洲分行\n戶名：陳建儒\n銀行代碼：009\n銀行帳號：9832-51-326845-00");
+		$(".store_free_ship").val("100");
+		$(".store_add_lat").val("25.01501500000");
+		$(".store_add_lon").val("121.42613890000");
+	})
 </script>
 
 <jsp:include page="/FrontEnd/include/footer.jsp"/>
