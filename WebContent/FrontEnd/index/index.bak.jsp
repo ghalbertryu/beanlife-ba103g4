@@ -20,29 +20,32 @@
 <jsp:useBean id="like_revSvc" scope="page" class="com.like_rev.model.Like_revService" />
 <jsp:useBean id="qaSvc" scope="page" class="com.qa.model.QaService" />
 <jsp:useBean id="cart_listSvc" scope="page" class="com.cart_list.model.Cart_listService" />
-<jsp:useBean id="ActSvc" scope="page" class="com.act.model.ActService" />
+<jsp:useBean id="actSvc" scope="page" class="com.act.model.ActService" />
 
 <jsp:include page="/FrontEnd/include/head.jsp"/>
 <c:set var="mem_ac" value="${sessionScope.mem_ac}" scope="page"/>
-<c:set var="prodlist" value="${prodSvc.all}" scope="page"/>
+<c:set var="hotProdVOs" value="${sessionScope.hotProdVOs}" scope="page"/>
+<c:set var="prodVOs" value="${hotProdVOs}" scope="page"/>
 <c:set var="fo_list" value="${fo_prodSvc.getAllByMem(mem_ac)}" scope="page"/>
 <c:set var="like_rev_list" value="${like_revSvc.getAllByMem(mem_ac)}" scope="page"/>
 <c:set var="cart_listSet" value="${cart_listSvc.getVOsByMem(mem_ac)}" scope="page"/>
+<c:set var="actlist" value="${actSvc.getNew(10)}" scope="page"/>
 
-<%
-	ActService actSvc = new ActService();
-	List<ActVO> actlist = actSvc.getAll();
-    pageContext.setAttribute("actlist",actlist);    
-%>
+<style>
 
+.mgb30{
+cursor: pointer;
+}
 
+</style>
 
 
 
 
 
 		<!--BBBBBBBBBBBBBBBBBBBBBBBBBBBBBB-->
-		<div class="container-floid mgt-depn-nav">
+		<div class="container-fluid mgt-depn-nav">
+			<div class="row">
 			<div id="index-cas" class="carousel slide" data-ride="carousel">
 			    <!-- 幻燈片小圓點區 -->
 			    <ol class="carousel-indicators">
@@ -82,7 +85,7 @@
 			    <a class="right carousel-control" href="#index-cas" data-slide="next"><span class="glyphicon glyphicon-chevron-right"></span></a>
 			</div>
 		</div>
-		
+	</div>
 
 
 
@@ -97,7 +100,7 @@
 		<!--CCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCC-->
 		<div class="container cus-tab-block content">
 			<div class="row">
-				<div class="col-xs-12 col-sm-8 col-sm-offset-2">
+				<div class="col-xs-12 col-sm-10 col-sm-offset-1">
 					<div role="tabpanel">
 					    <!-- 標籤面板：標籤區 -->
 					    <ul class="nav nav-tabs " role="tablist">
@@ -105,7 +108,7 @@
 					            <a href="#tab1" aria-controls="tab1" role="tab" data-toggle="tab">熱門商品</a>
 					        </li>
 					        <li role="presentation" class="w50p text-center bold">
-					            <a href="#tab3" aria-controls="tab3" role="tab" data-toggle="tab">熱門活動</a>
+					            <a href="#tab3" aria-controls="tab3" role="tab" data-toggle="tab">最新活動</a>
 					        </li>
 					    </ul>
 					
@@ -116,11 +119,11 @@
 
 					    	<!-- tab1111111111111111111111111111111 -->
 					        <div role="tabpanel" class="tab-pane active" id="tab1">
-								<div class="container-floid">
+								<div class="container-fluid">
 									<div class="row">
 
 
-									<c:forEach var="prodVO" items="${prodlist}">
+									<c:forEach var="prodVO" items="${prodVOs}">
 									<%
 										String prod_no = ((ProdVO)pageContext.getAttribute("prodVO")).getProd_no();
 										//此會員對此商品是否Follow的Boolean
@@ -146,8 +149,8 @@
 		                            %>
 
 				                      <!-- ////////////////////////////// -->
-				                      <div class="col-xs-12 col-sm-3 padt10">
-				                        <a id="${prodVO.prod_no}" href='#modal-id' data-toggle="modal">
+				                      <div class="col-xs-6 col-sm-3 padt10">
+				                        <a id="${prodVO.prod_no}" class="showProd" name="${prodVO.prod_no}" href='#modal-inner' data-toggle="modal">
 				                          
 				                          <img class="img-responsive  mg-auto vam-img  rd10" src="<%=request.getContextPath()%>/prod/prodImg.do?prod_no=${prodVO.prod_no}&index=1">
 				                          
@@ -176,32 +179,13 @@
 				                      
 				                      
 <script>
-//show Prod
-var $modalX = $("#modalX");
-var $btn = $("#${prodVO.prod_no}").click(function(){
-		var prodNo =  $("#${prodVO.prod_no}").attr("id");
-		var urlstr = '<%=request.getContextPath()%>/FrontEnd/prod/prodPage.jsp?prodNo='+prodNo;
-		$.ajax({
-			url : urlstr,
-			type : 'GET',
-			dataType: "html",
-			async: false,
-			success : function(result) {
-				while($modalX.children().length > 0){
-					$modalX.empty();
-				}
-				
-				$modalX.html(result);
-			},
-			error : function(xhr) {
-				alert('Ajax request 發生錯誤');
-			}
-		});
-		
-	});
 
 //foProd
 var $btnFoProd = $("button.bk${prodVO.prod_no}").click(function(){
+	if(${mem_ac==null}){
+		 $('#modal-login').modal("show");
+		 return false;
+	}
     var $action = "foProd";
     var $prod_no = "${prodVO.prod_no}"
     $.ajax({
@@ -217,7 +201,7 @@ var $btnFoProd = $("button.bk${prodVO.prod_no}").click(function(){
             } else {
                 if(jdata.isAdd==1){
 					$('.bk${prodVO.prod_no}.count').each(function(){$(this).text(jdata.count)})
-						$('button.bk${prodVO.prod_no}').addClass('bor-info');
+					$('button.bk${prodVO.prod_no}').addClass('bor-info');
                     $('.bk${prodVO.prod_no}').addClass('text-info');
                     $('.bk${prodVO.prod_no}').removeClass('tx-gray');
                 } else{
@@ -265,25 +249,26 @@ var $btnFoProd = $("button.bk${prodVO.prod_no}").click(function(){
 
 					        <!-- tab333333333333333333333333333333333 -->
 					        <div role="tabpanel" class="tab-pane" id="tab3">
-								<div class="container-floid">
-
-									<c:forEach var="actVO" items="${actlist}">
-										<div class="row mgb30 mgt20 ">
-											<div class="col-xs-12 col-sm-6">
-												<img class="img-responsive  mg-auto vam-img" src="<%=request.getContextPath()%>/act/actImg.do?act_no=${actVO.act_no}&index=1">
+								<div class="container-fluid">
+									
+									<div class="row">
+										<c:forEach var="actVO" items="${actlist}">
+											<a href="<%=request.getContextPath()%>/act_management/act_managementServlet?action=goto_act_detail&act_no=${actVO.act_no }">
+											<div class="row mgb30 mgt20 ">
+												<div class="col-xs-12 col-sm-6">
+													<img class="img-responsive  mg-auto vam-img" src="<%=request.getContextPath()%>/act/actImg.do?act_no=${actVO.act_no}&index=1">
+												</div>
+												<div class="col-xs-12 col-sm-6">
+													<h4 class="inline-b bold">${actVO.act_name}</h4>
+													<p>${fn:substring(actVO.act_cont,0,160)}...</p>
+													<h5 class="inline-b pull-left text-info">${actVO.act_op_date}</h5>
+													<h5 class="inline-b pull-left mgl20 text-info">${fn:substring(actVO.act_add,0,3)}</h5>
+													
+												</div>
 											</div>
-											<div class="col-xs-12 col-sm-6">
-												<h4 class="inline-b bold">${actVO.act_name}</h4>
-												<p>${fn:substring(actVO.act_cont,0,160)}...</p>
-												<h5 class="inline-b pull-left text-info">${actVO.act_op_date}</h5>
-												<h5 class="inline-b pull-left mgl20 text-info">${fn:substring(actVO.act_add,0,3)}</h5>
-												<button type="button" class="btn btn-default btn-sm zidx5 pull-right" aria-label="Left Align">
-						        					<span class="tx-gray">42</span>
-													<span class="glyphicon glyphicon-bookmark tx-gray" aria-hidden="true"></span>
-												</button>
-											</div>
-										</div>
-									</c:forEach>
+											</a>
+										</c:forEach>
+									</div>
 									
 
 
@@ -302,7 +287,18 @@ var $btnFoProd = $("button.bk${prodVO.prod_no}").click(function(){
 
 
 
+<script>
+$(".mgb30").click(function(){
+$(this).parent().submit();
+	
+	
+	
+	
+})
 
+
+
+</script>
 
 
 

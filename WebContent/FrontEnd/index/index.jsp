@@ -25,6 +25,7 @@
 <jsp:include page="/FrontEnd/include/head.jsp"/>
 <c:set var="mem_ac" value="${sessionScope.mem_ac}" scope="page"/>
 <c:set var="hotProdVOs" value="${sessionScope.hotProdVOs}" scope="page"/>
+<%-- <c:set var="hotProdVOs" value="${prodSvc.all}" scope="page"/> --%>
 <c:set var="prodVOs" value="${hotProdVOs}" scope="page"/>
 <c:set var="fo_list" value="${fo_prodSvc.getAllByMem(mem_ac)}" scope="page"/>
 <c:set var="like_rev_list" value="${like_revSvc.getAllByMem(mem_ac)}" scope="page"/>
@@ -119,11 +120,18 @@ cursor: pointer;
 
 					    	<!-- tab1111111111111111111111111111111 -->
 					        <div role="tabpanel" class="tab-pane active" id="tab1">
-								<div class="container-fluid">
+								
+									<c:forEach var="prodVO" items="${prodVOs}" varStatus="s">
+									<c:if test="${s.index mod 4==0}">
+									<div class="container-fluid">
 									<div class="row">
+									</c:if>
+									
+									<c:if test="${s.index mod 2==0}">
+									<div class="col-xs-12 col-sm-6 pad0">
+									</c:if>
 
-
-									<c:forEach var="prodVO" items="${prodVOs}">
+									
 									<%
 										String prod_no = ((ProdVO)pageContext.getAttribute("prodVO")).getProd_no();
 										//此會員對此商品是否Follow的Boolean
@@ -149,7 +157,7 @@ cursor: pointer;
 		                            %>
 
 				                      <!-- ////////////////////////////// -->
-				                      <div class="col-xs-6 col-sm-3 padt10">
+				                      <div class="col-xs-6 col-sm-6 padt10">
 				                        <a id="${prodVO.prod_no}" class="showProd" name="${prodVO.prod_no}" href='#modal-inner' data-toggle="modal">
 				                          
 				                          <img class="img-responsive  mg-auto vam-img  rd10" src="<%=request.getContextPath()%>/prod/prodImg.do?prod_no=${prodVO.prod_no}&index=1">
@@ -220,15 +228,23 @@ var $btnFoProd = $("button.bk${prodVO.prod_no}").click(function(){
 });
 </script>                   
 				                      
+				                    <c:if test="${s.index mod 2==1 || s.count==prodVOs.size()}">
+									</div>
+									</c:if>  
+				                    
 
+									<c:if test="${s.index mod 4==3 || s.count==prodVOs.size()}">
+									</div>
+									</div>
+									</c:if>
+								
 				                    </c:forEach>
 
 
 
 
 
-									</div>
-								</div>
+								
 
 					        </div>
 

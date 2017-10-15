@@ -69,7 +69,7 @@
                     <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
                     <h4 class="modal-title bold">${prodVO.prod_name}</h4>
                 </div>
-                <div class="modal-body">
+                <div class="modal-body pad0">
                     <div class="container-fluid">
 
 

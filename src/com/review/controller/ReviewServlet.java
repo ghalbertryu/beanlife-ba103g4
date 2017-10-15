@@ -14,6 +14,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.mem.model.MemService;
+import com.ord.model.OrdService;
 import com.review.model.*;
 /**
  * Servlet implementation class ReviewServlet
@@ -182,7 +184,10 @@ public class ReviewServlet extends HttpServlet {
 				ReviewService reviewSvc = new ReviewService();
 				
 				reviewVO = reviewSvc.addReview( ord_no, prod_no, prod_score, sb.toString(), rev_cont);
-				
+				MemService memSvc = new MemService();
+				OrdService ordVO = new OrdService();
+				String mem_ac = ordVO.getOrdByOrdno(ord_no).getMem_ac();
+				memSvc.addPtToMem(mem_ac, 5);
 				/***************************3.新增完成,準備轉交(Send the Success view)***********/	
 				String stat = "?status=3";
 				String url = "/FrontEnd/buyerorder/buyerorder.jsp"+stat;

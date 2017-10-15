@@ -112,7 +112,16 @@
         
                     <div class="col-xs-12 col-sm-10 col-sm-offset-1">
    
-						<c:forEach var="prodVO" items="${prodSet}">
+						<c:forEach var="prodVO" items="${prodSet}" varStatus="s">
+						
+						<c:if test="${s.index mod 4==0}">
+						<div class="container-fluid">
+						<div class="row">
+						</c:if>
+						
+						<c:if test="${s.index mod 2==0}">
+						<div class="col-xs-12 col-sm-6 pad0">
+						</c:if>
 						<%
 							String prod_no = ((ProdVO)pageContext.getAttribute("prodVO")).getProd_no();
 							//此會員對此商品是否Follow的Boolean
@@ -138,7 +147,7 @@
                            %>
 
 	                      <!-- ////////////////////////////// -->
-	                      <div class="col-xs-12 col-sm-3 padt10">
+	                      <div class="col-xs-6 col-sm-6 padt10">
 	                        <a id="sp${prodVO.prod_no}" class="changeProd" name="${prodVO.prod_no}" href='${prodVO.prod_no}' data-toggle="modal">
 	                          <img class="img-responsive  mg-auto vam-img  rd10" src="<%=request.getContextPath()%>/prod/prodImg.do?prod_no=${prodVO.prod_no}&index=1">
 	                          
@@ -206,7 +215,17 @@ var $btnFoProd = $("button.bk${prodVO.prod_no}").click(function(){
     });
     return false;
 });
-</script> 				                      
+</script> 				        
+
+						 <c:if test="${s.index mod 2==1 || s.count==prodSet.size()}">
+						</div>
+						</c:if>  
+	                    
+
+						<c:if test="${s.index mod 4==3 || s.count==prodSet.size()}">
+						</div>
+						</div>
+						</c:if>              
 				                     
 
 				    	</c:forEach>
