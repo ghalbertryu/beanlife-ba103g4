@@ -24,13 +24,12 @@ import javax.sql.DataSource;
 @WebServlet("/store/storeImg.do")
 public class StoreImg extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-       
+
 	Connection con;
 
-	public void doGet(HttpServletRequest req, HttpServletResponse res)
-			throws ServletException, IOException {
+	public void doGet(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
 
-    req.setCharacterEncoding("UTF-8");
+		req.setCharacterEncoding("UTF-8");
 		res.setContentType("image/gif");
 		ServletOutputStream out = res.getOutputStream();
 
@@ -38,9 +37,14 @@ public class StoreImg extends HttpServlet {
 			Statement stmt = con.createStatement();
 			String store_no = req.getParameter("store_no");
 			String index = req.getParameter("index");
-//      prod_no = new String(prod_no.getBytes("ISO-8859-1"),"UTF-8");
-			ResultSet rs = stmt.executeQuery(
-				"SELECT store_pic"+index+" FROM store WHERE store_no='"+store_no+"'");
+			ResultSet rs = null;
+			if (index.equals("0")) {
+				rs = stmt.executeQuery("SELECT win_id_pic FROM store WHERE store_no='" + store_no + "'");
+
+			} else {
+				rs = stmt.executeQuery("SELECT store_pic" + index + " FROM store WHERE store_no='" + store_no + "'");
+
+			}
 
 			if (rs.next()) {
 				BufferedInputStream in = new BufferedInputStream(rs.getBinaryStream(1));
@@ -51,7 +55,7 @@ public class StoreImg extends HttpServlet {
 				}
 				in.close();
 			} else {
-				//res.sendError(HttpServletResponse.SC_NOT_FOUND);
+				// res.sendError(HttpServletResponse.SC_NOT_FOUND);
 				InputStream in = getServletContext().getResourceAsStream("/FrontEnd/res/img/d1.jpg");
 				byte[] buf = new byte[in.available()];
 				in.read(buf);
@@ -61,7 +65,7 @@ public class StoreImg extends HttpServlet {
 			rs.close();
 			stmt.close();
 		} catch (Exception e) {
-//			System.out.println(e);
+			// System.out.println(e);
 			InputStream in = getServletContext().getResourceAsStream("/FrontEnd/res/img/d1.jpg");
 			byte[] buf = new byte[in.available()];
 			in.read(buf);
@@ -84,7 +88,8 @@ public class StoreImg extends HttpServlet {
 
 	public void destroy() {
 		try {
-			if (con != null) con.close();
+			if (con != null)
+				con.close();
 		} catch (SQLException e) {
 			System.out.println(e);
 		}
