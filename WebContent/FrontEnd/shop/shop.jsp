@@ -38,7 +38,7 @@
 
 
     <!-- funcbar -->
-    <nav id="funcbar" class="navbar navbar-default navbar-fixed-top mgt-depn-nav func-h zidx1 bg-light-brn border0" role="navigation">
+    <nav id="funcbar" class="navbar navbar-default navbar-fixed-top mgt-depn-nav func-h zidx1 bg-light-brn border0" role="navigation" style="display:none;">
     <form method="post" action="<%=request.getContextPath()%>/prod/prod.do">
       <div class="container padt8">
         <div class="col-xs-12 col-sm-2 col-sm-offset-1">
@@ -221,9 +221,10 @@
                 <div class="pull-right inline-b">
                 	<form method="post" action="<%=request.getContextPath()%>/prod/prod.do" name="sort">
                   <select class="form-control " name="sort">
-                  		<option value="time">排序依日期</option>
-                        <option value="score">排序依評價</option>
-                        <option value="cp">排序依CP值</option>
+                  		<option value="">排序方式</option>
+                  		<option value="time" ${(sort=='time')?'selected':'' }>排序依日期</option>
+                        <option value="score" ${(sort=='score')?'selected':'' }>排序依評價</option>
+                        <option value="cp" ${(sort=='cp')?'selected':'' }>排序依CP值</option>
                         
                     </select>
                     <input name="action" type="hidden" value="sort">
@@ -232,6 +233,15 @@
               </div>
             </div>
           </div>
+                
+<script>
+	$('select[name="sort"]').change(function(){
+		console.log('sort');
+		$('form[name="sort"]').submit();
+	});
+</script>
+
+
 
           <div class="container-fluid">
             <div class="row">

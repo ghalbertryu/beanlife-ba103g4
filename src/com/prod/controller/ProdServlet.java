@@ -1,6 +1,9 @@
 package com.prod.controller;
 
 import java.io.IOException;
+import java.sql.Date;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.List;
@@ -17,6 +20,7 @@ import javax.servlet.http.HttpSession;
 
 import com.prod.model.ProdService;
 import com.prod.model.ProdVO;
+import com.review.model.ReviewService;
 
 
 
@@ -108,7 +112,32 @@ public class ProdServlet extends HttpServlet {
 		}
 		
 		if ("sort".equals(action)) {
-			
+			try{
+				HttpSession session = req.getSession();
+				List<ProdVO> list  =(List<ProdVO> ) session.getAttribute("searchRs");
+				String sort = req.getParameter("sort");
+				Comparator<ProdVO> sortByTime = (e2,e1)->{ return ((Date)e1.getEd_time()).compareTo( (Date)e2.getEd_time()); };
+				Comparator<ProdVO> sortByScore= (e2,e1)->{ 
+					ReviewService revSvc = new ReviewService();
+					return revSvc.getScoreByProd(e1.getProd_no()).compareTo(revSvc.getScoreByProd(e2.getProd_no()));
+				};
+				Comparator<ProdVO> sortByCP = (e1,e2)->{ return ((Double)(e1.getProd_price()/e1.getProd_wt())).compareTo((Double)(e2.getProd_price()/e2.getProd_wt())); };
+				if(sort.equals("time")){
+					Collections.sort(list, sortByTime);
+				} else if(sort.equals("score")){
+					Collections.sort(list, sortByScore);
+				} else if(sort.equals("cp")){
+					Collections.sort(list, sortByCP);
+				}
+				session.setAttribute("searchRs", list);
+				req.setAttribute("sort", sort);
+				RequestDispatcher successView = req.getRequestDispatcher("/FrontEnd/shop/shop.jsp"); // 成功轉交listEmps_ByCompositeQuery.jsp
+				successView.forward(req, res);
+			} catch (Exception e){
+				RequestDispatcher failureView = req
+						.getRequestDispatcher("/FrontEnd/shop/shop.jsp");
+				failureView.forward(req, res);
+			}
 		}
 		
 	}
