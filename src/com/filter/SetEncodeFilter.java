@@ -48,7 +48,7 @@ public class SetEncodeFilter implements Filter {
 		chain.doFilter(request, response);
 		
 		request.setCharacterEncoding(encoding);
-		session.setAttribute("location", req.getRequestURI());
+		session.setAttribute("location", req.getRequestURI()+"?"+req.getQueryString());
 	}
 
 

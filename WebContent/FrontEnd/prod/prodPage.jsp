@@ -154,7 +154,7 @@
                                         <span class="bk${prodVO.prod_no} count ${(isFollow)?'text-info':'tx-gray'}">${fo_prodSvc.getCountByProd(prodVO.prod_no)}</span>
                                         <span class="bk${prodVO.prod_no} glyphicon glyphicon-bookmark ${(isFollow)?'text-info':'tx-gray'}" aria-hidden="true"></span>
                                     </button>
-                                    標價/重量：NT$<fmt:formatNumber value="${prodVO.prod_price/prodVO.prod_wt}" maxFractionDigits="1"/>/lb<br>
+                                    標價/重量：<span class="bold text-danger">NT$<fmt:formatNumber value="${prodVO.prod_price/prodVO.prod_wt}" maxFractionDigits="1"/>/lb</span><br>
                                     運費：NT$${prodVO.send_fee}<span class="text-warning bold mgl20">滿$${storeSvc.getonestore(prodVO.store_no).store_free_ship}免運費</span><br>
                                     供應數量：${prodVO.prod_sup}
                                 </p>

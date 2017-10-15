@@ -161,7 +161,7 @@
 				  <c:forEach var="adVO" items="${adSvc.getNowAd()}" varStatus="s">
 				  	 <div class="item ${(s.count==1)?'active':''}">
 				  	 	<a class="showProd" name="${adVO.prod_no}" href='#modal-inner' data-toggle="modal"> 
-                      		<img src="<%=request.getContextPath()%>/AdImg.do?ad_no=${adVO.ad_no}" alt="ad_pic${s.count }">
+                      		<img src="<%=request.getContextPath()%>/AdImg.do?ad_no=${adVO.ad_no}" alt="ad_pic${s.count } title="${adVO.ad_title}">
                      	</a>
                  	 </div>
 				  </c:forEach>
@@ -218,6 +218,7 @@
                 <div class="pull-left inline-b">
                   <h4 class="text-danger">找到${prodlist.size()}項商品</h4>
                 </div>
+                <c:if test="${searchRs!=null}">
                 <div class="pull-right inline-b">
                 	<form method="post" action="<%=request.getContextPath()%>/prod/prod.do" name="sort">
                   <select class="form-control " name="sort">
@@ -230,13 +231,13 @@
                     <input name="action" type="hidden" value="sort">
                     </form>
                 </div>
+                </c:if>
               </div>
             </div>
           </div>
                 
 <script>
 	$('select[name="sort"]').change(function(){
-		console.log('sort');
 		$('form[name="sort"]').submit();
 	});
 </script>
@@ -281,7 +282,8 @@
                       <small class="inline-b pull-right">${prodVO.ed_time}</small>
                       <h4 class="inline-b bold">${prodVO.prod_name}</h4>
                       <div>
-                        <h5 class="inline-b bold text-info">NT$ ${prodVO.prod_price}　${prodVO.bean_contry}　${prodVO.proc}　${prodVO.roast}　${storeSvc.getonestore(prodVO.store_no).store_name}</h5>
+                        <h5 class="inline-b bold text-info">NT$ ${prodVO.prod_price}　${prodVO.bean_contry}　${prodVO.proc}　${prodVO.roast}</h5><br>
+                        <span class="inline-b bold text-danger">NT$ <fmt:formatNumber value="${prodVO.prod_price/prodVO.prod_wt}" maxFractionDigits="1"/>/lb</span>
                         <button type="button" class="bk${prodVO.prod_no} btn btn-default btn-sm inline-b pull-right zidx5 ${(isFollow)?'bor-info':''}" aria-label="Left Align">
                             <span class="bk${prodVO.prod_no} count ${(isFollow)?'text-info':'tx-gray'}">${fo_prodSvc.getCountByProd(prodVO.prod_no)}</span>
                             <span class="bk${prodVO.prod_no} glyphicon glyphicon-bookmark ${(isFollow)?'text-info':'tx-gray'}" aria-hidden="true"></span>

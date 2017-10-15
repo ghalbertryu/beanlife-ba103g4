@@ -612,11 +612,13 @@ public class OrdDAO implements OrdDAO_interface {
 			pstmt = con.prepareStatement(UPDATE_STAT);
 			
 			pstmt.setString(1, ordVO.getOrd_stat());
-			pstmt.setTimestamp(2, (ordVO.getPay_chk_date()!=null)?new Timestamp(ordVO.getPay_chk_date().getTime()):null);
-			pstmt.setTimestamp(3, (ordVO.getSend_date()!=null)?new Timestamp(ordVO.getSend_date().getTime()):null);
-			pstmt.setString(4, ordVO.getSend_id());
-			pstmt.setString(5, ordVO.getOrd_no ());
+			pstmt.setTimestamp(2, (ordVO.getPay_date()!=null)?new Timestamp(ordVO.getPay_date().getTime()):null);
+			pstmt.setTimestamp(3, (ordVO.getPay_chk_date()!=null)?new Timestamp(ordVO.getPay_chk_date().getTime()):null);
+			pstmt.setTimestamp(4, (ordVO.getSend_date()!=null)?new Timestamp(ordVO.getSend_date().getTime()):null);
+			pstmt.setString(5, ordVO.getSend_id());
+			pstmt.setString(6, ordVO.getOrd_no ());
 			pstmt.executeUpdate();
+			
 			
 			//add sup of prod
 			Set<Ord_listVO> ord_listVOs = getOrd_listByOrd(ordVO.getOrd_no());

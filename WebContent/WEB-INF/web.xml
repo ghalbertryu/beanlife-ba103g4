@@ -130,6 +130,15 @@
     <url-pattern>/FrontEnd/mem/*</url-pattern>
     <url-pattern>/FrontEnd/order/*</url-pattern>
     <url-pattern>/FrontEnd/shop/*</url-pattern>
+    <url-pattern>/FrontEnd/act/*</url-pattern>
+    <url-pattern>/FrontEnd/contact_us/*</url-pattern>
+    <url-pattern>/FrontEnd/gift/*</url-pattern>
+    <url-pattern>/FrontEnd/ord_mag/*</url-pattern>
+    <url-pattern>/FrontEnd/prod_mag/*</url-pattern>
+    <url-pattern>/FrontEnd/reg_mem/*</url-pattern>
+    <url-pattern>/FrontEnd/reg_store/*</url-pattern>
+    <url-pattern>/FrontEnd/store_mag/*</url-pattern>
+    <url-pattern>/act_management/act_managementServlet/*</url-pattern>
     <dispatcher>REQUEST</dispatcher>
   </filter-mapping>
   <filter>
@@ -142,6 +151,10 @@
     <url-pattern>/FrontEnd/cart/cart.jsp</url-pattern>
     <url-pattern>/FrontEnd/mem/mem.jsp</url-pattern>
     <url-pattern>/FrontEnd/order/order.jsp</url-pattern>
+    <url-pattern>/FrontEnd/ord_mag/*</url-pattern>
+    <url-pattern>/FrontEnd/prod_mag/*</url-pattern>
+    <url-pattern>/FrontEnd/reg_store/*</url-pattern>
+    <url-pattern>/FrontEnd/store_mag/*</url-pattern>
     <servlet-name>Cart_listServletAjax</servlet-name>
     <servlet-name>Fo_prodServletAjax</servlet-name>
     <servlet-name>Fo_storeServletAjax</servlet-name>

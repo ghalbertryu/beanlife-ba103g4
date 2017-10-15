@@ -133,7 +133,9 @@ public List<ActVO> getNew(int count){
 	List<ActVO> list = dao.getSort("act_no desc");
 	List<ActVO> list2 = new ArrayList<ActVO>();
 	for(ActVO actVO : list){
-		list2.add(actVO);
+		if(actVO.getDl_date().after(new Date(System.currentTimeMillis()))){
+			list2.add(actVO);
+		}
 		if(list2.size()==count){
 			break;
 		}

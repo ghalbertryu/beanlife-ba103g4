@@ -39,7 +39,19 @@
 			<div class="col-xs-12 col-sm-4 col-sm-offset-4 text-center mgt20">
 				<span>${memVO.mem_ac}</span><br>
 				${mem_gradeSvc.getOneMem_grade(memVO.grade_no).grade_title}　${memVO.mem_pt}/${memVO.mem_total_pt}<br>
-				<small><a href="<%=request.getContextPath()%>/FrontEnd/reg_mem/mem_data.jsp">修改資料</a>　<a href="<%=request.getContextPath()%>/FrontEnd/gift/gift_data_frontEnd.jsp">積分兌換</a>　<a href="<%=request.getContextPath()%>/FrontEnd/reg_store/UpToStore.jsp">申請店家</a></small>
+				<small><a href="<%=request.getContextPath()%>/FrontEnd/reg_mem/mem_data.jsp">修改資料</a>　<a href="<%=request.getContextPath()%>/FrontEnd/gift/gift_data_frontEnd.jsp">積分兌換</a></small>
+				<br>
+				<c:if test="${storeSvc.getOneByMem(mem_ac) == null}">
+				<a href="<%=request.getContextPath()%>/FrontEnd/reg_store/UpToStore.jsp"><span class="text-info" >申請成為店家</span></a>
+				</c:if>
+				<c:if test="${storeSvc.getOneByMem(mem_ac) != null}">
+					<c:if test="${storeSvc.getOneByMem(mem_ac).store_stat.equals('待審中')}">
+                    	<span class="text-success" >店家申請待審中</span>
+                    </c:if>
+                    <c:if test="${storeSvc.getOneByMem(mem_ac).store_stat.equals('審核不通過')}">
+                    	<a href="<%=request.getContextPath()%>/FrontEnd/store_mag/store_databynotpass.jsp"><span class="text-danger" >店家申請審核不通過</span></a>
+                    </c:if>
+                </c:if>
 			</div>
 		</div>
 	</div>
@@ -51,15 +63,13 @@
 				<div role="tabpanel">
 				    <!-- 標籤面板：標籤區 -->
 				    <ul class="nav nav-tabs" role="tablist">
-				        <li role="presentation" class="active w33p text-center bold">
+				        <li role="presentation" class="active w50p text-center bold">
 				            <a href="#tab1" aria-controls="tab1" role="tab" data-toggle="tab">收藏商品</a>
 				        </li>
-				        <li role="presentation" class="w33p text-center bold">
+				        <li role="presentation" class="w50p text-center bold">
 				            <a href="#tab2" aria-controls="tab2" role="tab" data-toggle="tab">收藏店家</a>
 				        </li>
-				        <li role="presentation" class="w33p text-center bold">
-				            <a href="#tab3" aria-controls="tab3" role="tab" data-toggle="tab">收藏活動</a>
-				        </li>
+				        
 				    </ul>
 				
 				    <!-- 標籤面板：內容區 -->
@@ -316,14 +326,7 @@ $("button.bk${storeVO.store_no}").click(function(){
 
 
 				        </div>
-				        <div role="tabpanel" class="tab-pane" id="tab3">
-<%-- 							<c:if test="${reviewlist.size()==0}"> --%>
-								<div class="col-xs-12 col-sm-12 text-center padt20">
-									<h2 class="tx-gray">目前尚無收藏活動</h2>
-								</div>
-<%-- 							</c:if> --%>
-
-				        </div>
+		
 				    </div>
 				</div>
 

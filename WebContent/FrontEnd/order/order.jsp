@@ -7,13 +7,16 @@
 <%@ page import="com.store.model.*"%>
 <%@ page import="com.ord.model.*"%>
 <%@ page import="com.ord_list.model.*"%>
+<%@ page import="com.mem.model.*"%>
 
 <jsp:useBean id="storeSvc" scope="page" class="com.store.model.StoreService" />
 <jsp:useBean id="prodSvc" scope="page" class="com.prod.model.ProdService" />
 <jsp:useBean id="ordSvc" scope="page" class="com.ord.model.OrdService" />
+<jsp:useBean id="memSvc" scope="page" class="com.mem.model.MemService" />
 
 <jsp:include page="/FrontEnd/include/head.jsp"/>
 <c:set var="mem_ac" value="${sessionScope.mem_ac}" scope="page"/>
+<c:set var="memVO" value="${memSvc.getOneMem(mem_ac)}" scope="page"/>
 <c:set var="ordVO" value="${ordVO}" scope="page"/>
 <c:set var="ord_listVOs" value="${ord_listVOs}" scope="page"/>
 
@@ -42,16 +45,16 @@
 						<c:set var="totalAmount" value="0"/>
 						<c:forEach var="ord_listVO" items="${ord_listVOs}">
 						<c:set var="count" value="${count+1}"/>
-						<c:set var="prodVO" value="${prodSvc.getOneProd(ord_listVO.prod_no)}"/>
+						<c:set var="prodVO" value="${prodSvc.getOneProdR(ord_listVO.prod_no)}"/>
 						<c:set var="storeVO" value="${storeSvc.getOneStore(prodVO.store_no)}" scope="page"/>
 						<!-- ////////////////////////////// -->
 						<tbody>
 							<tr>
 								<td  data-th="商品">
-									<div class="container-floid">
+									<div class="container-fluid">
 						                <div class="row zidx0">
 						                
-						                <a id="${prodVO.prod_no}" href='#modal-inner' data-toggle="modal">
+						                <a id="${prodVO.prod_no}" class="showProd" name="${prodVO.prod_no}" href='#modal-inner' data-toggle="modal">
 						                  <div class="col-xs-3  col-sm-2 vam-div60 pad0">
 						                    <img class="img-responsive mg-auto vam-img rd5 " src="<%=request.getContextPath()%>/prod/prodImg.do?prod_no=${prodVO.prod_no}&index=1">
 						                  </div>
@@ -83,32 +86,6 @@
 						</tbody>
 						<c:set var="totalAmount" value="${totalAmount+ord_listVO.amont}"/>
 
-<script> 
-//Prod View
-var $modalX = $("#modalX");
-var $btn = $("#${prodVO.prod_no}").click(function(){
-		var prodNo =  $("#${prodVO.prod_no}").attr("id");
-		var urlstr = '<%=request.getContextPath()%>/FrontEnd/prod/prodPage.jsp?prodNo='+prodNo;
-		$.ajax({
-			url : urlstr,
-			type : 'GET',
-			dataType: "html",
-			async: false,
-			success : function(result) {
-				while($modalX.children().length > 0){
-					$modalX.empty();
-				}
-				
-				$modalX.html(result);
-			},
-			error : function(xhr) {
-				alert('Ajax request 發生錯誤');
-			}
-		});
-		
-	});
-</script> 						
-						
 						</c:forEach>
 						
 					</table>
@@ -129,7 +106,7 @@ var $btn = $("#${prodVO.prod_no}").click(function(){
 						<div class="row">
 							
 							<div class="col-xs-12 col-sm-7">
-								<h4 class="bold text-info">填寫收件資訊</h4>
+								<h4 class="bold text-info inline-b">填寫收件資訊</h4>　<span id="btn-mem-info" class="btn btn-xs btn-warning inline-b">同會員資料</span>
 								<div class="input-group mgt10">
 									<div class="input-group-addon">
 										收件人姓名
@@ -178,6 +155,12 @@ var $btn = $("#${prodVO.prod_no}").click(function(){
 		if(${errorMsgs.size()}!=0){
 			$("[data-toggle='tooltip']").tooltip('show'); 
 		}
+		$('#btn-mem-info').click(function(){
+			$(':text[name="ord_name"]').val('${memVO.mem_lname}${memVO.mem_fname}');
+			$(':text[name="ord_add"]').val('${memVO.mem_add}');
+			$('[name="ord_phone"]').val('${memVO.mem_phone}');
+		});
+		
 	});
 </script>
 <jsp:include page="/FrontEnd/include/footer.jsp"/>
