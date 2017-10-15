@@ -52,7 +52,7 @@ public class StoreImg extends HttpServlet {
 				in.close();
 			} else {
 				//res.sendError(HttpServletResponse.SC_NOT_FOUND);
-				InputStream in = getServletContext().getResourceAsStream("/FrontEnd/res/img/prod_alt.png");
+				InputStream in = getServletContext().getResourceAsStream("/FrontEnd/res/img/d1.jpg");
 				byte[] buf = new byte[in.available()];
 				in.read(buf);
 				out.write(buf);
@@ -62,7 +62,7 @@ public class StoreImg extends HttpServlet {
 			stmt.close();
 		} catch (Exception e) {
 //			System.out.println(e);
-			InputStream in = getServletContext().getResourceAsStream("/FrontEnd/res/img/prod_alt.png");
+			InputStream in = getServletContext().getResourceAsStream("/FrontEnd/res/img/d1.jpg");
 			byte[] buf = new byte[in.available()];
 			in.read(buf);
 			out.write(buf);

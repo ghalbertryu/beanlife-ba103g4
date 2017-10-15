@@ -108,12 +108,21 @@ public class Ord_manag extends HttpServlet {
 				}
 				if (ord_stat.equals("已確認付款")) {
 					ordVO = ordSvc.update_sendstat(ord_no, send_id);
+					if(send_id==null||send_id.length()==0){
+						String message = "訂單編號"+ord_no+"已出貨"; 
+						String myName = "sys";
+						
+						req.setAttribute("myName", myName); 
+						req.setAttribute("urName", urName); 
+						req.setAttribute("message", message);
+					}else{
+						String myName = "sys";
+						String message = "訂單編號"+ord_no+"已出貨,物流編號為"+send_id; 
+						req.setAttribute("myName", myName); 
+						req.setAttribute("urName", urName); 
+						req.setAttribute("message", message);
+					}
 					
-					String myName = "sys";
-					String message = "您訂購的商品已出貨"; 
-					req.setAttribute("myName", myName); 
-					req.setAttribute("urName", urName); 
-					req.setAttribute("message", message);
 
 				}
 				

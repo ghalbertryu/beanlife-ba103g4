@@ -16,14 +16,6 @@
 
 <%
 MemVO memVO=(MemVO)pageContext.getAttribute("memVO");
-
-
-	String mem_set = memVO.getMem_set();
-	String[] set = mem_set.split(",");
-	System.out.println(set.length);
- 	pageContext.setAttribute("coun",set[0]);
-
-
 %>
 
 <div  class="content container mgt-depn-nav">
@@ -71,45 +63,14 @@ MemVO memVO=(MemVO)pageContext.getAttribute("memVO");
 					 value="上傳" /></td>
 			</tr>
 			
-			<tr>
-				<td>搜尋偏好設定:國家</td>
-				<td>
-					<select name="mem_set1">
-						<c:forEach var="country"  items="${countrys}">
-							<option value="${country}" ${(coun==country)?"selected": ""}>${country}</option>
-						</c:forEach>
-					</select>
-				</td>
-			</tr>
 			
-			<tr>
-				<td>搜尋偏好設定:處理法</td>
-				<td>
-					<input type="radio" name="mem_set2" value="日曬" <%=(set[1].equals("日曬")?"checked":"") %>>日曬<br>
-					<input type="radio" name="mem_set2" value="半水洗" <%=(set[1].equals("半水洗")?"checked":"") %>>半水洗<br>
-					<input type="radio" name="mem_set2" value="水洗" <%=(set[1].equals("水洗")?"checked":"") %>>水洗<br>
-					<input type="radio" name="mem_set2" value="蜜處理" <%=(set[1].equals("蜜處理")?"checked":"") %>>蜜處理<br>
-				</td>
-			</tr>
-			<tr>
-				<td>搜尋偏好設定:烘焙度</td>
-				<td>
-					<select name="mem_set3">
-						<option value="0" <%=(set[2].equals("0")?"selected":"") %>>極淺焙</option>
-						<option value="1" <%=(set[2].equals("1")?"selected":"") %>>淺焙</option>
-						<option value="2" <%=(set[2].equals("2")?"selected":"") %>>中焙</option>
-						<option value="3" <%=(set[2].equals("3")?"selected":"") %>>中深焙</option>
-						<option value="4" <%=(set[2].equals("4")?"selected":"") %>>城市烘焙</option>
-						<option value="5" <%=(set[2].equals("5")?"selected":"") %>>深焙</option>
-						<option value="6" <%=(set[2].equals("6")?"selected":"") %>>法式烘焙</option>
-						<option value="7" <%=(set[2].equals("7")?"selected":"") %>>重焙</option>
-					</select>
-				</td>
-			</tr>
 		</table>
 		<input type="submit" value="確定送出"> 
 		<input type="hidden" value="${memVO.mem_ac}" name="mem_ac">
 		<input type="hidden" name="action" value="update_data">
+		<input type="hidden" name="mem_set1" value="">
+		<input type="hidden" name="mem_set2" value="">
+		<input type="hidden" name="mem_set3" value="">
 	</FORM>
 	
 	

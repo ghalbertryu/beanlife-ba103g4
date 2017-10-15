@@ -20,9 +20,8 @@ textarea {
 
 <div class="content container mgt-depn-nav">
 	
-	<h3>會員申請店家 </h3>
-	<button class="new">紐</button>
-
+	
+<div class="col-sm-2">
 	
 	<%-- 錯誤表列 --%>
 	<c:if test="${not empty errorMsgs}">
@@ -34,7 +33,11 @@ textarea {
 			</ul>
 		</font>
 	</c:if>
-
+</div>
+<div class="container">
+<div class="col-sm-10">
+	<h3>會員申請店家 </h3>
+	<button class="new">紐</button>
 	<FORM METHOD="POST"
 		ACTION="<%=request.getContextPath()%>/store/ToStore.do" name="form1" enctype="multipart/form-data">
 		<table class="regstore">
@@ -166,8 +169,8 @@ textarea {
 	</FORM>
 
 </div>
-
-
+</div>
+</div>
 
 
 
