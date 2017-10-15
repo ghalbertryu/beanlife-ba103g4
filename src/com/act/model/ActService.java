@@ -2,6 +2,7 @@ package com.act.model;
 
 import java.sql.Date;
 import java.sql.Timestamp;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
@@ -128,6 +129,18 @@ public List<ActVO> getSort(String sort){
 	return dao.getSort(sort);
 	
 }
+public List<ActVO> getNew(int count){
+	List<ActVO> list = dao.getSort("act_no desc");
+	List<ActVO> list2 = new ArrayList<ActVO>();
+	for(ActVO actVO : list){
+		list2.add(actVO);
+		if(list2.size()==count){
+			break;
+		}
+	}
+	return list2;
+}
+
 //參與人數增加時加1使用
 public void  update_mem_count(String act_no){
 	 dao.update_mem_count(act_no,1);

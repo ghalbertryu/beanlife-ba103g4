@@ -4,8 +4,10 @@ import java.io.*;
 import java.text.DecimalFormat;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Set;
 
 import javax.servlet.RequestDispatcher;
+import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.MultipartConfig;
 import javax.servlet.annotation.WebServlet;
@@ -244,6 +246,14 @@ public class Prod_manag extends HttpServlet {
 				 * 
 				 * 3.修改完成,準備轉交(Send the Success view)
 				 *************/
+				
+				//10/15新增 新的國家自動新增到大廳
+				ServletContext context = getServletContext();
+				Set<String> countrys = (Set<String>) context.getAttribute("countrys");
+				if(!countrys.contains(bean_contry)){
+					countrys.add(bean_contry);
+					context.setAttribute("countrys",countrys);
+				}
 
 				req.setAttribute("prodVO", prodVO); // 資料庫update成功後,正確的的empVO物件,存入req
 				String url = "/FrontEnd/prod_mag/listAllpro_bystore.jsp";
@@ -567,6 +577,14 @@ public class Prod_manag extends HttpServlet {
 				session.removeAttribute("prod_pic1");
 				session.removeAttribute("prod_pic2");
 				session.removeAttribute("prod_pic3");
+				
+				//10/15新增 新的國家自動新增到大廳
+				ServletContext context = getServletContext();
+				Set<String> countrys = (Set<String>) context.getAttribute("countrys");
+				if(!countrys.contains(bean_contry)){
+					countrys.add(bean_contry);
+					context.setAttribute("countrys",countrys);
+				}
 				/***************************
 				 * 3.新增完成,準備轉交(Send the Success view)
 				 ***********/

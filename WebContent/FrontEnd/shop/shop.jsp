@@ -219,11 +219,15 @@
                   <h4 class="text-danger">找到${prodlist.size()}項商品</h4>
                 </div>
                 <div class="pull-right inline-b">
-                  <select class="form-control ">
-                        <option>排序依評價</option>
-                        <option>排序依熱門</option>
-                        <option>排序依日期</option>
+                	<form method="post" action="<%=request.getContextPath()%>/prod/prod.do" name="sort">
+                  <select class="form-control " name="sort">
+                  		<option value="time">排序依日期</option>
+                        <option value="score">排序依評價</option>
+                        <option value="cp">排序依CP值</option>
+                        
                     </select>
+                    <input name="action" type="hidden" value="sort">
+                    </form>
                 </div>
               </div>
             </div>

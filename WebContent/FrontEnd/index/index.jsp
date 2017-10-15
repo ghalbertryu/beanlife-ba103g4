@@ -20,7 +20,7 @@
 <jsp:useBean id="like_revSvc" scope="page" class="com.like_rev.model.Like_revService" />
 <jsp:useBean id="qaSvc" scope="page" class="com.qa.model.QaService" />
 <jsp:useBean id="cart_listSvc" scope="page" class="com.cart_list.model.Cart_listService" />
-<jsp:useBean id="ActSvc" scope="page" class="com.act.model.ActService" />
+<jsp:useBean id="actSvc" scope="page" class="com.act.model.ActService" />
 
 <jsp:include page="/FrontEnd/include/head.jsp"/>
 <c:set var="mem_ac" value="${sessionScope.mem_ac}" scope="page"/>
@@ -29,12 +29,7 @@
 <c:set var="fo_list" value="${fo_prodSvc.getAllByMem(mem_ac)}" scope="page"/>
 <c:set var="like_rev_list" value="${like_revSvc.getAllByMem(mem_ac)}" scope="page"/>
 <c:set var="cart_listSet" value="${cart_listSvc.getVOsByMem(mem_ac)}" scope="page"/>
-
-<%
-	ActService actSvc = new ActService();
-	List<ActVO> actlist = actSvc.getAll();
-    pageContext.setAttribute("actlist",actlist);    
-%>
+<c:set var="actlist" value="${actSvc.getNew(10)}" scope="page"/>
 
 <style>
 
@@ -113,7 +108,7 @@ cursor: pointer;
 					            <a href="#tab1" aria-controls="tab1" role="tab" data-toggle="tab">熱門商品</a>
 					        </li>
 					        <li role="presentation" class="w50p text-center bold">
-					            <a href="#tab3" aria-controls="tab3" role="tab" data-toggle="tab">熱門活動</a>
+					            <a href="#tab3" aria-controls="tab3" role="tab" data-toggle="tab">最新活動</a>
 					        </li>
 					    </ul>
 					
@@ -268,10 +263,7 @@ var $btnFoProd = $("button.bk${prodVO.prod_no}").click(function(){
 													<p>${fn:substring(actVO.act_cont,0,160)}...</p>
 													<h5 class="inline-b pull-left text-info">${actVO.act_op_date}</h5>
 													<h5 class="inline-b pull-left mgl20 text-info">${fn:substring(actVO.act_add,0,3)}</h5>
-													<button type="button" class="btn btn-default btn-sm zidx5 pull-right" aria-label="Left Align">
-																        					<span class="tx-gray">42</span>
-														<span class="glyphicon glyphicon-bookmark tx-gray" aria-hidden="true"></span>
-													</button>
+													
 												</div>
 											</div>
 											<input type="hidden" name=action  value="goto_act_detail" >

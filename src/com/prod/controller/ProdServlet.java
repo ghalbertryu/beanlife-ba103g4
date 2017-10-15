@@ -93,7 +93,8 @@ public class ProdServlet extends HttpServlet {
 				List<ProdVO> list  = prodSvc.getAllR(map,map2);
 				
 				/***************************3.查詢完成,準備轉交(Send the Success view)************/
-				req.setAttribute("searchRs", list); // 資料庫取出的list物件,存入request
+				session.setAttribute("searchRs", list);
+//				req.setAttribute("searchRs", list); // 資料庫取出的list物件,存入request
 				RequestDispatcher successView = req.getRequestDispatcher("/FrontEnd/shop/shop.jsp"); // 成功轉交listEmps_ByCompositeQuery.jsp
 				successView.forward(req, res);
 				
@@ -106,6 +107,9 @@ public class ProdServlet extends HttpServlet {
 			}
 		}
 		
+		if ("sort".equals(action)) {
+			
+		}
 		
 	}
 

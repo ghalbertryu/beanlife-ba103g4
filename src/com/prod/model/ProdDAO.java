@@ -63,7 +63,7 @@ public class ProdDAO implements ProdDAO_interface {
 			+ "WHERE PROD_NO =?";
 	
 	private static final String DELETE = "DELETE FROM PROD WHERE PROD_NO = ?";
-	private static final String GET_ALL_STMT = "SELECT * FROM PROD";
+	private static final String GET_ALL_STMT = "SELECT * FROM PROD order by prod_no desc";
 	private static final String GET_ONE_STMT = "SELECT * FROM PROD WHERE PROD_NO = ?";
 	
 	private static final String GET_ALL_NO_IMG_STMT = "SELECT "
