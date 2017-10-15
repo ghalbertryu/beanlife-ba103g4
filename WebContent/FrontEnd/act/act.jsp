@@ -510,12 +510,15 @@ margin-left: 5px;
       </div>
       <h3>已招募<span  class="mem_cont">${act_vo.mem_count }</span><span>/</span><span  class="max_mem">${act_vo.min_mem }</span><span>人</span></h3>
       <p class="dataLocation"><span class="act_op_date">${act_vo.act_op_date }<span>舉辦</span> </span><span class="act_add">${act_vo.act_add }</span></p>
-      <form  method="post" action="<%=request.getContextPath() %>/act_management/act_managementServlet">
+    <%--   <form  method="post" action="<%=request.getContextPath() %>/act_management/act_managementServlet">
       <a class="info">詳細資訊</a>
       <input type="hidden" name=action  value="goto_act_detail" >
       <input type="hidden"  name="act_no"  value="${act_vo.act_no }">
       <input type="hidden"  name="act.jsp" value="<%=request.getServletPath() %>">
-    </form>
+    </form> --%>
+    
+     <a class="info"  href="<%=request.getContextPath() %>/act_management/act_managementServlet?action=goto_act_detail&act_no=${act_vo.act_no }">詳細資訊</a>
+    
     </div>
   </div>
 </div>
@@ -704,7 +707,7 @@ for(var i=0;i<$(".act_op_date").length;i++){
 	$(".act_op_date").eq(i).text(op_date);
 }
 	
-<%-- 修正日曆會選取到秒數 強制將秒數設成0 --%>
+<%-- 修正日曆會選取到秒數 強制將秒數設成0 
 $(".myop_date").change(function(){
 var myop_date=$(".myop_date").val();
 new_time=  myop_date.substring(0,17)+"00";
@@ -716,7 +719,7 @@ var myed_date=$(".myed_date").val();
 new_time=  myed_date.substring(0,17)+"00";
 $(".myed_date").val(new_time);
 })
-
+--%>
 </script>
   
 

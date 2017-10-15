@@ -49,6 +49,8 @@
 <html>
 <head>
 <title>店家頁面修改</title>
+<link rel="Shortcut Icon" type="image/x-icon" href="/BA103G4/FrontEnd/res/img/logo/BeanLifeIco2.ico" />
+
 <link rel="stylesheet prefetch"
 	href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css">
 <link rel="stylesheet" href="../font-awesome-4.7.0/css/font-awesome.css">
@@ -62,6 +64,14 @@
         width: 70px;
         height: 70px;
         border-radius: 50%; }
+        
+    .log_out{
+    padding: 10px 20px;
+    margin-right: 10px;
+ 	margin-top: 25px;
+ 	margin-bottom: 25px;
+    
+    }    
 </style>
 
 
@@ -105,6 +115,10 @@
 			</div>
 			<div class="right col-xs-10">
 				<div class="col-xs-12 right_top">
+				<Form  METHOD="post" ACTION="<%=request.getContextPath() %>/mem_management/mem_managementServlet" >
+          <button class="btn btn-danger log_out">登出</button>
+          <input type="hidden" name="action" value="log_out">
+          </Form>
 <img src="<%=request.getContextPath()%>/BackEnd/res/images/bear.jpg" alt="">
 					<h2>你好</h2>
 					<a class="fa fa-bell dropdown-toggle" href="#"

@@ -10,6 +10,7 @@
 <head>
   <meta charset="UTF-8">
   <title>後端首頁登入頁面</title>
+  <link rel="Shortcut Icon" type="image/x-icon" href="/BA103G4/FrontEnd/res/img/logo/BeanLifeIco2.ico" />
   
   
   <link rel='stylesheet prefetch' href='https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css'>
@@ -49,7 +50,7 @@
     <h4 class="inputdata"   >密碼:</h4>
     <input class="password" type="password"  name="mgr_pwd"   /><br/><br/>
     
-    <button class="btn btn-danger  cancel_all"  type="button">取消 </button>
+    <button class="btn btn-danger  cancel_all"  type="button">清除 </button>
     <button class="btn btn-primary"  type="submit">登入</button>
     <input type="hidden"  name="action" value="mgr_login" >
     <input type="hidden"  name="index.jsp" value="<%=request.getServletPath() %>" >

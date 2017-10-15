@@ -9,6 +9,8 @@
   <head>
     <meta charset="UTF-8">
     <title>兌換贈品管理</title>
+    <link rel="Shortcut Icon" type="image/x-icon" href="/BA103G4/FrontEnd/res/img/logo/BeanLifeIco2.ico" />
+    
     <link rel="stylesheet prefetch" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css">
     <link rel="stylesheet" href="<%=request.getContextPath()%>/BackEnd/res/font-awesome-4.7.0/css/font-awesome.css">
     <link rel="stylesheet" href="<%=request.getContextPath()%>/BackEnd/res/font-awesome-4.7.0/css/font-awesome.min.css">
@@ -150,6 +152,23 @@ margin-right: 30px;
   
     }
     
+    .convert_gift_img{
+     width: 150px;
+      height: 120px;
+      background-size: contain;
+      background-position:center,center;
+      background-repeat: no-repeat;
+    
+    }
+    
+   .log_out{
+    padding: 10px 20px;
+    margin-right: 10px;
+ 	margin-top: 25px;
+ 	margin-bottom: 25px;
+    
+    } 
+    
 </style>
 <%
     Convert_giftService convert_giftSvc = new Convert_giftService();
@@ -226,6 +245,10 @@ if(session.getAttribute("showConvert_gift")==null){
 	</ul>
 	</font>
 </c:if>
+<Form  METHOD="post" ACTION="<%=request.getContextPath() %>/mem_management/mem_managementServlet" >
+          <button class="btn btn-danger log_out">登出</button>
+          <input type="hidden" name="action" value="log_out">
+          </Form>
           <img src="<%=request.getContextPath()%>/BackEnd/res/images/bear.jpg" alt="">
             <h2>你好</h2><a class="fa fa-bell dropdown-toggle" href="#" data-toggle="dropdown"></a>
             <ul class="dropdown-menu">
@@ -384,8 +407,8 @@ if(session.getAttribute("showConvert_gift")==null){
 				
 
 				
- 					 	<img src="<%=request.getContextPath()%>/GiftImg.do?gift_no=${gift_data_vo.gift_no }" >
-  					
+ 			<%-- 	 	<img src="<%=request.getContextPath()%>/GiftImg.do?gift_no=${gift_data_vo.gift_no }" > --%>	
+  					<div class="convert_gift_img" style="background-image:url('<%=request.getContextPath()%>/GiftImg.do?gift_no=${gift_data_vo.gift_no }')" ></div>
 					<h3>贈品描述:</h3>
 					<p>${gift_data_vo.gift_cont }</p>
 				

@@ -52,7 +52,7 @@ public class ActImg extends HttpServlet {
 				in.close();
 			} else {
 				//res.sendError(HttpServletResponse.SC_NOT_FOUND);
-				InputStream in = getServletContext().getResourceAsStream("/BackEnd/images/nopic.jpg");
+				InputStream in = getServletContext().getResourceAsStream("/BackEnd/res/images/nopic.jpg");
 				byte[] buf = new byte[in.available()];
 				in.read(buf);
 				out.write(buf);
@@ -62,7 +62,7 @@ public class ActImg extends HttpServlet {
 			stmt.close();
 		} catch (Exception e) {
 //			System.out.println(e);
-			InputStream in = getServletContext().getResourceAsStream("/BackEnd/images/nopic.jpg");
+			InputStream in = getServletContext().getResourceAsStream("/BackEnd/res/images/nopic.jpg");
 			byte[] buf = new byte[in.available()];
 			in.read(buf);
 			out.write(buf);

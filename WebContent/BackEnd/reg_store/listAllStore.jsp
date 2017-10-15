@@ -94,7 +94,13 @@ text-align: center;
      th {
     text-align: center;
 }
-        
+   .log_out{
+    padding: 10px 20px;
+    margin-right: 10px;
+ 	margin-top: 25px;
+ 	margin-bottom: 25px;
+    
+    }     
 </style>
 
 
@@ -138,6 +144,10 @@ text-align: center;
 			</div>
 			<div class="right col-xs-10">
 				<div class="col-xs-12 right_top">
+				<Form  METHOD="post" ACTION="<%=request.getContextPath() %>/mem_management/mem_managementServlet" >
+          <button class="btn btn-danger log_out">登出</button>
+          <input type="hidden" name="action" value="log_out">
+          </Form>
 <img src="<%=request.getContextPath()%>/BackEnd/res/images/bear.jpg" alt="">
 					<h2>你好</h2>
 					<a class="fa fa-bell dropdown-toggle" href="#"
@@ -232,15 +242,15 @@ text-align: center;
 
 					</table>
 
-
+<script
+		src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
 					<%@ include file="page2.file"%>
 				</div>
 
 			</div>
 		</div>
 	</div>
-	<script
-		src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+	
 	<script
 		src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 	<script src="<%=request.getContextPath()%>/BackEnd/res/js/index.js"></script>

@@ -11,6 +11,8 @@
   <head>
     <meta charset="UTF-8">
     <title>廣告管理</title>
+    <link rel="Shortcut Icon" type="image/x-icon" href="/BA103G4/FrontEnd/res/img/logo/BeanLifeIco2.ico" />
+    
     <link rel="stylesheet prefetch" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css">
     <link rel="stylesheet" href="<%=request.getContextPath()%>/BackEnd/res/font-awesome-4.7.0/css/font-awesome.css">
     <link rel="stylesheet" href="<%=request.getContextPath()%>/BackEnd/res/font-awesome-4.7.0/css/font-awesome.min.css">
@@ -90,14 +92,31 @@ text-decoration: none;
   }
   
   .return_img,.update_return_img{
-  width: 150px;
-  height: 100px;
+  width: 100%;
+  height: 200px;
    background-size: contain;
       background-position:center,center;
       background-repeat: no-repeat;
      
   
   }
+  
+  .thumb{
+   width: 100%;
+  height: 200px;
+   background-size: contain;
+      background-position:center,center;
+      background-repeat: no-repeat;
+  
+  }
+  
+  .log_out{
+    padding: 10px 20px;
+    margin-right: 10px;
+ 	margin-top: 25px;
+ 	margin-bottom: 25px;
+    
+    }
   </style>
 <%
 AdService adSvc=new AdService();
@@ -160,7 +179,13 @@ pageContext.setAttribute("list",list);
             <div class="fa fa-gift"> </div><span class="h3">平台業務管理</span>
             <ul class="collapse" id="gift"><a href="<%=request.getContextPath()%>/BackEnd/ad/ad.jsp">廣告管理</a><a  href="<%=request.getContextPath()%>/BackEnd/gift/convert_gift.jsp">兌換贈品管理</a><a href="<%=request.getContextPath()%>/BackEnd/gift/gift_data.jsp">兌換贈品業務管理</a></ul></a></div>
         <div class="right col-xs-10">
-          <div class="col-xs-12 right_top"><img src="<%=request.getContextPath()%>/BackEnd/res/images/bear.jpg" alt="">
+          <div class="col-xs-12 right_top">
+          <Form  METHOD="post" ACTION="<%=request.getContextPath() %>/mem_management/mem_managementServlet" >
+          <button class="btn btn-danger log_out">登出</button>
+          <input type="hidden" name="action" value="log_out">
+          </Form>
+          
+          <img src="<%=request.getContextPath()%>/BackEnd/res/images/bear.jpg" alt="">
             <h2>你好</h2><a class="fa fa-bell dropdown-toggle" href="#" data-toggle="dropdown"></a>
             <ul class="dropdown-menu">
               
@@ -503,10 +528,15 @@ pageContext.setAttribute("list",list);
 	        return function(e) {
 	          // Render thumbnail.
 	          var span = document.createElement('span');
-	          span.innerHTML = ['<img class="thumb" src="', e.target.result,
-	                            '" title="', escape(theFile.name), '"/>'].join('');
-	          document.getElementById('mylist').insertBefore(span, null);
-	          $(".thumb").width(150).height(100);
+	          
+	 <%--         span.innerHTML = ['<img class="thumb" src="', e.target.result,
+	                            '" title="', escape(theFile.name), '"/>'].join(''); --%>
+	                            span.innerHTML = ['<div class="thumb" style="background-image:url(',e.target.result,')"/></div>  '].join('');
+	          
+	          
+	          
+	          document.getElementById('mylist').insertBefore(span, null);  
+	          <%--        $(".thumb").width(150).height(100); --%>
 	                        
 	        };
 	      })(f);
@@ -540,10 +570,12 @@ pageContext.setAttribute("list",list);
 		        return function(e) {
 		          // Render thumbnail.
 		          var span = document.createElement('span');
-		          span.innerHTML = ['<img class="thumb" src="', e.target.result,
-		                            '" title="', escape(theFile.name), '"/>'].join('');
+		      <%--    span.innerHTML = ['<img class="thumb" src="', e.target.result,
+		                            '" title="', escape(theFile.name), '"/>'].join(''); --%>
+		                            
+		         span.innerHTML = ['<div class="thumb" style="background-image:url(',e.target.result,')"/></div>  '].join('');
 		          document.getElementById('mylist2').insertBefore(span, null);
-		          $(".thumb").width(150).height(100);
+		       <%--   $(".thumb").width(150).height(100); --%>
 		                        
 		        };
 		      })(f);

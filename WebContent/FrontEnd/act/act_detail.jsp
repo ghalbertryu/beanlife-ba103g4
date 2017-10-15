@@ -661,7 +661,10 @@ text-align: center;
  
  <script>
  
- 
+if(${mem_ac==null} || "${mem_ac}"=="${act_vo.mem_ac}"){
+	$(".contractHost").css("display","none");
+	
+}
  
  
  

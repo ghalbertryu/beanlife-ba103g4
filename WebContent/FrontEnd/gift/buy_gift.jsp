@@ -97,19 +97,19 @@ font-weight: 700;
 				</tr>
 				<tr>
 					<td class="bold">收件人姓名</td>
-					<td><input type="text"  name="apply_name" class="form-control not_long" value="${(convert_gift_vo==null)?"":convert_gift_vo.apply_name}"  placeholder="陳xx"></td>
+					<td><input type="text"  name="apply_name" class="form-control not_long apply_name" value="${(convert_gift_vo==null)?"":convert_gift_vo.apply_name}"  placeholder="陳xx"></td>
 				</tr>
 				<tr>
 					<td class="bold">收件人電話</td>
-					<td><input type="number"  name="apply_phone" class="form-control not_long" value="${(convert_gift_vo==null)?"":convert_gift_vo.apply_phone}"  placeholder="09xxxxxxxx"></td>
+					<td><input type="number"  name="apply_phone" class="form-control not_long apply_phone" value="${(convert_gift_vo==null)?"":convert_gift_vo.apply_phone}"  placeholder="09xxxxxxxx"></td>
 				</tr>
 			<tr>
 					<td class="bold">收貨地址</td>
-					<td><input type="text"  name="apply_add" class="myAdd form-control" value="${(convert_gift_vo==null)?"":convert_gift_vo.apply_add}"  placeholder="台北市xx路..."></td>
+					<td><input type="text"  name="apply_add" class="myAdd form-control apply_add" value="${(convert_gift_vo==null)?"":convert_gift_vo.apply_add}"  placeholder="台北市xx路..."></td>
 				</tr>
 			
 			</table>
-			
+			<button type="button" class="btn btn-default magical_button"></button>
 			<div class="col-md-offset-9">
 				<a class="btn btn-danger  cancel_getGift"  href="<%=request.getContextPath()%>/FrontEnd/gift/gift_data_frontEnd.jsp">取消兌換</a>
 				<button  type="submit" class="btn btn-success">確定兌換</button>
@@ -120,6 +120,21 @@ font-weight: 700;
 </div>
 
 </div>	
+
+<script>
+$(".magical_button").click(function(){
+	$(".apply_name").val("吳永志");
+	$(".apply_phone").val("0912345678");
+	$(".apply_add").val("桃園市中壢區中大路300號");
+	
+	
+	
+})
+
+
+</script>
+
+
 
 <jsp:include page="/FrontEnd/include/footer.jsp"/>
 		

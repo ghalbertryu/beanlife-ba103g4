@@ -51,6 +51,19 @@ public class Mem_managementServlet extends HttpServlet{
 		String action = req.getParameter("action");
 		
 		
+		if("log_out".equals(action)){
+			HttpSession session=req.getSession();
+			session.removeAttribute("mgr_no");
+			String url="/BackEnd/index.jsp";
+			RequestDispatcher dispatcher=req.getRequestDispatcher(url);
+			dispatcher.forward(req, res);
+			
+			
+		}
+		
+		
+		
+		
 		if("mgr_login".equals(action)){
 			
 			 Set<String> errorMsgs = new HashSet<String>();

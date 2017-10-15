@@ -54,10 +54,10 @@ pageContext.setAttribute("act_pair_list",act_pair_list);
 }
 .myJoin>tbody>tr>th{
 	text-align: center;
-width: 6%;
+width: 7%;
 }
 .myJoin>tbody>tr>.large{
-	width: 8%;
+	width: 8.5%;
 }
 
 .myHeld>tbody>tr>td{
@@ -96,12 +96,15 @@ font-weight: 900;
 display: none;
 }
 .my_act_all{
-width: 110%;
+width: 100%;
 
 }
 
 .my_area{
 margin-top: 57px;
+
+
+
 }
 
 .host_mem_count{
