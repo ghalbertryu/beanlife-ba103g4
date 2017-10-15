@@ -6,8 +6,6 @@
 <%@ page import="com.ord.model.*"%>
 <%@ page import="com.ord_list.model.*"%>
 
-
-
 <jsp:include page="/FrontEnd/include/head.jsp"/>
 <c:set var="mem_ac" value="${sessionScope.mem_ac}" scope="page"/>
 <%
