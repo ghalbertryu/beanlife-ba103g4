@@ -65,7 +65,7 @@
 	
 	
 	
-		<div class="product col-sm-10">
+		<div class="product col-sm-9 col-sm-offset-1">
 			<table class="table-bordered table-responsive ord_all">
 				<caption >
 					<font size="20">我的訂單</font><br>請選擇狀態

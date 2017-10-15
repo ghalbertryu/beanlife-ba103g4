@@ -49,7 +49,7 @@
 				
 				</div>
 	<div class="shop">
-		<div class="shop col-sm-10">
+		<div class="shop col-sm-9 col-sm-offset-1">
 		<FORM METHOD="POST"
 		ACTION="<%=request.getContextPath()%>/store/ToStore.do" name="form1" enctype="multipart/form-data">
 			<table class="table_shop">

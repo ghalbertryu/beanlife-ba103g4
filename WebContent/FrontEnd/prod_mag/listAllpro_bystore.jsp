@@ -51,7 +51,7 @@
 	</div>
 	
 	<div class="container">
-		<div class="product col-sm-10">
+		<div class="product col-sm-9 col-sm-offset-1">
 			<table class="table-bordered table-responsive pro_all">
 				<caption >
 					<font size="20">我的商品</font>
