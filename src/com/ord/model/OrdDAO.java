@@ -48,7 +48,7 @@ public class OrdDAO implements OrdDAO_interface {
 	private static final String GET_ONE_STMT = "SELECT ORD_NO,MEM_AC,SEND_FEE,TOTAL_PAY,ORD_NAME,ORD_PHONE,ORD_ADD,"
 			+ "PAY_INFO,ORD_STAT,ORD_DATE,PAY_DATE,PAY_CHK_DATE,SEND_DATE,SEND_ID FROM ord where ORD_NO = ?";
 	private static final String DELETE = "DELETE FROM ord where ORD_NO = ?";
-	private static final String UPDATE_STAT = "UPDATE ord set ORD_STAT=?, PAY_CHK_DATE=?, SEND_DATE=? ,SEND_ID=? where ORD_NO = ?";
+	private static final String UPDATE_STAT = "UPDATE ord set ORD_STAT=?,pay_date=?, PAY_CHK_DATE=?, SEND_DATE=? ,SEND_ID=? where ORD_NO = ?";
 	private static final String GET_ALL_ORDER_LIST = "select * from ord_list where ORD_NO=?";
 	private static final String GET_ALL_ORD_BY_MEM = "SELECT * FROM ORD WHERE MEM_AC=? order by ord_no desc";
 	private static final String GET_ALL_FROM_DATE = "SELECT * FROM ORD WHERE send_date > ?";
@@ -109,10 +109,11 @@ public class OrdDAO implements OrdDAO_interface {
 			pstmt = con.prepareStatement(UPDATE_STAT);
 			
 			pstmt.setString(1, ordVO.getOrd_stat());
-			pstmt.setTimestamp(2, (ordVO.getPay_chk_date()!=null)?new Timestamp(ordVO.getPay_chk_date().getTime()):null);
-			pstmt.setTimestamp(3, (ordVO.getSend_date()!=null)?new Timestamp(ordVO.getSend_date().getTime()):null);
-			pstmt.setString(4, ordVO.getSend_id());
-			pstmt.setString(5, ordVO.getOrd_no ());
+			pstmt.setTimestamp(2, (ordVO.getPay_date()!=null)?new Timestamp(ordVO.getPay_date().getTime()):null);
+			pstmt.setTimestamp(3, (ordVO.getPay_chk_date()!=null)?new Timestamp(ordVO.getPay_chk_date().getTime()):null);
+			pstmt.setTimestamp(4, (ordVO.getSend_date()!=null)?new Timestamp(ordVO.getSend_date().getTime()):null);
+			pstmt.setString(5, ordVO.getSend_id());
+			pstmt.setString(6, ordVO.getOrd_no ());
 			pstmt.executeUpdate();
 			
 		} catch (SQLException se) {
