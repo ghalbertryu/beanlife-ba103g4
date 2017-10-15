@@ -123,7 +123,7 @@
 										<input type="hidden" name="whichPage"	value="<%=whichPage%>">  
 							</FORM>
 						</td>
-						<td><button class="btn btn-danger msgTo" name="${ordVO.ord_name}">與買家私訊</button></td>
+						<td><button class="btn btn-danger msgTo" name="${ordVO.mem_ac}">與買家私訊</button></td>
 					</tr>
 				</c:forEach>
 			</table>
