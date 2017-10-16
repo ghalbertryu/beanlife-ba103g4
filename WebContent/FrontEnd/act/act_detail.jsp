@@ -272,7 +272,7 @@ height: 300px;
   border: solid 1px #eee;
   border-radius: 50%;
   overflow: hidden;
-  background-image: url("<%=request.getContextPath()%>/MemImg.do?mem_ac=${mem_vo.mem_ac}");
+  background-image: url("<%=request.getContextPath()%>/mem/memImg.do?memAc=${mem_vo.mem_ac}");
   background-size: cover;
 }
 
