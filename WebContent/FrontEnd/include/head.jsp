@@ -485,5 +485,5 @@ $(document).ready(function(){
 
 </script>
 <c:set var="showLogin" value="${false}" scope="session"/>
-<c:remove var="errorMsgs"/>
+
 

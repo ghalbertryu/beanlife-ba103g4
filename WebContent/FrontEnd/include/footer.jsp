@@ -377,3 +377,5 @@ function updateStatus(newStatus) {
 
   </body>
 </html>
+
+<c:remove var="errorMsgs"/>
