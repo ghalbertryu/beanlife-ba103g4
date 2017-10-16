@@ -117,6 +117,11 @@ text-decoration: none;
  	margin-bottom: 25px;
     
     }
+    .magical_button{
+     float: left;
+     }
+    
+    
   </style>
 <%
 AdService adSvc=new AdService();
@@ -386,7 +391,7 @@ pageContext.setAttribute("list",list);
 						<div class="modal-body">
 						 <div class="form-group">
     <label for="ad_title" class="h4">廣告名稱</label>
-    <input type="text" class="form-control" id="ad_title"  name="ad_title" placeholder="請輸入標題"  value="<%= (ad_vo==null)? "":ad_vo.getAd_title()%>"/>
+    <input type="text" class="form-control ad_title" id="ad_title"  name="ad_title" placeholder="請輸入標題"  value="<%= (ad_vo==null)? "":ad_vo.getAd_title()%>"/>
   					</div>
 	
 	
@@ -405,7 +410,7 @@ pageContext.setAttribute("list",list);
 			<div class=op_date>
                 <label for="dtp_input2" class="col-md-2 control-label  h4">開始時間</label>
                 <div class="input-group date form_date col-md-5" data-date="" data-date-format="yyyy-mm-dd" data-link-field="dtp_input2" data-link-format="yyyy-mm-dd">
-                    <input class="form-control  test" size="16" type="text"  name="ad_op_date"  value="<%= (ad_vo==null)? "":((ad_vo.getAd_op_date()==null)?"":ad_vo.getAd_op_date())%>" readonly>
+                    <input class="form-control  test  ad_op_date" size="16" type="text"  name="ad_op_date"  value="<%= (ad_vo==null)? "":((ad_vo.getAd_op_date()==null)?"":ad_vo.getAd_op_date())%>" readonly>
                     <span class="input-group-addon"><span class="glyphicon glyphicon-remove"></span></span>
 					<span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span></span>
                 </div>
@@ -414,7 +419,7 @@ pageContext.setAttribute("list",list);
            <div class=end_date>
                 <label for="dtp_input2" class="col-md-2 control-label  h4 ">結束時間</label>
                 <div class="input-group date form_date col-md-5" data-date="" data-date-format="yyyy-mm-dd" data-link-field="dtp_input2" data-link-format="yyyy-mm-dd">
-                    <input class="form-control  test" size="16" type="text"  name="ad_ed_date"  value="<%= (ad_vo==null)? "":((ad_vo.getAd_ed_date()==null)?"":ad_vo.getAd_ed_date())%>" readonly>
+                    <input class="form-control  test  ad_ed_date" size="16" type="text"  name="ad_ed_date"  value="<%= (ad_vo==null)? "":((ad_vo.getAd_ed_date()==null)?"":ad_vo.getAd_ed_date())%>" readonly>
                     <span class="input-group-addon"><span class="glyphicon glyphicon-remove"></span></span>
 					<span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span></span>
                 </div>
@@ -452,6 +457,7 @@ pageContext.setAttribute("list",list);
 
 					</div>
 					<div class="modal-footer">
+					<button class="btn btn-default magical_button" type="button"></button>
 						<button type="button" class="btn btn-default" data-dismiss="modal">關閉</button>
 						<input type="hidden" name="action" value="insert">
 						<input type="hidden" name="ad.jsp" value="<%=request.getServletPath() %>" class="nowTime">
@@ -481,6 +487,17 @@ pageContext.setAttribute("list",list);
 
     
     <script>
+    
+    $(".magical_button").click(function(){
+    	$(".ad_title").val("藝妓村Gesha Oma Block 72批次  限時大特價");
+    	$(".ad_op_date").val("2017-10-16");
+    	$(".ad_ed_date").val("2017-10-25");
+    	$(".selectpicker option").eq(6).attr('selected', true);
+    		
+    })
+    
+    
+    
     
     $(document).ready(function(){
     	
