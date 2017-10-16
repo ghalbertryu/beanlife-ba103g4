@@ -55,12 +55,13 @@ width:340px
 	
 	<div class="shop">
 	
-		
+		<button class="new  btn-xs btn-default">紐</button>
 			<FORM METHOD="POST" ACTION="<%=request.getContextPath()%>/prod/Prod_manag.do" name="form1"	enctype="multipart/form-data">
 		<div class="product col-sm-9">
 			<div class="table-responsive">       
 				<table class="table addpro">
-					<button class="new  btn-xs btn-default">紐</button>
+					
+				
 				<tr>
 					<th class="col-sm-5">商品名稱*</th>
 					<td><input type="text" name="prod_name" class="form-control prod_name te"

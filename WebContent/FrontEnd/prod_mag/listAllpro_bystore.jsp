@@ -43,7 +43,7 @@
 		</font>
 	</c:if>
 	
-	<div class="product col-sm-3">
+	<div class="product col-sm-2 padlr0">
 	<div class="table-responsive">  
 	<table class="store" >
 	<tr><td align="center"><h4>${storeVO.store_name}</h5></td></tr>
@@ -55,7 +55,7 @@
 	</div>
 	
 	
-		<div class="product col-sm-9">
+		<div class="product col-sm-10 padlr0">
 			<div class="table-responsive">          
   			<table class="table table-bordered pro_all">
 				<caption >
@@ -68,11 +68,10 @@
 					<th>商品名稱</th>
 					<th>商品圖片</th>
 					<th>豆種</th>
-					<th>價格</th>
-					<th>烘培度</th>
-					<th>狀態</th>
-					<th></th>
-					<th></th>
+					<th class="w50">價格</th>
+					<th class="w50">狀態</th>
+					<th >修改</th>
+					<th>操作</th>
 				</tr>
 				<%@ include file="page1.file"%>
 				<c:forEach var="prodVO" items="${set}" begin="<%=pageIndex%>"
@@ -83,12 +82,12 @@
 						</td>
 						<td><img src="<%=request.getContextPath()%>/prod/prodImg.do?prod_no=${prodVO.prod_no}&index=1"></td>
 						<td>${prodVO.bean_type}</td>
-						<td>${prodVO.prod_price}</td>
+						<td>NT$${prodVO.prod_price}</td>
 						<td>${prodVO.roast}</td>
 						<td>${prodVO.prod_stat}</td>
 						<td><FORM METHOD="post"
 										ACTION="<%=request.getContextPath()%>/prod/Prod_manag.do">
-										<input type="submit" value="修改商品資料" class="btn-warning btn"> 
+										<input type="submit" value="修改商品資料" class="btn-warning btn btn-xs"> 
 										<input type="hidden" name="prod_no" value="${prodVO.prod_no}">
 										<input type="hidden" name="store_no"	value="<%=store_no%>">  
 										<input type="hidden" name="action" value="getOne_For_Update">
@@ -97,7 +96,7 @@
 						</td>
 						<td><FORM METHOD="post"
 										ACTION="<%=request.getContextPath()%>/prod/Prod_manag.do">
-										<input type="submit" value=${prodVO.prod_stat.equals("上架") ? "下架" : "上架" } class= 'btn ${prodVO.prod_stat.equals("上架") ? "btn-danger" : "btn-success" }'> 
+										<input type="submit" value=${prodVO.prod_stat.equals("上架") ? "下架" : "上架" } class= 'btn btn-xs ${prodVO.prod_stat.equals("上架") ? "btn-danger" : "btn-success" }'> 
 										<input type="hidden" name="prod_no" value="${prodVO.prod_no}">
 										<input type="hidden" name="prod_stat" value="${prodVO.prod_stat}">
 										<input type="hidden" name="action" value="Update_prodstat">
