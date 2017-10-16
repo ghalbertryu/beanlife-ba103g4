@@ -266,6 +266,8 @@ public class ToStore extends HttpServlet {
 				storeVO = storeSvc.addStore(mem_ac, tax_id_no, win_id_pic, store_phone, store_add, store_add_lat,
 						store_add_lon, store_name, store_cont, store_pic1, store_pic2, store_pic3, store_free_ship,
 						store_atm_info);
+				req.getSession().removeAttribute("store_pic2");
+				req.getSession().removeAttribute("store_pic3");
 
 				/***************************
 				 * 3.新增完成,準備轉交(Send the Success view)
