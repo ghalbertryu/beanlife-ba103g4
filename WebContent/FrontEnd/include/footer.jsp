@@ -250,17 +250,19 @@ function connect(myName,urName) {
 
       var msghtml ='';
       if(jsonObj.userName== urName){
-      	msghtml = '<div class="container-fluid"><div class="row"><div class="media"><div class="media-left">'+
-      	'<img  class="media-object round-img w50" src="<%=request.getContextPath()%>/mem/memImg.do?memAc='+urName+'">'+
-      	'</div><div class="media-body"><p class="col-xs-11 col-sm-10 well">'+
-      				jsonObj.message+"\r\n"+
-						'</p></div></div></div></div>';
+      	msghtml = '<div class="container-fluid"><div class="row"><div class="media"><div class="media-left"><a class="showStore" name="'+
+
+      		'" href="#modal-inner" data-toggle="modal"><img  class="media-object round-img w35" src="<%=request.getContextPath()%>/mem/memImg.do?memAc='+
+      		urName+
+      		'"></a></div><div class="media-body"><div class="col-xs-11 col-sm-10 padlr0"><div class="msgPop bg-gray inline-b">'+
+      		jsonObj.message+"\r\n"+
+			'</div></div></div></div></div></div>';
       } else if (jsonObj.userName==myName){
-      	msghtml = '<div class="container-fluid"><div class="row"><div class="media"><div class="media-body">'+
-      				'<p class="col-xs-11 col-xs-offset-1 col-sm-10 col-sm-offset-2 well">'+
-      				jsonObj.message+"\r\n"+
-						'</p></div><div class="media-right">'+
-						'<img class="media-object round-img w50" src="<%=request.getContextPath()%>/mem/memImg.do?memAc='+myName+'"></div></div></div></div>';
+      	msghtml = '<div class="container-fluid"><div class="row"><div class="media"><div class="media-body"><div class="col-xs-11 col-xs-offset-1 col-sm-10 col-sm-offset-2 padlr0 text-right"><div class="msgPop bg-light-g inline-b">'+
+      		jsonObj.message+"\r\n"+
+			'</div></div></div><div class="media-right"><img class="media-object round-img w35" src="<%=request.getContextPath()%>/mem/memImg.do?memAc='+
+			myName+
+			'"></div></div></div></div>';
       }
       
       messagesArea.append(msghtml);

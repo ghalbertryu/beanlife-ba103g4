@@ -45,32 +45,32 @@ textarea {
 			<caption>
 				您好：${mem_ac}</caption>
 			<tr>
-				<td>店家名稱</td>
+				<td>店家名稱*</td>
 				<td colspan="2"><input  class="form-control store_name" type="TEXT" name="store_name" size="45" 
 					value="${storeVO.store_name}" /></td>
 			</tr>
 			<tr>
-				<td>統一編號</td>
+				<td>統一編號*</td>
 				<td colspan="2"><input  class="form-control tax_id_no" type="TEXT" name="tax_id_no" size="45" 
 					value="${storeVO.tax_id_no}" /></td>
 			</tr>
 			<tr>
-				<td>公司電話</td>
+				<td>公司電話*</td>
 				<td colspan="2"><input  class="form-control store_phone" type="TEXT" name="store_phone" size="45" pattern="0\d{1,2}-?(\d{1,4})-?(\d{1,4})" placeholder="EX:02-123-456" 
 					value="${storeVO.store_phone}" /></td>
 			</tr>
 			<tr>
-				<td>店家住址</td>
+				<td>店家住址*</td>
 				<td colspan="2"><input  class="form-control add" type="TEXT" id="address" name="store_add" size="45" 
 					 value="${storeVO.store_add}" /></td>
 			</tr>
 			<tr>
-				<td>店家介紹</td>
+				<td>店家介紹*</td>
 				<td colspan="2"><textarea  class="form-control store_cont" rows="4" cols="50" name="store_cont" 
 						placeholder="">${storeVO.store_cont}</textarea></td>
 			</tr>
 			<tr>
-				<td>匯款資訊</td>
+				<td>匯款資訊*</td>
 				<td colspan="2"><textarea  class="form-control store_atm_info" rows="4" cols="50" name="store_atm_info"
 						placeholder="EX:匯款銀行：台灣銀行 中壢分行 
 戶名：王貫如
@@ -79,13 +79,13 @@ textarea {
 			</tr>
 
 			<tr>
-				<td>免運費金額</td>
+				<td>免運費金額*</td>
 				<td colspan="2"><input  class="form-control store_free_ship" type="number" name="store_free_ship" size="45" min="0" step="1" 
 					value="${storeVO.store_free_ship}" /></td>
 			</tr>
 	
 			<tr>
-				<td>證件照</td>
+				<td>證件照*</td>
 				<td><input class="form-control-file"  type="file" name="win_id_pic" id="idpic1"></td>
 				<td><output id="mylist1">
 				<%
@@ -104,7 +104,7 @@ textarea {
 				</output></td>
 			</tr>
 			<tr>
-				<td>店家照1</td>
+				<td>店家照1*</td>
 				<td><input class="form-control-file"  type="file" name="store_pic1" id="stpic1" ></td>
 				<td><output id="mylist2">
 				<%

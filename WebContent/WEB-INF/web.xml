@@ -154,6 +154,7 @@
     <url-pattern>/FrontEnd/prod_mag/*</url-pattern>
     <url-pattern>/FrontEnd/reg_store/*</url-pattern>
     <url-pattern>/FrontEnd/store_mag/*</url-pattern>
+    <url-pattern>/FrontEnd/msg/*</url-pattern>
     <servlet-name>Cart_listServletAjax</servlet-name>
     <servlet-name>Fo_prodServletAjax</servlet-name>
     <servlet-name>Fo_storeServletAjax</servlet-name>

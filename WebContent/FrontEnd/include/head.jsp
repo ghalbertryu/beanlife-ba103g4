@@ -241,13 +241,13 @@
 
 <c:if test="${mem_ac!=null}">
 <!--  --------------------------------------------------------------私訊開始---------------------------------------------------------------->
-			<div id="msgOn" class="btn  msgBtn bg-light-g" style="display:none;">
-               	 <span class="glyphicon glyphicon-comment "></span>
+			<div id="msgOn" class="btn btn-sm msgBtn bg-gray rdc" style="display:none;">
+               	 <span class="glyphicon glyphicon-comment tx-g bold ">　Message</span>
            </div>
 			
-
-           <div class="msg bg-white" style="display:none;">
-              <div class="container-fluid bg-light-g">
+		<div class="msg" style="display:none;">
+           <div class="msgX">
+              <div class="msgTopBar container-fluid bg-light-g">
                 <div class="row">
                   <div class="col-xs-12 col-sm-12">
                     <span id="msgOff" class="btn btn-sm glyphicon glyphicon-minus pull-right"></span>
@@ -293,12 +293,14 @@
                           
                             <div class="media">
                               <div class="media-left">
-                                <img  class="media-object round-img w50" src="<%=request.getContextPath()%>/mem/memImg.do">
+                                <img  class="media-object round-img w35" src="<%=request.getContextPath()%>/mem/memImg.do">
                               </div>
                               <div class="media-body">
-                                <p class="col-xs-11 col-sm-10 well">
-									${sys_msgVO.msg_cont}
-                                </p>
+                                <div class="col-xs-11 col-sm-10 padlr0">
+									<div class="msgPop bg-gray inline-b">${sys_msgVO.msg_cont}</div>
+									<br>
+									<small><fmt:formatDate value="${sys_msgVO.msg_send_date }" pattern="yyyy-MM-dd HH:mm"/></small>
+                                </div>
                               </div>
                             </div>
 
@@ -309,8 +311,8 @@
                     </div>
                     
                     <div>
-                      <textarea class="form-control" rows="3" placeholder="輸入私訊..." id="msgIn${mem_ac}sys" disabled></textarea>
-                      <span id="submit${mem_ac}sys" class="btn btn-primary btn-sm pull-right" disabled>送出</span>
+                      <textarea class="form-control mgb10" rows="3" placeholder="輸入私訊..." id="msgIn${mem_ac}sys" disabled></textarea>
+                      <span id="submit${mem_ac}sys" class="btn btn-primary btn-sm mgb10 mgl230" disabled>送出</span>
                     </div>
                     
                   </div>
@@ -332,20 +334,26 @@
 												<div class="row">
 												
 												<c:if test="${msgVO.mem_sen==urName}">
+												
+						                   
+						                            
 													<div class="media">
 														<div class="media-left">
 															<c:if test="${storeSvc.getOneByMem(urName)!=null}">
 															<a class="showStore" name="${storeSvc.getOneByMem(urName).store_no}" href='#modal-inner' data-toggle="modal">
 															</c:if>
-																<img  class="media-object round-img w50" src="<%=request.getContextPath()%>/mem/memImg.do?memAc=${urName}">
+																<img  class="media-object round-img w35" src="<%=request.getContextPath()%>/mem/memImg.do?memAc=${urName}">
 															<c:if test="${storeSvc.getOneByMem(urName)!=null}">
 															</a>
 															</c:if>
 														</div>
 														<div class="media-body">
-															<p class="col-xs-11 col-sm-10 well">
-																${msgVO.msg_cont}
-															</p>
+															<div class="col-xs-11 col-sm-10 padlr0">
+																<div class="msgPop bg-gray inline-b">${msgVO.msg_cont}</div>
+																<br>
+																<small><fmt:formatDate value="${msgVO.msg_send_date }" pattern="yyyy-MM-dd HH:mm"/></small>
+																
+															</div>
 															
 														</div>
 													</div>
@@ -354,12 +362,14 @@
 												<c:if test="${msgVO.mem_sen==mem_ac}">
 													<div class="media">
 														<div class="media-body">
-															<div class="col-xs-11 col-xs-offset-1 col-sm-10 col-sm-offset-2">
-																<div class=" pull-right  well bg-light-g">${msgVO.msg_cont}</div>
+															<div class="col-xs-11 col-xs-offset-1 col-sm-10 col-sm-offset-2 padlr0 text-right">
+																<div class="msgPop bg-light-g inline-b">${msgVO.msg_cont}</div>
+																<br>
+																<small><fmt:formatDate value="${msgVO.msg_send_date }" pattern="yyyy-MM-dd HH:mm"/></small>
 															</div>
 														</div>
 														<div class="media-right">
-															<img class="media-object round-img w50" src="<%=request.getContextPath()%>/mem/memImg.do?memAc=${mem_ac}">
+															<img class="media-object round-img w35" src="<%=request.getContextPath()%>/mem/memImg.do?memAc=${mem_ac}">
 														</div>
 													</div>
 												</c:if>
@@ -373,8 +383,8 @@
 
 									</div>
 									<div>
-										<textarea class="form-control" rows="3" placeholder="輸入私訊..." id="msgIn${mem_ac}${urName}"></textarea>
-										<span id="submit${mem_ac}${urName}" class="btn btn-primary btn-sm pull-right">送出</span>
+										<textarea class="form-control mgb10" rows="3" placeholder="輸入私訊..." id="msgIn${mem_ac}${urName}"></textarea>
+										<span id="submit${mem_ac}${urName}" class="btn btn-primary btn-sm mgb10 mgl230 ">送出</span>
 									</div>
 									
 						        </div>
@@ -404,7 +414,7 @@ $(document).ready(function(){
                   </div>
               </div>
            </div>
-
+</div>
 <!--  --------------------------------------------------------------私訊結束---------------------------------------------------------------->
 
 <style type="text/css">
@@ -421,15 +431,33 @@ $(document).ready(function(){
 		right: 10px; 
 		bottom: 0; 
 		width:300px; 
-		padding:5px;
+		padding-right:10px;
+		padding-left:10px;
+	}
+	.msgX{
+		background-color:snow; 
 		border-top-left-radius:5px;
 		border-top-right-radius:5px;
-/*     	background-color:snow; */
 	}
 	.msgBtn{
 /* 		margin-top:50vh; */
 		z-index: 1000; position: fixed; right: 10px; bottom: 0;
 	}
+	.msgTopBar{
+		border-top-left-radius:5px;
+		border-top-right-radius:5px;
+		margin-bottom:10px;
+	}
+	.rdc{
+		border-bottom-left-radius:0px;
+		border-bottom-right-radius:0px;
+	}
+	.msgPop{
+		padding: 8px;
+	    border-radius: 5px;
+	    margin-top: 5px; 
+	}
+
 
 </style>
 			
