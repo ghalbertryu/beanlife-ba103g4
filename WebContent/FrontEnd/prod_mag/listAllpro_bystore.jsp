@@ -106,8 +106,9 @@
 						</td>
 					</tr>
 				</c:forEach>
-				　<%@ include file="page2.file"%>
+				
 			</table>
+			　<%@ include file="page2.file"%>
 			</div>
 				　
 		</div>

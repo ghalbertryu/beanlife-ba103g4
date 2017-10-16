@@ -125,9 +125,9 @@
 						<td><button class="btn btn-danger btn-xs msgTo" name="${ordVO.mem_ac}">與買家私訊</button></td>
 					</tr>
 				</c:forEach>
-				<%@ include file="page2.file"%>
+				
 			</table>
-				　　
+				　　<%@ include file="page2.file"%>
 			</div>
 		</div>
 	</div>
