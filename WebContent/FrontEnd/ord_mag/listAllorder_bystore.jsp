@@ -112,14 +112,15 @@
 						<td>${ordVO.ord_date}</td>
 						<td>NT$${ordVO.total_pay}</td>
 						<td>${ordVO.ord_stat}</td>
-						<td><FORM METHOD="post"
+						<td>
+						<FORM METHOD="post"
 										ACTION="<%=request.getContextPath()%>/ord/Ord_manag.do">
 										<input type="submit" value="進行訂單管理" class="btn btn-info btn-xs"> 
 										<input type="hidden" name="ord_no" value="${ordVO.ord_no}">
 										<input type="hidden" name="store_no"	value="<%=store_no%>">  
 										<input type="hidden" name="action" value="getOne_For_Update">
 										<input type="hidden" name="whichPage"	value="<%=whichPage%>">  
-							</FORM>
+						</FORM>
 						</td>
 						<td><button class="btn btn-danger btn-xs msgTo" name="${ordVO.mem_ac}">與買家私訊</button></td>
 					</tr>

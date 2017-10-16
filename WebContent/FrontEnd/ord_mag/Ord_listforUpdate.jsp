@@ -83,30 +83,17 @@
 				<div class="">
 				運費：NT$${ordVO.send_fee}<br>
 				結帳總金額：NT$${ordVO.total_pay}
+				<br><br>
 				</div>
-				</div>
-			<br>
-			<br>
-			<br>
-		
-			
-				<div class="col-xs-12 col-sm-2 ">
-				</div>
-				<div class="col-xs-12 col-sm-10 mgt20">
+	
+	
 					<table class="table-bordered customer">
 						<caption class="customerca"><B>買家資訊</B></caption>
 						<tr><td>收貨人</td><td>${ordVO.ord_name}</td><td>買家帳號</td><td>${ordVO.mem_ac}</td></tr>
 						<tr><td>收貨人電話</td><td>${ordVO.ord_phone}</td><td>收貨人住址</td><td>${ordVO.ord_add}</td></tr>
 					</table>
-				</div>
-			
 
-			
-			
-				<div class="col-xs-12 col-sm-2">
-				</div>
-				<div class="col-xs-12 col-sm-10">
-				<br>
+		<br>
 					<div >
 						付款資訊：
 				<c:if test="${fn:startsWith(ordVO.pay_info, 'B')}"> 
@@ -117,9 +104,7 @@
  						${ordVO.pay_info}
 				</c:if>
 					</div>
-					<br>
-					<br>
-				</div>
+	
 			
 		<fmt:formatDate value="${ordVO.ord_date}" var="ord_date"  
                   pattern="yyyy-MM-dd hh:mm:ss"/> 
@@ -131,13 +116,9 @@
                 pattern="yyyy-MM-dd hh:mm:ss" /> 
 	
 		
-			<div class="row">
-				<div class="col-xs-12 col-sm-2">
+		<br><br>
+				
 					
-				</div>
-				<div class="col-xs-12 col-sm-10">
-					<div class="col-xs-12 col-sm-12">
-						<br>
 						<table class="bar table-bordered">
 							<tr><td class="bar1" >訂單成立</td><td  class="w1" >${ord_date}</td></tr>
 							<tr><td class="bar1">付款時間</td><td  class="w1">${pay_date}</td></tr>
@@ -156,12 +137,12 @@
 										<input type="hidden" name="action" value="update_stat">
 										<input type="hidden" name="ordmem_ac" value="${ordVO.mem_ac}">
 										<span>${ordVO.ord_stat.equals("已確認付款") ? "請輸入物流編號並發出出貨通知" : ''}</span>
-										<a href="<%=request.getContextPath()%>/FrontEnd/ord_mag/listAllorder_bystore.jsp" class="btn btn-info" role="button">返回上頁</a>
+										
 							</FORM>
-						
+						<a href="<%=request.getContextPath()%>/FrontEnd/ord_mag/listAllorder_bystore.jsp" role="button"><span class="btn btn-info pull-right" >返回上頁</span></a>
 					</div>
-				</div>
-			</div>
+				
+			
 </div>
 </div>
 </div>
