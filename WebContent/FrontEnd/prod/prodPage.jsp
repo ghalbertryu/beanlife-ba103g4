@@ -69,7 +69,7 @@
                     <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
                     <h4 class="modal-title bold">${prodVO.prod_name}</h4>
                 </div>
-                <div class="modal-body pad0">
+                <div class="modal-body padlr0">
                     <div class="container-fluid">
 
 
@@ -388,8 +388,8 @@
                                         	<c:set var="reviewlist" value="${reviewSvc.getVOByProd(prodVO.prod_no)}"/>
 
 											<c:if test="${reviewlist.size()==0}">
-												<div class="col-xs-12 col-sm-12 text-center padt10">
-													<h2 class="tx-gray">目前尚無心得評論</h2>
+												<div class="col-xs-12 col-sm-12 text-center padt10 mgb30">
+													<h2 class="tx-gray">目前尚無評論</h2>
 												</div>
 											</c:if>
 											
@@ -555,7 +555,7 @@ var $btnLikeRev = $("#modal-inner button.lk${reviewVO.rev_no}").click(function()
                                         	<c:set var="qalist" value="${qaSvc.getVOByProd(prodVO.prod_no)}"/>
 											
 											<c:if test="${qalist.size()==0}">
-												<div class="col-xs-12 col-sm-12 text-center padt10">
+												<div class="col-xs-12 col-sm-12 text-center padt10 mgb30">
 													<h2 class="tx-gray">目前尚無人提問</h2>
 												</div>
 											</c:if>

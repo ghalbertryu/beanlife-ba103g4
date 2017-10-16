@@ -140,6 +140,9 @@ div .bold{
 .padr0{
 	padding-right: 0px;
 }
+.padl0{
+	padding-left: 0px;
+}
 .padr5{
 	padding-right: 5px;
 }
@@ -155,6 +158,10 @@ div .bold{
 .padlr10{
 	padding-left: 20px;
 	padding-right: 20px;
+}
+.padlr0{
+	padding-left: 0px;
+	padding-right: 0px;
 }
 .padt5{
 	padding-top: 5px;

@@ -32,7 +32,7 @@
           <div class="modal-header">
             <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
           </div>
-          <div class="modal-body">
+          <div class="modal-body padlr0">
 
             <div class="container-fluid">
               <div class="row">
@@ -100,7 +100,7 @@
                     <small class="">店家編號 ${storeVO.store_no}</small>
                   </div>
 
-                  <div id="map"></div>
+                  <div class="mgt20" id="map"></div>
 
                 </div>
               </div>
@@ -110,7 +110,7 @@
             <div class="container-fluid padt20">
               <div class="row">
         
-                    <div class="col-xs-12 col-sm-10 col-sm-offset-1">
+                    <div class="col-xs-12 col-sm-10 col-sm-offset-1 padlr0">
    
 						<c:forEach var="prodVO" items="${prodSet}" varStatus="s">
 						

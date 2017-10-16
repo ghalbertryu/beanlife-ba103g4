@@ -79,7 +79,7 @@
           <div class="pull-right padt5">
             <div class="dropdown pull-right">
                       <a class="navbar-brand dropdown-toggle" data-toggle="dropdown" href="<%=request.getContextPath()%>/FrontEnd/cart/cart.jsp">
-                        <span class="glyphicon glyphicon-shopping-cart"></span>
+                        <span class=" glyphicon glyphicon-shopping-cart"></span>
                         <c:set var="cartSize" value="0"/>
                         <c:forEach var="cart_listVO" items="${cart_listSvc.getVOsByMem(mem_ac)}">
                             <c:set var="cartSize" value="${cart_listVO.prod_amount+cartSize}"/>
@@ -195,14 +195,24 @@
                       <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
                       <input id="mem_ac" type="text" class="form-control" name="mem_ac" placeholder="帳號">
                     </div>
-                    <div class="input-group">
+                    <div class="input-group mgt10">
                       <span class="input-group-addon"><i class="glyphicon glyphicon-lock"></i></span>
                       <input id="mem_pwd" type="password" class="form-control" name="mem_pwd" placeholder="密碼">
                     </div>
-                    <small class="pull-right">忘記密碼</small>
+                   
                     
                     <input type="hidden" name="action" value="login">
-                  	<input type="submit" value="確定" class=" btn btn-primary btn-block mgt50">
+                    <div class="container-fluid mgt20">
+                      <div class="row">
+                        <div class="col-xs-6 col-sm-6 padl0">
+                          <span id="btn-signIn" class="btn btn-info btn-block">註冊</span>
+                        </div>
+                        <div class="col-xs-6 col-sm-6 padr0">
+                          <input type="submit" value="登入" class=" btn btn-success btn-block">
+                        </div>
+                      </div>
+                    </div>
+                  	
                   </div>
                 </div>
               </div>
@@ -217,7 +227,13 @@
             </div>
         </div>
     </div>
-    
+
+
+<script type="text/javascript">
+  $('#btn-signIn').click(function(){
+    window.location.href = "<%=request.getContextPath()%>/FrontEnd/reg_mem/reg_member.jsp";
+  });
+</script>
 <!--  --------------------------------------------------------------跳窗結束---------------------------------------------------------------->
 
 
