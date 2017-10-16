@@ -18,7 +18,11 @@
 MemVO memVO=(MemVO)pageContext.getAttribute("memVO");
 %>
 
-<div  class="content container mgt-depn-nav">
+<div class="container cart-tab-block content">
+	<div class="row">
+		<div class="col-xs-12 col-sm-8 col-sm-offset-2">
+			<h3 class="bold">修改個人資料</h3>
+			
 	<%-- 錯誤表列 --%>
 	<c:if test="${not empty errorMsgs}">
 		<font color='red'>請修正以下錯誤:
@@ -32,40 +36,42 @@ MemVO memVO=(MemVO)pageContext.getAttribute("memVO");
 	
 	<FORM METHOD="post"
 		ACTION="<%=request.getContextPath()%>/mem/mem.do" enctype="multipart/form-data">
-		<table border="1">
+	<div class="table-responsive">          
+  		<table class="table">
 			<caption>
 				您好${memVO.mem_ac}，這是您的資料</caption>
 			
-			<tr>
-				<td>會員姓氏:</td>
-				<td><input type="TEXT" name="mem_lname" size="45"
+			<tr >
+				<td>姓氏</td>
+				<td colspan="2"><input  class="form-control" type="TEXT" name="mem_lname" size="45"
 					value="${memVO.mem_lname}" /></td>
 			</tr>
 			<tr>
-				<td>會員名字:</td>
-				<td><input type="TEXT" name="mem_fname" size="45" 
+				<td>名字</td>
+				<td colspan="2"><input  class="form-control" type="TEXT" name="mem_fname" size="45" 
 					value="${memVO.mem_fname}" /></td>
 			</tr>
 			<tr>
-				<td>會員Email:</td>
-				<td><input type="TEXT"  name="mem_email" size="45"
+				<td>Email</td>
+				<td colspan="2"><input  class="form-control"  type="TEXT"  name="mem_email" size="45"
 					 value="${memVO.mem_email}" /></td>
 			</tr>
 			<tr>
-				<td>會員地址:</td>
-				<td><input type="TEXT"  name="mem_add" size="45"
+				<td>地址</td>
+				<td colspan="2"><input  class="form-control" type="TEXT"  name="mem_add" size="45"
 					 value="${memVO.mem_add}" /></td>
 			</tr>
 			<tr>
-				<td>會員圖片:</td>
+				<td>頭像</td>
 				<td><output id="mylist1"><img src="<%=request.getContextPath()%>/mem/memImg.do?memAc=${memVO.mem_ac}" width='100'></output></td>
-				<td><input type="file"  name="mem_pic" size="45" id="mem_pic"
+				<td><input  class="form-control-file"  type="file"  name="mem_pic" size="45" id="mem_pic"
 					 value="上傳" /></td>
 			</tr>
 			
 			
 		</table>
-		<input type="submit" value="確定送出"> 
+	</div>
+		<input class="form-control  pull-right btn btn-primary"  type="submit" value="確定"> 
 		<input type="hidden" value="${memVO.mem_ac}" name="mem_ac">
 		<input type="hidden" name="action" value="update_data">
 		<input type="hidden" name="mem_set1" value="">
@@ -74,6 +80,8 @@ MemVO memVO=(MemVO)pageContext.getAttribute("memVO");
 	</FORM>
 	
 	
+		</div>
+	</div>
 </div>
 <script>
 function handleFileSelect1(evt) {

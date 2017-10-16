@@ -28,7 +28,10 @@
 %>
 
 
-<div class="content container mgt-depn-nav">
+<div class="container cart-tab-block content">
+	<div class="row">
+		<div class="col-xs-12 col-sm-10 col-sm-offset-1">
+			<h3 class="bold">店家中心</h3>
 
 	<c:if test="${not empty errorMsgs}">
 		<font color='red'>請修正以下錯誤:
@@ -40,24 +43,26 @@
 		</font>
 	</c:if>
 	
-		
-	<div class="product col-sm-2">
+	<div class="product col-sm-3">
+	<div class="table-responsive">  
 	<table class="store" >
-	<tr><td align="center"><h2>${storeVO.store_name}</h2></td></tr>
+	<tr><td align="center"><h4>${storeVO.store_name}</h5></td></tr>
 	<tr><td align="center"><img src="<%=request.getContextPath()%>/store/storeImg.do?store_no=${storeVO.store_no}&index=1" width='150'></td></tr>
-	<tr><td align="center"><h4><a class="showStore" name="${storeVO.store_no}" href='#modal-inner' data-toggle="modal" >預覽商場</a></h4></td></tr>
-	<tr><td align="center"><h4><a href="<%=request.getContextPath()%>/FrontEnd/store_mag/store_databypass.jsp">修改店家資料</a></h4></td></tr>
+	<tr><td align="center"><h5><a class="showStore" name="${storeVO.store_no}" href='#modal-inner' data-toggle="modal" >預覽商場</a></h5></td></tr>
+	<tr><td align="center"><h5><a href="<%=request.getContextPath()%>/FrontEnd/store_mag/store_databypass.jsp">修改店家資料</a></h5></td></tr>
 	</table>
 	</div>
+	</div>
 	
-	<div class="container">
-		<div class="product col-sm-9 col-sm-offset-1">
-			<table class="table-bordered table-responsive pro_all">
+	
+		<div class="product col-sm-9">
+			<div class="table-responsive">          
+  			<table class="table table-bordered pro_all">
 				<caption >
-					<font size="20">我的商品</font>
-					<ul class="verticnav">
-						<li><small><a href="<%=request.getContextPath()%>/FrontEnd/prod_mag/addprod.jsp">新增商品</a></small></li>
-					</ul>	
+					<a href="<%=request.getContextPath()%>/FrontEnd/prod_mag/addprod.jsp"><span class="btn btn-primary pull-right">新增商品</span></a>
+<!-- 					<ul class="verticnav"> -->
+<!-- 						<li></li> -->
+<!-- 					</ul>	 -->
 				</caption>
 				<tr>
 					<th>商品名稱</th>
@@ -83,7 +88,7 @@
 						<td>${prodVO.prod_stat}</td>
 						<td><FORM METHOD="post"
 										ACTION="<%=request.getContextPath()%>/prod/Prod_manag.do">
-										<input type="submit" value="修改商品資料" class="btn-primary"> 
+										<input type="submit" value="修改商品資料" class="btn-warning btn"> 
 										<input type="hidden" name="prod_no" value="${prodVO.prod_no}">
 										<input type="hidden" name="store_no"	value="<%=store_no%>">  
 										<input type="hidden" name="action" value="getOne_For_Update">
@@ -92,7 +97,7 @@
 						</td>
 						<td><FORM METHOD="post"
 										ACTION="<%=request.getContextPath()%>/prod/Prod_manag.do">
-										<input type="submit" value=${prodVO.prod_stat.equals("上架") ? "下架" : "上架" } class=${prodVO.prod_stat.equals("上架") ? "btn-danger" : "btn-info" }> 
+										<input type="submit" value=${prodVO.prod_stat.equals("上架") ? "下架" : "上架" } class= 'btn ${prodVO.prod_stat.equals("上架") ? "btn-danger" : "btn-success" }'> 
 										<input type="hidden" name="prod_no" value="${prodVO.prod_no}">
 										<input type="hidden" name="prod_stat" value="${prodVO.prod_stat}">
 										<input type="hidden" name="action" value="Update_prodstat">
@@ -101,12 +106,14 @@
 						</td>
 					</tr>
 				</c:forEach>
-				
+				　<%@ include file="page2.file"%>
 			</table>
-				　　<%@ include file="page2.file"%>
+			</div>
+				　
 		</div>
 
-		</div>
+</div>
+</div>		
 </div>		
 		
 		

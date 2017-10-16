@@ -17,11 +17,13 @@ textarea {
 
 </style>
 
+<div class="container cart-tab-block content">
+	<div class="row">
+		<div class="col-xs-12 col-sm-8 col-sm-offset-2">
+			<h3 class="bold">申請店家</h3>
+	
+	
 
-<div class="content container mgt-depn-nav">
-	
-	
-<div class="col-sm-2">
 	
 	<%-- 錯誤表列 --%>
 	<c:if test="${not empty errorMsgs}">
@@ -33,59 +35,58 @@ textarea {
 			</ul>
 		</font>
 	</c:if>
-</div>
-<div class="container">
-<div class="col-sm-10">
-	<h3>會員申請店家 </h3>
-	<button class="new">紐</button>
+
+
+	<button class="new  btn-xs btn-default">紐</button>
 	<FORM METHOD="POST"
 		ACTION="<%=request.getContextPath()%>/store/ToStore.do" name="form1" enctype="multipart/form-data">
-		<table class="regstore">
+		<div class="table-responsive">          
+  		<table class="table">
 			<caption>
 				您好：${mem_ac}</caption>
 			<tr>
-				<td>店家名稱:</td>
-				<td><input type="TEXT" name="store_name" size="45" class="store_name"
+				<td>店家名稱</td>
+				<td colspan="2"><input  class="form-control store_name" type="TEXT" name="store_name" size="45" 
 					value="" /></td>
 			</tr>
 			<tr>
-				<td>統一編號:</td>
-				<td><input type="TEXT" name="tax_id_no" size="45" class="tax_id_no"
+				<td>統一編號</td>
+				<td colspan="2"><input  class="form-control tax_id_no" type="TEXT" name="tax_id_no" size="45" 
 					value="" /></td>
 			</tr>
 			<tr>
-				<td>公司電話:</td>
-				<td><input type="TEXT" name="store_phone" size="45" pattern="0\d{1,2}-?(\d{1,4})-?(\d{1,4})" placeholder="EX:02-123-456" class="store_phone"
+				<td>公司電話</td>
+				<td colspan="2"><input  class="form-control store_phone" type="TEXT" name="store_phone" size="45" pattern="0\d{1,2}-?(\d{1,4})-?(\d{1,4})" placeholder="EX:02-123-456" 
 					value="" /></td>
 			</tr>
 			<tr>
-				<td>店家住址:</td>
-				<td><input type="TEXT" id="address" name="store_add" size="45" 
-					class="add" value="" /></td>
+				<td>店家住址</td>
+				<td colspan="2"><input  class="form-control add" type="TEXT" id="address" name="store_add" size="45" 
+					 value="" /></td>
 			</tr>
 			<tr>
-				<td>店家介紹:</td>
-				<td><textarea rows="4" cols="50" name="store_cont" class="store_cont"
-						placeholder="EX:媽媽嘴曾經發生命案糾咪"></textarea></td>
+				<td>店家介紹</td>
+				<td colspan="2"><textarea  class="form-control store_cont" rows="4" cols="50" name="store_cont" 
+						placeholder=""></textarea></td>
 			</tr>
 			<tr>
-				<td>匯款資訊：</td>
-				<td><textarea rows="4" cols="50" name="store_atm_info" class="store_atm_info"
-						placeholder="EX:匯款銀行：彰化銀行 蘆洲分行 
-戶名：陳建儒 
-銀行代碼：009  
-銀行帳號：9832-51-326845-00"></textarea></td>
+				<td>匯款資訊</td>
+				<td colspan="2"><textarea  class="form-control store_atm_info" rows="4" cols="50" name="store_atm_info"
+						placeholder="EX:匯款銀行：台灣銀行 中壢分行 
+戶名：王貫如
+銀行代碼：008 
+銀行帳號：3322-51-322325-00"></textarea></td>
 			</tr>
 
 			<tr>
-				<td>免運費金額:</td>
-				<td><input type="number" name="store_free_ship" size="45" min="0" step="1" class="store_free_ship"
+				<td>免運費金額</td>
+				<td colspan="2"><input  class="form-control store_free_ship" type="number" name="store_free_ship" size="45" min="0" step="1" 
 					value="" /></td>
 			</tr>
 	
 			<tr>
-				<td>證件照:</td>
-				<td><input type="file" name="win_id_pic" id="idpic1"></td>
+				<td>證件照</td>
+				<td><input class="form-control-file"  type="file" name="win_id_pic" id="idpic1"></td>
 				<td><output id="mylist1">
 				<%
 				String win_id_pic="";
@@ -103,8 +104,8 @@ textarea {
 				</output></td>
 			</tr>
 			<tr>
-				<td>店家照1:</td>
-				<td><input type="file" name="store_pic1" id="stpic1" ></td>
+				<td>店家照1</td>
+				<td><input class="form-control-file"  type="file" name="store_pic1" id="stpic1" ></td>
 				<td><output id="mylist2">
 				<%
 				String store_pic1="";
@@ -122,8 +123,8 @@ textarea {
 				</output></td>
 			</tr>
 			<tr>
-				<td>店家照2:</td>
-				<td><input type="file" name="store_pic2" id="stpic2"></td>
+				<td>店家照2</td>
+				<td><input class="form-control-file"  type="file" name="store_pic2" id="stpic2"></td>
 				<td><output id="mylist3">
 				<%
 				String store_pic2="";
@@ -141,8 +142,8 @@ textarea {
 				</output></td>
 			</tr>
 			<tr>
-				<td>店家照3:</td>
-				<td><input type="file" name="store_pic3" id="stpic3"></td>
+				<td>店家照3</td>
+				<td><input class="form-control-file"  type="file" name="store_pic3" id="stpic3"></td>
 				<td><output id="mylist4">
 				<%
 				String store_pic3="";
@@ -161,13 +162,15 @@ textarea {
 			</tr>
 			
 		</table>
+		</div>
 		<br> <input type="hidden" name="action" value="insert"> 
 		<input	type="hidden" name="mem_ac" value="${mem_ac}"> 
 		<input	type="hidden" name="store_add_lat" id="lat" size="45" value="${storeVO.store_add_lat}" class="store_add_lat"/>
 		<input	type="hidden" name="store_add_lon" id="lng" size="45" value="${storeVO.store_add_lon}" class="store_add_lon"/> 
-		<input type ="button" onclick="history.back()" value="取消" class="btn-info"></input>　　　　　<input	type="submit" value="送出新增"  class="btn-info"/>
+		
+		<input	type="submit" value="送出"  class="btn btn-primary pull-right"/>
+		<input type ="button" onclick="history.back()" value="取消" class="btn btn-danger pull-right mgr10"></input>
 	</FORM>
-
 </div>
 </div>
 </div>
@@ -375,7 +378,7 @@ textarea {
 		$(".store_phone").val("02-2297-6825")
 		$(".add").val("新北市新莊區明安西路205號");
 		$(".store_cont").val("爸爸嘴是一群愛喝咖啡的同好們合作的一間咖啡工作室，將好咖啡帶入生活中，讓每個愛好者與爸爸嘴共享 CAFE IS LIFE!");
-		$(".store_atm_info").val("匯款銀行：彰化銀行 蘆洲分行\n戶名：陳建儒\n銀行代碼：009\n銀行帳號：9832-51-326845-00");
+		$(".store_atm_info").val("匯款銀行：彰化銀行 中壢分行\n戶名：陳豐行\n銀行代碼：005\n銀行帳號：5787-57-324245-00");
 		$(".store_free_ship").val("100");
 		$(".store_add_lat").val("25.01501500000");
 		$(".store_add_lon").val("121.42613890000");

@@ -7,8 +7,9 @@
 <jsp:include page="/FrontEnd/include/head.jsp"/>
 <c:set var="mem_ac" value="${request.mem_ac}" scope="page"/>
 
-<div class="content container mgt-depn-nav">
+<div class="container cart-tab-block content">
 	<div class="row">
+		<div class="col-xs-12 col-sm-6 col-sm-offset-3 mgt20">
 		<div class="table-responsive">
 			<table class="table">
     		  <tr class="success" align="center">
@@ -23,6 +24,7 @@
        			</td>
      		 </tr>
   			</table>
+		</div>
 		</div>
 	</div>
 </div>

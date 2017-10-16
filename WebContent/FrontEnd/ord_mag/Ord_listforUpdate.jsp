@@ -31,8 +31,10 @@
 <c:set var="ord_listVOs" value="${ordSvc.getOrd_listByOrd(ordVO.ord_no)}"/>
 
 
-
-<div class="content container mgt-depn-nav">
+<div class="container cart-tab-block content">
+	<div class="row">
+		<div class="col-xs-12 col-sm-10 col-sm-offset-1">
+			<h3 class="bold">訂單明細</h3>
 
 
 				<%-- 錯誤表列 --%>
@@ -46,26 +48,26 @@
 		</font>
 	</c:if>
 	
-				<div class="col-xs-12 col-sm-2">
-				<table class="store" >
-					<tr><td align="center"><h2>${storeVO.store_name}</h2></td></tr>
-					<tr><td align="center"><img src="<%=request.getContextPath()%>/store/storeImg.do?store_no=${storeVO.store_no}&index=1" width='150'></td></tr>
-					<tr><td align="center"><h4><a class="showStore" name="${storeVO.store_no}" href='#modal-inner' data-toggle="modal" >預覽商場</a></h4></td></tr>
-					<tr><td align="center"><h4><a href="<%=request.getContextPath()%>/FrontEnd/store_mag/store_databypass.jsp">修改店家資料</a></h4></td></tr>
-				</table>
-				
-				</div>
-				<div class="col-xs-12 col-sm-10">
-					<table class="table-bordered table-responsive ord_list">
-				<caption >
-					<font size="16" class="listcap">訂單明細</font>
-				</caption>
+	<div class="product col-sm-2 pad0">
+	<div class="table-responsive">  
+	<table class="store" >
+	<tr><td align="center"><h4>${storeVO.store_name}</h5></td></tr>
+	<tr><td align="center"><img src="<%=request.getContextPath()%>/store/storeImg.do?store_no=${storeVO.store_no}&index=1" width='150'></td></tr>
+	<tr><td align="center"><h5><a class="showStore" name="${storeVO.store_no}" href='#modal-inner' data-toggle="modal" >預覽商場</a></h5></td></tr>
+	<tr><td align="center"><h5><a href="<%=request.getContextPath()%>/FrontEnd/store_mag/store_databypass.jsp">修改店家資料</a></h5></td></tr>
+	</table>
+	</div>
+	</div>
+	
+	
+	<div class="product col-sm-10 ">
+			<div class="table-responsive">       
+			<table class="table-bordered table addpro ord_list">
 				<tr>
 					<th>商品名稱</th>
 					<th>數量</th>
 					<th>單價</th>
 					<th>總金額</th>
-					<th></th>
 				</tr>
 				
 				<c:forEach var="ord_listVO" items="${ord_listVOs}" >
@@ -73,14 +75,15 @@
 						<td>${prodSvc.getOneProd(ord_listVO.prod_no).prod_name}</td>
 						<td>${ord_listVO.amont}</td>
 						<td>${prodSvc.getOneProd(ord_listVO.prod_no).prod_price}</td>
-						<td>${ord_listVO.amont*prodSvc.getOneProd(ord_listVO.prod_no).prod_price}</td>
-						<td ></td>
+						<td>NT$${ord_listVO.amont*prodSvc.getOneProd(ord_listVO.prod_no).prod_price}</td>
 					</tr>
 				</c:forEach>
 			</table>
-				<br>
-				運費：${ordVO.send_fee}<br>
-				結帳總金額：${ordVO.total_pay}
+			</div >
+				<div class="">
+				運費：NT$${ordVO.send_fee}<br>
+				結帳總金額：NT$${ordVO.total_pay}
+				</div>
 				</div>
 			<br>
 			<br>
@@ -89,7 +92,7 @@
 			
 				<div class="col-xs-12 col-sm-2 ">
 				</div>
-				<div class="col-xs-12 col-sm-10 ">
+				<div class="col-xs-12 col-sm-10 mgt20">
 					<table class="table-bordered customer">
 						<caption class="customerca"><B>買家資訊</B></caption>
 						<tr><td>收貨人</td><td>${ordVO.ord_name}</td><td>買家帳號</td><td>${ordVO.mem_ac}</td></tr>
@@ -104,7 +107,7 @@
 				</div>
 				<div class="col-xs-12 col-sm-10">
 				<br>
-					<span>
+					<div >
 						付款資訊：
 				<c:if test="${fn:startsWith(ordVO.pay_info, 'B')}"> 
  						${ordVO.pay_info}
@@ -113,7 +116,7 @@
 				<c:if test="${fn:startsWith(ordVO.pay_info, 'C')}"> 
  						${ordVO.pay_info}
 				</c:if>
-					</span>
+					</div>
 					<br>
 					<br>
 				</div>
@@ -159,7 +162,8 @@
 					</div>
 				</div>
 			</div>
-
+</div>
+</div>
 </div>
 <style>
 	

@@ -30,8 +30,10 @@ width:340px
 
 </style>
 
-<div class="content container mgt-depn-nav">
-
+<div class="container cart-tab-block content">
+	<div class="row">
+		<div class="col-xs-12 col-sm-10 col-sm-offset-1">
+			<h3 class="bold">修改商品</h3>
 
 	<div>
 	<%-- 錯誤表列 --%>
@@ -45,33 +47,34 @@ width:340px
 		</font>
 	</c:if>
 	</div>
-	<div class="col-xs-12 col-sm-2">
-				<table class="store" >
-					<tr><td align="center"><h2>${storeVO.store_name}</h2></td></tr>
-					<tr><td align="center"><img src="<%=request.getContextPath()%>/store/storeImg.do?store_no=${storeVO.store_no}&index=1" width='150'></td></tr>
-					<tr><td align="center"><h4><a class="showStore" name="${storeVO.store_no}" href='#modal-inner' data-toggle="modal" >預覽商場</a></h4></td></tr>
-					<tr><td align="center"><h4><a href="<%=request.getContextPath()%>/FrontEnd/store_mag/store_databypass.jsp">修改店家資料</a></h4></td></tr>
-				</table>
-				
-				</div>
+	
+	<div class="product col-sm-3">
+	<div class="table-responsive">  
+	<table class="store" >
+	<tr><td align="center"><h4>${storeVO.store_name}</h5></td></tr>
+	<tr><td align="center"><img src="<%=request.getContextPath()%>/store/storeImg.do?store_no=${storeVO.store_no}&index=1" width='150'></td></tr>
+	<tr><td align="center"><h5><a class="showStore" name="${storeVO.store_no}" href='#modal-inner' data-toggle="modal" >預覽商場</a></h5></td></tr>
+	<tr><td align="center"><h5><a href="<%=request.getContextPath()%>/FrontEnd/store_mag/store_databypass.jsp">修改店家資料</a></h5></td></tr>
+	</table>
+	</div>
+	</div>
+	
 	<div class="shop">
-		<div class="product col-sm-10">
-		<h3>商品資料修改</h3>
 		<FORM METHOD="post"
 					ACTION="<%=request.getContextPath()%>/prod/Prod_manag.do" name="form1" enctype="multipart/form-data">
-			<table class="table-responsive pro_one">
-			<caption ></caption>
+					
+		<div class="product col-sm-9">
+			<div class="table-responsive">       
+				<table class="table pro_one">
 				<tr>
 					<td>商品名稱*</td>
-					<td><input type="text" name="prod_name" class="te"
+					<td><input type="text" name="prod_name" class="form-control te"
 						value="${prodvo.prod_name}" size="35"></td>
-					<td></td>
 				</tr>
 				<tr>
 					<td>豆種</td>
-					<td><input type="text" name="bean_type" class="te"
+					<td><input type="text" name="bean_type" class="form-control te"
 						value="${prodvo.bean_type}" size="35"></td>
-					<td></td>
 				</tr>
 				<tr>
 					<td>生豆等級</td>
@@ -85,37 +88,31 @@ width:340px
 						${prodvo.bean_grade.equals("G4") ? "checked" : ""}>G4 <input
 						type="radio" name="bean_grade" value="G5"
 						${prodvo.bean_grade.equals("G5") ? "checked" : ""}>G5</td>
-					<td></td>
 				</tr>
 				<tr>
 					<td>生產國*</td>
-					<td><input type="text" name="bean_contry" class="te"
+					<td><input type="text" name="bean_contry" class="form-control te"
 						value="${prodvo.bean_contry}"></td>
-					<td></td>
 				</tr>
 				<tr>
 					<td>地區</td>
-					<td><input type="text" name="bean_region" class="te"
+					<td><input type="text" name="bean_region" class="form-control te"
 						value="${prodvo.bean_region}"></td>
-					<td></td>
 				</tr>
 				<tr>
 					<td>農場</td>
-					<td><input type="text" name="bean_farm" class="te"
+					<td><input type="text" name="bean_farm" class="form-control te"
 						value="${prodvo.bean_farm}"></td>
-					<td></td>
 				</tr>
 				<tr>
 					<td>生產者</td>
-					<td><input type="text" name="bean_farmer" class="te"
+					<td><input type="text" name="bean_farmer" class="form-control te"
 						value="${prodvo.bean_farmer}"></td>
-					<td></td>
 				</tr>
 				<tr>
 					<td>海拔</td>
-					<td><input type="number" name="bean_el" class="te"
+					<td><input type="number" name="bean_el" class="form-control te"
 						value="${prodvo.bean_el}"></td>
-					<td></td>
 				</tr>
 				<tr>
 					<td>處理法*</td>
@@ -127,7 +124,6 @@ width:340px
 							<option value="蜜處理"
 								${prodvo.proc.equals("蜜處理") ? "SELECTED" : ""}>蜜處理</option>
 					</select></td>
-					<td></td>
 				</tr>
 
 				<tr>
@@ -146,7 +142,6 @@ width:340px
 								${prodvo.roast.equals("6") ? "SELECTED" : ""}>法式烘焙</option>
 							<option value="7" ${prodvo.roast.equals("7") ? "SELECTED" : ""}>重焙</option>
 					</select></td>
-					<td></td>
 				</tr>
 				<tr>
 					<td>風味-酸度</td>
@@ -160,7 +155,6 @@ width:340px
 						${prodvo.bean_attr_acid==4 ? "checked" : ""}>4 <input
 						type="radio" name="bean_attr_acid" value="5"
 						${prodvo.bean_attr_acid==5 ? "checked" : ""}>5</td>
-					<td></td>
 				</tr>
 				<tr>
 					<td>風味-香氣</td>
@@ -174,7 +168,6 @@ width:340px
 						${prodvo.bean_attr_aroma==4 ? "checked" : ""}>4 <input
 						type="radio" name="bean_attr_aroma" value="5"
 						${prodvo.bean_attr_aroma==5 ? "checked" : ""}>5</td>
-					<td></td>
 				</tr>
 				<tr>
 					<td>風味-醇度</td>
@@ -188,7 +181,6 @@ width:340px
 						${prodvo.bean_attr_body==4 ? "checked" : ""}>4 <input
 						type="radio" name="bean_attr_body" value="5"
 						${prodvo.bean_attr_body==5 ? "checked" : ""}>5</td>
-					<td></td>
 				</tr>
 				<tr>
 					<td>風味-餘味</td>
@@ -202,7 +194,6 @@ width:340px
 						${prodvo.bean_attr_after==4 ? "checked" : ""}>4 <input
 						type="radio" name="bean_attr_after" value="5"
 						${prodvo.bean_attr_after==5 ? "checked" : ""}>5</td>
-					<td></td>
 				</tr>
 				<tr>
 					<td>風味-平衡度</td>
@@ -216,81 +207,82 @@ width:340px
 						${prodvo.bean_attr_bal==4 ? "checked" : ""}>4 <input
 						type="radio" name="bean_attr_bal" value="5"
 						${prodvo.bean_attr_bal==5 ? "checked" : ""}>5</td>
-					<td></td>
 				</tr>
 				<tr>
 					<td>香味</td>
-					<td><input type="text" name="bean_aroma" class="te"
+					<td><input type="text" name="bean_aroma" class="form-control te"
 						value="${prodvo.bean_aroma}" size="35"></td>
-					<td></td>
 				</tr>
 				<tr>
 					<td>標價 $NT*</td>
-					<td><input type="number" name="prod_price" class="te"
+					<td><input type="number" name="prod_price" class="form-control te"
 						value="${prodvo.prod_price}"></td>
-					<td></td>
 				</tr>
 				<tr>
 					<td>重量 lb(小數後1位)*</td>
-					<td><input type="number" name="prod_wt" step="0.5" class="te"
+					<td><input type="number" name="prod_wt" step="0.5" class="form-control te"
 						value="${prodvo.prod_wt}" ></td>
-					<td></td>
 				</tr>
 				<tr>
 					<td>運費*</td>
-					<td><input type="number" name="send_fee" class="te"
+					<td><input type="number" name="send_fee" class="form-control te"
 						value="${prodvo.send_fee}"></td>
-					<td></td>
 				</tr>
 				<tr>
 					<td>供應數量*</td>
-					<td><input type="number" name="prod_sup"  class="te"
+					<td><input type="number" name="prod_sup"  class="form-control te"
 						value="${prodvo.prod_sup}" ></td>
-					<td></td>
 				</tr>
 				<tr>
 					<td>商品描述*</td>
-					<td><textarea rows="4" cols="50" name="prod_cont" >${prodvo.prod_cont}</textarea>
+					<td><textarea rows="4" name="prod_cont" >${prodvo.prod_cont}</textarea>
 					</td>
-					<td></td>
 				</tr>
 				<tr>
 					<td>商品圖片-1*</td>
-					<td><output id="pic1"><img src="<%=request.getContextPath()%>/prod/prodImg.do?prod_no=${prodvo.prod_no}&index=1" width="150px"></output></td>
-					<td><input type="file" name="prod_pic1" id="propic1"></td>
+					<td>
+					<output id="pic1"><img src="<%=request.getContextPath()%>/prod/prodImg.do?prod_no=${prodvo.prod_no}&index=1" width="150px"></output>
+					<input  class="form-control-file" type="file" name="prod_pic1" id="propic1">
+					</td>
 				</tr>
 				<tr>
 					<td>商品圖片-2</td>
-					<td><output id="pic2"><img src="<%=request.getContextPath()%>/prod/prodImg.do?prod_no=${prodvo.prod_no}&index=2" width="150px"></output></td>
-					<td><input type="file" name="prod_pic2" id="propic2"></td>
+					<td><output id="pic2"><img src="<%=request.getContextPath()%>/prod/prodImg.do?prod_no=${prodvo.prod_no}&index=2" width="150px"></output>
+					<input  class="form-control-file" type="file" name="prod_pic2" id="propic2">
+					</td>
 				</tr>
 				<tr>
 					<td>商品圖片-3</td>
-					<td><output id="pic3"><img src="<%=request.getContextPath()%>/prod/prodImg.do?prod_no=${prodvo.prod_no}&index=3" width="150px"></output></td>
-					<td><input type="file" name="prod_pic3" id="propic3"></td>
+					<td><output id="pic3"><img src="<%=request.getContextPath()%>/prod/prodImg.do?prod_no=${prodvo.prod_no}&index=3" width="150px"></output>
+					<input  class="form-control-file" type="file" name="prod_pic3" id="propic3">
+					</td>
 				</tr>
 				<tr>
 					<td>上架狀態</td>
-					<td><input type="radio" name="prod_stat" value="下架" ${prodvo.prod_stat.equals("下架") ? "checked" : ""}>下架 
+					<td>
+						<input type="radio" name="prod_stat" value="下架" ${prodvo.prod_stat.equals("下架") ? "checked" : ""}>下架 
 						<input type="radio" name="prod_stat" value="上架" ${prodvo.prod_stat.equals("上架") ? "checked" : ""}>上架 
 					</td>
 				</tr>
 				<tr>
 				<td>
-						<input type ="button" onclick="history.back()" value="取消" class="btn btn-info"></input>
+						
 						<input type="hidden" name="prod_no" value="${prodvo.prod_no}">
 						<input type="hidden" name="store_no" value="${storeVO.store_no}">
 						<input type="hidden" name="action" value="update_prod">
 						<input type="hidden" name="whichPage" value="<%=request.getAttribute("whichPage")%>">
 				</td>
-				<td><input type="submit" value="修改商品資料" class="btn btn-info"></td>
 				</tr>
 			</table>
+			<input type="submit" value="修改商品資料" class="btn btn-warning pull-right">
+			<input type ="button" onclick="history.back()" value="取消" class="btn btn-danger pull-right mgr10"></input>
+			</div>
+			</div>
 			</FORM>
 		</div>
 	</div>
 </div>
-	
+</div>
 	
 	<script>
 	$(".pro_one img:first-child").css(

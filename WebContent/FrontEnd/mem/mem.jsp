@@ -49,7 +49,7 @@
                     	<span class="text-success" >店家申請待審中</span>
                     </c:if>
                     <c:if test="${storeSvc.getOneByMem(mem_ac).store_stat.equals('審核不通過')}">
-                    	<a href="<%=request.getContextPath()%>/FrontEnd/store_mag/store_databynotpass.jsp"><span class="text-danger" >店家申請審核不通過</span></a>
+                    	<a href="<%=request.getContextPath()%>/FrontEnd/store_mag/store_databypass.jsp"><span class="text-danger" >店家申請審核不通過</span></a>
                     </c:if>
                 </c:if>
 			</div>

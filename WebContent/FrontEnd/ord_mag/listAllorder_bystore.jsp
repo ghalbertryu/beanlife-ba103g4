@@ -41,7 +41,10 @@
 %>
 
 
-<div class="content container mgt-depn-nav">
+<div class="container cart-tab-block content">
+	<div class="row">
+		<div class="col-xs-12 col-sm-10 col-sm-offset-1">
+			<h3 class="bold">訂單管理</h3>
 	<%-- 錯誤表列 --%>
 	<c:if test="${not empty errorMsgs}">
 		<font color='red'>請修正以下錯誤:
@@ -53,24 +56,23 @@
 		</font>
 	</c:if>
 	
-	<div class="container">
-	<div class="product col-sm-2">
-		<table class="store" >
-			<tr><td align="center"><h2>${storeVO.store_name}</h2></td></tr>
-			<tr><td align="center"><img src="<%=request.getContextPath()%>/store/storeImg.do?store_no=${storeVO.store_no}&index=1" width='150'></td></tr>
-			<tr><td align="center"><h4><a class="showStore" name="${storeVO.store_no}" href='#modal-inner' data-toggle="modal">預覽商場</a></h4></td></tr>
-			<tr><td align="center"><h4><a href="<%=request.getContextPath()%>/FrontEnd/store_mag/store_databypass.jsp">修改店家資料</a></h4></td></tr>
-		</table>
+	<div class="product col-sm-2 pad0">
+	<div class="table-responsive">  
+	<table class="store" >
+	<tr><td align="center"><h4>${storeVO.store_name}</h5></td></tr>
+	<tr><td align="center"><img src="<%=request.getContextPath()%>/store/storeImg.do?store_no=${storeVO.store_no}&index=1" width='150'></td></tr>
+	<tr><td align="center"><h5><a class="showStore" name="${storeVO.store_no}" href='#modal-inner' data-toggle="modal" >預覽商場</a></h5></td></tr>
+	<tr><td align="center"><h5><a href="<%=request.getContextPath()%>/FrontEnd/store_mag/store_databypass.jsp">修改店家資料</a></h5></td></tr>
+	</table>
+	</div>
 	</div>
 	
-	
-	
-		<div class="product col-sm-9 col-sm-offset-1">
-			<table class="table-bordered table-responsive ord_all">
+	<div class="product col-sm-10 pad0">
+			<div class="table-responsive">       
+			<table class="table-bordered table addpro ord_all">
 				<caption >
-					<font size="20">我的訂單</font><br>請選擇狀態
 					<FORM METHOD="post" ACTION="<%=request.getContextPath()%>/ord/Ord_manag.do">
-						<select name="ord_stat" id="stat">
+						<select name="ord_stat" id="stat"  class="form-control" >
 							<option value="getAll">請選擇</option>
 							<option value="未付款" ${(param.ord_stat=='未付款')? 'selected':''}>未付款</option>
 	　						<option value="已付款" ${(param.ord_stat=='已付款')? 'selected':''}>已付款</option>
@@ -84,14 +86,13 @@
 				</caption>
 				<tr>
 					<th>訂單編號</th>
-					<th>收貨人姓名</th>
+					<th>收貨人</th>
 					<th>送貨地址</th>
-					<th>訂單成立時間</th>
-					<th>結帳商品總金額</th>
+					<th>下訂時間</th>
+					<th>總金額</th>
 					<th>訂單狀態</th>
-					<th></th>
-					<th></th>
-					<th></th>
+					<th>操作</th>
+					<th>聯絡</th>
 					
 				</tr>
 				<%@ include file="page1.file"%>
@@ -109,25 +110,27 @@
 						<td>${ordVO.ord_name}</td>
 						<td>${ordVO.ord_add}</td>
 						<td>${ordVO.ord_date}</td>
-						<td>${ordVO.total_pay}</td>
+						<td>NT$${ordVO.total_pay}</td>
 						<td>${ordVO.ord_stat}</td>
-						<td></td>
 						<td><FORM METHOD="post"
 										ACTION="<%=request.getContextPath()%>/ord/Ord_manag.do">
-										<input type="submit" value="進行訂單管理" class="btn btn-info"> 
+										<input type="submit" value="進行訂單管理" class="btn btn-info btn-xs"> 
 										<input type="hidden" name="ord_no" value="${ordVO.ord_no}">
 										<input type="hidden" name="store_no"	value="<%=store_no%>">  
 										<input type="hidden" name="action" value="getOne_For_Update">
 										<input type="hidden" name="whichPage"	value="<%=whichPage%>">  
 							</FORM>
 						</td>
-						<td><button class="btn btn-danger msgTo" name="${ordVO.mem_ac}">與買家私訊</button></td>
+						<td><button class="btn btn-danger btn-xs msgTo" name="${ordVO.mem_ac}">與買家私訊</button></td>
 					</tr>
 				</c:forEach>
+				<%@ include file="page2.file"%>
 			</table>
-				　　<%@ include file="page2.file"%>
+				　　
+			</div>
 		</div>
 	</div>
+</div>
 </div>
 
 <script>

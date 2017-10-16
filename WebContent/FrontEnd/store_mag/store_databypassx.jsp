@@ -8,9 +8,15 @@
 <%@ page import="com.ord.model.*"%>
 <%@ page import="com.ord_list.model.*"%>
 <%@ page import="com.mem.model.*"%>
-<%-- 此頁採用 JSTL 與 EL 取值 --%>
+
 <jsp:include page="/FrontEnd/include/head.jsp"/>
 <c:set var="mem_ac" value="${sessionScope.mem_ac}" scope="page"/>
+<%
+	
+	String store_no = (String) session.getAttribute("store_no");
+	
+%>
+
 <jsp:useBean id="storeSvc" scope="page" class="com.store.model.StoreService" />
 <jsp:useBean id="memSvc" scope="page" class="com.mem.model.MemService" />
 <c:set var="memVO" value="${memSvc.findByPrimaryKeyNoImg(mem_ac)}"/>
@@ -21,6 +27,8 @@
 <c:set var="ord_listVOs"
 	value="${ordSvc.getOrd_listByOrd(ordVO.ord_no)}" />
 	
+<div class="content container mgt-depn-nav">
+
 	<%-- 錯誤表列 --%>
 	<c:if test="${not empty errorMsgs}">
 		<font color='red'>請修正以下錯誤:
@@ -31,25 +39,26 @@
 			</ul>
 		</font>
 	</c:if>
-
-	<div class="content container mgt-depn-nav">
-	<div class="product col-sm-2">
-		<table class="store" >
-			<tr><td align="center"><h2>${storeVO.store_name}</h2></td></tr>
-			<tr><td align="center"><img src="<%=request.getContextPath()%>/store/storeImg.do?store_no=${storeVO.store_no}&index=1" width='150'></td></tr>
-			<tr><td align="center"><h4><a class="showStore" name="${storeVO.store_no}" href='#modal-inner' data-toggle="modal">預覽商場</a></h4></td></tr>
-			<tr><td align="center"><h4><a href="<%=request.getContextPath()%>/FrontEnd/store_mag/store_databypass.jsp">修改店家資料</a></h4></td></tr>
-		</table>
-	</div>
-		
-		<div class="shop col-sm-9 col-sm-offset-0.5">
-		這是您的會員資料，請確認下列資料是否正確。
-						星號 * 為必填欄位。
+	<div class="col-xs-12 col-sm-2">
+				<table class="store" >
+					<tr><td align="center"><h2>${storeVO.store_name}</h2></td></tr>
+					<tr><td align="center"><img src="<%=request.getContextPath()%>/store/storeImg.do?store_no=${storeVO.store_no}&index=1" width='150'></td></tr>
+					<tr><td align="center"><h4><a class="showStore" name="${storeVO.store_no}" href='#modal-inner' data-toggle="modal" >預覽商場</a></h4></td></tr>
+					<tr><td align="center"><h4><a href="<%=request.getContextPath()%>/FrontEnd/store_mag/store_databypass.jsp">修改店家資料</a></h4></td></tr>
+				</table>
+				
+				</div>
+	<div class="shop">
+		<div class="shop col-sm-9 col-sm-offset-1">
 		<FORM METHOD="POST"
 		ACTION="<%=request.getContextPath()%>/store/ToStore.do" name="form1" enctype="multipart/form-data">
 			<table class="table_shop">
 				<caption>
-					<big><b>要求重審店家資格</b></big><br>
+					<big><b>修改店家資料</b></big><br>
+					<ul class="data">
+						<li>這是您的會員資料，請確認下列資料是否正確。</li>
+						<li>星號 * 為必填欄位。</li>
+					</ul>
 				</caption>
 				<tr>
 					<th>帳號資訊</th>
@@ -62,13 +71,13 @@
 					<td></td>
 				</tr>
 				<tr>
-					<th>公司審核狀態：</th>
+					<th>審核狀態：</th>
 					<th>${storeVO.store_stat}</th>
 					<th></th>
 				</tr>
 				<tr>
 					<td>公司名稱</td>
-					<td><input type="text" name="store_name" value="${storeVO.store_name}" class="te"></td>
+					<td><input type="text" name="store_name" value="${storeVO.store_name}"></td>
 					<td></td>
 				</tr>
 				<tr>
@@ -78,58 +87,62 @@
 				</tr>
 				<tr>
 					<td>公司統一編號</td>
-					<td><input type="text" name="tax_id_no"value="${storeVO.tax_id_no}" class="te"></td>
+					<td>${storeVO.tax_id_no}</td>
 					<td></td>
 				</tr>
 				<tr>
 					<td>免運費金額</td>
-					<td><input type="text" name="store_free_ship" value="${storeVO.store_free_ship}" class="te"></td>
+					<td><input type="number" name="store_free_ship" value="${storeVO.store_free_ship}" min="0" step="1"></td>
 					<td></td>
 				</tr>
 				<tr>
 					<td>公司電話</td>
-					<td><input type="text" name="store_phone" value="${storeVO.store_phone}" class="te"></td>
+					<td><input type="text" name="store_phone" value="${storeVO.store_phone}" pattern="0\d{1,2}-?(\d{1,4})-?(\d{1,4})" placeholder="EX:02-123-456"></td>
 					<td></td>
 				</tr>
 				<tr>
 					<td>公司地址</td>
-					<td><input type="text" name="store_add" value="${storeVO.store_add}" id="address" class="te"></td>
+					<td><input type="text" name="store_add" value="${storeVO.store_add}" id="address"></td>
 					<td></td>
 				</tr>
 				<tr>
 					<td>公司介紹</td>
-					<td><textarea rows="4" cols="50" name="store_cont" class="te">${storeVO.store_cont}</textarea></td>
+					<td><textarea rows="4" cols="50" name="store_cont">${storeVO.store_cont}</textarea></td>
 					<td></td>
 				</tr>
 				
 				<tr>
 					<td>店家照片1</td>
-					<td><output id="mylist1"><img src="<%=request.getContextPath()%>/store/StoreImg.do?store_no=${storeVO.store_no}&index=1" width='150'></output></td>
+					<td><output id="mylist1"><img src="<%=request.getContextPath()%>/store/storeImg.do?store_no=${storeVO.store_no}&index=1" width='150'></output></td>
 					<td><input type="file" name="store_pic1" value="上傳" id="storepic1"></td>
 				</tr>
 				<tr>
 					<td>店家照片2</td>
-					<td><output id="mylist2"><img src="<%=request.getContextPath()%>/store/StoreImg.do?store_no=${storeVO.store_no}&index=2" width='150'></output></td>
+					<td><output id="mylist2"><img src="<%=request.getContextPath()%>/store/storeImg.do?store_no=${storeVO.store_no}&index=2" width='150'></output></td>
 					<td><input type="file" name="store_pic2" value="上傳" id="storepic2"></td>
 				</tr>
 				<tr>
 					<td>店家照片3</td>
-					<td><output id="mylist3"><img src="<%=request.getContextPath()%>/store/StoreImg.do?store_no=${storeVO.store_no}&index=3" width='150'></output></td>
+					<td><output id="mylist3"><img src="<%=request.getContextPath()%>/store/storeImg.do?store_no=${storeVO.store_no}&index=3" width='150'></output></td>
 					<td><input type="file" name="store_pic3" value="上傳" id="storepic3"></td>
 				</tr>
 			</table>
-					<input type="hidden" name="action" value="update_forAud"> 
+					<input type="hidden" name="action" value="update_data"> 
 					<input	type="hidden" name="store_add_lat" id="lat" size="45" value="${storeVO.store_add_lat}" />
 					<input	type="hidden" name="store_add_lon" id="lng" size="45" value="${storeVO.store_add_lon}" />
-					<input	type="hidden" name="store_no"  size="45" value="${storeVO.store_no}" />
-					<input	type="submit" value="確認修改" />
+					<input	type="hidden" name="store_no"  size="45" value="${storeVO.store_no}" />　　　
+					<input type ="button" onclick="history.back()" value="取消" class="btn btn-danger"></input>　　　　　　　　　
+					<input	type="submit" value="確認修改" class="btn btn-info"/>
 			</FORM>
 		</div>
 	</div>
-	
 
+
+
+</div>
 
 	<script>
+	
 	$(function() {
 		function getLatLngByAddr($address) {
 			var geocoder = new google.maps.Geocoder(); //定義一個Geocoder物件
@@ -267,7 +280,10 @@
 			handleFileSelect3, false);
 	</script>
 <style>
-
+.verticnav {
+	list-style: none;
+	font-size: 25px;
+}
 .data{
 	list-style: none;
 }
@@ -279,11 +295,6 @@ caption {
  width:750px;
  
 }
-.te{
-width:340px
-}
 </style>
 
 <jsp:include page="/FrontEnd/include/footer.jsp"/>
-
-
