@@ -167,8 +167,7 @@ width: 10px;
 }
 
 .magical_button{
-left: 50%;
-transform: translate(-50%,0%);
+float: left;
 }
 
 
@@ -191,7 +190,7 @@ transform: translate(-50%,0%);
     <h2>3</h2>
   </div>
 </div>
-<h1 class="title"><span class="fa fa-pencil-square-o"></span>填寫活動資訊</h1><button class="btn btn-default magical_button">神奇小按鈕</button>
+<h1 class="title"><span class="fa fa-pencil-square-o"></span>填寫活動資訊</h1>
 <c:if test="${not empty errorMsgs}">
 	<font color='red'  class="myerror" >請修正以下錯誤:
 	<ul>
@@ -304,9 +303,12 @@ transform: translate(-50%,0%);
 </div>
 
 <div class="next">
+
   <button class="btn-success btn-lg  next_step"  type="button">下一步</button>
+  
  
 </div>
+<button class="btn btn-default magical_button" type="button">神奇小按鈕</button>
  </form>
  
 </div>

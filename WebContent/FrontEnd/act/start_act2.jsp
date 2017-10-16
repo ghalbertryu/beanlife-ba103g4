@@ -202,8 +202,8 @@ margin-top: 57px;
 margin-right: 10px;
 }
   .magical_button{
-left: 50%;
-transform: translate(-50%,0%);
+left: 0%;
+
 }
   
 </style>
@@ -232,7 +232,7 @@ transform: translate(-50%,0%);
 
 
 <h1 class="title"><span class="fa fa-pencil-square-o"></span>填寫活動資訊</h1>
-<button class="btn btn-default magical_button" type="button">神奇小按鈕</button>
+
 <c:if test="${not empty errorMsgs}">
 	<font color='red'  class="myerror" >請修正以下錯誤:
 	<ul>
@@ -349,6 +349,7 @@ transform: translate(-50%,0%);
 </div>
 
 <div class="next">
+<button class="btn btn-default magical_button" type="button">神奇小按鈕</button>
   <a class="btn-success btn-lg previous"  href="<%=request.getContextPath() %>/FrontEnd/act/start_act.jsp" >上一步</a>
   <button type="submit"  class="btn-success btn-lg end"><span class="fa fa-smile-o"></span>完成</button>
 </div>
