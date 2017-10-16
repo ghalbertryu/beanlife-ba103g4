@@ -106,8 +106,12 @@ public class ToStore extends HttpServlet {
 
 				String store_atm_info = req.getParameter("store_atm_info").trim();
 				
-
-				
+				if(store_add_lat==null||store_add_lat.length()==0){
+					errorMsgs.add("地址輸入不正確，導致經緯度未抓取");
+				}
+				if(store_add_lon==null||store_add_lon.length()==0){
+					errorMsgs.add("地址輸入不正確，導致經緯度未抓取");
+				}
 				
 				
 				InputStream is = req.getPart("win_id_pic").getInputStream();
