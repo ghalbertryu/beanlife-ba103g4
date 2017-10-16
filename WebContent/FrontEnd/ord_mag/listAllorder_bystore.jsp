@@ -88,9 +88,9 @@
 					<th>訂單編號</th>
 					<th>收貨人</th>
 					<th>送貨地址</th>
-					<th>下訂時間</th>
+					<th class="w100">下訂時間</th>
 					<th>總金額</th>
-					<th>訂單狀態</th>
+					<th class="w90">訂單狀態</th>
 					<th>操作</th>
 					<th>聯絡</th>
 					

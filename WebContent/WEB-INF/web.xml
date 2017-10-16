@@ -135,7 +135,6 @@
     <url-pattern>/FrontEnd/gift/*</url-pattern>
     <url-pattern>/FrontEnd/ord_mag/*</url-pattern>
     <url-pattern>/FrontEnd/prod_mag/*</url-pattern>
-    <url-pattern>/FrontEnd/reg_mem/*</url-pattern>
     <url-pattern>/FrontEnd/reg_store/*</url-pattern>
     <url-pattern>/FrontEnd/store_mag/*</url-pattern>
     <url-pattern>/act_management/act_managementServlet/*</url-pattern>

@@ -274,7 +274,7 @@
 
 		<div class="container cart-tab-block content">
 			<div class="row">
-				<div class="col-xs-12 col-sm-8 col-sm-offset-2">
+				<div class="col-xs-12 col-sm-8 col-sm-offset-2 padlr5">
 					<h3 class="bold">購買清單</h3>
 
 						<div role="tabpanel">

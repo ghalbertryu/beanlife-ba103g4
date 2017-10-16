@@ -2,6 +2,7 @@ package com.ord.controller;
 
 import java.io.IOException;
 import java.util.HashMap;
+import java.util.Iterator;
 import java.util.LinkedHashSet;
 import java.util.Map;
 import java.util.Set;
@@ -187,14 +188,6 @@ public class OrdServlet extends HttpServlet {
 					cart_listSvc.deleteCart_list(prod_noAry[i], mem_ac);
 				}
 				
-				//SysMsg
-				String myName = "sys";
-				String urName = mem_ac;
-				String message = "已成功訂購";
-				req.setAttribute("myName", myName);
-				req.setAttribute("urName", urName);
-				req.setAttribute("message", message);
-				
 				//forward
 				String stat = "?status=1";
 				String url = "/FrontEnd/buyerorder/buyerorder.jsp"+stat;
@@ -264,6 +257,22 @@ public class OrdServlet extends HttpServlet {
 				}
 
 				ordVO = ordSvc.updatePayInfo(ord_no, pay_info.toString());
+				
+				//find mem_ac of Store
+				ProdService prodSvc = new ProdService();
+				StoreService storeSvc = new StoreService();
+				Set<Ord_listVO> set = ordSvc.getOrd_listByOrd(ord_no);
+				Iterator<Ord_listVO> Ord_listVOs= set.iterator();
+				Ord_listVO ord_listVO = Ord_listVOs.next();
+				String nameOfRev = storeSvc.getOneStore(prodSvc.getOneProd(ord_listVO.getProd_no()).getStore_no()).getMem_ac();
+				//SysMsg
+				String myName = "sys";
+				String urName = nameOfRev;
+				String message = "訂單編號"+ord_no+"買家已付款";
+				req.setAttribute("myName", myName);
+				req.setAttribute("urName", urName);
+				req.setAttribute("message", message);
+
 				String stat = "?status=2";
 				//forward
 				System.out.println("OK");

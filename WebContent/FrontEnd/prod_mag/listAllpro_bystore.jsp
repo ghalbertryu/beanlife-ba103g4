@@ -69,6 +69,7 @@
 					<th>商品圖片</th>
 					<th>豆種</th>
 					<th class="w50">價格</th>
+					<th class="w70">烘培度</th>
 					<th class="w50">狀態</th>
 					<th >修改</th>
 					<th>操作</th>
