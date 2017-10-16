@@ -44,6 +44,7 @@
   		<table class="store">
 			<tr><td align="center"><h4>${storeVO.store_name}</h4></td></tr>
 			<tr><td align="center"><img src="<%=request.getContextPath()%>/store/storeImg.do?store_no=${storeVO.store_no}&index=1" width='150'></td></tr>
+			<tr><td align="center"><h5><a class="showStore" name="${storeVO.store_no}" href='#modal-inner' data-toggle="modal">預覽商場</a></h5></td></tr>
 		</table>
 	</div>
 	</div>
@@ -52,59 +53,84 @@
 		
 		<FORM METHOD="POST"
 		ACTION="<%=request.getContextPath()%>/store/ToStore.do" name="form1" enctype="multipart/form-data">
-				<caption>
-					<big><b>修改店家資料</b></big><br>
-					<ul class="data">
-						<li>這是您的會員資料，請確認下列資料是否正確。</li>
-						<li>星號 * 為必填欄位。</li>
-					</ul>
-				</caption>
+		<div class="table-responsive">          
+  		<table class="table table_shop">
+				
 				<tr>
 					<th>帳號資訊</th>
+					<th colspan="2"></th>
+					
 				</tr>
 				<tr>
 					<td>會員帳號</td>
+					<td colspan="2">${mem_ac}</td>
 				</tr>
 				<tr>
+					<th>公司審核狀態：</th>
+					<th colspan="2">${storeVO.store_stat}</th>
 				</tr>
 				<tr>
 					<td>公司名稱</td>
+					<td colspan="2"><input type="text" name="store_name" value="${storeVO.store_name}" class="form-control te"></td>
 				</tr>
 				<tr>
 					<td>負責人姓名</td>
+					<td colspan="2">${memVO.mem_lname}${memVO.mem_fname}</td>
 				</tr>
 				<tr>
 					<td>公司統一編號</td>
+					<td colspan="2"><input type="text" name="tax_id_no"value="${storeVO.tax_id_no}" class=" form-control te"></td>
 				</tr>
 				<tr>
 					<td>免運費金額</td>
+					<td colspan="2"><input type="text" name="store_free_ship" value="${storeVO.store_free_ship}" class="form-control te"></td>
 				</tr>
 				<tr>
 					<td>公司電話</td>
+					<td colspan="2"><input type="text" name="store_phone" value="${storeVO.store_phone}" class="form-control te"></td>
 				</tr>
 				<tr>
 					<td>公司地址</td>
+					<td colspan="2"><input type="text" name="store_add" value="${storeVO.store_add}" id="address" class="form-control te"></td>
 				</tr>
 				<tr>
 					<td>公司介紹</td>
+					<td colspan="2"><textarea rows="6"  name="store_cont" class="form-control te">${storeVO.store_cont}</textarea></td>
 				</tr>
 				
 				<tr>
 					<td>店家照片1</td>
+					<td><output id="mylist1"><img src="<%=request.getContextPath()%>/store/StoreImg.do?store_no=${storeVO.store_no}&index=1" width='150'></output></td>
+					<td><input class="form-control-file" type="file" name="store_pic1" value="上傳" id="storepic1"></td>
 				</tr>
 				<tr>
 					<td>店家照片2</td>
+					<td><output id="mylist2"><img src="<%=request.getContextPath()%>/store/StoreImg.do?store_no=${storeVO.store_no}&index=2" width='150'></output></td>
+					<td><input class="form-control-file" type="file" name="store_pic2" value="上傳" id="storepic2"></td>
 				</tr>
 				<tr>
 					<td>店家照片3</td>
+					<td><output id="mylist3"><img src="<%=request.getContextPath()%>/store/StoreImg.do?store_no=${storeVO.store_no}&index=3" width='150'></output></td>
+					<td><input class="form-control-file" type="file" name="store_pic3" value="上傳" id="storepic3"></td>
 				</tr>
 			</table>
+			</div>
+					<c:if test="${ storeVO.store_stat=='審核不通過'}">
+					<input type="hidden" name="action" value="update_forAud"> 
+					</c:if>
+					<c:if test="${ storeVO.store_stat=='審核通過'}">
 					<input type="hidden" name="action" value="update_data"> 
+					</c:if>
 					<input	type="hidden" name="store_add_lat" id="lat" size="45" value="${storeVO.store_add_lat}" />
 					<input	type="hidden" name="store_add_lon" id="lng" size="45" value="${storeVO.store_add_lon}" />
+					<input	type="hidden" name="store_no"  size="45" value="${storeVO.store_no}" />
+					<input	class="btn btn-primary pull-right" type="submit" value="確認修改" />
 			</FORM>
 		</div>
 	</div>
+	</div>
+	</div>
+	
 
 
 	<script>
@@ -245,6 +271,7 @@
 			handleFileSelect3, false);
 	</script>
 <style>
+
 .data{
 	list-style: none;
 }
@@ -256,5 +283,11 @@ caption {
  width:750px;
  
 }
+.te{
+width:340px
+}
 </style>
+
+<jsp:include page="/FrontEnd/include/footer.jsp"/>
+
 
