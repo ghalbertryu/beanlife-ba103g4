@@ -79,14 +79,23 @@ public class StoreDAO implements StoreDAO_interface{
 			pstmt.setBlob(10, blobSTORE_PIC1);
 			
 			byte [] STORE_PIC2 = storeVO.getStore_pic2();
+			if(STORE_PIC2!=null){
 			Blob blobSTORE_PIC2 = con.createBlob();
 			blobSTORE_PIC2.setBytes(1, STORE_PIC2);
 			pstmt.setBlob(11, blobSTORE_PIC2);
+			}else{
+				pstmt.setBytes(11, null);
+			}
 			
 			byte [] STORE_PIC3 = storeVO.getStore_pic3();
-			Blob blobSTORE_PIC3 = con.createBlob();
-			blobSTORE_PIC3.setBytes(1, STORE_PIC3);
-			pstmt.setBlob(12, blobSTORE_PIC3);
+			if(STORE_PIC2!=null){
+				Blob blobSTORE_PIC3 = con.createBlob();
+				blobSTORE_PIC3.setBytes(1, STORE_PIC3);
+				pstmt.setBlob(12, blobSTORE_PIC3);
+			}else{
+				pstmt.setBytes(12, null);
+			}
+			
 			
 			
 			pstmt.setInt(13, storeVO.getStore_free_ship());
