@@ -241,13 +241,12 @@
                     $('#cartList').empty();
                     var cartSize = 0;
                     for(var i = 0; i<jdata.length; i++){
-                        $('#cartList').append('<li><a href="#">'+
-                                jdata[i].prod_name+'　<span>$'+jdata[i].prod_price+
-                                'ｘ'+jdata[i].amount+'</span></a></li>');
+                        $('#cartList').append('<li><span class="text-info">'+
+                                jdata[i].prod_name+'</span></li><li class="text-right"><span class="text-danger">$'+jdata[i].prod_price+
+                                'ｘ'+jdata[i].amount+'</span></li>');
                         cartSize += Number(jdata[i].amount);
                     }
-                    $('#cartList').append('<li role="presentation" class="divider"></li>'+
-                            '<a href="<%=request.getContextPath()%>/FrontEnd/cart/cart.jsp"><div  class="btn btn-info pull-right">前往購物車</div></a>');
+                    $('#cartList').append('<li role="presentation" class="divider"></li><a href="<%=request.getContextPath()%>/FrontEnd/cart/cart.jsp"><div  class="btn btn-info btn-sm pull-right">前往購物車</div></a>');
                     $('#cartSize').text(cartSize);
                     $("[name='amount']").val(1);
                     console.log('成功加入購物車');

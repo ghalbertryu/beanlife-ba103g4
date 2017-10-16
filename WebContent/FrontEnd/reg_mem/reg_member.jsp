@@ -3,18 +3,17 @@
 <%@ page import="java.util.*"%>
 <%@ page import="com.store.model.*"%>
 <%-- 此頁採用 JSTL 與 EL 取值 --%>
-<%
 
-
-
-%>
 <jsp:include page="/FrontEnd/include/head.jsp"/>
 
 
+<div class="container cart-tab-block content">
+	<div class="row">
+		<div class="col-xs-12 col-sm-6 col-sm-offset-3">
+			<h3 class="bold">會員註冊</h3>
 
 	
-	
-<div  class="content container mgt-depn-nav">
+
 	<%-- 錯誤表列 --%>
 	<c:if test="${not empty errorMsgs}">
 		<font color='red'>請修正以下錯誤:
@@ -25,39 +24,46 @@
 			</ul>
 		</font>
 	</c:if>
-	<button class="new">紐</button>
+
+	<button class="new btn-xs btn-default">oh</button>
+
 	<FORM METHOD="post"
 		ACTION="<%=request.getContextPath()%>/mem/mem.do">
-		<table border="1">
+	<div class="table-responsive">          
+  		<table class="table">
 			<caption>
 				請填寫會員資料，以註冊會員</caption>
 			<tr>
 				<td>會員帳號:</td>
-				<td><input type="TEXT" name="mem_ac" size="45" class="ac"
+				<td><input  class="form-control ac" type="TEXT" name="mem_ac" size="45"
 					value="${memVO.mem_ac}" /></td>
 			</tr>
 			<tr>
 				<td>會員密碼:</td>
-				<td><input type="password" name="mem_pwd" size="45" class="pd"
+				<td><input  class="form-control pd" type="password" name="mem_pwd" size="45"
 					value="${memVO.mem_pwd}" /></td>
 			</tr>
 			
 			<tr>
 				<td>會員手機:</td>
-				<td><input type="TEXT"  name="mem_phone" size="45" class="phone"
-					 value="${memVO.mem_phone}" /><input type="button" class="auth" value="驗證手機"> </td>
+				<td>
+					<input  class="form-control phone" type="TEXT"  name="mem_phone" size="45"
+					 value="${memVO.mem_phone}" />
+					 <input class="form-control auth btn-success" type="button" value="驗證手機">
+				 </td>
 			</tr>
 			<tr>
 				<td>請輸入手機驗證碼:</td>
-				<td><input type="text" name="code" size="45" 
+				<td><input  class="form-control" type="text" name="code" size="45" 
 					value="" /></td>
 			</tr>
 		</table>
-		
-		<input type="submit" value="確定申請會員"> 
+	</div>
+		<input  class="btn btn-primary pull-right" type="submit" value="確定申請會員"> 
 		<input type="hidden" name="action" value="Application">
 	</FORM>
-</div>
+
+
 <form METHOD="post" class="phoneform"
 		ACTION="<%=request.getContextPath()%>/mem/mem.do">
 		<input type="hidden"  name="authphone" id ="authphone" value="${memVO.mem_phone}"> 
@@ -65,7 +71,10 @@
 		<input type="hidden"  name="mem_ac" id ="ac1" value="${memVO.mem_ac}"> 
 		<input type="hidden"  name="mem_pwd" id ="pd1" value="${memVO.mem_pwd}"> 
 </form>
-
+			
+		</div>
+	</div>
+</div>
 
 <script>
 $(".phone").change(function(){

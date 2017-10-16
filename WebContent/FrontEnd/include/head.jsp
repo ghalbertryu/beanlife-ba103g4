@@ -86,17 +86,19 @@
                         </c:forEach>
                         <span id="cartSize" class="badge cus-badge">${cartSize}</span>
                       </a>
-                      <ul id="cartList" class="dropdown-menu zidx5">
+                      <ul id="cartList" class="dropdown-menu zidx5 padlr5">
 	                    
 	                    <c:forEach var="cart_listVO" items="${cart_listSet}">
-	                    	<li><a href="#">
-	                    		${prodSvc.getOneProd(cart_listVO.prod_no).prod_name}
-	                    		<span class="pull-right">$${prodSvc.getOneProd(cart_listVO.prod_no).prod_price}ｘ${cart_listVO.prod_amount}</span>
-	                    	</a></li>
+	                    	<li>
+	                    		<span class="text-info">${prodSvc.getOneProd(cart_listVO.prod_no).prod_name}</span>
+	                       </li>
+                         <li class="text-right">
+                          <span class="text-danger">$${prodSvc.getOneProd(cart_listVO.prod_no).prod_price}ｘ${cart_listVO.prod_amount}</span>
+	                    	</li>
 	                    </c:forEach>
 	                   
                     <li role="presentation" class="divider"></li>
-                    <a href="<%=request.getContextPath()%>/FrontEnd/cart/cart.jsp"><div  class="btn btn-info btn-sm pull-right mgr20">前往購物車</div></a>
+                    <a href="<%=request.getContextPath()%>/FrontEnd/cart/cart.jsp"><div  class="btn btn-info btn-sm pull-right">前往購物車</div></a>
                   </ul>
                     </div>
 
@@ -205,10 +207,10 @@
                     <div class="container-fluid mgt20">
                       <div class="row">
                         <div class="col-xs-6 col-sm-6 padl0">
-                          <span id="btn-signIn" class="btn btn-info btn-block">註冊</span>
+                          <span id="btn-signIn" class="btn btn-primary btn-block">註冊</span>
                         </div>
                         <div class="col-xs-6 col-sm-6 padr0">
-                          <input type="submit" value="登入" class=" btn btn-success btn-block">
+                          <input type="submit" value="登入" class=" btn btn-danger btn-block">
                         </div>
                       </div>
                     </div>
