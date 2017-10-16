@@ -84,16 +84,20 @@
                                         <div class="col-xs-12 col-sm-11 col-sm-offset-1">
                                             <div id="prod-cas" class="carousel slide" data-ride="carousel">
                                                 <!-- 幻燈片主圖區 -->
-                                                <div class="carousel-inner">
-                                                    <div class="item active">
-                                                        <img class="img-responsive w800" src="<%=request.getContextPath()%>/prod/prodImg.do?prod_no=${prodVO.prod_no}&index=1" alt="prod_pic1">
+                                                <div class="carousel-inner ">
+                                                    <div class="item active imgContainer">
+                                                        <img class="img-responsive w800 imgInner mg-auto" src="<%=request.getContextPath()%>/prod/prodImg.do?prod_no=${prodVO.prod_no}&index=1" alt="prod_pic1">
                                                     </div>
-                                                    <div class="item">
-                                                        <img class="img-responsive w800" src="<%=request.getContextPath()%>/prod/prodImg.do?prod_no=${prodVO.prod_no}&index=2" alt="prod_pic2">
+                                                    <c:if test="${prodVO.prod_pic2!=null}">
+                                                    <div class="item imgContainer">
+                                                        <img class="img-responsive w800 imgInner mg-auto" src="<%=request.getContextPath()%>/prod/prodImg.do?prod_no=${prodVO.prod_no}&index=2" alt="prod_pic2">
                                                     </div>
-                                                    <div class="item">
-                                                        <img class="img-responsive w800" src="<%=request.getContextPath()%>/prod/prodImg.do?prod_no=${prodVO.prod_no}&index=3" alt="prod_pic3">
+                                                    </c:if>
+                                                    <c:if test="${prodVO.prod_pic3!=null}">
+                                                    <div class="item imgContainer">
+                                                        <img class="img-responsive w800 imgInner mg-auto" src="<%=request.getContextPath()%>/prod/prodImg.do?prod_no=${prodVO.prod_no}&index=3" alt="prod_pic3">
                                                     </div>
+                                                    </c:if>
                                                 </div>
                                                 <!-- 上下頁控制區 -->
                                                 <a class="left carousel-control" href="#prod-cas" data-slide="prev"><span class="glyphicon glyphicon-chevron-left"></span></a>
@@ -102,6 +106,25 @@
                                             
                                         </div>
                                     </div>
+                                    
+<style>                            
+.imgContainer {
+   position: relative;
+   width: 100%;
+   padding-top: 100%; /* 4:3 Aspect Ratio */
+}
+
+.imgInner {
+   position:  absolute;
+   top: 0;
+   left: 0;
+   bottom: 0;
+   right: 0;
+   text-align: center;
+   font-size: 20px;
+   color: white;
+}
+</style>   
 
 
                                     <div class="row mgt20">

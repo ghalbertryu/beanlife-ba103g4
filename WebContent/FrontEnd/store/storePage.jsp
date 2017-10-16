@@ -40,23 +40,48 @@
                   
                   <div id="store-cas" class="carousel slide" data-ride="carousel">
                       <!-- 幻燈片主圖區 -->
-                      <div class="carousel-inner">
-                          <div class="item active">
-                              <img class="img-responsive" src="<%=request.getContextPath()%>/store/storeImg.do?store_no=${storeVO.store_no}&index=1" alt="store_pic1">
+                      <div class="carousel-inner ">
+                          <div class="item imgContainer active">
+                              <img class="img-responsive w800 imgInner mg-auto" src="<%=request.getContextPath()%>/store/storeImg.do?store_no=${storeVO.store_no}&index=1" alt="store_pic1">
                           </div>
-                          <div class="item">
-                              <img class="img-responsive" src="<%=request.getContextPath()%>/store/storeImg.do?store_no=${storeVO.store_no}&index=2" alt="store_pic2">
+                          <c:if test="${storeVO.store_pic2!=null}">
+                          <div class="item imgContainer">
+                              <img class="img-responsive w800 imgInner mg-auto" src="<%=request.getContextPath()%>/store/storeImg.do?store_no=${storeVO.store_no}&index=2" alt="store_pic2">
                           </div>
-                          <div class ="item">
-                              <img class="img-responsive" src="<%=request.getContextPath()%>/store/storeImg.do?store_no=${storeVO.store_no}&index=3" alt="store_pic3">
+                          </c:if>
+                          <c:if test="${storeVO.store_pic3!=null}">
+                          <div class ="item imgContainer">
+                              <img class="img-responsive w800 imgInner mg-auto" src="<%=request.getContextPath()%>/store/storeImg.do?store_no=${storeVO.store_no}&index=3" alt="store_pic3">
                           </div>
+                          </c:if>
                       </div>
                       <!-- 上下頁控制區 -->
                       <a class="left carousel-control" href="#store-cas" data-slide="prev"><span class="glyphicon glyphicon-chevron-left"></span></a>
                       <a class="right carousel-control" href="#store-cas" data-slide="next"><span class="glyphicon glyphicon-chevron-right"></span></a>
                   </div>
                     
-                  
+ 
+ 
+ <style>                            
+.imgContainer {
+   position: relative;
+   width: 100%;
+   padding-top: 65%; /* 4:3 Aspect Ratio */
+}
+
+.imgInner {
+   position:  absolute;
+   top: 0;
+   left: 0;
+   bottom: 0;
+   right: 0;
+   text-align: center;
+   font-size: 20px;
+   color: white;
+}
+</style>   
+
+                 
 
                 </div>
               </div>
