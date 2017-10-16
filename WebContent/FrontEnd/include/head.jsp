@@ -242,12 +242,12 @@
 <c:if test="${mem_ac!=null}">
 <!--  --------------------------------------------------------------私訊開始---------------------------------------------------------------->
 			<div id="msgOn" class="btn  msgBtn bg-light-g" style="display:none;">
-               	 私訊
+               	 <span class="glyphicon glyphicon-comment "></span>
            </div>
 			
 
-           <div class="msg" style="display:none;">
-              <div class="container-fluid">
+           <div class="msg bg-white" style="display:none;">
+              <div class="container-fluid bg-light-g">
                 <div class="row">
                   <div class="col-xs-12 col-sm-12">
                     <span id="msgOff" class="btn btn-sm glyphicon glyphicon-minus pull-right"></span>
@@ -416,12 +416,19 @@ $(document).ready(function(){
 	}
 	.msg{
 /* 		margin-top:50vh; */
-		z-index: 1000; position: fixed; right: 30px; bottom: 0; width:300px; 
-    	background-color:snow;
+		z-index: 1000; 
+		position: fixed;
+		right: 10px; 
+		bottom: 0; 
+		width:300px; 
+		padding:5px;
+		border-top-left-radius:5px;
+		border-top-right-radius:5px;
+/*     	background-color:snow; */
 	}
 	.msgBtn{
 /* 		margin-top:50vh; */
-		z-index: 1000; position: fixed; right: 30px; bottom: 0;
+		z-index: 1000; position: fixed; right: 10px; bottom: 0;
 	}
 
 </style>
@@ -450,4 +457,5 @@ $(document).ready(function(){
 
 </script>
 <c:set var="showLogin" value="${false}" scope="session"/>
+<c:remove var="errorMsgs"/>
 
