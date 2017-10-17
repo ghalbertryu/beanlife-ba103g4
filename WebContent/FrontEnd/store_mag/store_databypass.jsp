@@ -79,7 +79,11 @@
 				</tr>
 				<tr>
 					<td>公司統一編號</td>
-					<td colspan="2"><input type="text" name="tax_id_no"value="${storeVO.tax_id_no}" class=" form-control te"></td>
+					<td colspan="2">
+				
+					<c:if test="${storeVO.store_stat=='審核通過'}" var="isDisabled"/>
+						<input type="text" name="tax_id_no" value="${storeVO.tax_id_no}" ${(isDisabled)?'disabled':''} class=" form-control te">
+					</td>
 				</tr>
 				<tr>
 					<td>免運費金額</td>
@@ -123,8 +127,9 @@
 					</c:if>
 					<input	type="hidden" name="store_add_lat" id="lat" size="45" value="${storeVO.store_add_lat}" />
 					<input	type="hidden" name="store_add_lon" id="lng" size="45" value="${storeVO.store_add_lon}" />
-					<input	type="hidden" name="store_no"  size="45" value="${storeVO.store_no}" />
+					<input	type="hidden" name="store_no"  size="45" value="${storeVO.store_no}" />　
 					<input	class="btn btn-primary pull-right" type="submit" value="確認修改" />
+					<input type ="button" onclick="history.back()" value="取消" class="btn btn-danger pull-right mgr10"></input>
 			</FORM>
 		</div>
 	</div>

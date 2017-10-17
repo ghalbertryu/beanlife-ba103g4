@@ -55,7 +55,7 @@ width:340px
 	
 	<div class="shop">
 	
-		<button class="new  btn-xs btn-default">紐</button>
+		<button class="new  btn-xs btn-default">P1</button><button class="new2  btn-xs btn-default">P2</button>
 			<FORM METHOD="POST" ACTION="<%=request.getContextPath()%>/prod/Prod_manag.do" name="form1"	enctype="multipart/form-data">
 		<div class="product col-sm-9">
 			<div class="table-responsive">       
@@ -398,12 +398,12 @@ document.getElementById('propic3').addEventListener('change',
 
 $(".new").click(function(){
 	$(".prod_name").val("古吉Guji 凱勇山 咖啡豆");
-	$(".bean_type").val("衣索比亞原生種 Ethiopian");
+	$(".bean_type").val("哥倫比亞原生種 Ethiopian");
 	$(".bean_grade").eq(4).attr("checked",true);
-	$(".bean_contry").val("巴拉圭");
-	$(".bean_region").val("大溪");
-	$(".bean_farm").val("新埔農場");
-	$(".bean_farmer").val("尾小寶");
+	$(".bean_contry").val("哥倫比亞");
+	$(".bean_region").val("烏拉科");
+	$(".bean_farm").val("亞達農場");
+	$(".bean_farmer").val("阿古力小農家");
 	$(".bean_el").val("1250");
 	$(".proc").eq(2).attr("selected",true);
 	$(".roast").eq(3).attr("selected",true);
@@ -417,7 +417,35 @@ $(".new").click(function(){
 	$(".prod_wt").val("1");
 	$(".send_fee").val("120");
 	$(".prod_sup").val("99");
-	$(".prod_cont").val("優美的衣索比亞咖啡，充滿吸引人的豐富花香、水果、巧克力調性。");
+	$(".prod_cont").val("哥倫比亞是世界上的咖啡生產大國，愛喝咖啡的你一定知道，主要的咖啡方式都是以水洗處理方式，因為位於南美多樣化的生態，也是咖啡豆適合生長的位置，而這次的 Supremo 咖啡豆單品則是哥倫比亞咖啡豆中等級最高級 17 目以上的咖啡豆，品嘗之餘也感謝這個世界給我們一個這麼優良的環境讓咖啡豆如此美味！");
+	$(".prod_stat").eq(1).attr("checked",true);
+})
+
+$(".new2").click(function(){
+	$(".prod_name").val("卡杜艾 AA 巴拉圭 咖啡豆");
+	$(".bean_type").val("巴拉圭原生種 Ethiopian");
+	$(".bean_grade").eq(4).attr("checked",true);
+	$(".bean_contry").val("台灣");
+	$(".bean_region").val("大溪");
+	$(".bean_farm").val("新埔農場");
+	$(".bean_farmer").val("尾小寶");
+	$(".bean_el").val("800");
+	$(".proc").eq(1).attr("selected",true);
+	$(".roast").eq(6).attr("selected",true);
+	$(".bean_attr_acid").eq(4).attr("checked",true);
+	$(".bean_attr_aroma").eq(2).attr("checked",true);
+	$(".bean_attr_body").eq(4).attr("checked",true);
+	$(".bean_attr_after").eq(1).attr("checked",true);
+	$(".bean_attr_bal").eq(2).attr("checked",true);
+	$(".bean_aroma").val("鳳梨香味");
+	$(".prod_price").val("499");
+	$(".prod_wt").val("1");
+	$(".send_fee").val("120");
+	$(".prod_sup").val("99");
+	$(".prod_cont").val("以往有人提到巴黎，就會想到時尚、名牌及咖啡，但在地狹人稠的台灣，以驚人的"+
+			"速度成長咖啡店，在星巴克進駐台灣之後，更是大規模的開始開店，現在台灣的咖啡館密度已經超"+
+			"越巴黎。也被殖民過的台灣，也曾經種植咖啡，但一直不是台灣主力生產的作物，直到近五年在"+
+			"各種資金以及科學化的做法，讓我們的咖啡也漸漸在世界上嶄露頭角，但因為台灣的種植面積不高且人工昂貴，價格普遍較高，較多的資深玩家才會飲用。");
 	$(".prod_stat").eq(1).attr("checked",true);
 })
 

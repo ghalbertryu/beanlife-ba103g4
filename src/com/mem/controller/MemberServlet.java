@@ -118,11 +118,11 @@ public class MemberServlet extends HttpServlet {
 				/***************************
 				 * 3.查詢完成,準備轉交(Send the Success view)
 				 *************/
-				
-				
-				
 				req.setAttribute("memVO", memVO); // 資料庫取出的會員 放入req
-				String url = "/FrontEnd/reg_mem/Finreg.jsp";
+				
+				session.setAttribute("mem_ac", mem_ac);
+				
+				String url = "/FrontEnd/reg_mem/mem_data.jsp";
 				RequestDispatcher successView = req.getRequestDispatcher(url); // 成功轉交
 																				// listOneEmp.jsp
 				successView.forward(req, res);

@@ -33,7 +33,7 @@ MemVO memVO=(MemVO)pageContext.getAttribute("memVO");
 			</ul>
 		</font>
 	</c:if>
-	
+	<button class="new  btn-xs btn-default">M1</button>
 	<FORM METHOD="post"
 		ACTION="<%=request.getContextPath()%>/mem/mem.do" enctype="multipart/form-data">
 	<div class="table-responsive">          
@@ -67,7 +67,14 @@ MemVO memVO=(MemVO)pageContext.getAttribute("memVO");
 				<td><input  class="form-control-file"  type="file"  name="mem_pic" size="45" id="mem_pic"
 					 value="上傳" /></td>
 			</tr>
-			
+<script>
+$('.new').click(function(){
+	$('[name="mem_lname"]').val('毛');
+	$('[name="mem_fname"]').val('毛');
+	$('[name="mem_email"]').val('10010338@yahoo.com.tw');
+	$('[name="mem_add"]').val('桃園中壢市中大路300號');
+});	
+</script>
 			
 		</table>
 	</div>
