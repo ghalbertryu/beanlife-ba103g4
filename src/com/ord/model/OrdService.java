@@ -102,6 +102,7 @@ public class OrdService {
 		ordVO.setOrd_stat("已付款");
 		ordVO.setPay_date(new Date(System.currentTimeMillis()));
 		ordVO.setPay_info(pay_info);
+		System.out.println(pay_info+"ordSvc");
 		dao.update(ordVO);
 		return ordVO;
 	}

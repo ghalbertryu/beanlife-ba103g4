@@ -100,17 +100,17 @@
 				
 				<tr>
 					<td>店家照片1</td>
-					<td><output id="mylist1"><img src="<%=request.getContextPath()%>/store/StoreImg.do?store_no=${storeVO.store_no}&index=1" width='150'></output></td>
+					<td><output id="mylist1"><img src="<%=request.getContextPath()%>/store/storeImg.do?store_no=${storeVO.store_no}&index=1" width='150'></output></td>
 					<td><input class="form-control-file" type="file" name="store_pic1" value="上傳" id="storepic1"></td>
 				</tr>
 				<tr>
 					<td>店家照片2</td>
-					<td><output id="mylist2"><img src="<%=request.getContextPath()%>/store/StoreImg.do?store_no=${storeVO.store_no}&index=2" width='150'></output></td>
+					<td><output id="mylist2"><img src="<%=request.getContextPath()%>/store/storeImg.do?store_no=${storeVO.store_no}&index=2" width='150'></output></td>
 					<td><input class="form-control-file" type="file" name="store_pic2" value="上傳" id="storepic2"></td>
 				</tr>
 				<tr>
 					<td>店家照片3</td>
-					<td><output id="mylist3"><img src="<%=request.getContextPath()%>/store/StoreImg.do?store_no=${storeVO.store_no}&index=3" width='150'></output></td>
+					<td><output id="mylist3"><img src="<%=request.getContextPath()%>/store/storeImg.do?store_no=${storeVO.store_no}&index=3" width='150'></output></td>
 					<td><input class="form-control-file" type="file" name="store_pic3" value="上傳" id="storepic3"></td>
 				</tr>
 			</table>

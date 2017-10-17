@@ -233,6 +233,7 @@ public class OrdServlet extends HttpServlet {
 				if(bankAc != null && !(bankAc.trim().length()==0)){
 					pay_info.append("B");
 					pay_info.append(bankAc);
+					System.out.println(pay_info);
 					if(pay_info.toString().length()!=6){
 						errorMsgs.put("err", "付款錯誤");
 					}
