@@ -113,6 +113,7 @@
 						<td>NT$${ordVO.total_pay}</td>
 						<td>${ordVO.ord_stat}</td>
 						<td>
+						<c:if test="${ordVO.ord_stat!='已取消'}">
 						<FORM METHOD="post"
 										ACTION="<%=request.getContextPath()%>/ord/Ord_manag.do">
 										<input type="submit" value="進行訂單管理" class="btn btn-info btn-xs"> 
@@ -121,6 +122,7 @@
 										<input type="hidden" name="action" value="getOne_For_Update">
 										<input type="hidden" name="whichPage"	value="<%=whichPage%>">  
 						</FORM>
+						</c:if>
 						</td>
 						<td><button class="btn btn-danger btn-xs msgTo" name="${ordVO.mem_ac}">與買家私訊</button></td>
 					</tr>

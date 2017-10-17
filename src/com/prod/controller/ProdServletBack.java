@@ -77,7 +77,7 @@ public class ProdServletBack extends HttpServlet {
 				
 				ProdService prodSvc = new ProdService();
 				Set<ProdVO> prodVOs = new LinkedHashSet<>();
-				for(int i=0 ;i<Math.min(list.size(),10);i++){
+				for(int i=0 ;i<Math.min(list.size(),12);i++){
 					prodVOs.add(prodSvc.getOneProdR(list.get(i).getKey()));		
 				}
 				
