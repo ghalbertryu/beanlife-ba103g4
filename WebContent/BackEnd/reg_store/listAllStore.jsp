@@ -163,7 +163,7 @@ text-align: center;
 				<div class="col-xs-12 right_bottom">
 					<table class="store_tittle">
 						<tr>
-							<td><h3>店家資料-listALLStore.jsp</h3></td>
+							<td><h3>店家資料</h3></td>
 							<td width="100"></td>
 							<td>依審核狀態選取：</td>
 							<td></td>

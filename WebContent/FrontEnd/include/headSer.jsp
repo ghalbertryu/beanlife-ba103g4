@@ -130,6 +130,11 @@
                   </ul>
                     </div>
 
+                    <div class="pull-right">
+                      <a id="btn-search" class="navbar-brand" href="#">
+                          <span class="glyphicon glyphicon-search"></span>
+                      </a>
+                    </div>
                 </div>
         </div>
 
