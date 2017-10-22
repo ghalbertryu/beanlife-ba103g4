@@ -201,6 +201,9 @@
                     <input type="hidden" name="action" value="login">
                     <div class="container-fluid mgt20">
                       <div class="row">
+                      	<div class="col-xs-12 col-sm-12 padl0">
+                          <span>測試用帳號一般會員：doctor32/654321<br>測試用帳號店家：dogisbad/654321</span>
+                        </div>
                         <div class="col-xs-6 col-sm-6 padl0">
                           <span id="btn-signIn" class="btn btn-primary btn-block">註冊</span>
                         </div>
