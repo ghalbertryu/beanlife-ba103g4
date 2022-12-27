@@ -1,0 +1,75 @@
+<project>
+   <modelVersion>4.0.0</modelVersion>
+   <groupId>org.ba103g4</groupId>
+   <version>1.0</version>
+   <artifactId>beanlife</artifactId>
+   <packaging>pom</packaging>
+   <name>beanlife</name>
+
+   <properties>
+      <maven.compiler.source>1.8</maven.compiler.source>
+      <maven.compiler.target>1.8</maven.compiler.target>
+   </properties>
+
+   <dependencies>
+       <!-- https://mvnrepository.com/artifact/org.springframework.boot/spring-boot-starter-thymeleaf -->
+       <dependency>
+           <groupId>org.springframework.boot</groupId>
+           <artifactId>spring-boot-starter-thymeleaf</artifactId>
+           <version>3.0.1</version>
+       </dependency>
+       <!-- https://mvnrepository.com/artifact/org.springframework.boot/spring-boot-starter-web -->
+       <dependency>
+           <groupId>org.springframework.boot</groupId>
+           <artifactId>spring-boot-starter-web</artifactId>
+           <version>3.0.1</version>
+       </dependency>
+       <!-- https://mvnrepository.com/artifact/org.springframework.boot/spring-boot-starter-tomcat -->
+       <dependency>
+           <groupId>org.springframework.boot</groupId>
+           <artifactId>spring-boot-starter-tomcat</artifactId>
+           <version>3.0.1</version>
+       </dependency>
+
+
+      <!-- https://mvnrepository.com/artifact/org.apache.tomcat/tomcat-util -->
+      <dependency>
+         <groupId>org.apache.tomcat</groupId>
+         <artifactId>tomcat-util</artifactId>
+         <version>8.0.30</version>
+      </dependency>
+      <dependency>
+         <groupId>com.sun.mail</groupId>
+         <artifactId>javax.mail</artifactId>
+         <version>1.6.2</version>
+      </dependency>
+      <dependency>
+         <groupId>javax.servlet</groupId>
+         <artifactId>javax.servlet-api</artifactId>
+         <version>4.0.1</version>
+         <scope>provided</scope>
+      </dependency>
+      <!-- https://mvnrepository.com/artifact/javax.websocket/javax.websocket-api -->
+      <dependency>
+         <groupId>javax.websocket</groupId>
+         <artifactId>javax.websocket-api</artifactId>
+         <version>1.1</version>
+         <scope>provided</scope>
+      </dependency>
+      <!-- https://mvnrepository.com/artifact/com.google.code.gson/gson -->
+      <dependency>
+         <groupId>com.google.code.gson</groupId>
+         <artifactId>gson</artifactId>
+         <version>2.10</version>
+      </dependency>
+   </dependencies>
+
+   <build>
+      <plugins>
+         <plugin>
+            <artifactId>maven-war-plugin</artifactId>
+            <version>3.3.1</version>
+         </plugin>
+      </plugins>
+   </build>
+</project>

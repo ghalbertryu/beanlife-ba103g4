@@ -1,20 +1,17 @@
 package com.act_management.controller;
 
 
-
-
-import java.io.BufferedReader;
-import java.io.ByteArrayOutputStream;
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.PrintWriter;
-import java.io.UnsupportedEncodingException;
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.LinkedList;
-import java.util.List;
-import java.util.Map;
-import java.util.Set;
+import com.act.model.ActService;
+import com.act.model.ActVO;
+import com.act_comm.model.Act_commService;
+import com.act_comm.model.Act_commVO;
+import com.act_pair.model.Act_pairService;
+import com.act_pair.model.Act_pairVO;
+import com.fo_act.model.Fo_actService;
+import com.mem.model.MemService;
+import com.mem.model.MemVO;
+import com.sys_msg.model.Sys_msgService;
+import com.sys_msg.model.Sys_msgVO;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -23,28 +20,10 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
-
-import com.act.model.ActService;
-import com.act.model.ActVO;
-import com.act_comm.model.Act_commService;
-import com.act_comm.model.Act_commVO;
-import com.act_pair.model.Act_pairService;
-import com.act_pair.model.Act_pairVO;
-import com.convert_gift.model.Convert_giftService;
-import com.convert_gift.model.Convert_giftVO;
-import com.fo_act.model.Fo_actService;
-import com.gift_data.model.Gift_dataJDBCDAO;
-import com.gift_data.model.Gift_dataJNDIDAO;
-import com.gift_data.model.Gift_dataService;
-import com.gift_data.model.Gift_dataVO;
-import com.google.gson.Gson;
-import com.mem.model.MemService;
-import com.mem.model.MemVO;
-
-import org.apache.tomcat.util.http.fileupload.IOUtils;
-import org.json.JSONArray;
-import org.json.JSONObject;
-import com.sys_msg.model.*;
+import java.io.ByteArrayOutputStream;
+import java.io.IOException;
+import java.io.InputStream;
+import java.util.*;
 
 @MultipartConfig(fileSizeThreshold = 1024 * 1024, maxFileSize = 500 * 1024 * 1024, maxRequestSize = 500* 5 * 1024 * 1024)
 public class Act_managementServlet extends HttpServlet{

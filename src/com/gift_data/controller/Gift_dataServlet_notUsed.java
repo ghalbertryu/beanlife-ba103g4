@@ -1,13 +1,7 @@
 package com.gift_data.controller;
 
-import java.io.BufferedReader;
-import java.io.ByteArrayOutputStream;
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.PrintWriter;
-import java.io.UnsupportedEncodingException;
-import java.util.LinkedList;
-import java.util.List;
+import com.gift_data.model.Gift_dataService;
+import com.gift_data.model.Gift_dataVO;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -15,16 +9,11 @@ import javax.servlet.annotation.MultipartConfig;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-
-import com.gift_data.model.Gift_dataJDBCDAO;
-import com.gift_data.model.Gift_dataJNDIDAO;
-import com.gift_data.model.Gift_dataService;
-import com.gift_data.model.Gift_dataVO;
-import com.google.gson.Gson;
-
-import org.apache.tomcat.util.http.fileupload.IOUtils;
-import org.json.JSONArray;
-import org.json.JSONObject;
+import java.io.ByteArrayOutputStream;
+import java.io.IOException;
+import java.io.InputStream;
+import java.util.LinkedList;
+import java.util.List;
 
 @MultipartConfig(fileSizeThreshold = 1024 * 1024, maxFileSize = 500 * 1024 * 1024, maxRequestSize = 500* 5 * 1024 * 1024)
 public class Gift_dataServlet_notUsed extends HttpServlet{
