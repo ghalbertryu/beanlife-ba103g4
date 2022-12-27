@@ -1,18 +1,9 @@
 package com.mem_management.controller;
 
-import java.io.BufferedReader;
-import java.io.ByteArrayOutputStream;
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.PrintWriter;
-import java.io.UnsupportedEncodingException;
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
-import java.util.Date;
-import java.util.HashSet;
-import java.util.LinkedList;
-import java.util.List;
-import java.util.Set;
+import com.mem.model.MemService;
+import com.mem.model.MemVO;
+import com.mgr.model.MgrService;
+import com.mgr.model.MgrVO;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -21,21 +12,9 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
-
-import com.convert_gift.model.Convert_giftService;
-import com.convert_gift.model.Convert_giftVO;
-import com.gift_data.model.Gift_dataJDBCDAO;
-import com.gift_data.model.Gift_dataJNDIDAO;
-import com.gift_data.model.Gift_dataService;
-import com.gift_data.model.Gift_dataVO;
-import com.google.gson.Gson;
-import com.mem.model.MemService;
-import com.mem.model.MemVO;
-import com.mgr.model.*;
-
-import org.apache.tomcat.util.http.fileupload.IOUtils;
-import org.json.JSONArray;
-import org.json.JSONObject;
+import java.io.IOException;
+import java.util.HashSet;
+import java.util.Set;
 
 @MultipartConfig(fileSizeThreshold = 1024 * 1024, maxFileSize = 500 * 1024 * 1024, maxRequestSize = 500* 5 * 1024 * 1024)
 public class Mem_managementServlet extends HttpServlet{
